@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<workflow id="22">
+<workflow id="45">
   <name>town-street</name>
   <roles>
     <role id="_receiver">Agents traitants</role>
     <role id="_ext_bo">ext_bo</role>
-  </roles><last_modification user_id="28">2019-05-03 13:33:32</last_modification>
+  </roles><last_modification user_id="1">2019-06-05 15:34:59</last_modification>
   <possible_status>
     <status>
       <id>just_submitted</id>
@@ -14,7 +14,11 @@
         <role>_receiver</role>
         <role>_ext_bo</role>
       </visibility><items>
-        <item id="1" type="set-backoffice-fields">
+        <item id="3" type="geolocate">
+          <method>address_string</method>
+          <address_string>{{form_var_numero|default:""}} {{ form_var_voie }}, {{ form_var_codepostal }}, {{ form_var_commune }}, Belgique</address_string>
+          <overwrite>True</overwrite>
+        </item><item id="1" type="set-backoffice-fields">
           <fields>
             <field>
               <field_id>bo4</field_id>
@@ -24,6 +28,12 @@
               <value>=False if 'tenu au courant' in form_details else True</value>
             </field>
           </fields>
+        </item><item id="6" type="jump">
+          <status>2</status>
+          <condition>
+            <type>python</type>
+            <value>str(form_var_is_first_observation) == "False"</value>
+          </condition><set_marker_on_status>False</set_marker_on_status>
         </item><item id="2" type="sendmail">
           <to>
             <item role_id="_submitter">_submitter</item>
@@ -45,10 +55,6 @@ Pour r&#233;f&#233;rence, voici le d&#233;tail du formulaire:
 [details]
 [end]
 </body>
-        </item><item id="3" type="geolocate">
-          <method>address_string</method>
-          <address_string>{{form_var_numero|default:""}} {{ form_var_voie }}, {{ form_var_codepostal }}, {{ form_var_commune }}, Belgique</address_string>
-          <overwrite>True</overwrite>
         </item><item id="4" type="jump">
           <status>new</status>
           <set_marker_on_status>False</set_marker_on_status>
@@ -200,7 +206,6 @@ Le service "Plus belle la Ville"
             <item role_id="=form_var_str_all_mails">=form_var_str_all_mails</item>
           </to><subject>Similar observation mails</subject>
           <body>Vous recevez cet e-mail car vous avez souhait&#233; &#234;tre avertit de l'&#233;tat d'avancement de cette demande...</body>
-          <custom_from />
           <condition>
             <type>python</type>
             <value>form_var_is_first_observation == "True"</value>
@@ -272,6 +277,13 @@ Vous pouvez en prendre connaissance en suivant ce lien :
 </body>
         </item>
       </items>
+    </status><status>
+      <id>2</id>
+      <name>incident signal&#233; en doublon</name>
+      <colour>FF0000</colour>
+      <forced_endpoint>true</forced_endpoint>
+      <visibility />
+      <items />
     </status>
   </possible_status><global_actions>
     <action>
@@ -283,15 +295,15 @@ Vous pouvez en prendre connaissance en suivant ce lien :
           <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items><triggers>
-        <trigger id="4c5ff462-c5ff-4c74-8afc-ffb4acebd08e" type="manual">
+        <trigger id="5c127713-b7a6-4f05-aaae-ae2b5d6781a9" type="manual">
           <roles>
-            <item role_id="1627a60e9baa4cfcb8804335e3b0212f">Debug</item>
+            <item role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
           </roles>
         </trigger>
       </triggers>
     </action><action>
       <id>2</id>
-      <name>Simulation envoi e-t</name>
+      <name>Simulation call WS</name>
       <items>
         <item id="1" type="webservice_call">
           <label>httpbin</label>
@@ -317,9 +329,9 @@ Vous pouvez en prendre connaissance en suivant ce lien :
           <record_errors>False</record_errors>
         </item>
       </items><triggers>
-        <trigger id="2d7adf20-6d9d-4b3c-8807-4bcd57c231ae" type="manual">
+        <trigger id="dab3056b-814f-4e0d-a1a2-346a0395d759" type="manual">
           <roles>
-            <item role_id="1627a60e9baa4cfcb8804335e3b0212f">Debug</item>
+            <item role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
           </roles>
         </trigger>
       </triggers>
@@ -329,18 +341,11 @@ Vous pouvez en prendre connaissance en suivant ce lien :
       <items>
         <item id="1" type="remove" />
       </items><triggers>
-        <trigger id="33392a3b-97fb-4a92-9f0c-aa77fc82d70d" type="manual">
+        <trigger id="ab33f21e-e9e7-447d-b91c-03ca85c283f8" type="manual">
           <roles>
-            <item role_id="1627a60e9baa4cfcb8804335e3b0212f">Debug</item>
+            <item role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
           </roles>
         </trigger>
-      </triggers>
-    </action><action>
-      <id>4</id>
-      <name>test</name>
-      <items />
-      <triggers>
-        <trigger id="477d693e-8c33-4b4a-9dce-9ae706e98244" type="manual" />
       </triggers>
     </action>
   </global_actions><variables>
@@ -366,26 +371,10 @@ Vous pouvez en prendre connaissance en suivant ce lien :
       <name>-</name>
       <fields>
         <field>
-          <label>Voie</label>
-          <type>string</type>
-          <required>True</required>
-          <varname>voie_reelle</varname>
-          <in_listing>True</in_listing>
-          <anonymise>True</anonymise>
-          <id>bo2</id>
-        </field><field>
-          <label>coderue</label>
-          <type>string</type>
-          <required>True</required>
-          <varname>coderue</varname>
-          <in_listing>True</in_listing>
-          <anonymise>True</anonymise>
-          <id>bo1</id>
-        </field><field>
           <label>Est-ce la 1ere observation?</label>
           <type>bool</type>
           <required>False</required>
-          <varname>is_first_observations</varname>
+          <varname>is_first_observation</varname>
           <in_listing>True</in_listing>
           <id>bo8</id>
         </field><field>
