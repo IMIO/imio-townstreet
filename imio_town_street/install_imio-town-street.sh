@@ -31,7 +31,10 @@ if ! [ -d /var/lib/wcs/$wcs_tenant/wscalls/ ]
 then
     mkdir /var/lib/wcs/$wcs_tenant/wscalls
 fi
-cp $install_path/wscalls/* /var/lib/wcs/$wcs_tenant/wscalls
+if [ -d $install_path/wscalls/ ]
+then
+    cp $install_path/wscalls/* /var/lib/wcs/$wcs_tenant/wscalls
+fi
 
 # WCS : Script to import xml workflow in wcs (Workflows must be create before forms)
 sudo -u  wcs wcsctl -f /etc/wcs/wcs-au-quotidien.cfg runscript --vhost=$wcs_tenant $install_path/import-workflows.py $install_path
