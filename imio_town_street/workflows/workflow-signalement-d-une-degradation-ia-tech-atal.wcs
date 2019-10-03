@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<workflow id="30">
+  <name>Signalement d'une d&#233;gradation (iA. Tech / Atal)</name>
+  <roles>
+    <role id="_receiver">Agent traitant</role>
+    <role id="_echevin">Echevin</role>
+  </roles><last_modification user_id="1">2019-10-03 11:58:48</last_modification>
+  <possible_status>
+    <status>
+      <id>1</id>
+      <name>Nouveau Signalement</name>
+      <colour>66FF00</colour>
+      <visibility />
+      <items>
+        <item id="4" type="set-backoffice-fields">
+          <fields>
+            <field>
+              <field_id>bo29127523-8db5-477a-8f2f-b5eb892ab096</field_id>
+              <value>=script.get_similars_observations('set_on_first_observation', form_var_sign_sim) if 'tenu au courant' in form_details else 'True'</value>
+            </field>
+          </fields>
+        </item><item id="1" type="sendmail">
+          <to>
+            <item role_id="_submitter">_submitter</item>
+          </to><subject>Floreffe : signalement d'une d&#233;gradation re&#231;ue</subject>
+          <body>Bonjour,
+
+Merci d'avoir utilis&#233; notre syst&#232;me de signalement de d&#233;gradation.
+Nous allons porter notre plus grande attention sur le cas que vous nous avez soumis
+
+{{form_var_typeDegradation}}
+
+Bien cordialement,</body>
+        </item><item id="3" type="geolocate">
+          <method>address_string</method>
+          <address_string>{{form_var_numero|default:""}} {{ form_var_voie }}, {{ form_var_codepostal }}, {{ form_var_commune }}, Belgique</address_string>
+          <map_variable />
+          <photo_variable />
+          <overwrite>True</overwrite>
+        </item><item id="2" type="jump">
+          <status>2</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>2</id>
+      <name>R&#233;ception par le dispatching</name>
+      <colour>0099FF</colour>
+      <visibility />
+      <items>
+        <item id="1" type="webservice_call">
+          <label>Cr&#233;ation de la demande dans ATAL</label>
+          <url>https://brainelalleud-passerelle.guichet-citoyen.be/passerelle-imio-ia-tech/ts-atal-connecteur/insertDemande</url>
+          <request_signature_key />
+          <method>POST</method>
+          <post>True</post>
+          <post_data>
+            <item>
+              <name>contactAdresse</name>
+              <value>=''</value>
+            </item><item>
+              <name>demandeObjet</name>
+              <value>=form_var_incident</value>
+            </item><item>
+              <name>codeServiceDemandeur</name>
+              <value>=''</value>
+            </item><item>
+              <name>contactCourriel</name>
+              <value>=form_var_courriel</value>
+            </item><item>
+              <name>dateSouhaitee</name>
+              <value>=''</value>
+            </item><item>
+              <name>remoteAddress</name>
+              <value>='213.181.59.198'</value>
+            </item><item>
+              <name>contactNom</name>
+              <value>='{0} {1}'.format(form_var_nom, form_var_prenom)</value>
+            </item><item>
+              <name>demandeDescription</name>
+              <value>=form_var_message</value>
+            </item><item>
+              <name>contactTelephone</name>
+              <value>=form_var_telephone</value>
+            </item><item>
+              <name>typeDemande</name>
+              <value>2</value>
+            </item><item>
+              <name>codeEquipement</name>
+              <value>=''</value>
+            </item><item>
+              <name>demandeLieu</name>
+              <value>='{0} / {1} , {2} - {3} ({4})'.format(globals().get('form_var_denomination_lieu','no denomination'), form_var_voie, form_var_codepostal, form_var_commune, form_var_numero or 'no door number')</value>
+            </item><item>
+              <name>coordY</name>
+              <value>=form_var_carte.split(';')[1] or None</value>
+            </item><item>
+              <name>coordX</name>
+              <value>=form_var_carte.split(';')[0] or None</value>
+            </item>
+          </post_data><response_type>json</response_type>
+          <varname>ws_atal</varname>
+          <action_on_app_error>:pass</action_on_app_error>
+          <action_on_4xx>:stop</action_on_4xx>
+          <action_on_5xx>:stop</action_on_5xx>
+          <action_on_bad_data>:pass</action_on_bad_data>
+          <action_on_network_errors>:stop</action_on_network_errors>
+          <notify_on_errors>True</notify_on_errors>
+          <record_errors>True</record_errors>
+        </item><item id="2" type="set-backoffice-fields">
+          <fields>
+            <field>
+              <field_id>bo1</field_id>
+              <value>=ws_atal_response</value>
+            </field>
+          </fields>
+        </item><item id="3" type="webservice_call">
+          <label>Upload du fichier joint (si fichier)</label>
+          <url>https://brainelalleud-passerelle.guichet-citoyen.be/passerelle-imio-ia-tech/iatech_upload_service/upload</url>
+          <request_signature_key />
+          <method>POST</method>
+          <post>True</post>
+          <post_data>
+            <item>
+              <name>fichier</name>
+              <value>=form_var_fichier_raw</value>
+            </item><item>
+              <name>numeroDemande</name>
+              <value>=form_var_numero_demande_iatech</value>
+            </item>
+          </post_data><response_type>json</response_type>
+          <varname>iatech_photo</varname>
+          <action_on_app_error>:pass</action_on_app_error>
+          <action_on_4xx>:stop</action_on_4xx>
+          <action_on_5xx>:stop</action_on_5xx>
+          <action_on_bad_data>:pass</action_on_bad_data>
+          <action_on_network_errors>:stop</action_on_network_errors>
+          <notify_on_errors>True</notify_on_errors>
+          <record_errors>True</record_errors>
+          <condition>
+            <type>python</type>
+            <value>form_var_fichier is not None</value>
+          </condition>
+        </item><item id="4" type="register-comment">
+          <comment>N&#176; de la demande dans iA Tech : {{ form_var_numero_demande_iatech }}</comment>
+        </item><item id="5" type="jump">
+          <status>4</status>
+          <condition>
+            <type>python</type>
+            <value>form_var_incident in ["Graffiti - Tag - Affichage sauvage", "Espace vert", "D&#233;chets - Propret&#233; publique"]</value>
+          </condition><set_marker_on_status>False</set_marker_on_status>
+        </item><item id="6" type="jump">
+          <status>3</status>
+          <condition>
+            <type>python</type>
+            <value>form_var_incident == "Eclairage public en panne ou qui clignote" or form_var_incident == "D&#233;gradation du mobilier urbain" or form_var_incident == "Signalisation"</value>
+          </condition><set_marker_on_status>False</set_marker_on_status>
+        </item><item id="7" type="choice">
+          <label>Envoyer la demande &#224; l'&#233;quipe travaux</label>
+          <by>
+            <item role_id="_receiver">_receiver</item>
+          </by><status>3</status>
+          <require_confirmation>False</require_confirmation>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item><item id="8" type="choice">
+          <label>Envoyer la demande &#224; l'&#233;quipe entretien</label>
+          <by>
+            <item role_id="_receiver">_receiver</item>
+          </by><status>4</status>
+          <require_confirmation>False</require_confirmation>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item><item id="9" type="choice">
+          <label>debug</label>
+          <by>
+            <item role_id="77a50d9fbec0497faaa7af517e98ba8a">Debug</item>
+          </by><status>2</status>
+          <require_confirmation>False</require_confirmation>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>3</id>
+      <name>&#201;quipe travaux</name>
+      <colour>FF9900</colour>
+      <visibility />
+      <items>
+        <item id="1" type="form">
+          <by>
+            <item role_id="_receiver">_receiver</item>
+            <item role_id="77a50d9fbec0497faaa7af517e98ba8a">Debug</item>
+          </by><varname>travaux</varname>
+          <formdef>
+            <name>-</name>
+            <fields>
+              <field>
+                <label>Objet du mail</label>
+                <type>string</type>
+                <required>True</required>
+                <varname>objet</varname>
+                <in_listing>False</in_listing>
+                <prefill>
+                  <type>formula</type>
+                  <value>'Concerne : Votre signalement de {0}'.format(form_var_typeDegradation)</value>
+                </prefill><anonymise>True</anonymise>
+                <id>1</id>
+              </field><field>
+                <label>Corps du mail</label>
+                <type>text</type>
+                <required>True</required>
+                <varname>corps</varname>
+                <in_listing>False</in_listing>
+                <prefill>
+                  <type>none</type>
+                </prefill><pre>False</pre>
+                <id>2</id>
+              </field>
+            </fields>
+          </formdef>
+        </item><item id="2" type="jumponsubmit">
+          <status>5</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item><item id="3" type="choice">
+          <label>DEBUG</label>
+          <by>
+            <item role_id="_receiver">_receiver</item>
+          </by><status>2</status>
+          <require_confirmation>False</require_confirmation>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>4</id>
+      <name>&#201;quipe Entretien</name>
+      <colour>FF9900</colour>
+      <visibility />
+      <items>
+        <item id="1" type="form">
+          <by>
+            <item role_id="_receiver">_receiver</item>
+          </by><varname>entretien</varname>
+          <formdef>
+            <name>-</name>
+            <fields>
+              <field>
+                <label>Objet du mail</label>
+                <type>string</type>
+                <required>True</required>
+                <in_listing>False</in_listing>
+                <prefill>
+                  <type>formula</type>
+                  <value>'Concerne : Votre signalement de {0}'.format(form_var_typeDegradation)</value>
+                </prefill><anonymise>True</anonymise>
+                <id>1</id>
+              </field><field>
+                <label>Corps du mail</label>
+                <type>text</type>
+                <required>True</required>
+                <varname>corps</varname>
+                <in_listing>False</in_listing>
+                <prefill>
+                  <type>none</type>
+                </prefill><pre>False</pre>
+                <id>2</id>
+              </field>
+            </fields>
+          </formdef>
+        </item><item id="2" type="jumponsubmit">
+          <status>5</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item><item id="3" type="choice">
+          <label>DEBUG</label>
+          <by>
+            <item role_id="_receiver">_receiver</item>
+          </by><status>2</status>
+          <require_confirmation>False</require_confirmation>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>5</id>
+      <name>Demande cl&#244;tur&#233;e</name>
+      <colour>99FF00</colour>
+      <visibility />
+      <items>
+        <item id="1" type="register-comment">
+          <comment>{{travaux_var_objet}}
+{{travaux_var_corps}}</comment>
+        </item><item id="2" type="sendmail">
+          <to>
+            <item role_id="=form_var_str_all_mails">=form_var_str_all_mails</item>
+          </to><subject>{{travaux_var_objet}}</subject>
+          <body>{{travaux_var_corps}}</body>
+          <custom_from />
+          <condition>
+            <type>python</type>
+            <value>form_var_is_first_observation == "True"</value>
+          </condition>
+        </item><item id="3" type="form">
+          <by>
+            <item role_id="_echevin">_echevin</item>
+          </by><varname>ech</varname>
+          <formdef>
+            <name>-</name>
+            <fields>
+              <field>
+                <label>Je valide</label>
+                <type>bool</type>
+                <required>False</required>
+                <in_listing>False</in_listing>
+                <id>1</id>
+              </field>
+            </fields>
+          </formdef>
+        </item>
+      </items>
+    </status><status>
+      <id>6</id>
+      <name>Mail de suivis aux citoyens</name>
+      <colour>FFFFFF</colour>
+      <visibility />
+      <items>
+        <item id="1" type="form">
+          <by>
+            <item role_id="_receiver">_receiver</item>
+          </by><varname>mail</varname>
+          <formdef>
+            <name>-</name>
+            <fields>
+              <field>
+                <label>Donner un suivis (mail) aux citoyens qui ont signal&#233; cet incident.</label>
+                <type>title</type>
+                <id>1</id>
+              </field><field>
+                <label>Objet du mail</label>
+                <type>string</type>
+                <required>True</required>
+                <varname>objet</varname>
+                <in_listing>False</in_listing>
+                <prefill>
+                  <type>string</type>
+                  <value>Braine l'Alleud : Suivis de votre signalement d'un incident.</value>
+                </prefill><anonymise>False</anonymise>
+                <id>2</id>
+              </field><field>
+                <label>Corps du mail</label>
+                <type>text</type>
+                <required>True</required>
+                <varname>corps</varname>
+                <in_listing>False</in_listing>
+                <prefill>
+                  <type>string</type>
+                  <value>Vous recevez cet e-mail car vous avez souhait&#233; &#234;tre avertit de l'&#233;tat d'avancement de cet incident...</value>
+                </prefill><pre>False</pre>
+                <id>3</id>
+              </field>
+            </fields>
+          </formdef>
+        </item><item id="2" type="jumponsubmit">
+          <status>7</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>7</id>
+      <name>Envoi du mail</name>
+      <colour>FFFFFF</colour>
+      <visibility />
+      <items>
+        <item id="1" type="sendmail">
+          <to>
+            <item role_id="=form_var_str_all_mails">=form_var_str_all_mails</item>
+          </to><subject>{{ mail_var_object }}</subject>
+          <body>{{ mail_var_objet }}</body>
+          <custom_from />
+          <condition>
+            <type>python</type>
+            <value>form_var_is_first_observation == "True"</value>
+          </condition>
+        </item>
+      </items>
+    </status>
+  </possible_status><global_actions>
+    <action>
+      <id>1</id>
+      <name>R&#233;cup&#233;rer &#233;tat de la demande</name>
+      <items>
+        <item id="1" type="webservice_call">
+          <label>R&#233;cup&#233;ration de l'&#233;tat de la demande</label>
+          <url>https://demo-passerelle.guichet-citoyen.be/passerelle-imio-ts-atal/ts-atal-connecteur/retrieveDetailsDemande</url>
+          <method>POST</method>
+          <post>True</post>
+          <post_data>
+            <item>
+              <name>numeroDemande</name>
+              <value>=form_var_numero_demande_iatech</value>
+            </item>
+          </post_data><response_type>json</response_type>
+          <varname>retrieve_demande</varname>
+          <action_on_app_error>:pass</action_on_app_error>
+          <action_on_4xx>:stop</action_on_4xx>
+          <action_on_5xx>:stop</action_on_5xx>
+          <action_on_bad_data>:pass</action_on_bad_data>
+          <action_on_network_errors>:stop</action_on_network_errors>
+          <notify_on_errors>True</notify_on_errors>
+          <record_errors>False</record_errors>
+        </item><item id="2" type="register-comment">
+          <comment>&lt;div&gt;
+&lt;b&gt;R&#233;ponse de Atal : &lt;/b&gt;
+&lt;ul&gt;
+&lt;li&gt;Etat de la demande : {{ retrieve_demande_response_etatDemande }}&lt;/li&gt;
+&lt;li&gt;Objet de la demande : {{ retrieve_demande_response_objetDemande }}&lt;/li&gt;
+&lt;li&gt;Code de la demande : {{ retrieve_demande_response_codeDemande }}&lt;/li&gt;
+&lt;li&gt;Commentaires des destinataires : {{ retrieve_demande_response_commentairesDestinataires }}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div</comment>
+        </item>
+      </items><triggers>
+        <trigger id="00f23a61-fc1e-40a6-91ce-de583028e640" type="manual">
+          <roles>
+            <item role_id="_receiver">_receiver</item>
+            <item role_id="_submitter">_submitter</item>
+            <item role_id="77a50d9fbec0497faaa7af517e98ba8a">Debug</item>
+          </roles>
+        </trigger>
+      </triggers>
+    </action><action>
+      <id>2</id>
+      <name>Mail de suivis</name>
+      <items>
+        <item id="1" type="jump">
+          <status>6</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items><triggers>
+        <trigger id="db31c312-80be-4844-9647-82f271aea698" type="manual">
+          <roles>
+            <item role_id="_receiver">_receiver</item>
+          </roles>
+        </trigger>
+      </triggers>
+    </action>
+  </global_actions><backoffice-fields>
+    <formdef>
+      <name>-</name>
+      <fields>
+        <field>
+          <label>N&#176; de demande iA Tech (Atal)</label>
+          <type>string</type>
+          <required>True</required>
+          <varname>numero_demande_iatech</varname>
+          <in_listing>True</in_listing>
+          <anonymise>True</anonymise>
+          <id>bo1</id>
+        </field><field>
+          <label>1ere observation</label>
+          <type>string</type>
+          <required>True</required>
+          <varname>first_observation</varname>
+          <in_listing>False</in_listing>
+          <anonymise>False</anonymise>
+          <id>bo29127523-8db5-477a-8f2f-b5eb892ab096</id>
+        </field><field>
+          <label>Est-ce la 1ere observation?</label>
+          <type>bool</type>
+          <required>False</required>
+          <varname>is_first_observations</varname>
+          <in_listing>False</in_listing>
+          <id>bo7a5cd32d-f23a-4018-9468-941676b7e1e4</id>
+        </field>
+      </fields>
+    </formdef>
+  </backoffice-fields>
+</workflow>
