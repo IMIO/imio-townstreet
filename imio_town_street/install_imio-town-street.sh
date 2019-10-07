@@ -44,12 +44,8 @@ sed -i 's/category_id="0"/category_id="'$(($category_registration_number + 1))'"
 sudo -u  wcs wcsctl -f /etc/wcs/wcs-au-quotidien.cfg runscript --vhost=$wcs_tenant $install_path/import-forms.py $install_path
 
 # COMBO : import town-street page (settings.json)
-sed -i "s/[COMMUNE]/$commune/g" $install_path/combo/tenants/settings.json
-sed -i "s/[DOMAIN]/$domain/g" $install_path/combo/tenants/settings.json
-cp $install_path/combo/tenants/settings.json /var/lib/combo/tenants/$combo_tenant/
-sed -i "s/$commune/[COMMUNE]/g" $install_path/combo/tenants/settings.json
-sed -i "s/$domain/[DOMAIN]/g" $install_path/combo/tenants/settings.json
-
-# COMBO : import AES portail-citoyen structure
+sed -i "s/[COMMUNE]/$commune/g" $install_path/combo/combo-town-street.json
+sed -i "s/[DOMAIN]/$domain/g" $install_path/combo/combo-town-street.json
 sudo -u combo combo-manage tenant_command import_site -d $combo_tenant $install_path/combo/combo-town-street.json
-
+sed -i "s/$commune/[COMMUNE]/g" $install_path/combo/combo-town-street.json
+sed -i "s/$domain/[DOMAIN]/g" $install_path/combo/combo-town-street.json
