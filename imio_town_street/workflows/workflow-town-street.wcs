@@ -4,7 +4,7 @@
   <roles>
     <role id="_receiver">Agents traitants</role>
     <role id="_ext_bo">ext_bo</role>
-  </roles><last_modification user_id="1">2019-06-05 15:34:59</last_modification>
+  </roles><last_modification user_id="1">2019-11-06 14:23:04</last_modification>
   <possible_status>
     <status>
       <id>just_submitted</id>
@@ -22,10 +22,10 @@
           <fields>
             <field>
               <field_id>bo4</field_id>
-              <value>=script.get_similars_observations('set_on_first_observation', form_var_sign_sim) if 'tenu au courant' in form_details else 'True'</value>
+              <value>=script.get_similars_observations('set_on_first_observation', form_var_sign_sim)</value>
             </field><field>
               <field_id>bo8</field_id>
-              <value>=False if 'tenu au courant' in form_details else True</value>
+              <value>=False if form_var_sign_sim is not None else True</value>
             </field>
           </fields>
         </item><item id="6" type="jump">
@@ -164,7 +164,7 @@ Vous pouvez en prendre connaissance en suivant ce lien :
             <item role_id="_ext_bo">_ext_bo</item>
           </by><set_marker_on_status>False</set_marker_on_status>
         </item><item id="4" type="choice">
-          <label>Accepter</label>
+          <label>Traiter</label>
           <by>
             <item role_id="_receiver">_receiver</item>
           </by><status>0</status>
@@ -187,6 +187,22 @@ Vous pouvez en prendre connaissance en suivant ce lien :
       <items>
         <item id="1" type="sendmail">
           <to>
+            <item role_id="christophe.boulanger@imio.be">christophe.boulanger@imio.be</item>
+          </to><subject>Plus belle la Ville - votre incident est en cours de traitement</subject>
+          <body>Bonjour {{ form_user_display_name }}, 
+
+Nous souhaitons vous informer que votre d&#233;claration {{ form_number }} li&#233;e &#224; un incident que vous nous avez rapport&#233; est en cours de traitement par les &#233;quipes ad hoc. 
+
+Cordialement, 
+
+Le service "Plus belle la Ville" 
+
+
+
+
+</body>
+        </item><item id="2" type="sendmail">
+          <to>
             <item role_id="=form_var_str_all_mails">=form_var_str_all_mails</item>
           </to><subject>Similar observation mails</subject>
           <body>Vous recevez cet e-mail car vous avez souhait&#233; &#234;tre avertit de l'&#233;tat d'avancement de cette demande...</body>
@@ -194,33 +210,33 @@ Vous pouvez en prendre connaissance en suivant ce lien :
             <type>python</type>
             <value>form_var_is_first_observation == "True"</value>
           </condition>
-        </item><item id="2" type="jump">
+        </item><item id="3" type="jump">
           <status>finished</status>
           <trigger>resolu</trigger>
           <by>
             <item role_id="_ext_bo">_ext_bo</item>
           </by><set_marker_on_status>False</set_marker_on_status>
-        </item><item id="3" type="jump">
+        </item><item id="4" type="jump">
           <status>rejected</status>
           <trigger>refuse</trigger>
           <by>
             <item role_id="_ext_bo">_ext_bo</item>
           </by><set_marker_on_status>False</set_marker_on_status>
-        </item><item id="4" type="choice">
+        </item><item id="5" type="choice">
           <label>Incident r&#233;solu</label>
           <by>
             <item role_id="_receiver">_receiver</item>
           </by><status>finished</status>
           <require_confirmation>False</require_confirmation>
           <set_marker_on_status>False</set_marker_on_status>
-        </item><item id="5" type="choice">
+        </item><item id="6" type="choice">
           <label>Incident refus&#233;</label>
           <by>
             <item role_id="_receiver">_receiver</item>
           </by><status>rejected</status>
           <require_confirmation>False</require_confirmation>
           <set_marker_on_status>False</set_marker_on_status>
-        </item><item id="6" type="choice">
+        </item><item id="7" type="choice">
           <label>debug</label>
           <by>
             <item role_id="_receiver">_receiver</item>
