@@ -11,7 +11,7 @@ Installation
 Configuration
 -------------
 
-    combo (config filesystem) : In theme (static/[COMMUNE]/), don't forget to add default map position in config.json : "settings" section.
+    combo (config filesystem) : In THEME (imio-publik-themes) (static/[COMMUNE]/), don't forget to add default map position in config.json : "settings" section.
         "settings": {
             "combo": {
                 "COMBO_MAP_DEFAULT_POSITION": {
@@ -26,3 +26,10 @@ Configuration
                  
         sample field value : Avaloir+-+Taque
         sample field id : 56
+
+
+   To limit scope of map on the city, you must set 2 variable in wcs site-options.cfg : 
+
+   [options]
+   map-bounds-top-left = xx.xxxx;y.yyyy
+   map-bounds-bottom-right = xx.xxxxx;y.yyyy
