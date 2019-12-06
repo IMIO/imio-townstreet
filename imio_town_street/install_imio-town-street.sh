@@ -9,12 +9,13 @@ domain=$1
 install_path="/usr/lib/imio_town_street"
 
 # WCS : Get wcs tenant
+# nomcommune-formulaires.nomdomain
 wcs_tenant=$(python $install_path/get-wcs-tenant.py 2>&1)
 
 commune=$(echo "$wcs_tenant" | sed "s/-formulaires.$domain//")
 
 # COMBO : Get combo tenant
-combo_tenant=$(echo "$wcs_tenant" | sed "s/-formulaires//")
+combo_tenant=$commune.$domain
 
 # HOBO : Get hobo tenant
 hobo_tenant=$(echo "$wcs_tenant" | sed "s/-formulaires/-hobo/")
@@ -44,8 +45,8 @@ sed -i 's/category_id="0"/category_id="'$(($category_registration_number + 1))'"
 sudo -u  wcs wcsctl -f /etc/wcs/wcs-au-quotidien.cfg runscript --vhost=$wcs_tenant $install_path/import-forms.py $install_path
 
 # COMBO : import town-street page (settings.json)
-sed -i "s/[COMMUNE]/$commune/g" $install_path/combo/combo-town-street.json
-sed -i "s/[DOMAIN]/$domain/g" $install_path/combo/combo-town-street.json
+sed -i "s/\[COMMUNE\]/$commune/g" $install_path/combo/combo-town-street.json
+sed -i "s/\[DOMAIN\]/$domain/g" $install_path/combo/combo-town-street.json
 sudo -u combo combo-manage tenant_command import_site -d $combo_tenant $install_path/combo/combo-town-street.json
-sed -i "s/$commune/[COMMUNE]/g" $install_path/combo/combo-town-street.json
-sed -i "s/$domain/[DOMAIN]/g" $install_path/combo/combo-town-street.json
+sed -i "s/$commune/\[COMMUNE\]/g" $install_path/combo/combo-town-street.json
+sed -i "s/$domain/\[DOMAIN\]/g" $install_path/combo/combo-town-street.json
