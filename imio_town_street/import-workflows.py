@@ -1,5 +1,6 @@
 import os
 import sys
+
 from wcs.workflows import Workflow
 
 folder_path = '{0}/workflows/'.format(sys.argv[1])
