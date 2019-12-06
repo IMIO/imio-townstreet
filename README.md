@@ -4,8 +4,9 @@
 
 Installation
 ------------
-
-    ./install_imio-town-street.sh
+    apt install imio-town-street
+    /usr/lib/package
+    ./install_imio-town-street.sh DOMAIN (guichet-citoyen.be, lescommunes.be,example.Net,...)
 
 Configuration
 -------------
