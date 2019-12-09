@@ -2,7 +2,7 @@
 <formdef id="154">
   <name>Signaler une d&#233;gradation</name>
   <url_name>imio-town-street</url_name>
-  <internal_identifier>plus-belle-la-ville-imio</internal_identifier>
+  <internal_identifier>imio-town-street</internal_identifier>
   <discussion>false</discussion>
   <detailed_emails>true</detailed_emails>
   <disabled>false</disabled>
