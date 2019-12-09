@@ -8,7 +8,7 @@
       "fields": {
         "icon_colour": "#000000",
         "properties": "incident,voie_reelle,status",
-        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/plus-belle-la-ville-pages-conditionnelles/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=Avaloir+-+Taque",
+        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/town-street-signalements/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=Avaloir+-+Taque",
         "label": "Avaloir - Taque",
         "cache_duration": 60,
         "marker_colour": "#ff7800",
@@ -21,7 +21,7 @@
       "fields": {
         "icon_colour": "#000000",
         "properties": "incident,sous_domaine_proprete,voie,status",
-        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/plus-belle-la-ville-pages-conditionnelles/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=D%C3%A9chets+-+Propret%C3%A9+publique",
+        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/town-street-signalements/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=D%C3%A9chets+-+Propret%C3%A9+publique",
         "label": "D\u00e9chets - Propret\u00e9 publique",
         "cache_duration": 60,
         "marker_colour": "#674d24",
@@ -34,7 +34,7 @@
       "fields": {
         "icon_colour": "#000000",
         "properties": "incident,sous_domaine_mobilier_urbain,voie,status",
-        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/plus-belle-la-ville-pages-conditionnelles/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=D%C3%A9gradation+du+mobilier+urbain",
+        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/town-street-signalements/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=D%C3%A9gradation+du+mobilier+urbain",
         "label": "D\u00e9gradation du mobilier urbain",
         "cache_duration": 60,
         "marker_colour": "#8f1e06",
@@ -47,7 +47,7 @@
       "fields": {
         "icon_colour": "#000000",
         "properties": "incident,voie,status",
-        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/plus-belle-la-ville-pages-conditionnelles/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=Eclairage+public+en+panne+ou+qui+clignote",
+        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/town-street-signalements/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=Eclairage+public+en+panne+ou+qui+clignote",
         "label": "Eclairage public en panne ou qui clignote",
         "cache_duration": 60,
         "marker_colour": "#ecee6c",
@@ -60,7 +60,7 @@
       "fields": {
         "icon_colour": "#000000",
         "properties": "incident,sous_domaine_proprete,voie_reelle,status",
-        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/plus-belle-la-ville-pages-conditionnelles/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=Espace+vert",
+        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/town-street-signalements/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=Espace+vert",
         "label": "Espace vert",
         "cache_duration": 60,
         "marker_colour": "#16df0d",
@@ -73,7 +73,7 @@
       "fields": {
         "icon_colour": "#000000",
         "properties": "incident,sous_domaine_graffiti,voie,status",
-        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/plus-belle-la-ville-pages-conditionnelles/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=Graffiti+-+Tag+-+Affichage+sauvage",
+        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/town-street-signalements/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=Graffiti+-+Tag+-+Affichage+sauvage",
         "label": "Graffiti - Tag - Affichage sauvage",
         "cache_duration": 60,
         "marker_colour": "#e423ff",
@@ -86,7 +86,7 @@
       "fields": {
         "icon_colour": "#000000",
         "properties": "incident,sous_domaine_signalisation,voie,status",
-        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/plus-belle-la-ville-pages-conditionnelles/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=Signalisation",
+        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/town-street-signalements/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=Signalisation",
         "label": "Signalisation",
         "cache_duration": 60,
         "marker_colour": "#fb9a01",
@@ -99,7 +99,7 @@
       "fields": {
         "icon_colour": "#000000",
         "properties": "incident,sous_domaine_voirie,voie_reelle,status",
-        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/plus-belle-la-ville-pages-conditionnelles/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=Voie+publique",
+        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/town-street-signalements/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=Voie+publique",
         "label": "Voie publique",
         "cache_duration": 60,
         "marker_colour": "#0000ff",
