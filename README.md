@@ -10,26 +10,24 @@ Installation
 
 Configuration
 -------------
-
-    combo (config filesystem) : In THEME (imio-publik-themes) (static/[COMMUNE]/), don't forget to add default map position in config.json : "settings" section.
-        "settings": {
-            "combo": {
-                "COMBO_MAP_DEFAULT_POSITION": {
-                    "lat": "xx.xxxxx",
-                    "lng": "y.yyyyy"
-                }
-            }
-         }
-
-    combo (config backoffice) : In (citizen) Portal > Maps : There are maps layers. Don't forget to update them with good geojson url
-        sample : https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/[FORM_SLUG]/geojson?filter=all&email=[USER_MAIL@WITH_RIGHTS_ON_FORM]&filter-[FIELD_ID]=on&filter-[FIELD_ID]-value=[FIELD_VALUE]
-                 
-        sample field value : Avaloir+-+Taque
-        sample field id : 56
+Edit the combo (config filesystem) relative to the city in `imio-publik-themes/static/[COMMUNE]/config.json` and add a "settings" section if there isn't yet. Don't forget to add default map position. 
 
 
-   To limit scope of map on the city, you must set 2 variable in wcs site-options.cfg : 
+```
+"settings": {
+  "combo": {
+    "COMBO_MAP_DEFAULT_POSITION": {
+      "lat": "xx.xxxxx",
+      "lng": "y.yyyyy"
+    }
+  }
+}
+```
 
+
+   To limit scope of map on the city, you must set 2 variables in wcs `site-options.cfg` : 
+```
    [options]
    map-bounds-top-left = xx.xxxx;y.yyyy
    map-bounds-bottom-right = xx.xxxxx;y.yyyy
+```
