@@ -4,7 +4,7 @@
 
 Installation
 ------------
-   1. `apt install imio-town-street`
+   1. `apt update && apt install imio-town-street && apt install wcs-scripts-teleservices`
    2. `cd /usr/lib/imio-town-street`
    3. `./install_imio-town-street.sh DOMAIN (guichet-citoyen.be, lescommunes.be,example.Net,...)`
 
@@ -31,3 +31,4 @@ Edit the combo (config filesystem) relative to the city in `imio-publik-themes/s
    map-bounds-top-left = xx.xxxx;y.yyyy
    map-bounds-bottom-right = xx.xxxxx;y.yyyy
 ```
+
