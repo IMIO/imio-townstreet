@@ -381,6 +381,7 @@ Vous pouvez en prendre connaissance en suivant ce lien :
     <action>
       <id>1</id>
       <name>Rejouer</name>
+      <backoffice_info_text>&lt;p&gt;Action de Debug (iMio) renvoyant la demande au status &amp;quot;Juste envoy&amp;eacute;&amp;quot;.&lt;/p&gt;</backoffice_info_text>
       <items>
         <item id="1" type="jump">
           <status>just_submitted</status>
@@ -396,6 +397,7 @@ Vous pouvez en prendre connaissance en suivant ce lien :
     </action><action>
       <id>2</id>
       <name>Simulation envoi e-t</name>
+      <backoffice_info_text>Action Debug (iMio) teste l'envoi d'une requête via httpbin</backoffice_info_text>
       <items>
         <item id="1" type="webservice_call">
           <label>httpbin</label>
@@ -430,6 +432,7 @@ Vous pouvez en prendre connaissance en suivant ce lien :
     </action><action>
       <id>3</id>
       <name>SUPPRIMER</name>
+      <backoffice_info_text>Action Debug (iMio) : supprime la demande</backoffice_info_text>
       <items>
         <item id="1" type="remove" />
       </items><triggers>
