@@ -5,7 +5,7 @@
 Installation
 ------------
    1. `apt update && apt install imio-town-street && apt install wcs-scripts-teleservices`
-   2. `cd /usr/lib/imio-town-street`
+   2. `cd /usr/lib/imio_town_street`
    3. `./install_imio-town-street.sh DOMAIN (guichet-citoyen.be, lescommunes.be,example.Net,...)`
 
 Configuration
