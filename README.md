@@ -25,7 +25,8 @@ Edit the combo (config filesystem) relative to the city in `imio-publik-themes/s
 ```
 
 
-   To limit scope of map on the city, you must set 2 variables in wcs `site-options.cfg` : 
+   To limit scope of map on the city, you must set 2 variables in wcs `site-options.cfg`  
+   path : /var/lib/wcs/COMMUNE-formulaires.guichet-citoyen.be/site-options.cfg
 ```
    [options]
    map-bounds-top-left = xx.xxxx;y.yyyy
