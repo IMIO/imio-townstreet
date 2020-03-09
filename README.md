@@ -10,7 +10,7 @@ Installation
 
 Configuration
 -------------
-Edit the combo (config filesystem) relative to the city in `imio-publik-themes/static/[COMMUNE]/config.json` and add a "settings" section if there isn't yet. Don't forget to add default map position. 
+Edit the combo (config filesystem) relative to the city in `imio-publik-themes/static/[COMMUNE]/config.json` and add a "settings" section if there isn't yet. Don't forget to add default map position. These coordinates indicates the center of the displayed map. 
 
 
 ```
@@ -27,6 +27,7 @@ Edit the combo (config filesystem) relative to the city in `imio-publik-themes/s
 
    To limit scope of map on the city, you must set 2 variables in wcs `site-options.cfg`  
    path : /var/lib/wcs/COMMUNE-formulaires.guichet-citoyen.be/site-options.cfg
+   These coordinates constrain the display to the determined area.
 ```
    [options]
    map-bounds-top-left = xx.xxxx;y.yyyy
