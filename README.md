@@ -10,7 +10,7 @@ Installation
 
 Configuration
 -------------
-Edit the combo (config filesystem) relative to the city in `imio-publik-themes/static/[COMMUNE]/config.json` and add a "settings" section if there isn't yet. Don't forget to add default map position. These coordinates indicates the center of the displayed map. 
+Edit the combo (config filesystem) relative to the city in `imio-publik-themes/static/[COMMUNE]/config.json` and add a "settings" section if there isn't yet. Don't forget to add default map position. These coordinates indicates the center of the displayed map. It will be impossible for the user to navigate further than the frame determined by these two coordinates
 
 
 ```
