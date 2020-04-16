@@ -8,7 +8,7 @@
       "fields": {
         "icon_colour": "#000000",
         "properties": "incident,voie_reelle,status",
-        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/town-street-signalements/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=Avaloir+-+Taque",
+        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/imio-town-street/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=Avaloir+-+Taque",
         "label": "Avaloir - Taque",
         "cache_duration": 60,
         "marker_colour": "#ff7800",
@@ -21,7 +21,7 @@
       "fields": {
         "icon_colour": "#000000",
         "properties": "incident,sous_domaine_proprete,voie,status",
-        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/town-street-signalements/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=D%C3%A9chets+-+Propret%C3%A9+publique",
+        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/imio-town-street/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=D%C3%A9chets+-+Propret%C3%A9+publique",
         "label": "D\u00e9chets - Propret\u00e9 publique",
         "cache_duration": 60,
         "marker_colour": "#674d24",
@@ -34,7 +34,7 @@
       "fields": {
         "icon_colour": "#000000",
         "properties": "incident,sous_domaine_mobilier_urbain,voie,status",
-        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/town-street-signalements/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=D%C3%A9gradation+du+mobilier+urbain",
+        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/imio-town-street/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=D%C3%A9gradation+du+mobilier+urbain",
         "label": "D\u00e9gradation du mobilier urbain",
         "cache_duration": 60,
         "marker_colour": "#8f1e06",
@@ -47,7 +47,7 @@
       "fields": {
         "icon_colour": "#000000",
         "properties": "incident,voie,status",
-        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/town-street-signalements/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=Eclairage+public+en+panne+ou+qui+clignote",
+        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/imio-town-street/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=Eclairage+public+en+panne+ou+qui+clignote",
         "label": "Eclairage public en panne ou qui clignote",
         "cache_duration": 60,
         "marker_colour": "#ecee6c",
@@ -60,7 +60,7 @@
       "fields": {
         "icon_colour": "#000000",
         "properties": "incident,sous_domaine_proprete,voie_reelle,status",
-        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/town-street-signalements/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=Espace+vert",
+        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/imio-town-street/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=Espace+vert",
         "label": "Espace vert",
         "cache_duration": 60,
         "marker_colour": "#16df0d",
@@ -73,7 +73,7 @@
       "fields": {
         "icon_colour": "#000000",
         "properties": "incident,sous_domaine_graffiti,voie,status",
-        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/town-street-signalements/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=Graffiti+-+Tag+-+Affichage+sauvage",
+        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/imio-town-street/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=Graffiti+-+Tag+-+Affichage+sauvage",
         "label": "Graffiti - Tag - Affichage sauvage",
         "cache_duration": 60,
         "marker_colour": "#e423ff",
@@ -86,7 +86,7 @@
       "fields": {
         "icon_colour": "#000000",
         "properties": "incident,sous_domaine_signalisation,voie,status",
-        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/town-street-signalements/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=Signalisation",
+        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/imio-town-street/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=Signalisation",
         "label": "Signalisation",
         "cache_duration": 60,
         "marker_colour": "#fb9a01",
@@ -99,7 +99,7 @@
       "fields": {
         "icon_colour": "#000000",
         "properties": "incident,sous_domaine_voirie,voie_reelle,status",
-        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/town-street-signalements/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=Voie+publique",
+        "geojson_url": "https://[COMMUNE]-formulaires.[DOMAIN]/api/forms/imio-town-street/geojson?filter=all&email=admints@imio.be&filter-56=on&filter-56-value=Voie+publique",
         "label": "Voie publique",
         "cache_duration": 60,
         "marker_colour": "#0000ff",
@@ -112,80 +112,80 @@
  "pages": [
 {
       "fields": {
-        "sub_slug": "", 
-        "picture": "", 
-        "description": "", 
-        "parent": null, 
-        "title": "carte", 
-        "last_update_timestamp": "2019-05-08T12:13:58.690Z", 
-        "template_name": "standard", 
-        "order": 37, 
-        "public": false, 
-        "snapshot": null, 
-        "redirect_url": "", 
+        "sub_slug": "",
+        "picture": "",
+        "description": "",
+        "parent": null,
+        "title": "carte",
+        "last_update_timestamp": "2019-05-08T12:13:58.690Z",
+        "template_name": "standard",
+        "order": 37,
+        "public": false,
+        "snapshot": null,
+        "redirect_url": "",
         "groups": [
           "Debug"
-        ], 
-        "slug": "carte", 
+        ],
+        "slug": "carte",
         "exclude_from_navigation": true
-      }, 
+      },
       "cells": [
         {
-          "model": "data.parentcontentcell", 
+          "model": "data.parentcontentcell",
           "fields": {
-            "extra_css_class": "", 
-            "restricted_to_unlogged": false, 
-            "last_update_timestamp": "2019-05-08T12:13:34.685Z", 
-            "slug": "", 
-            "groups": [], 
-            "order": 0, 
-            "placeholder": "footer", 
+            "extra_css_class": "",
+            "restricted_to_unlogged": false,
+            "last_update_timestamp": "2019-05-08T12:13:34.685Z",
+            "slug": "",
+            "groups": [],
+            "order": 0,
+            "placeholder": "footer",
             "public": true
           }
-        }, 
+        },
         {
-          "model": "maps.map", 
+          "model": "maps.map",
           "fields": {
-            "extra_css_class": "", 
-            "restricted_to_unlogged": false, 
-            "group_markers": false, 
-            "initial_state": "default-position", 
-            "groups": [], 
-            "title": "carte", 
-            "last_update_timestamp": "2019-05-08T14:25:05.403Z", 
-            "max_zoom": "13", 
-            "initial_zoom": "13", 
-            "slug": "", 
-            "min_zoom": "13", 
-            "marker_behaviour_onclick": "display_data", 
+            "extra_css_class": "",
+            "restricted_to_unlogged": false,
+            "group_markers": false,
+            "initial_state": "default-position",
+            "groups": [],
+            "title": "carte",
+            "last_update_timestamp": "2019-05-08T14:25:05.403Z",
+            "max_zoom": "13",
+            "initial_zoom": "13",
+            "slug": "",
+            "min_zoom": "13",
+            "marker_behaviour_onclick": "display_data",
             "layers": [
               [
                 "avaloir-taque"
-              ], 
+              ],
               [
                 "dechets-proprete-publique"
-              ], 
+              ],
               [
                 "degradation-du-mobilier-urbain"
-              ], 
+              ],
               [
                 "eclairage-public-en-panne-ou-qui-clignote"
-              ], 
+              ],
               [
                 "espace-vert"
-              ], 
+              ],
               [
                 "graffiti-tag-affichage-sauvage"
-              ], 
+              ],
               [
                 "signalisation"
-              ], 
+              ],
               [
                 "voie-publique"
               ]
-            ], 
-            "order": 1, 
-            "placeholder": "content", 
+            ],
+            "order": 1,
+            "placeholder": "content",
             "public": true
           }
         }
