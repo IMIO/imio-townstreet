@@ -16,7 +16,7 @@
           <fields>
             <field>
               <field_id>bo29127523-8db5-477a-8f2f-b5eb892ab096</field_id>
-              <value>=script.get_similars_observations('set_on_first_observation', form_var_sign_sim) if 'tenu au courant' in form_details else 'True'</value>
+              <value>='True' if script.get_similars_observations('set_on_first_observation', form_var_sign_sim) == 'None' else script.get_similars_observations('set_on_first_observation', form_var_sign_sim)</value>
             </field>
           </fields>
         </item><item id="1" type="sendmail">
