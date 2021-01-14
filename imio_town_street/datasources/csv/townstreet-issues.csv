@@ -1,0 +1,43 @@
+token,title,parent
+rubbish_around,Déchets aux abords,"bollards_barriers_cycle_racks, bottle_banks_colored, bottle_banks_colorless, leisure_furn, public_bins, sanitaries_fountains, textiles_banks"
+cigarette_end,Accumulation de mégots,"bus_shelters, cleanliness_other, less_than_one_cubic_meter"
+aerosol_canister,Bombes aérosols,"graffitis, illegal_waste_disposal_small"
+posters,Affiche(s),wild_signage
+stickers,Autocollant(s),wild_signage
+countinuously_lit,Allumé en continu,"highway_lighting, public_lamp"
+other_waste,Autres déchets,"illegal_waste_disposal_big, illegal_waste_disposal_small"
+other_issue,Autre signalement,"ad_boards, annoying_vegetation, bollards_barriers_cycle_racks, bottle_banks_colored, bottle_banks_colorless, bus_shelters, children_playground_furn, flower_boxs_grids_tree_stakes, graffitis, graffitis_tags_posters_other, highway_lighting, illegal_waste_disposal_big, illegal_waste_disposal_small, lane_markings, leisure_furn, manholes_drains, public_bins, public_lamp, road, sanitaries_fountains, sidewalks, signs, textiles_banks, trashes, trees, waste_containers, watercourse, wild_signage"
+plastic_can_barrel,Bidons en plastique et fûts,"illegal_waste_disposal_big, illegal_waste_disposal_small"
+overflowing,Débordant,"bottle_banks_colored, bottle_banks_colorless, sanitaries_fountains, textile_bank, waste_containers, watercourse"
+noisy_manhole,Taque bruyante,manholes_drains
+flashing_lamp,Lampe clignotante,"highway_lighting, public_lamp"
+construction_waste,Déchets de construction,"illegal_waste_disposal_big, illegal_waste_disposal_small"
+green_waste,Déchets verts,"green_space_other, illegal_waste_disposal_big, illegal_waste_disposal_small"
+branches,Branchages,"bus_shelters, children_playground_furn, highway_lighting, leisure_furn, manholes_drains, public_lamp, road, sanitaries_fountains, signs, trees"
+damaged,Dégat(s),"ad_boards, bus_shelters, children_playground_furn, highway_lighting, leisure_furn, public_lamp"
+uprooted,Tombé,trees
+impeding_road_traffic,Circulation gênée,"road, trees"
+turned_off,Éteint,"highway_lighting, public_lamp"
+ripped_overturned,Renversé,"public_bins, trashes, waste_containers"
+bigger_appliance,Éléctroménager,"illegal_waste_disposal_big, illegal_waste_disposal_small"
+out_of_service,Hors service,"sanitaries_fountains,highway_lighting, public_lamp, ad_boards"
+oil,Huile sur chaussée,road
+missing,Manquant·e,"trashes, signs, waste_containers, public_bins, children_playground_furn, leisure_furn, ad_boards, bollards_barriers_cycle_racks, flower_boxs_grids_tree_stakes, lane_markings"
+mattress,Matelas,illegal_waste_disposal_big
+furniture,Mobilier,"illegal_waste_disposal_big, illegal_waste_disposal_small"
+dead_animal,Animal mort,"road
+"
+ice_snow,Neige / Verglas,"road, sidewalks"
+pothole,Nid de poule,road
+household_waste,Ordures ménagères,"illegal_waste_disposal_big, illegal_waste_disposal_small"
+paper_cardboard,Papiers / Cartons,"illegal_waste_disposal_big, illegal_waste_disposal_small"
+car_parts,Pièces automobiles,"illegal_waste_disposal_big, illegal_waste_disposal_small"
+electric_batteries,Piles et batteries,"illegal_waste_disposal_big, illegal_waste_disposal_small"
+pmc_bag,PMC,"illegal_waste_disposal_big, illegal_waste_disposal_small"
+pollution,Pollution,"watercourse, green_space_other"
+painting_material,Pots et matériels de peinture,"illegal_waste_disposal_big, illegal_waste_disposal_small"
+dirty,Sale,"ad_boards, bus_shelters, children_playground_furn, leisure_furn, public_bins, road, sanitaries_fountains, signs, textiles_banks, trashes, waste_containers"
+syringe_drugs,"Seringue, médicament","illegal_waste_disposal_big, illegal_waste_disposal_small, sidewalks, waste_containers"
+textile,Textile,"illegal_waste_disposal_big, illegal_waste_disposal_small"
+tv_computers,"TV, Ordinateurs, IT","illegal_waste_disposal_big, illegal_waste_disposal_small"
+waste_glass,Verre,"illegal_waste_disposal_big, illegal_waste_disposal_small"
