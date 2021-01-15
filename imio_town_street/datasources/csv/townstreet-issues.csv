@@ -6,7 +6,7 @@ posters,Affiche(s),wild_signage
 stickers,Autocollant(s),wild_signage
 countinuously_lit,Allumé en continu,"highway_lighting, public_lamp"
 other_waste,Autres déchets,"illegal_waste_disposal_big, illegal_waste_disposal_small"
-other_issue,Autre signalement,"ad_boards, annoying_vegetation, bollards_barriers_cycle_racks, bottle_banks_colored, bottle_banks_colorless, bus_shelters, children_playground_furn, flower_boxs_grids_tree_stakes, graffitis, graffitis_tags_posters_other, highway_lighting, illegal_waste_disposal_big, illegal_waste_disposal_small, lane_markings, leisure_furn, manholes_drains, public_bins, public_lamp, road, sanitaries_fountains, sidewalks, signs, textiles_banks, trashes, trees, waste_containers, watercourse, wild_signage"
+other_issue,Autre signalement,"ad_boards, annoying_vegetation, bollards_barriers_cycle_racks, bottle_banks_colored, bottle_banks_colorless, bus_shelters, children_playground_furn, flower_boxs_grids_tree_stakes, graffitis, graffitis_tags_posters_other, highway_lighting, lane_markings, leisure_furn, manholes_drains, public_bins, public_lamp, road, sanitaries_fountains, sidewalks, signs, textiles_banks, trashes, trees, waste_containers, watercourse, wild_signage"
 plastic_can_barrel,Bidons en plastique et fûts,"illegal_waste_disposal_big, illegal_waste_disposal_small"
 overflowing,Débordant,"bottle_banks_colored, bottle_banks_colorless, sanitaries_fountains, textile_bank, waste_containers, watercourse"
 noisy_manhole,Taque bruyante,manholes_drains
