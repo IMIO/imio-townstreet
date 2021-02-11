@@ -1,8 +1,8 @@
 token,title,parent
-cleanliness,Propreté et dépots clandestins,null
+cleanliness,Propreté et dépôts clandestins,null
 public_street,Voies publiques,null
 graffitis_tags_posters,"Graffitis, Tags et affichages sauvages",null
 green_space,Espaces verts,null
 street_furniture,Dégradations du mobilier urbain,null
 public_lighting,Éclairages publics,null
-other_category,Autres types de signalements,null
+other_category,Autres types de signalement,null
