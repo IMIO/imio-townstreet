@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    triggers {
-        pollSCM('*/3 * * * *')
-    }
     options {
         // Keep the 50 most recent builds
         buildDiscarder(logRotator(numToKeepStr:'50'))
@@ -19,12 +16,30 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
+        stage('Push deb to buster apt repo') {
+            when {
+                branch 'master'
+            }
             environment {
                 VERSION= sh (script: "sh version.sh", returnStdout: true)
             }
             steps {
                 withCredentials([usernameColonPassword(credentialsId: 'nexus-teleservices', variable: 'CREDENTIALS'),string(credentialsId: 'nexus-url-buster', variable:'NEXUS_URL_BUSTER')]) {
+                    sh ('curl -v --fail -u $CREDENTIALS -X POST -H Content-Type:multipart/form-data --data-binary @imio-town-street_`echo ${VERSION}`_amd64.deb $NEXUS_URL_BUSTER')
+                }
+            }
+        }
+        stage('Push deb to buster-test apt repo') {
+            when {
+                not {
+                    branch 'master'
+                }
+            }
+            environment {
+                VERSION= sh (script: "sh version.sh", returnStdout: true)
+            }
+            steps {
+                withCredentials([usernameColonPassword(credentialsId: 'nexus-teleservices', variable: 'CREDENTIALS'),string(credentialsId: 'nexus-url-buster-test', variable:'NEXUS_URL_BUSTER')]) {
                     sh ('curl -v --fail -u $CREDENTIALS -X POST -H Content-Type:multipart/form-data --data-binary @imio-town-street_`echo ${VERSION}`_amd64.deb $NEXUS_URL_BUSTER')
                 }
             }
