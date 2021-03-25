@@ -7,8 +7,7 @@ La démarche fût historiquement initiée par Christophe Boulanger en collaborat
 Comment instancier Townstreet ? (2021/02/17)
 
 
-Comment maintenir Townstreet ?
-Veuillez être rigoureux et noter tout changement dans le changelog en vous référrant aux principes directeurs décrits dans celui-ci.
+
 
 ## Installation
 La procédure est décrite dans une page du Wiki de ce repository Gitlab.
@@ -17,5 +16,5 @@ https://gitlab.imio.be/teleservices/imio-town-street/-/wikis/Townstreet---Checkl
 ### Note
 Pour plus d'information sur la démarche, voir la documentation interne Téléservices, catégorie "Townstreet"
 
-## Configuration 
-
+## Maintenance 
+Veuillez être rigoureux et noter tout changement dans le changelog en vous référrant aux principes directeurs décrits dans celui-ci.
