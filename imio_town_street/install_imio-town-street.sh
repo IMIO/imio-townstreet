@@ -41,7 +41,7 @@ fi
 sudo -u wcs wcs-manage runscript --all-tenants $install_path/import-workflows.py $install_path
 
 # WCS : Script to import xml forms in wcs
-sed -i 's/category_id="0"/category_id="'$(($category_registration_number + 1))'"/g' $install_path/forms/form-imio-town-street.wcs
+sed -i 's/category_id="0"/category_id="'$(($category_registration_number + 1))'"/g' $install_path/forms/form-imio-townstreet.wcs
 sudo -u wcs wcs-manage runscript --all-tenants $install_path/import-forms.py $install_path
 
 # COMBO : import town-street page (settings.json)

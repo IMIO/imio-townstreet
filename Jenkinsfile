@@ -10,9 +10,9 @@ pipeline {
                 VERSION= sh (script: "sh version.sh", returnStdout: true)
             }
             steps {
-                sh "fpm -a amd64 -n imio-town-street -s python -t deb -v `echo ${VERSION}` --prefix /usr -d passerelle setup.py"
+                sh "fpm -a amd64 -n imio-townstreet -s python -t deb -v `echo ${VERSION}` --prefix /usr -d passerelle setup.py"
                 withCredentials([string(credentialsId: 'gpg-passphrase-system@imio.be', variable:'PASSPHRASE')]){
-                    sh ('''dpkg-sig --gpg-options "--yes --batch --passphrase '$PASSPHRASE' " -s builder -k 9D4C79E197D914CF60C05332C0025EEBC59B875B imio-town-street_`echo ${VERSION}`_amd64.deb''')
+                    sh ('''dpkg-sig --gpg-options "--yes --batch --passphrase '$PASSPHRASE' " -s builder -k 9D4C79E197D914CF60C05332C0025EEBC59B875B imio-townstreet_`echo ${VERSION}`_amd64.deb''')
                 }
             }
         }
@@ -25,7 +25,7 @@ pipeline {
             }
             steps {
                 withCredentials([usernameColonPassword(credentialsId: 'nexus-teleservices', variable: 'CREDENTIALS'),string(credentialsId: 'nexus-url-buster', variable:'NEXUS_URL_BUSTER')]) {
-                    sh ('curl -v --fail -u $CREDENTIALS -X POST -H Content-Type:multipart/form-data --data-binary @imio-town-street_`echo ${VERSION}`_amd64.deb $NEXUS_URL_BUSTER')
+                    sh ('curl -v --fail -u $CREDENTIALS -X POST -H Content-Type:multipart/form-data --data-binary @imio-townstreet_`echo ${VERSION}`_amd64.deb $NEXUS_URL_BUSTER')
                 }
             }
         }
@@ -40,14 +40,14 @@ pipeline {
             }
             steps {
                 withCredentials([usernameColonPassword(credentialsId: 'nexus-teleservices', variable: 'CREDENTIALS'),string(credentialsId: 'nexus-url-buster-test', variable:'NEXUS_URL_BUSTER')]) {
-                    sh ('curl -v --fail -u $CREDENTIALS -X POST -H Content-Type:multipart/form-data --data-binary @imio-town-street_`echo ${VERSION}`_amd64.deb $NEXUS_URL_BUSTER')
+                    sh ('curl -v --fail -u $CREDENTIALS -X POST -H Content-Type:multipart/form-data --data-binary @imio-townstreet_`echo ${VERSION}`_amd64.deb $NEXUS_URL_BUSTER')
                 }
             }
         }
     }
     post {
         always {
-            sh "rm -f imio-town-street_*.deb"
+            sh "rm -f imio-townstreet_*.deb"
         }
 
     }

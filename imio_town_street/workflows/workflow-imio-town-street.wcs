@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <workflow id="49">
-  <name>imio-town-street</name>
+  <name>imio-townstreet</name>
   <roles>
     <role id="_receiver">Agents traitants</role>
     <role id="_ext_bo">ext_bo</role>

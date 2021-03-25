@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="iso-8859-15"?>
 <formdef id="154">
   <name>Signaler une d&#233;gradation</name>
-  <url_name>imio-town-street</url_name>
-  <internal_identifier>imio-town-street</internal_identifier>
+  <url_name>imio-townstreet</url_name>
+  <internal_identifier>imio-townstreet</internal_identifier>
   <discussion>false</discussion>
   <detailed_emails>true</detailed_emails>
   <disabled>false</disabled>
