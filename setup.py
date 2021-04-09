@@ -9,7 +9,7 @@ import os
 class inst(install):
     def run(self):
         install.run(self)
-        path = os.getcwd().replace(" ", "\ ").replace("(","\(").replace(")","\)") + "/bin/"
+        path = os.getcwd().replace(" ", r"\ ").replace("(",r"\(").replace(")",r"\)") + "/bin/"
         os.system("sh "+path+"install_imio-townstreet.sh")
 
 setup(
