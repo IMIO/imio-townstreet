@@ -3,7 +3,7 @@
 
 from setuptools import setup
 from setuptools.command.install import install
-from setuptools import setup, find_packages
+from setuptools import setup
 import os
 
 class inst(install):
@@ -16,7 +16,7 @@ setup(
     name='imio-townstreet',
     author='Christophe Boulanger',
     author_email='christophe.boulanger@imio.be',
-    packages=find_packages(),
+    packages=["publik-imio-industrialisation"],
     include_package_data=True,
     url='https://github.com/IMIO/imio-townstreet',
     classifiers=[
