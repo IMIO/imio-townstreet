@@ -3,20 +3,20 @@
 
 from setuptools import setup
 from setuptools.command.install import install
-from setuptools import setup, find_packages
+from setuptools import setup
 import os
 
 class inst(install):
     def run(self):
         install.run(self)
-        path = os.getcwd().replace(" ", "\ ").replace("(","\(").replace(")","\)") + "/bin/"
+        path = os.getcwd().replace(" ", r"\ ").replace("(",r"\(").replace(")",r"\)") + "/bin/"
         os.system("sh "+path+"install_imio-townstreet.sh")
 
 setup(
     name='imio-townstreet',
     author='Christophe Boulanger',
     author_email='christophe.boulanger@imio.be',
-    packages=find_packages(),
+    packages=["publik-imio-industrialisation"],
     include_package_data=True,
     url='https://github.com/IMIO/imio-townstreet',
     classifiers=[

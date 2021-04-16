@@ -1,9 +1,11 @@
-recursive-include imio_town_street *
-recursive-include imio_town_street/category *
-recursive-include imio_town_street/agenda *
-recursive-include imio_town_street/forms *
-recursive-include imio_town_street/workflows *
+recursive-include imio_townstreet *
+recursive-include imio_townstreet/category *
+recursive-include imio_townstreet/datasources *
+recursive-include imio_townstreet/forms *
+recursive-include imio_townstreet/workflows *
+recursive-include imio_townstreet/roles *
 include MANIFEST.in
+include install_imio_townstreet.sh
 include VERSION
-include README
+include README.md
 
