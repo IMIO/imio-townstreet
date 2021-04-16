@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<datasource id="129">
+  <name>iMio - Townstreet - Issues</name>
+  <slug>imio_townstreet_issues</slug>
+  <description>Source de donn&#233;e fournissant les issues.</description>
+  <cache_duration>86400</cache_duration>
+  <data_source>
+    <type>json</type>
+    <value>{{passerelle_url}}csvdatasource/townstreet_issues/data</value>
+  </data_source>
+</datasource>
