@@ -11,5 +11,8 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.4
+    * [TOWS-33] add passerelle folder to MANIFEST.in [dmu]
+
 0.0.3
     * [TOWS-33] Init changelog 
