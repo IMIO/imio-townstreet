@@ -6,7 +6,7 @@ imio-townstreet changelog
 :Authors: Christophe Boulanger, Daniel Muyshond, Nicolas Hislaire
 :License: GPLv2.
 :Last change date: 2021-04-22
-:Current version: 0.0.3
+:Current version: 0.0.4
 
 Version History
 ===============
