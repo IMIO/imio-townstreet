@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from setuptools import find_packages
 from setuptools import setup
 from setuptools.command.install import install
 import os
@@ -8,7 +9,6 @@ import os
 
 class inst(install):
     def run(self):
-        __import__("pdb").set_trace()
         install.run(self)
         path = (
             os.getcwd().replace(" ", r"\ ").replace("(", r"\(").replace(")", r"\)")
@@ -21,6 +21,7 @@ setup(
     name="imio-townstreet",
     author="Christophe Boulanger",
     author_email="christophe.boulanger@imio.be",
+    packages=find_packages(),
     include_package_data=True,
     url="https://github.com/IMIO/imio-townstreet",
     classifiers=[
