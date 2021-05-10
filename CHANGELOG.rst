@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.9
+    * [TOWS-33] fix error in bash install file [dmu]
+
 0.0.8
     * [TOWS-33] try to put connectors in wscall folders [dmu]
 
