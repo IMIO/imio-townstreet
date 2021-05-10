@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.7
+    * [TOWS-33] init forms, workflows, mail-templates [dmu]
+
 0.0.6
     * [INFRA-3644] restore find_package() in setup.py [bsu, dmu]
 
