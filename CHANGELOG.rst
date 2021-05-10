@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.6
+    * [INFRA-3644] restore find_package() in setup.py [bsu, dmu]
+
 0.0.5
     * [TOWS-33] restore blank init file (python package) [dmu]
 

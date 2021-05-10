@@ -19,8 +19,8 @@ class inst(install):
 
 setup(
     name="imio-townstreet",
-    author="Christophe Boulanger",
-    author_email="christophe.boulanger@imio.be",
+    author="Christophe Boulanger, Daniel Muyshond",
+    author_email="admints@imio.be",
     packages=find_packages(),
     include_package_data=True,
     url="https://github.com/IMIO/imio-townstreet",
