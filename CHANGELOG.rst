@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.10
+    * [TOWS-33] add connecotrs
+
 0.0.9
     * [TOWS-33] fix error in bash install file [dmu]
 
