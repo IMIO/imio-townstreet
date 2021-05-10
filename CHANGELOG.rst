@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.8
+    * [TOWS-33] try to put connectors in wscall folders [dmu]
+
 0.0.7
     * [TOWS-33] init forms, workflows, mail-templates [dmu]
 
