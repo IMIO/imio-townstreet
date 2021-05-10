@@ -8,7 +8,7 @@
       "description": "iMio - Townstreet - Connecteur vers e-Atal (v5)\r\nPour assurer le bon fonctionnement de l'application, veuillez ne pas modifier quoi que ce soit ici. En cas de doute, merci d'ouvrir un ticket via https://support.imio.be/",
       "log_level": "INFO",
       "access_rights": [],
-      "base_soap_url": "https://eatal-test1.imio-test.be/awa/services/"
+      "base_soap_url": "https://braine-lalleud-eatal.imio-test.be/awa/services/"
     }
   ]
 }

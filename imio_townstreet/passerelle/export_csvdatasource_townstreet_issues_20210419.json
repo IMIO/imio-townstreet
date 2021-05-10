@@ -14,14 +14,6 @@
       },
       "columns_keynames": "id,text,parent",
       "skip_header": true,
-      "_dialect_options": {
-        "quoting": 0,
-        "delimiter": ",",
-        "quotechar": "\"",
-        "doublequote": false,
-        "lineterminator": "\r\n",
-        "skipinitialspace": false
-      },
       "sheet_name": "",
       "queries": [
         {

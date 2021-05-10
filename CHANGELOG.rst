@@ -11,8 +11,11 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.11
+    * [TOWS-33] add connectors in passerelle folder [dmu]
+
 0.0.10
-    * [TOWS-33] add connecotrs
+    * [TOWS-33] add connectors [dmu]
 
 0.0.9
     * [TOWS-33] fix error in bash install file [dmu]
