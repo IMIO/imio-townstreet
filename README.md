@@ -10,8 +10,8 @@ Comment instancier Townstreet ? (2021/02/17)
 
 
 ## Installation
-La procédure est décrite dans une page du Wiki de ce repository Gitlab.
-https://gitlab.imio.be/teleservices/imio-townstreet/-/wikis/Townstreet---Checklist-de-mise-en-place
+- `apt update && apt install imio-townstreet`
+- `cd /usr/lib/imio_townstreet && ./install_imio-townstreet.sh`
 
 ### Note
 Pour plus d'information sur la démarche, voir la documentation interne Téléservices, catégorie "Townstreet"
