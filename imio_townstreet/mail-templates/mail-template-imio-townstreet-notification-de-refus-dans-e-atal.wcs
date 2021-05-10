@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<mail-template id="35" url="https://verviers-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/35/">
+  <name>iMio - Townstreet - Notification de refus dans e-Atal</name>
+  <slug>imio-townstreet-notification-de-refus-dans-e-atal</slug>
+  <description>iMio - Townstreet - Mail envoy&#233; aux agents traitants si la demande est cl&#244;tur&#233;e dans e-Atal alors que le demandeur souhaite &#234;tre tenu inform&#233;. Dans ce cas la demande passe automatiquement en "Trait&#233;".</description>
+  <subject>Townstreet : Notification de refus dans e-Atal ({{ form_number }})</subject>
+  <body>.. image:: {{ ts_header_mail_pic }}
+   :width: 358px
+   :align: left
+   :height: 170px
+
+{{ form_name }} - **{{ form_number }}** (**Code de suivi** : {{ form_tracking_code }})
+
+La demande en e-Atal li&#233;e &#224; &#233;t&#233; refus&#233;e.
+**Veuillez inspecter l'historique de cette demande, la commenter et la marquer comme refus&#233;e**.
+ 
+Type de signalement : {{ form_var_category }}
+{% if form_var_subcategory %}Sous-cat&#233;gorie : {{ form_var_subcategory }}{% endif %}
+D&#233;tail :
+{{ form_var_issues }}
+{{ form_var_addinfo}}
+
+`Inspecter l'historique &lt;{{ form_url_backoffice }}&gt;`_</body>
+</mail-template>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<mail-template id="31" url="https://verviers-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/31/">
+  <name>iMio - Townstreet - Accept&#233;</name>
+  <slug>imio-townstreet-accepte</slug>
+  <description>iMio - Courriel envoy&#233; &#224; l'usager lorsque l'agent appuie sur "accepter".</description>
+  <subject>Votre signalement a &#233;t&#233; accept&#233;.</subject>
+  <body>{% if form_var_firstname %}Ch&#232;r&#183;e {{ form_var_firstname }}{% endif %}
+
+Bonjour,
+
+{% if form_status_changed %}
+**Le statut de la demande que vous avez transmise vient de changer**.
+**Il est pass&#233; de &#171;&#160;{{ form_previous_status }}&#160;&#187; &#224; &#171;&#160;En cours de traitement&#160;&#187;**.
+{% endif %}
+
+Pour rappel, il s'agit de votre signalement du {{ form_receipt_date|date:"d M y" }} dont voici le d&#233;tail :
+
+**Type de signalement** : {{ form_var_category }} {% if form_var_subcategory %}/ {{ form_var_subcategory }}{% endif %}
+
+**D&#233;tail** : {{ form_var_issues }}
+{% if form_var_reporter_comment %}**Votre commentaire** : {{ form_var_reporter_comment }}{% endif %}
+
+{% if form_tracking_code %}
+**Le code de suivi de votre signalement est le suivant** : **{{form_tracking_code}}**
+En cas de probl&#232;me, munissez-vous du code de suivi lors de vos &#233;changes avec nous.
+{% endif %}
+
+{% if form_comment %}Nouveau commentaire&#160;: {{ form_comment }}{% endif %}
+
+Vous pouvez en prendre connaissance en suivant ce lien&#160;: 
+
+`Afficher l'historique de ma demande &lt;{{ form_url }}&gt;`_
+
+Bien &#224; vous,</body>
+</mail-template>

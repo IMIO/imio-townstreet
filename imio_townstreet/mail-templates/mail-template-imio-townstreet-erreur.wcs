@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<mail-template id="28" url="https://verviers-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/28/">
+  <name>iMio - Townstreet - Erreur (cr&#233;ation demande iA.Tech)</name>
+  <slug>imio-townstreet-erreur</slug>
+  <description>iMio - Mail d'erreur envoy&#233; &#224; iMio si une erreur survient au niveau du webservice qui cr&#233;e la demande dans a-Atal (v5).</description>
+  <subject>&#120280;&#120319;&#120319;&#120306;&#120322;&#120319; &#120295;&#120316;&#120324;&#120315;&#120320;&#120321;&#120319;&#120306;&#120306;&#120321; ({{commune_name}} - cr&#233;ation demande iA.Tech)</subject>
+  <body>Townstreet : {{commune_name}} - {{ form_number }}
+
+.. image:: {{ ts_header_mail_pic }}
+   :width: 358px
+   :align: left
+   :height: 170px
+
+{{ form_name }} - **{{ form_number }}** (**Code de suivi** : {{ form_tracking_code }})
+
+| Une erreur est survenue lors du d&#233;clenchement du webservice cens&#233; transmettre des donn&#233;es vers | iA.Tech. Une intervention d'iMio est n&#233;cessaire pour cette demande ({{ form_name }} {{ form_number}}).
+
+{% if form_evolution %}
+{{ form_evolution }}
+{% else %}
+**D&#233;clench&#233;e par** : {{ session_user_display_name }}
+**Adresse mail de l'agent** : {{ session_user_mail }}
+{% endif %}
+
+D&#233;tail :
+
+**App error code** : {{form_workflow_data_iatechins_app_error_code}}
+**Response error** : {{form_workflow_data_iatechins_error_response_err}}
+**Response error class** : {{form_workflow_data_iatechins_error_response_err_class}}
+**Response error desc** : {{form_workflow_data_iatechins_error_response_err_desc}}
+**Status** : {{form_workflow_data_iatechins_status}}
+**Time** : {{form_workflow_data_iatechins_time}}
+
+`Inspecter cette demande &lt;{{ form_url_backoffice }}&gt;`_</body>
+</mail-template>

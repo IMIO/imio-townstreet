@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<mail-template id="24" url="https://verviers-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/24/">
+  <name>iMio - Townstreet - Votre signalement</name>
+  <slug>imio-townstreet-acknowledgement</slug>
+  <description>iMio - Townstreet - Courriel envoy&#233; d&#232;s la r&#233;ception du signalement.</description>
+  <subject>Merci pour votre signalement.</subject>
+  <body>{% if form_var_firstname %}Ch&#232;r&#183;e {{ form_var_firstname }}{% endif %}
+
+Bonjour,
+
+Merci pour votre signalement. 
+
+Ce courriel est un rappel automatique concernant le formulaire que vous venez de soumettre. 
+
+Voici le r&#233;sum&#233; des donn&#233;es transmises. {% if form_var_pic1 %}Veuillez trouver une copie de vos photos en pi&#232;ces jointes de ce mail.{% endif %}
+
+**Type de signalement** : {{ form_var_category }}
+
+
+{% if form_var_subcategory %}**Sous-cat&#233;gorie** : {{ form_var_subcategory }}{% endif %}
+
+**D&#233;tail** : {{ form_var_issues }}
+
+{% if form_var_reporter_comment %}**Votre commentaire** : {{ form_var_reporter_comment }}{% endif %}
+
+{% if form_tracking_code %}
+Le code de suivi de votre signalement est le suivant : **{{form_tracking_code}}**
+En cas de probl&#232;me, munissez-vous du code de suivi lors de vos &#233;changes avec nous.
+{% endif %}
+
+{% if form_comment %}Nouveau commentaire&#160;: {{ form_comment }}{% endif %}
+
+`Suivre l'&#233;tat de mon signalement &lt;{{form_url}}&gt;`_
+
+Bien &#224; vous,</body>
+  <attachments>
+    <item>vars().get('form_var_pic1_raw')</item>
+    <item>vars().get('form_var_pic2_raw')</item>
+    <item>vars().get('form_var_pic3_raw')</item>
+    <item>vars().get('form_var_pic4_raw')</item>
+    <item>vars().get('form_var_pic5_raw')</item>
+    <item>vars().get('form_var_pic6_raw')</item>
+  </attachments>
+</mail-template>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<mail-template id="33" url="https://verviers-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/33/">
+  <name>iMio - Townstreet - Votre signalement : r&#233;solution</name>
+  <slug>imio-townstreet-votre-signalement-resolution</slug>
+  <description>iMio - Courriel envoy&#233; &#224; l'usager lorsque la demande est trait&#233;e et qu'il a souhait&#233; &#234;tre tenu inform&#233;.</description>
+  <subject>Votre signalement a &#233;t&#233; marqu&#233; comme trait&#233;.</subject>
+  <body>{% if form_var_firstname %}Ch&#232;r&#183;e {{ form_var_firstname }}{% endif %}
+
+Bonjour,
+
+**Votre signalement a &#233;t&#233; marqu&#233; comme trait&#233;**.
+
+Pour rappel, il s'agit de votre signalement du {{ form_receipt_date|date:"d M y" }} dont voici le d&#233;tail :
+
+**Type de signalement** : {{ form_var_category }} {% if form_var_subcategory %}/ {{ form_var_subcategory }}{% endif %}
+
+**D&#233;tail** : {{ form_var_issues }}
+
+{% if form_tracking_code %}
+Le code de suivi de votre signalement est le suivant : **{{form_tracking_code}}**
+En cas de probl&#232;me, munissez-vous du code de suivi lors de vos &#233;changes avec nous.
+{% endif %}
+
+{% if followresp_var_subject  and followresp_var_body %}
+L'agent ayant trait&#233; votre demande vous communique le message suivant : 
+
+**Objet** :
+
+*{{ followresp_var_subject }}*
+
+**Communication** : 
+
+*{{ followresp_var_body }}*
+{% endif %}
+
+`Afficher l'historique de ma demande &lt;{{ form_url }}&gt;`_
+
+Bien &#224; vous,
+</body>
+</mail-template>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<mail-template id="27" url="https://verviers-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/27/">
+  <name>iMio - Townstreet - Refus&#233;</name>
+  <slug>imio-townstreet-refuse</slug>
+  <description>iMio - Courriel envoy&#233; &#224; l'usager lorsque la demande est refus&#233;e.</description>
+  <subject>Nous ne pouvons donner suite &#224; votre signalement.</subject>
+  <body>{% if form_var_firstname %}Ch&#232;r&#183;e {{ form_var_firstname }}{% endif %}
+
+Bonjour,
+
+Merci de nous avoir signal&#233; cet incident, mais ne nous ne peuvont donner suite &#224; ce signalement.
+
+{% if form_comment %}**Commentaire de l'agent&#183;e** : 
+
+{{ form_comment }}
+{% endif %}
+
+{% if form_user %}
+Vous pouvez en prendre connaissance en suivant ce lien : 
+
+`Afficher l'historique de ma demande &lt;{{ form_url }}&gt;`_
+{% endif %}
+
+{% if form_tracking_code %}
+Un code de suivi est li&#233; &#224; ce signalement : **{{ form_tracking_code }}**.
+{% endif %}
+
+Bien &#224; vous,</body>
+</mail-template>
