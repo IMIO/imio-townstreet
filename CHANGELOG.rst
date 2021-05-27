@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.13
+    * add missing passerelle module [dmu]
+
 0.0.12
     * [TOWS-33] remove connectors from wscalls folder [dmu]
 
