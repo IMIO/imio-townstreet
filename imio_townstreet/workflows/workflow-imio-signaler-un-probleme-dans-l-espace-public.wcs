@@ -139,19 +139,19 @@
           <post_data>
             <item>
               <name>contact_email</name>
-              <value>{% firstof form_var_mail session_user_var_email %}</value>
+              <value>{% firstof form_var_mail session_user_var_email "none" %}</value>
             </item><item>
               <name>contact_mobile</name>
-              <value>{% firstof form_var_phonenum session_user_var_phone %}</value>
+              <value>{% firstof form_var_phonenum session_user_var_phone "none" %}</value>
             </item><item>
               <name>contact_nom</name>
-              <value>{% firstof form_var_lastname session_user_var_last_name %}</value>
+              <value>{% firstof form_var_lastname session_user_var_last_name "non identifié" %}</value>
             </item><item>
               <name>contact_organisme</name>
               <value>=vars().get('global_title') or ''</value>
             </item><item>
               <name>contact_prenom</name>
-              <value>{% firstof form_var_firstname session_user_var_first_name %}</value>
+              <value>{% firstof form_var_firstname session_user_var_first_name "non identifié" %}</value>
             </item><item>
               <name>contact_ville</name>
               <value>=vars().get('commune_name') or ''</value>
