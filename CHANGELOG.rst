@@ -11,6 +11,11 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.14
+    * [TOWS-17] upgrade for ATAL 6 [dmu] [nhi]
+    https://support.imio.be/browse/TOWS-17
+    
+
 0.0.13
     * add missing passerelle module [dmu]
 
