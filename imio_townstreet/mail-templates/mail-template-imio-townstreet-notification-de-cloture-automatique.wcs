@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<mail-template id="32" url="https://verviers-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/32/">
+<mail-template id="40" url="https://staging2-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/40/">
   <name>iMio - Townstreet - Notification de cl&#244;ture automatique</name>
   <slug>imio-townstreet-notification-de-cloture-automatique</slug>
-  <description>iMio - Townstreet - Mail envoy&#233; aux agents traitants si la demande est cl&#244;tur&#233;e dans e-Atal alors que le demandeur ne souhaite pas &#234;tre tenu inform&#233;. Dans ce cas la demande passe automatiquement en "Trait&#233;".</description>
+  <description>iMio - Townstreet - Mail envoy&#233; aux agents traitants si la demande est cl&#244;tur&#233;e dans ATAL alors que le demandeur ne souhaite pas &#234;tre tenu inform&#233;. Dans ce cas la demande passe automatiquement en "Trait&#233;".</description>
   <subject>Townstreet : Notification de cl&#244;ture automatique ({{ form_number }})</subject>
   <body>.. image:: {{ ts_header_mail_pic }}
    :width: 358px
@@ -11,9 +11,9 @@
 
 {{ form_name }} - **{{ form_number }}** (**Code de suivi** : {{ form_tracking_code }})
 
-La demande en e-Atal li&#233;e &#224; ce signalement citoyen vient de se marquer automatiquement comme trait&#233;e. En effet, le citoyen n'a pas souhait&#233; &#234;tre tenu inform&#233; des suites donn&#233;es &#224; son signalement.
+La demande ATAL li&#233;e &#224; ce signalement citoyen vient de se marquer automatiquement comme trait&#233;e. En effet, le citoyen n'a pas souhait&#233; &#234;tre tenu inform&#233; des suites donn&#233;es &#224; son signalement.
 
-Type de signalement : {{ form_var_category }}
+Type de signalement : {{ form_var_category_text }}
 {% if form_var_subcategory %}Sous-cat&#233;gorie : {{ form_var_subcategory }}{% endif %}
 D&#233;tail :
 {{ form_var_issues }}

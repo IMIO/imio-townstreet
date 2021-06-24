@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<mail-template id="24" url="https://verviers-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/24/">
+<mail-template id="36" url="https://staging2-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/36/">
   <name>iMio - Townstreet - Votre signalement</name>
   <slug>imio-townstreet-acknowledgement</slug>
   <description>iMio - Townstreet - Courriel envoy&#233; d&#232;s la r&#233;ception du signalement.</description>
@@ -14,7 +14,7 @@ Ce courriel est un rappel automatique concernant le formulaire que vous venez de
 
 Voici le r&#233;sum&#233; des donn&#233;es transmises. {% if form_var_pic1 %}Veuillez trouver une copie de vos photos en pi&#232;ces jointes de ce mail.{% endif %}
 
-**Type de signalement** : {{ form_var_category }}
+**Type de signalement** : {{ form_var_category_text }}
 
 
 {% if form_var_subcategory %}**Sous-cat&#233;gorie** : {{ form_var_subcategory }}{% endif %}

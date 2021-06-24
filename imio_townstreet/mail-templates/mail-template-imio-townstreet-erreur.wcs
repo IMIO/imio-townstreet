@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<mail-template id="28" url="https://verviers-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/28/">
+<mail-template id="37" url="https://staging2-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/37/">
   <name>iMio - Townstreet - Erreur (cr&#233;ation demande iA.Tech)</name>
   <slug>imio-townstreet-erreur</slug>
   <description>iMio - Mail d'erreur envoy&#233; &#224; iMio si une erreur survient au niveau du webservice qui cr&#233;e la demande dans a-Atal (v5).</description>

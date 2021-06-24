@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<mail-template id="29" url="https://verviers-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/29/">
+<mail-template id="39" url="https://staging2-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/39/">
   <name>iMio - Townstreet - Nouveau signalement</name>
   <slug>imio-townstreet-new-signal</slug>
   <description>iMio - Townstreet - Mail envoy&#233; aux agents traitants si l'option de formulaire est activ&#233;e.</description>
@@ -13,7 +13,7 @@
 
 Un nouveau probl&#232;me dans l'espace public vient d'&#234;tre signal&#233;.
 
-**Type de signalement** : {{ form_var_category }}
+**Type de signalement** : {{ form_var_category_text }}
 
 {% if form_var_subcategory %}**Sous-cat&#233;gorie** : {{ form_var_subcategory }}{% endif %}
 

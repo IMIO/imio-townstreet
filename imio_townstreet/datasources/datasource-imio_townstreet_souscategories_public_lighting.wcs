@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<datasource id="297" url="https://staging2-formulaires.guichet-citoyen.be/backoffice/settings/data-sources/297/">
+  <name>iMio Townstreet - Sous-cat&#233;gories 'public_lighting'</name>
+  <slug>imio_townstreet_souscategories_public_lighting</slug>
+  <description>iMio Townstreet - Sous-cat&#233;gories pour la cat&#233;gorie 'public_lighting'.</description>
+  <cache_duration>86400</cache_duration>
+  <data_attribute>items</data_attribute>
+  <data_source>
+    <type>json</type>
+    <value>https://api.imio.be/imio/procedures/v1/townstreet/categories?parent=public_lighting</value>
+  </data_source><notify_on_errors>true</notify_on_errors>
+  <record_on_errors>true</record_on_errors>
+</datasource>

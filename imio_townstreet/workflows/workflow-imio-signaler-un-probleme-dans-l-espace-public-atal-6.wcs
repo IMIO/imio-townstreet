@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<workflow id="58" url="https://formulaires-e-guichet.braine-lalleud.be/backoffice/workflows/58/">
-  <name>iMio - Signaler un probl&#232;me dans l'espace public</name>
+<workflow id="178" url="https://staging2-formulaires.guichet-citoyen.be/backoffice/workflows/178/">
+  <name>iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</name>
   <roles>
     <role id="_receiver">Destinataire</role>
   </roles><possible_status>
@@ -27,17 +27,17 @@
             <item role_id="_submitter">_submitter</item>
           </to>
         </item><item id="4" type="set-backoffice-fields">
-          <label>Informations utiles pour e-Atal</label>
+          <label>Informations utiles pour ATAL</label>
           <fields>
             <field>
               <field_id>boceb33663-bc2b-4e59-ac71-3c34e9c45f60</field_id>
               <value>La demande doit d'abord &#234;tre accept&#233;e.</value>
             </field><field>
               <field_id>bo5f0b6137-6c67-46f1-b974-dedb5ee853db</field_id>
-              <value>{{ form_var_category }}</value>
+              <value>{{ form_var_category_text }}</value>
             </field><field>
               <field_id>bo810f5e77-1d3b-40b3-bb28-7ea0af191239</field_id>
-              <value>Signalement citoyen depuis le guichet en ligne. D&#233;tail : {{form_var_category }}{%if form_var_subcategory %} / {{ form_var_subcategory}} /{% endif%}{% if form_var_issues %} {{form_var_issues }}{% endif %}</value>
+              <value>Signalement citoyen depuis le guichet en ligne. D&#233;tail : {{ form_var_category_text }}{%if form_var_subcategory %} / {{ form_var_subcategory}} /{% endif%}{% if form_var_issues %} {{form_var_issues }}{% endif %}</value>
             </field><field>
               <field_id>bo13e3c664-e561-40a2-a766-ebd455662734</field_id>
               <value>{% firstof form_var_number "" %} {% firstof form_var_street "" %} {% firstof form_var_postal_code "" %} {% firstof form_var_city "" %}</value>
@@ -50,6 +50,10 @@
           <to>
             <item role_id="{{ form_var_mail }}">{{ form_var_mail }}</item>
           </to><mail_template>imio-townstreet-new-signal</mail_template>
+          <condition>
+            <type>django</type>
+            <value>form_var_mail == True</value>
+          </condition>
         </item><item id="6" type="sendmail">
           <to>
             <item role_id="_submitter">_submitter</item>
@@ -60,194 +64,125 @@
         </item>
       </items>
     </status><status>
-      <id>3</id>
-      <name>En cours de traitement</name>
-      <colour>006699</colour>
-      <visibility />
-      <items>
-        <item id="1" type="webservice_call">
-          <label>retrieveDetailsDemande GET</label>
-          <url>{{passerelle_url}}atal/townstreet-eo-atal-connect/retrieve-details-demande/{{form_var_ditnu}}/</url>
-          <qs_data>
-            <item>
-              <name>demande_number</name>
-              <value>{{form_var_ditnu}}</value>
-            </item>
-          </qs_data><method>GET</method>
-          <post>False</post>
-          <response_type>json</response_type>
-          <varname>iatechdetails</varname>
-          <action_on_app_error>:pass</action_on_app_error>
-          <action_on_4xx>:stop</action_on_4xx>
-          <action_on_5xx>:stop</action_on_5xx>
-          <action_on_bad_data>:pass</action_on_bad_data>
-          <action_on_network_errors>:stop</action_on_network_errors>
-          <notify_on_errors>True</notify_on_errors>
-          <record_on_errors>True</record_on_errors>
-          <record_errors>True</record_errors>
-        </item><item id="2" type="jump">
-          <status>3</status>
-          <timeout>86400</timeout>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item><item id="3" type="choice">
-          <label>V&#233;rifier le statut dans iA.Tech (e-Atal)</label>
-          <by>
-            <item role_id="bc8d703be6294bf2811fbadc90d2d841">Agent traitant - Townstreet</item>
-          </by><status>3</status>
-          <require_confirmation>True</require_confirmation>
-          <backoffice_info_text>&lt;p&gt;V&amp;eacute;rifier le statut dans iA.Tech (e-Atal) - Cette action v&amp;eacute;rifie le statut de la demande dans e-Atal. Regardez dans l'historique pour v&amp;eacute;rifier le statut dans e-Atal.&lt;/p&gt;</backoffice_info_text>
-          <ignore_form_errors>False</ignore_form_errors>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item><item id="4" type="jump">
-          <status>19</status>
-          <condition>
-            <type>django</type>
-            <value>iatechdetails_response_data_etatDemande_description == "REFUSEE"</value>
-          </condition><set_marker_on_status>False</set_marker_on_status>
-        </item><item id="5" type="jump">
-          <status>16</status>
-          <condition>
-            <type>python</type>
-            <value>vars().get('iatechdetails_response_data_etatDemande_description') == "PRISE EN COMPTE"</value>
-          </condition><set_marker_on_status>False</set_marker_on_status>
-        </item><item id="6" type="jump">
-          <status>18</status>
-          <condition>
-            <type>django</type>
-            <value>iatechdetails_response_data_etatDemande_description == "CLOTUREE"  and form_var_follow == True</value>
-          </condition><set_marker_on_status>False</set_marker_on_status>
-        </item><item id="7" type="jump">
-          <status>17</status>
-          <condition>
-            <type>django</type>
-            <value>iatechdetails_response_data_etatDemande_description == "CLOTUREE"  and form_var_follow == False</value>
-          </condition><set_marker_on_status>False</set_marker_on_status>
-        </item>
-      </items>
-    </status><status>
       <id>4</id>
-      <name>Cr&#233;ation de la demande dans iA.Tech</name>
+      <name>Cr&#233;ation dans ATAL</name>
       <colour>FFFFFF</colour>
       <visibility>
         <role>_receiver</role>
       </visibility><items>
         <item id="1" type="webservice_call">
-          <label>Insert demande complet by type</label>
-          <url>{{passerelle_url}}atal/townstreet-eo-atal-connect/insert-demande-complet-by-type</url>
+          <label>Cr&#233;ation de la demande de travaux dans ATAL</label>
+          <url>{{passerelle_url}}passerelle-imio-ia-tech/atal-demov6/create_work_request</url>
           <method>POST</method>
           <post>False</post>
           <post_data>
             <item>
-              <name>contact_email</name>
-              <value>{% firstof form_var_mail session_user_var_email "none" %}</value>
+              <name>atal_contact_email</name>
+              <value>{% firstof form_var_mail session_user_var_email %}</value>
             </item><item>
-              <name>contact_mobile</name>
-              <value>{% firstof form_var_phonenum session_user_var_phone "none" %}</value>
+              <name>atal_contact_mobile</name>
+              <value>{% firstof form_var_phonenum session_user_var_phone %}</value>
             </item><item>
-              <name>contact_nom</name>
-              <value>{% firstof form_var_lastname session_user_var_last_name "non identifié" %}</value>
+              <name>atal_contact_lastname</name>
+              <value>{% firstof form_var_lastname session_user_var_last_name %}</value>
             </item><item>
-              <name>contact_organisme</name>
-              <value>=vars().get('global_title') or ''</value>
+              <name>atal_contact_firstname</name>
+              <value>{% firstof form_var_firstname session_user_var_first_name %}</value>
             </item><item>
-              <name>contact_prenom</name>
-              <value>{% firstof form_var_firstname session_user_var_first_name "non identifié" %}</value>
-            </item><item>
-              <name>contact_ville</name>
-              <value>=vars().get('commune_name') or ''</value>
-            </item><item>
-              <name>coord_x</name>
+              <name>atal_latitude</name>
               <value>=vars().get('form_var_map_lat') or vars().get('form_geoloc_base_lat')</value>
             </item><item>
-              <name>coord_y</name>
+              <name>atal_longitude</name>
               <value>=vars().get('form_var_map_lon') or vars().get('form_geoloc_base_lon')</value>
             </item><item>
-              <name>date_demande</name>
-              <value>{{form_receipt_datetime|date:"d/m/Y"}}</value>
+              <name>atal_request_date</name>
+              <value>=''</value>
             </item><item>
-              <name>demande_description</name>
+              <name>atal_description</name>
               <value>{{form_var_desc}}</value>
             </item><item>
-              <name>demande_objet</name>
+              <name>atal_object</name>
               <value>{{form_var_obj}}</value>
             </item><item>
-              <name>type_demande</name>
-              <value>2</value>
-            </item><item>
-              <name>code_equipement</name>
-              <value>=''</value>
-            </item><item>
-              <name>code_thematique</name>
-              <value>=''</value>
-            </item><item>
-              <name>code_service_demandeur</name>
-              <value>=''</value>
-            </item><item>
-              <name>demande_lieu</name>
+              <name>atal_localization</name>
               <value>{{form_var_place}}</value>
             </item><item>
-              <name>demande_commentaire</name>
-              <value>Information additionnelle ajout&#233;e au signalement par la personne ayant signal&#233; : {% if form_var_addinfo %}{{ form_var_addinfo }}{% else %}Pas de commentaire.{% endif %}</value>
+              <name>atal_contact_phone</name>
+              <value>{% firstof form_var_phonenum session_user_var_phone %}</value>
+            </item><item>
+              <name>atal_desired_date</name>
+              <value>''</value>
+            </item><item>
+              <name>atal_operator</name>
+              <value>=''</value>
+            </item><item>
+              <name>atal_patrimony_id</name>
+              <value>=''</value>
+            </item><item>
+              <name>atal_recipient_id</name>
+              <value>=1004</value>
+            </item><item>
+              <name>atal_request_type</name>
+              <value>=1001</value>
+            </item><item>
+              <name>atal_requester_id</name>
+              <value>=13</value>
+            </item><item>
+              <name>atal_requesting_department_id</name>
+              <value>=690</value>
             </item>
           </post_data><response_type>json</response_type>
-          <varname>iatechins</varname>
+          <varname>post_work_request</varname>
           <action_on_app_error>5</action_on_app_error>
           <action_on_4xx>5</action_on_4xx>
           <action_on_5xx>5</action_on_5xx>
-          <action_on_bad_data>:pass</action_on_bad_data>
-          <action_on_network_errors>:stop</action_on_network_errors>
+          <action_on_bad_data>5</action_on_bad_data>
+          <action_on_network_errors>5</action_on_network_errors>
           <notify_on_errors>True</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>True</record_errors>
         </item><item id="2" type="register-comment">
-          <comment>La demande a &#233;t&#233; cr&#233;&#233;e dans e-Atal ({{ iatechins_response_data_demande_number }}).</comment>
-          <condition>
+          <comment>La demande a &#233;t&#233; cr&#233;&#233;e dans ATAL ({{ post_work_request_response_data_Number }}).
+
+</comment>
+          <to>
+            <item role_id="5978a0f31cce4d5f8937ba6da3bbf89e">Agent traitant - Townstreet</item>
+          </to><condition>
             <type>python</type>
-            <value>form_workflow_data_iatechins_app_error_code == 0 and bool(form_workflow_data_iatechins_response_data_demande_number) == True</value>
+            <value>post_work_request_app_error_code == 0 and bool(post_work_request_response_data_Number) == True</value>
           </condition>
-        </item><item id="3" type="set-backoffice-fields">
-          <label>Store DIT number</label>
-          <fields>
-            <field>
-              <field_id>boceb33663-bc2b-4e59-ac71-3c34e9c45f60</field_id>
-              <value>{{ iatechins_response_data_demande_number }}</value>
-            </field>
-          </fields>
         </item><item id="4" type="jump">
-          <status>6</status>
+          <status>20</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items>
     </status><status>
       <id>6</id>
-      <name>Transfert des photos vers iA.Tech</name>
+      <name>Envoi de fichier vers ATAL</name>
       <colour>FFFFFF</colour>
       <visibility>
         <role>_receiver</role>
       </visibility><items>
         <item id="1" type="webservice_call">
-          <label>Pic1 POST</label>
-          <url>{{passerelle_url}}atal/townstreet-eo-atal-connect/upload</url>
+          <label>Photo 1</label>
+          <url>{{passerelle_url}}passerelle-imio-ia-tech/atal-demov6/post_attachment</url>
           <method>POST</method>
           <post>False</post>
           <post_data>
             <item>
-              <name>file</name>
-              <value>={"content": form_var_pic1_raw.get_base64_content()}</value>
+              <name>atal_attachment1</name>
+              <value>{{ form_var_pic1 }}</value>
             </item><item>
-              <name>nom_fichier</name>
-              <value>=vars().get('form_var_pic1')</value>
-            </item><item>
-              <name>numero_demande</name>
-              <value>{{ form_var_ditnu }}</value>
+              <name>atal_work_request_uuid</name>
+              <value>{{ post_work_request_response_data_Id }}</value>
             </item>
           </post_data><response_type>json</response_type>
-          <varname>iatechpic1</varname>
+          <varname>post_attachment1</varname>
           <action_on_app_error>7</action_on_app_error>
           <action_on_4xx>7</action_on_4xx>
           <action_on_5xx>7</action_on_5xx>
           <action_on_bad_data>:pass</action_on_bad_data>
-          <action_on_network_errors>:stop</action_on_network_errors>
+          <action_on_network_errors>7</action_on_network_errors>
           <notify_on_errors>True</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>True</record_errors>
@@ -256,23 +191,20 @@
             <value>bool(vars().get('form_var_pic1_raw')) == True</value>
           </condition>
         </item><item id="2" type="webservice_call">
-          <label>Pic2 POST</label>
-          <url>{{passerelle_url}}atal/townstreet-eo-atal-connect/upload</url>
+          <label>Photo 2</label>
+          <url>{{passerelle_url}}passerelle-imio-ia-tech/atal-demov6/post_attachment</url>
           <method>POST</method>
           <post>False</post>
           <post_data>
             <item>
-              <name>file</name>
-              <value>={"content": form_var_pic2_raw.get_base64_content()}</value>
+              <name>atal_attachment1</name>
+              <value>{{ form_var_pic1 }}</value>
             </item><item>
-              <name>nom_fichier</name>
-              <value>=vars().get('form_var_pic2')</value>
-            </item><item>
-              <name>numero_demande</name>
-              <value>{{ form_var_ditnu }}</value>
+              <name>atal_work_request_uuid</name>
+              <value>{{ post_work_request_response_data_Id }}</value>
             </item>
           </post_data><response_type>json</response_type>
-          <varname>iatechpic2</varname>
+          <varname>post_attachment2</varname>
           <action_on_app_error>7</action_on_app_error>
           <action_on_4xx>7</action_on_4xx>
           <action_on_5xx>7</action_on_5xx>
@@ -285,165 +217,42 @@
             <type>python</type>
             <value>bool(vars().get('form_var_pic2_raw')) == True</value>
           </condition>
-        </item><item id="3" type="webservice_call">
-          <label>Pic3 POST</label>
-          <url>{{passerelle_url}}atal/townstreet-eo-atal-connect/upload</url>
+        </item><item id="7" type="webservice_call">
+          <label>Envoi de l'autorisation d'intervenir</label>
+          <url>{{passerelle_url}}passerelle-imio-ia-tech/atal-demov6/post_attachment</url>
           <method>POST</method>
           <post>False</post>
           <post_data>
             <item>
-              <name>file</name>
-              <value>={"content": form_var_pic3_raw.get_base64_content()}</value>
+              <name>atal_attachment1</name>
+              <value>{{ form_var_scan_authorization }}</value>
             </item><item>
-              <name>nom_fichier</name>
-              <value>=vars().get('form_var_pic3')</value>
-            </item><item>
-              <name>numero_demande</name>
-              <value>{{ form_var_ditnu }}</value>
+              <name>atal_work_request_uuid</name>
+              <value>{{ post_work_request_response_data_Id }}</value>
             </item>
           </post_data><response_type>json</response_type>
-          <varname>iatechpic3</varname>
+          <varname>post_attachment3</varname>
           <action_on_app_error>7</action_on_app_error>
           <action_on_4xx>7</action_on_4xx>
           <action_on_5xx>7</action_on_5xx>
           <action_on_bad_data>:pass</action_on_bad_data>
-          <action_on_network_errors>:stop</action_on_network_errors>
+          <action_on_network_errors>7</action_on_network_errors>
           <notify_on_errors>True</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>True</record_errors>
-          <condition>
-            <type>python</type>
-            <value>bool(vars().get('form_var_pic3_raw')) == True</value>
-          </condition>
-        </item><item id="4" type="webservice_call">
-          <label>Pic4 POST</label>
-          <url>{{passerelle_url}}atal/townstreet-eo-atal-connect/upload</url>
-          <method>POST</method>
-          <post>False</post>
-          <post_data>
-            <item>
-              <name>file</name>
-              <value>={"content": form_var_pic4_raw.get_base64_content()}</value>
-            </item><item>
-              <name>nom_fichier</name>
-              <value>=vars().get('form_var_pic4')</value>
-            </item><item>
-              <name>numero_demande</name>
-              <value>{{ form_var_ditnu }}</value>
-            </item>
-          </post_data><response_type>json</response_type>
-          <varname>iatechpic4</varname>
-          <action_on_app_error>7</action_on_app_error>
-          <action_on_4xx>7</action_on_4xx>
-          <action_on_5xx>7</action_on_5xx>
-          <action_on_bad_data>:pass</action_on_bad_data>
-          <action_on_network_errors>:stop</action_on_network_errors>
-          <notify_on_errors>True</notify_on_errors>
-          <record_on_errors>True</record_on_errors>
-          <record_errors>True</record_errors>
-          <condition>
-            <type>python</type>
-            <value>bool(vars().get('form_var_pic4_raw')) == True</value>
-          </condition>
-        </item><item id="5" type="webservice_call">
-          <label>Pic5 POST</label>
-          <url>{{passerelle_url}}atal/townstreet-eo-atal-connect/upload</url>
-          <method>POST</method>
-          <post>False</post>
-          <post_data>
-            <item>
-              <name>file</name>
-              <value>={"content": form_var_pic5_raw.get_base64_content()}</value>
-            </item><item>
-              <name>nom_fichier</name>
-              <value>=vars().get('form_var_pic5')</value>
-            </item><item>
-              <name>numero_demande</name>
-              <value>{{ form_var_ditnu }}</value>
-            </item>
-          </post_data><response_type>json</response_type>
-          <varname>iatechpic5</varname>
-          <action_on_app_error>7</action_on_app_error>
-          <action_on_4xx>7</action_on_4xx>
-          <action_on_5xx>7</action_on_5xx>
-          <action_on_bad_data>:pass</action_on_bad_data>
-          <action_on_network_errors>:stop</action_on_network_errors>
-          <notify_on_errors>True</notify_on_errors>
-          <record_on_errors>True</record_on_errors>
-          <record_errors>True</record_errors>
-          <condition>
-            <type>python</type>
-            <value>bool(vars().get('form_var_pic5_raw')) == True</value>
-          </condition>
-        </item><item id="6" type="webservice_call">
-          <label>Pic6 POST</label>
-          <url>{{passerelle_url}}atal/townstreet-eo-atal-connect/upload</url>
-          <method>POST</method>
-          <post>False</post>
-          <post_data>
-            <item>
-              <name>file</name>
-              <value>={"content": form_var_pic6_raw.get_base64_content()}</value>
-            </item><item>
-              <name>nom_fichier</name>
-              <value>=vars().get('form_var_pic6')</value>
-            </item><item>
-              <name>numero_demande</name>
-              <value>{{ form_var_ditnu }}</value>
-            </item>
-          </post_data><response_type>json</response_type>
-          <varname>iatechpic6</varname>
-          <action_on_app_error>7</action_on_app_error>
-          <action_on_4xx>7</action_on_4xx>
-          <action_on_5xx>7</action_on_5xx>
-          <action_on_bad_data>:pass</action_on_bad_data>
-          <action_on_network_errors>:stop</action_on_network_errors>
-          <notify_on_errors>True</notify_on_errors>
-          <record_on_errors>True</record_on_errors>
-          <record_errors>True</record_errors>
-          <condition>
-            <type>python</type>
-            <value>bool(vars().get('form_var_pic6_raw')) == True</value>
-          </condition>
-        </item><item id="8" type="webservice_call">
-          <label>authorization post</label>
-          <url>{{passerelle_url}}atal/townstreet-eo-atal-connect/upload</url>
-          <method>POST</method>
-          <post>False</post>
-          <post_data>
-            <item>
-              <name>file</name>
-              <value>={"content": form_var_scan_authorization_raw.get_base64_content()}</value>
-            </item><item>
-              <name>nom_fichier</name>
-              <value>=vars().get('form_var_scan_authorization')</value>
-            </item><item>
-              <name>numero_demande</name>
-              <value>{{ form_var_ditnu }}</value>
-            </item>
-          </post_data><response_type>json</response_type>
-          <varname>iatechscan1</varname>
-          <action_on_app_error>:pass</action_on_app_error>
-          <action_on_4xx>:stop</action_on_4xx>
-          <action_on_5xx>:stop</action_on_5xx>
-          <action_on_bad_data>:pass</action_on_bad_data>
-          <action_on_network_errors>:stop</action_on_network_errors>
-          <notify_on_errors>False</notify_on_errors>
-          <record_on_errors>True</record_on_errors>
-          <record_errors>False</record_errors>
           <condition>
             <type>django</type>
             <value>form_var_private_building_yn == True</value>
           </condition>
-        </item><item id="7" type="jump">
-          <status>3</status>
+        </item><item id="8" type="jump">
+          <status>21</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items>
     </status><status>
       <id>5</id>
-      <name>Demande en erreur (cr&#233;ation dans iA.Tech)</name>
-      <colour>FF6600</colour>
+      <name>Erreur (cr&#233;ation dans ATAL)</name>
+      <colour>FF9999</colour>
       <visibility>
         <role>_receiver</role>
       </visibility><items>
@@ -455,8 +264,8 @@
       </items>
     </status><status>
       <id>7</id>
-      <name>Demande en erreur (envoi des photos)</name>
-      <colour>FF6600</colour>
+      <name>Erreur (envoi de fichier)</name>
+      <colour>FF9999</colour>
       <visibility>
         <role>_receiver</role>
       </visibility><items>
@@ -468,7 +277,7 @@
       </items>
     </status><status>
       <id>8</id>
-      <name>Refus&#233;</name>
+      <name>Signalement refus&#233;</name>
       <colour>FF0000</colour>
       <forced_endpoint>true</forced_endpoint>
       <visibility />
@@ -493,33 +302,33 @@
         </item><item id="3" type="choice">
           <label>Revenir sur la d&#233;cision et accepter</label>
           <by>
-            <item role_id="bc8d703be6294bf2811fbadc90d2d841">Agent traitant - Townstreet</item>
+            <item role_id="5978a0f31cce4d5f8937ba6da3bbf89e">Agent traitant - Townstreet</item>
           </by><status>15</status>
           <require_confirmation>True</require_confirmation>
           <backoffice_info_text>&lt;p&gt;Revenir sur la d&amp;eacute;cision et accepter - En cas d'erreur, il est tout de m&amp;ecirc;me possible de finalement accepter cette demande.&lt;br /&gt;
 &lt;strong&gt;Veuillez commenter la demande avec d'actionner ce d&amp;eacute;clencheur&lt;/strong&gt;. Le motif sera transmis au demandeur qui en sera averti par mail.&lt;/p&gt;
 
-&lt;p&gt;La demande suivra le chemin qu'elle aurait emprunt&amp;eacute; si vous aviez cliqu&amp;eacute; sur &amp;quot; Accepter &amp;quot;. Les donnes seront transmises &amp;agrave; e-Atal. Une demande e-Atal sera cr&amp;eacute;&amp;eacute;e.&lt;/p&gt;</backoffice_info_text>
+&lt;p&gt;La demande suivra le chemin qu'elle aurait emprunt&amp;eacute; si vous aviez cliqu&amp;eacute; sur &amp;quot; Accepter &amp;quot;. Les donnes seront transmises &amp;agrave; ATAL. Une demande ATAL sera cr&amp;eacute;&amp;eacute;e.&lt;/p&gt;</backoffice_info_text>
           <ignore_form_errors>False</ignore_form_errors>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items>
     </status><status>
       <id>9</id>
-      <name>Refus&#233; dans e-Atal</name>
-      <colour>FFFF00</colour>
+      <name>Refus&#233; dans ATAL</name>
+      <colour>006699</colour>
       <visibility />
       <items>
         <item id="1" type="sendmail">
           <to>
-            <item role_id="bc8d703be6294bf2811fbadc90d2d841">Agent traitant - Townstreet</item>
+            <item role_id="5978a0f31cce4d5f8937ba6da3bbf89e">Agent traitant - Townstreet</item>
           </to><mail_template>imio-townstreet-notification-de-refus-dans-e-atal</mail_template>
         </item><item id="2" type="displaymsg">
-          <message>Ce signalement a &#233;t&#233; refus&#233; dans e-Atal. Une action de la part d'un agent traitant Townstreet est requise.</message>
+          <message>Ce signalement a &#233;t&#233; refus&#233; dans ATAL. Une action de la part d'un agent traitant Townstreet est requise.</message>
           <level>info</level>
           <position>top</position>
           <to>
-            <item role_id="bc8d703be6294bf2811fbadc90d2d841">Agent traitant - Townstreet</item>
+            <item role_id="5978a0f31cce4d5f8937ba6da3bbf89e">Agent traitant - Townstreet</item>
           </to>
         </item><item id="3" type="commentable">
           <label>Commentaire</label>
@@ -527,7 +336,8 @@
           <hint>Commentaire &#8211; Veuillez ajouter un commentaire dans l'historique avant d'actionner un refus. L'objet du refus sera transmis par mail au demandeur. Tout autre commenaire sans actionner le refus sera visible par l'usager dans l'historique de sa demande.</hint>
           <by>
             <item role_id="_receiver">_receiver</item>
-          </by><backoffice_info_text>&lt;p&gt;Commentaire &amp;ndash; &lt;strong&gt;Veuillez ajouter un commentaire dans l'historique avant d'actionner un refus&lt;/strong&gt;. L'objet du refus sera transmis par mail au demandeur.&lt;/p&gt;</backoffice_info_text>
+          </by><backoffice_info_text>&lt;p&gt;Commentaire &amp;ndash; &lt;strong&gt;Veuillez ajouter un commentaire dans l'historique avant d'actionner un refus&lt;/strong&gt;.&lt;br /&gt;
+L'objet du refus sera transmis par mail au demandeur s'il a souhait&amp;eacute; &amp;ecirc;tre tenu inform&amp;eacute; des suites de son signalement.&lt;/p&gt;</backoffice_info_text>
           <required>False</required>
         </item><item id="4" type="choice">
           <label>Marquer comme refus&#233;</label>
@@ -543,17 +353,17 @@
     </status><status>
       <id>10</id>
       <name>Nouveau signalement</name>
-      <colour>66FF99</colour>
+      <colour>FFFF99</colour>
       <visibility />
       <items>
-        <item id="3" type="displaymsg">
+        <item id="1" type="displaymsg">
           <message>Votre signalement a &#233;t&#233; introduit avec succ&#232;s.</message>
           <level>success</level>
           <position>top</position>
           <to>
             <item role_id="_submitter">_submitter</item>
           </to>
-        </item><item id="1" type="register-comment">
+        </item><item id="2" type="register-comment">
           <comment>&lt;b&gt;{% if form_var_street %}{{form_var_street}}&lt;/b&gt;{% endif %} &#224; &lt;b&gt;{{form_var_city}}&lt;/b&gt; ({{form_var_desc}}). {% if form_var_addinfo %}Information additionnelle : &lt;i&gt;{{ form_var_addinfo }}&lt;/i&gt;{% endif %}{% if form_var_addinfother %}Votre commentaire : {{ form_var_addinfother}}{% endif %}</comment>
           <attachments>
             <attachment>{{ form_var_pic1_raw }}</attachment>
@@ -563,87 +373,32 @@
             <attachment>{{ form_var_pic5_raw }}</attachment>
             <attachment>{{ form_var_pic6_raw }}</attachment>
           </attachments>
-        </item><item id="2" type="jump">
+        </item><item id="3" type="jump">
           <status>4</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items>
     </status><status>
-      <id>11</id>
-      <name>Prise en compte en e-Atal</name>
-      <colour>660099</colour>
-      <visibility>
-        <role>_receiver</role>
-      </visibility><items>
-        <item id="1" type="webservice_call">
-          <label>retrieveDetailsDemande GET</label>
-          <url>{{passerelle_url}}atal/townstreet-eo-atal-connect/retrieve-details-demande/{{form_var_ditnu}}/</url>
-          <qs_data>
-            <item>
-              <name>demande_number</name>
-              <value>{{form_var_ditnu}}</value>
-            </item>
-          </qs_data><method>GET</method>
-          <post>False</post>
-          <response_type>json</response_type>
-          <varname>iatechdetails_priseEnCompte</varname>
-          <action_on_app_error>:pass</action_on_app_error>
-          <action_on_4xx>:stop</action_on_4xx>
-          <action_on_5xx>:stop</action_on_5xx>
-          <action_on_bad_data>:pass</action_on_bad_data>
-          <action_on_network_errors>:stop</action_on_network_errors>
-          <notify_on_errors>True</notify_on_errors>
-          <record_on_errors>True</record_on_errors>
-          <record_errors>True</record_errors>
-        </item><item id="2" type="choice">
-          <label>V&#233;rifier le statut dans iA.Tech (e-Atal)</label>
-          <by>
-            <item role_id="bc8d703be6294bf2811fbadc90d2d841">Agent traitant - Townstreet</item>
-          </by><status>11</status>
-          <require_confirmation>True</require_confirmation>
-          <backoffice_info_text>&lt;p&gt;V&amp;eacute;rifier le statut dans iA.Tech (e-Atal) - Cette action v&amp;eacute;rifie le statut de la demande dans e-Atal. Regardez dans l'historique pour v&amp;eacute;rifier le statut dans e-Atal.&lt;/p&gt;</backoffice_info_text>
-          <ignore_form_errors>False</ignore_form_errors>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item><item id="3" type="register-comment" />
-        <item id="4" type="jump">
-          <status>11</status>
-          <timeout>1200</timeout>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item><item id="5" type="jump">
-          <status>18</status>
-          <condition>
-            <type>django</type>
-            <value>form_workflow_data_iatechdetails_priseEnCompte_response_data_etatDemande_description == "CLOTUREE"  and form_var_follow == True</value>
-          </condition><set_marker_on_status>False</set_marker_on_status>
-        </item><item id="6" type="jump">
-          <status>17</status>
-          <condition>
-            <type>django</type>
-            <value>form_workflow_data_iatechdetails_priseEnCompte_response_data_etatDemande_description == "CLOTUREE"  and form_var_follow == False</value>
-          </condition><set_marker_on_status>False</set_marker_on_status>
-        </item>
-      </items>
-    </status><status>
       <id>12</id>
-      <name>Cl&#244;tur&#233; dans e-Atal</name>
-      <colour>FF9900</colour>
+      <name>Cl&#244;tur&#233; dans ATAL</name>
+      <colour>999999</colour>
       <visibility>
         <role>_receiver</role>
       </visibility><items>
         <item id="1" type="sendmail">
           <to>
-            <item role_id="bc8d703be6294bf2811fbadc90d2d841">Agent traitant - Townstreet</item>
+            <item role_id="5978a0f31cce4d5f8937ba6da3bbf89e">Agent traitant - Townstreet</item>
           </to><mail_template>imio-townstreet-notification-de-cloture-dans-e-atal</mail_template>
         </item><item id="2" type="displaymsg">
-          <message>Ce signalement a &#233;t&#233; cl&#244;tur&#233; dans e-Atal, mais la personne l'ayant soumis souhaite &#234;tre tenue inform&#233;e des suites donn&#233;es. Une action de la part d'un agent traitant Townstreet est encore requise pour cette demande.</message>
+          <message>Ce signalement a &#233;t&#233; cl&#244;tur&#233; dans ATAL, mais la personne l'ayant soumis souhaite &#234;tre tenue inform&#233;e des suites donn&#233;es. Une action de la part d'un agent traitant Townstreet est encore requise pour cette demande.</message>
           <level>info</level>
           <position>top</position>
           <to>
-            <item role_id="bc8d703be6294bf2811fbadc90d2d841">Agent traitant - Townstreet</item>
+            <item role_id="5978a0f31cce4d5f8937ba6da3bbf89e">Agent traitant - Townstreet</item>
           </to>
         </item><item id="3" type="form">
           <by>
-            <item role_id="bc8d703be6294bf2811fbadc90d2d841">Agent traitant - Townstreet</item>
+            <item role_id="5978a0f31cce4d5f8937ba6da3bbf89e">Agent traitant - Townstreet</item>
           </by><varname>followresp</varname>
           <formdef>
             <name>-</name>
@@ -689,7 +444,7 @@
       </items>
     </status><status>
       <id>13</id>
-      <name>Trait&#233;</name>
+      <name>Finalis&#233;</name>
       <colour>66FF99</colour>
       <extra_css_class>sign_traite</extra_css_class>
       <forced_endpoint>true</forced_endpoint>
@@ -712,7 +467,7 @@
           <level>success</level>
           <position>top</position>
           <to>
-            <item role_id="bc8d703be6294bf2811fbadc90d2d841">Agent traitant - Townstreet</item>
+            <item role_id="5978a0f31cce4d5f8937ba6da3bbf89e">Agent traitant - Townstreet</item>
             <item role_id="_submitter">_submitter</item>
           </to>
         </item>
@@ -754,29 +509,15 @@
         </item>
       </items>
     </status><status>
-      <id>16</id>
-      <name>Commentaire dans e-Atal suite &#224; la prise en compte</name>
-      <colour>FFFFFF</colour>
-      <visibility>
-        <role>_receiver</role>
-      </visibility><items>
-        <item id="1" type="register-comment">
-          <comment>{{ form_workflow_data_iatechdetails_response_data_commentairesDestinataires }}</comment>
-        </item><item id="2" type="jump">
-          <status>11</status>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-      </items>
-    </status><status>
       <id>17</id>
-      <name>Notification de cl&#244;ture e-Atal sans demande de suivi de la part du signaleur</name>
+      <name>Notification de cl&#244;ture ATAL sans demande de suivi de la part du signaleur</name>
       <colour>FFFFFF</colour>
       <visibility>
         <role>_receiver</role>
       </visibility><items>
         <item id="1" type="sendmail">
           <to>
-            <item role_id="bc8d703be6294bf2811fbadc90d2d841">Agent traitant - Townstreet</item>
+            <item role_id="5978a0f31cce4d5f8937ba6da3bbf89e">Agent traitant - Townstreet</item>
           </to><mail_template>imio-townstreet-notification-de-cloture-automatique</mail_template>
         </item><item id="2" type="jump">
           <status>13</status>
@@ -784,31 +525,76 @@
         </item>
       </items>
     </status><status>
-      <id>18</id>
-      <name>Commentaire dans e-Atal suite &#224; la cl&#244;ture</name>
+      <id>20</id>
+      <name>R&#233;cup&#233;ration des identifiants ATAL</name>
       <colour>FFFFFF</colour>
       <visibility>
         <role>_receiver</role>
       </visibility><items>
-        <item id="1" type="register-comment">
-          <comment>{{ form_workflow_data_iatechdetails_priseEnCompte_response_data_commentairesDestinataires }}</comment>
+        <item id="1" type="set-backoffice-fields">
+          <label>Num&#233;ros d'identification dans ATAL</label>
+          <fields>
+            <field>
+              <field_id>boceb33663-bc2b-4e59-ac71-3c34e9c45f60</field_id>
+              <value>{{ post_work_request_response_data_Number }}</value>
+            </field><field>
+              <field_id>bo374b25d1-10d6-4cf3-b391-88e29f4a5acc</field_id>
+              <value>{{ post_work_request_response_data_Id }}</value>
+            </field>
+          </fields>
         </item><item id="2" type="jump">
-          <status>12</status>
+          <status>6</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items>
     </status><status>
-      <id>19</id>
-      <name>Commentaire dans e-Atal suite au refus</name>
-      <colour>FFFFFF</colour>
-      <visibility>
-        <role>_receiver</role>
-      </visibility><items>
-        <item id="1" type="register-comment">
-          <comment>{{ iatechdetails_response_data_commentairesDestinataires }}</comment>
+      <id>21</id>
+      <name>Traitement dans ATAL</name>
+      <colour>6699FF</colour>
+      <visibility />
+      <items>
+        <item id="1" type="webservice_call">
+          <label>R&#233;cup&#233;ration du d&#233;tail dans ATAL</label>
+          <url>{{ passerelle_url }}/passerelle-imio-ia-tech/atal-demov6/get_work_request_details</url>
+          <method>POST</method>
+          <post>False</post>
+          <post_data>
+            <item>
+              <name>atal_work_request_uuid</name>
+              <value>{{ post_work_request_response_data_Id }}</value>
+            </item>
+          </post_data><response_type>json</response_type>
+          <varname>work_request_details</varname>
+          <action_on_app_error>:pass</action_on_app_error>
+          <action_on_4xx>:pass</action_on_4xx>
+          <action_on_5xx>:pass</action_on_5xx>
+          <action_on_bad_data>:pass</action_on_bad_data>
+          <action_on_network_errors>:pass</action_on_network_errors>
+          <notify_on_errors>True</notify_on_errors>
+          <record_on_errors>True</record_on_errors>
+          <record_errors>False</record_errors>
         </item><item id="2" type="jump">
-          <status>9</status>
+          <status>21</status>
+          <timeout>1200</timeout>
           <set_marker_on_status>False</set_marker_on_status>
+        </item><item id="3" type="jump">
+          <status>17</status>
+          <condition>
+            <type>django</type>
+            <value>get_work_request_details_response_data_RequestState == 9 and form_var_followyn == "Non"</value>
+          </condition><set_marker_on_status>False</set_marker_on_status>
+        </item><item id="4" type="jump">
+          <status>9</status>
+          <condition>
+            <type>django</type>
+            <value>get_work_request_details_response_data_RequestState == 3</value>
+          </condition><set_marker_on_status>False</set_marker_on_status>
+        </item><item id="5" type="jump">
+          <status>12</status>
+          <condition>
+            <type>django</type>
+            <value>get_work_request_details_response_data_RequestState == 9 and form_var_followyn == "Oui"</value>
+          </condition><set_marker_on_status>False</set_marker_on_status>
         </item>
       </items>
     </status>
@@ -822,9 +608,9 @@
           <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items><triggers>
-        <trigger id="c5a8ec22-695d-463a-b8d0-d49ce6dadc47" type="manual">
+        <trigger id="941624ab-ef23-4286-a773-573236fbd18c" type="manual">
           <roles>
-            <item role_id="93f6c58e6cdf4036b1bc8a9a9efa9baf">Debug</item>
+            <item role_id="43190215712647a89376713be142a4f5">Debug</item>
           </roles>
         </trigger>
       </triggers>
@@ -834,9 +620,9 @@
       <items>
         <item id="1" type="remove" />
       </items><triggers>
-        <trigger id="fabab9ad-20e9-4566-9f4b-1a2aa7f67ccc" type="manual">
+        <trigger id="360ed762-a3c6-4cc7-b211-a31c12700d49" type="manual">
           <roles>
-            <item role_id="93f6c58e6cdf4036b1bc8a9a9efa9baf">Debug</item>
+            <item role_id="43190215712647a89376713be142a4f5">Debug</item>
           </roles>
         </trigger>
       </triggers>
@@ -849,9 +635,9 @@
           <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items><triggers>
-        <trigger id="fcaad337-3aff-4d3b-8a81-21a084907ba5" type="manual">
+        <trigger id="1de019cf-2d0d-471b-87a5-8a762088f771" type="manual">
           <roles>
-            <item role_id="93f6c58e6cdf4036b1bc8a9a9efa9baf">Debug</item>
+            <item role_id="43190215712647a89376713be142a4f5">Debug</item>
           </roles>
         </trigger>
       </triggers>
@@ -892,7 +678,6 @@
           <display_locations>
             <display_location>summary</display_location>
           </display_locations><prefill>
-            <locked>False</locked>
             <type>none</type>
           </prefill><id>3</id>
         </field>
@@ -903,7 +688,7 @@
       <name>-</name>
       <fields>
         <field>
-          <label>R&#233;f&#233;rence e-Atal</label>
+          <label>Num&#233;ro DIT dans ATAL</label>
           <type>string</type>
           <required>False</required>
           <varname>ditnu</varname>
@@ -950,6 +735,14 @@
             <display_location>summary</display_location>
           </display_locations><anonymise>False</anonymise>
           <id>bo8e50a0f2-09c3-4c33-8099-b6dfdbce719c</id>
+        </field><field>
+          <label>uuid dans ATAL</label>
+          <type>string</type>
+          <required>False</required>
+          <varname>atal_uuid</varname>
+          <display_locations />
+          <anonymise>False</anonymise>
+          <id>bo374b25d1-10d6-4cf3-b391-88e29f4a5acc</id>
         </field>
       </fields>
     </formdef>

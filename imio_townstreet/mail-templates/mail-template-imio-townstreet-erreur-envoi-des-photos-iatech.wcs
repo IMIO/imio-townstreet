@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<mail-template id="30" url="https://verviers-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/30/">
+<mail-template id="38" url="https://staging2-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/38/">
   <name>iMio - Townstreet - Erreur (envoi des photos iA.Tech)</name>
   <slug>imio-townstreet-erreur-envoi-des-photos-iatech</slug>
   <description>iMio - Mail d'erreur envoy&#233; &#224; iMio si une erreur survient au niveau d'un webservice qui envoie les photos vers iA.Tech (v5).</description>
@@ -13,7 +13,7 @@
 
 {{ form_name }} - **{{ form_number }}** (**Code de suivi** : {{ form_tracking_code }})
 
-| Une erreur est survenue lors du d&#233;clenchement d'un webservice cens&#233; envoyer et lier les photos &#224; | une demande e-Atal. Une intervention d'iMio est n&#233;cessaire pour cette demande ({{ form_name }} &#8211; {{ form_number }}).
+| Une erreur est survenue lors du d&#233;clenchement d'un webservice cens&#233; envoyer et lier les photos &#224; | une demande ATAL. Une intervention d'iMio est n&#233;cessaire pour cette demande ({{ form_name }} &#8211; {{ form_number }}).
 
 {% if form_evolution %}
 {{ form_evolution }}
