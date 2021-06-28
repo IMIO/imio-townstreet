@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<workflow id="178" url="https://staging2-formulaires.guichet-citoyen.be/backoffice/workflows/178/">
+<workflow id="16" url="https://chaumontgistoux-formulaires.guichet-citoyen.be/backoffice/workflows/16/">
   <name>iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</name>
   <roles>
     <role id="_receiver">Destinataire</role>
@@ -146,12 +146,12 @@
 
 </comment>
           <to>
-            <item role_id="5978a0f31cce4d5f8937ba6da3bbf89e">Agent traitant - Townstreet</item>
+            <item role_id="418b2dbfadde49dab7df40e34b5dcb40">Agent traitant - Townstreet</item>
           </to><condition>
             <type>python</type>
             <value>post_work_request_app_error_code == 0 and bool(post_work_request_response_data_Number) == True</value>
           </condition>
-        </item><item id="4" type="jump">
+        </item><item id="3" type="jump">
           <status>20</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -198,7 +198,7 @@
           <post_data>
             <item>
               <name>atal_attachment1</name>
-              <value>{{ form_var_pic1 }}</value>
+              <value>{{ form_var_pic2 }}</value>
             </item><item>
               <name>atal_work_request_uuid</name>
               <value>{{ post_work_request_response_data_Id }}</value>
@@ -217,7 +217,7 @@
             <type>python</type>
             <value>bool(vars().get('form_var_pic2_raw')) == True</value>
           </condition>
-        </item><item id="7" type="webservice_call">
+        </item><item id="3" type="webservice_call">
           <label>Envoi de l'autorisation d'intervenir</label>
           <url>{{passerelle_url}}passerelle-imio-ia-tech/atal-demov6/post_attachment</url>
           <method>POST</method>
@@ -244,7 +244,7 @@
             <type>django</type>
             <value>form_var_private_building_yn == True</value>
           </condition>
-        </item><item id="8" type="jump">
+        </item><item id="4" type="jump">
           <status>21</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -278,7 +278,7 @@
     </status><status>
       <id>8</id>
       <name>Signalement refus&#233;</name>
-      <colour>FF0000</colour>
+      <colour>FF0066</colour>
       <forced_endpoint>true</forced_endpoint>
       <visibility />
       <items>
@@ -290,64 +290,6 @@
             <type>django</type>
             <value>form_var_follow == True</value>
           </condition>
-        </item><item id="2" type="commentable">
-          <label>Message &#224; communiquer en cas de changement de d&#233;cision et d'acceptation :</label>
-          <button_label />
-          <hint>Veuillez ajouter un commentaire &#224; l'historique de la demande en cas de changement de d&#233;cision. Le message s'inscrira au changement d'action.</hint>
-          <by>
-            <item role_id="_receiver">_receiver</item>
-          </by><varname>motifretournouvsign</varname>
-          <backoffice_info_text>&lt;p&gt;Message &amp;agrave; communiquer en cas de changement de d&amp;eacute;cision et d'acceptation&amp;nbsp;- &lt;strong&gt;Ce commentaire s'inscrira &amp;agrave; l'historique de la demande et sera visible par l'usager. Il lui sera &amp;eacute;galement transmis par mail.&lt;/strong&gt;&lt;/p&gt;</backoffice_info_text>
-          <required>False</required>
-        </item><item id="3" type="choice">
-          <label>Revenir sur la d&#233;cision et accepter</label>
-          <by>
-            <item role_id="5978a0f31cce4d5f8937ba6da3bbf89e">Agent traitant - Townstreet</item>
-          </by><status>15</status>
-          <require_confirmation>True</require_confirmation>
-          <backoffice_info_text>&lt;p&gt;Revenir sur la d&amp;eacute;cision et accepter - En cas d'erreur, il est tout de m&amp;ecirc;me possible de finalement accepter cette demande.&lt;br /&gt;
-&lt;strong&gt;Veuillez commenter la demande avec d'actionner ce d&amp;eacute;clencheur&lt;/strong&gt;. Le motif sera transmis au demandeur qui en sera averti par mail.&lt;/p&gt;
-
-&lt;p&gt;La demande suivra le chemin qu'elle aurait emprunt&amp;eacute; si vous aviez cliqu&amp;eacute; sur &amp;quot; Accepter &amp;quot;. Les donnes seront transmises &amp;agrave; ATAL. Une demande ATAL sera cr&amp;eacute;&amp;eacute;e.&lt;/p&gt;</backoffice_info_text>
-          <ignore_form_errors>False</ignore_form_errors>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-      </items>
-    </status><status>
-      <id>9</id>
-      <name>Refus&#233; dans ATAL</name>
-      <colour>006699</colour>
-      <visibility />
-      <items>
-        <item id="1" type="sendmail">
-          <to>
-            <item role_id="5978a0f31cce4d5f8937ba6da3bbf89e">Agent traitant - Townstreet</item>
-          </to><mail_template>imio-townstreet-notification-de-refus-dans-e-atal</mail_template>
-        </item><item id="2" type="displaymsg">
-          <message>Ce signalement a &#233;t&#233; refus&#233; dans ATAL. Une action de la part d'un agent traitant Townstreet est requise.</message>
-          <level>info</level>
-          <position>top</position>
-          <to>
-            <item role_id="5978a0f31cce4d5f8937ba6da3bbf89e">Agent traitant - Townstreet</item>
-          </to>
-        </item><item id="3" type="commentable">
-          <label>Commentaire</label>
-          <button_label />
-          <hint>Commentaire &#8211; Veuillez ajouter un commentaire dans l'historique avant d'actionner un refus. L'objet du refus sera transmis par mail au demandeur. Tout autre commenaire sans actionner le refus sera visible par l'usager dans l'historique de sa demande.</hint>
-          <by>
-            <item role_id="_receiver">_receiver</item>
-          </by><backoffice_info_text>&lt;p&gt;Commentaire &amp;ndash; &lt;strong&gt;Veuillez ajouter un commentaire dans l'historique avant d'actionner un refus&lt;/strong&gt;.&lt;br /&gt;
-L'objet du refus sera transmis par mail au demandeur s'il a souhait&amp;eacute; &amp;ecirc;tre tenu inform&amp;eacute; des suites de son signalement.&lt;/p&gt;</backoffice_info_text>
-          <required>False</required>
-        </item><item id="4" type="choice">
-          <label>Marquer comme refus&#233;</label>
-          <by>
-            <item role_id="_receiver">_receiver</item>
-          </by><status>8</status>
-          <require_confirmation>True</require_confirmation>
-          <backoffice_info_text>&lt;p&gt;Marquer comme refus&amp;eacute; &amp;ndash; &lt;strong&gt;Veuillez ajouter un commentaire dans l'historique avant d'actionner cette action&lt;/strong&gt;. L'objet du refus sera transmis par mail au demandeur. La demande passera au statut&amp;nbsp;&amp;quot; Refus&amp;eacute; &amp;quot; et qui dispose d'un caract&amp;egrave;re final.&lt;/p&gt;</backoffice_info_text>
-          <ignore_form_errors>False</ignore_form_errors>
-          <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items>
     </status><status>
@@ -387,18 +329,18 @@ L'objet du refus sera transmis par mail au demandeur s'il a souhait&amp;eacute; 
       </visibility><items>
         <item id="1" type="sendmail">
           <to>
-            <item role_id="5978a0f31cce4d5f8937ba6da3bbf89e">Agent traitant - Townstreet</item>
+            <item role_id="418b2dbfadde49dab7df40e34b5dcb40">Agent traitant - Townstreet</item>
           </to><mail_template>imio-townstreet-notification-de-cloture-dans-e-atal</mail_template>
         </item><item id="2" type="displaymsg">
           <message>Ce signalement a &#233;t&#233; cl&#244;tur&#233; dans ATAL, mais la personne l'ayant soumis souhaite &#234;tre tenue inform&#233;e des suites donn&#233;es. Une action de la part d'un agent traitant Townstreet est encore requise pour cette demande.</message>
           <level>info</level>
           <position>top</position>
           <to>
-            <item role_id="5978a0f31cce4d5f8937ba6da3bbf89e">Agent traitant - Townstreet</item>
+            <item role_id="418b2dbfadde49dab7df40e34b5dcb40">Agent traitant - Townstreet</item>
           </to>
         </item><item id="3" type="form">
           <by>
-            <item role_id="5978a0f31cce4d5f8937ba6da3bbf89e">Agent traitant - Townstreet</item>
+            <item role_id="418b2dbfadde49dab7df40e34b5dcb40">Agent traitant - Townstreet</item>
           </by><varname>followresp</varname>
           <formdef>
             <name>-</name>
@@ -467,7 +409,7 @@ L'objet du refus sera transmis par mail au demandeur s'il a souhait&amp;eacute; 
           <level>success</level>
           <position>top</position>
           <to>
-            <item role_id="5978a0f31cce4d5f8937ba6da3bbf89e">Agent traitant - Townstreet</item>
+            <item role_id="418b2dbfadde49dab7df40e34b5dcb40">Agent traitant - Townstreet</item>
             <item role_id="_submitter">_submitter</item>
           </to>
         </item>
@@ -483,42 +425,6 @@ L'objet du refus sera transmis par mail au demandeur s'il a souhait&amp;eacute; 
           <to>
             <item role_id="{{ form_var_mail }}">{{ form_var_mail }}</item>
           </to><mail_template>imio-townstreet-votre-signalement-resolution</mail_template>
-        </item><item id="2" type="jump">
-          <status>13</status>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-      </items>
-    </status><status>
-      <id>15</id>
-      <name>Envoi mail erreur de l'agent</name>
-      <colour>FFFFFF</colour>
-      <visibility>
-        <role>_receiver</role>
-      </visibility><items>
-        <item id="1" type="sendmail">
-          <to>
-            <item role_id="{{ form_var_mail }}">{{ form_var_mail }}</item>
-          </to><mail_template>imio-townstreet-accepte</mail_template>
-          <condition>
-            <type>django</type>
-            <value>form_var_follow == True</value>
-          </condition>
-        </item><item id="2" type="jump">
-          <status>4</status>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-      </items>
-    </status><status>
-      <id>17</id>
-      <name>Notification de cl&#244;ture ATAL sans demande de suivi de la part du signaleur</name>
-      <colour>FFFFFF</colour>
-      <visibility>
-        <role>_receiver</role>
-      </visibility><items>
-        <item id="1" type="sendmail">
-          <to>
-            <item role_id="5978a0f31cce4d5f8937ba6da3bbf89e">Agent traitant - Townstreet</item>
-          </to><mail_template>imio-townstreet-notification-de-cloture-automatique</mail_template>
         </item><item id="2" type="jump">
           <status>13</status>
           <set_marker_on_status>False</set_marker_on_status>
@@ -578,66 +484,36 @@ L'objet du refus sera transmis par mail au demandeur s'il a souhait&amp;eacute; 
           <timeout>1200</timeout>
           <set_marker_on_status>False</set_marker_on_status>
         </item><item id="3" type="jump">
-          <status>17</status>
+          <status>13</status>
           <condition>
             <type>django</type>
             <value>get_work_request_details_response_data_RequestState == 9 and form_var_followyn == "Non"</value>
           </condition><set_marker_on_status>False</set_marker_on_status>
         </item><item id="4" type="jump">
-          <status>9</status>
+          <status>8</status>
           <condition>
             <type>django</type>
-            <value>get_work_request_details_response_data_RequestState == 3</value>
+            <value>work_request_details_response_data_RequestState == 3</value>
           </condition><set_marker_on_status>False</set_marker_on_status>
         </item><item id="5" type="jump">
           <status>12</status>
           <condition>
             <type>django</type>
-            <value>get_work_request_details_response_data_RequestState == 9 and form_var_followyn == "Oui"</value>
+            <value>work_request_details_response_data_RequestState == 9 and form_var_followyn == "Oui"</value>
           </condition><set_marker_on_status>False</set_marker_on_status>
         </item>
       </items>
     </status>
   </possible_status><global_actions>
     <action>
-      <id>1</id>
-      <name>iMio debug - Retour sur en attente de traitement</name>
-      <items>
-        <item id="1" type="jump">
-          <status>2</status>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-      </items><triggers>
-        <trigger id="941624ab-ef23-4286-a773-573236fbd18c" type="manual">
-          <roles>
-            <item role_id="43190215712647a89376713be142a4f5">Debug</item>
-          </roles>
-        </trigger>
-      </triggers>
-    </action><action>
       <id>2</id>
-      <name>iMio - Supprimer</name>
+      <name>&#10060; Supprimer</name>
       <items>
         <item id="1" type="remove" />
       </items><triggers>
-        <trigger id="360ed762-a3c6-4cc7-b211-a31c12700d49" type="manual">
+        <trigger id="df5af0b6-05d2-47c8-8716-d943fb60298a" type="manual">
           <roles>
-            <item role_id="43190215712647a89376713be142a4f5">Debug</item>
-          </roles>
-        </trigger>
-      </triggers>
-    </action><action>
-      <id>3</id>
-      <name>iMio - Retour sur "En cours de traitement"</name>
-      <items>
-        <item id="1" type="jump">
-          <status>3</status>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-      </items><triggers>
-        <trigger id="1de019cf-2d0d-471b-87a5-8a762088f771" type="manual">
-          <roles>
-            <item role_id="43190215712647a89376713be142a4f5">Debug</item>
+            <item role_id="d6dcc97fa77047cb976e2baeb7697779">Debug</item>
           </roles>
         </trigger>
       </triggers>
