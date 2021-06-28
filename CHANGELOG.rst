@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.17
+    * [TOWS-17] add atal connector to setup to avoid doing it manually [dmu] 
+
 0.0.16
     * [TOWS-17] fix attachment2 var [dmu] 
 
