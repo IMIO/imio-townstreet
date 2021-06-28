@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.15
+    * [TOWS-1] add cleanWs() to fix workspace not cleaned [bsu]
+
 0.0.14
     * [TOWS-17] upgrade for ATAL 6 [dmu] [nhi]
     https://support.imio.be/browse/TOWS-17
