@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.16
+    * [TOWS-17] fix attachment2 var [dmu] 
+
 0.0.15
     * [TOWS-1] add cleanWs() to fix workspace not cleaned [bsu]
 
