@@ -1,3 +1,5 @@
 debian/*.ex
 debian/*.EX
 debian/copyright
+build
+imio_townstreet.egg-info
