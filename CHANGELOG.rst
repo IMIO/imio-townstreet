@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.20
+    * [TOWS-17] fix subcat not appearing in atal6 and some webservice parameters [dmu]
+
 0.0.19
     * [TELE-933] Jenkins : clean workspace only if success [dmu]
 

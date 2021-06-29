@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<workflow id="16" url="https://chaumontgistoux-formulaires.guichet-citoyen.be/backoffice/workflows/16/">
+<workflow id="178" url="https://staging2-formulaires.guichet-citoyen.be/backoffice/workflows/178/">
   <name>iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</name>
   <roles>
     <role id="_receiver">Destinataire</role>
@@ -34,7 +34,7 @@
               <value>{{ form_var_category_text }}</value>
             </field><field>
               <field_id>bo810f5e77-1d3b-40b3-bb28-7ea0af191239</field_id>
-              <value>Signalement citoyen depuis le guichet en ligne. D&#233;tail : {{ form_var_category_text }}{%if form_var_subcategory %} / {{ form_var_subcategory}} /{% endif%}{% if form_var_issues %} {{form_var_issues }}{% endif %}</value>
+              <value>Signalement citoyen depuis le guichet en ligne. D&#233;tail : {{ form_var_category_text }}{%if form_var_subcategory %} / {{ form_var_subcategory}} /{% else%} / {% firstof form_var_subcat_for_cleanliness  form_var_subcat_for_public_street form_var_subcat_for_green_space form_var_subcat_for_graffitis_tags_posters form_var_subcat_for_street_furniture form_var_subcat_for_public_lighting %} / {% endif%}{% if form_var_issues %} {{form_var_issues }}{% endif %}</value>
             </field><field>
               <field_id>bo13e3c664-e561-40a2-a766-ebd455662734</field_id>
               <value>{% firstof form_var_number "" %} {% firstof form_var_street "" %} {% firstof form_var_postal_code "" %} {% firstof form_var_city "" %}</value>
@@ -75,16 +75,16 @@
           <post_data>
             <item>
               <name>atal_contact_email</name>
-              <value>{% firstof form_var_mail session_user_var_email %}</value>
+              <value>{% firstof form_var_mail '' %}</value>
             </item><item>
               <name>atal_contact_mobile</name>
-              <value>{% firstof form_var_phonenum session_user_var_phone %}</value>
+              <value>{% firstof form_var_phonenum '' %}</value>
             </item><item>
               <name>atal_contact_lastname</name>
-              <value>{% firstof form_var_lastname session_user_var_last_name %}</value>
+              <value>{% firstof form_var_lastname '' %}</value>
             </item><item>
               <name>atal_contact_firstname</name>
-              <value>{% firstof form_var_firstname session_user_var_first_name %}</value>
+              <value>{% firstof form_var_firstname '' %}</value>
             </item><item>
               <name>atal_latitude</name>
               <value>=vars().get('form_var_map_lat') or vars().get('form_geoloc_base_lat')</value>
@@ -92,11 +92,8 @@
               <name>atal_longitude</name>
               <value>=vars().get('form_var_map_lon') or vars().get('form_geoloc_base_lon')</value>
             </item><item>
-              <name>atal_request_date</name>
-              <value>=''</value>
-            </item><item>
               <name>atal_description</name>
-              <value>{{form_var_desc}}</value>
+              <value>{% firstof form_var_desc 'Non renseign&#233;' %}</value>
             </item><item>
               <name>atal_object</name>
               <value>{{form_var_obj}}</value>
@@ -105,19 +102,28 @@
               <value>{{form_var_place}}</value>
             </item><item>
               <name>atal_contact_phone</name>
-              <value>{% firstof form_var_phonenum session_user_var_phone %}</value>
-            </item><item>
-              <name>atal_desired_date</name>
-              <value>''</value>
-            </item><item>
-              <name>atal_operator</name>
-              <value>=''</value>
-            </item><item>
-              <name>atal_patrimony_id</name>
-              <value>=''</value>
+              <value>{% firstof form_var_phonenum '' %}</value>
             </item><item>
               <name>atal_request_type</name>
               <value>=1001</value>
+            </item><item>
+              <name>atal_requesting_department_id</name>
+              <value>=50</value>
+            </item><item>
+              <name>atal_requester_id</name>
+              <value>=-1</value>
+            </item><item>
+              <name>atal_recipient_id</name>
+              <value>=-1</value>
+            </item><item>
+              <name>atal_contact_address</name>
+              <value>=''</value>
+            </item><item>
+              <name>atal_contact_zipcode</name>
+              <value>=''</value>
+            </item><item>
+              <name>atal_contact_city</name>
+              <value>=''</value>
             </item>
           </post_data><response_type>json</response_type>
           <varname>post_work_request</varname>
@@ -129,16 +135,6 @@
           <notify_on_errors>True</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>True</record_errors>
-        </item><item id="2" type="register-comment">
-          <comment>La demande a &#233;t&#233; cr&#233;&#233;e dans ATAL ({{ post_work_request_response_data_Number }}).
-
-</comment>
-          <to>
-            <item role_id="418b2dbfadde49dab7df40e34b5dcb40">Agent traitant - Townstreet</item>
-          </to><condition>
-            <type>python</type>
-            <value>post_work_request_app_error_code == 0 and bool(post_work_request_response_data_Number) == True</value>
-          </condition>
         </item><item id="3" type="jump">
           <status>20</status>
           <set_marker_on_status>False</set_marker_on_status>
@@ -320,18 +316,18 @@
       </visibility><items>
         <item id="1" type="sendmail">
           <to>
-            <item role_id="418b2dbfadde49dab7df40e34b5dcb40">Agent traitant - Townstreet</item>
+            <item role_id="5978a0f31cce4d5f8937ba6da3bbf89e">Agent traitant - Townstreet</item>
           </to><mail_template>imio-townstreet-notification-de-cloture-dans-e-atal</mail_template>
         </item><item id="2" type="displaymsg">
           <message>Ce signalement a &#233;t&#233; cl&#244;tur&#233; dans ATAL, mais la personne l'ayant soumis souhaite &#234;tre tenue inform&#233;e des suites donn&#233;es. Une action de la part d'un agent traitant Townstreet est encore requise pour cette demande.</message>
           <level>info</level>
           <position>top</position>
           <to>
-            <item role_id="418b2dbfadde49dab7df40e34b5dcb40">Agent traitant - Townstreet</item>
+            <item role_id="5978a0f31cce4d5f8937ba6da3bbf89e">Agent traitant - Townstreet</item>
           </to>
         </item><item id="3" type="form">
           <by>
-            <item role_id="418b2dbfadde49dab7df40e34b5dcb40">Agent traitant - Townstreet</item>
+            <item role_id="5978a0f31cce4d5f8937ba6da3bbf89e">Agent traitant - Townstreet</item>
           </by><varname>followresp</varname>
           <formdef>
             <name>-</name>
@@ -400,7 +396,7 @@
           <level>success</level>
           <position>top</position>
           <to>
-            <item role_id="418b2dbfadde49dab7df40e34b5dcb40">Agent traitant - Townstreet</item>
+            <item role_id="5978a0f31cce4d5f8937ba6da3bbf89e">Agent traitant - Townstreet</item>
             <item role_id="_submitter">_submitter</item>
           </to>
         </item>
@@ -433,15 +429,25 @@
           <fields>
             <field>
               <field_id>boceb33663-bc2b-4e59-ac71-3c34e9c45f60</field_id>
-              <value>{{ post_work_request_response_data_Number }}</value>
+              <value>{{ form_workflow_data_post_work_request_response_data_Number }}</value>
             </field><field>
               <field_id>bo374b25d1-10d6-4cf3-b391-88e29f4a5acc</field_id>
-              <value>{{ post_work_request_response_data_Id }}</value>
+              <value>{{ form_workflow_data_post_work_request_response_data_Id }}</value>
             </field>
           </fields>
         </item><item id="2" type="jump">
           <status>6</status>
           <set_marker_on_status>False</set_marker_on_status>
+        </item><item id="3" type="register-comment">
+          <comment>La demande a &#233;t&#233; cr&#233;&#233;e dans ATAL ({{ post_work_request_response_data_Number }}).
+
+</comment>
+          <to>
+            <item role_id="_receiver">_receiver</item>
+          </to><condition>
+            <type>python</type>
+            <value>vars().get('post_work_request_app_error_code') == 0 and bool(post_work_request_response_data_Number) == True</value>
+          </condition>
         </item>
       </items>
     </status><status>
@@ -512,13 +518,14 @@
   </possible_status><global_actions>
     <action>
       <id>2</id>
-      <name>&#10060; Supprimer</name>
+      <name>&#10060; Supprimer cette demande</name>
+      <backoffice_info_text>&lt;p&gt;&lt;strong&gt;Attention, la suppression entra&amp;icirc;ne une perte irreversible des donn&amp;eacute;es.&lt;/strong&gt;&lt;/p&gt;</backoffice_info_text>
       <items>
         <item id="1" type="remove" />
       </items><triggers>
-        <trigger id="df5af0b6-05d2-47c8-8716-d943fb60298a" type="manual">
+        <trigger id="4c5b1d27-dc2d-42a2-b3c1-3ffb2952f0a5" type="manual">
           <roles>
-            <item role_id="d6dcc97fa77047cb976e2baeb7697779">Debug</item>
+            <item role_id="43190215712647a89376713be142a4f5">Debug</item>
           </roles>
         </trigger>
       </triggers>
