@@ -48,8 +48,9 @@ pipeline {
     post {
         always {
             sh "rm -f imio-townstreet_*.deb"
+        }
+        success {
             cleanWs()
         }
-
     }
 }

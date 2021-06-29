@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.19
+    * [TELE-933] Jenkins : clean workspace only if success [dmu]
+
 0.0.18
     * [TOWS-17] add last upgrades following chaumont-gistoux setup [dmu]
 
