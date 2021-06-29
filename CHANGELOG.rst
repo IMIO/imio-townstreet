@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.18
+    * [TOWS-17] add last upgrades following chaumont-gistoux setup [dmu]
+
 0.0.17
     * [TOWS-17] add atal connector to setup to avoid doing it manually [dmu] 
 
