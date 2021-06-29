@@ -30,9 +30,6 @@
           <label>Informations utiles pour ATAL</label>
           <fields>
             <field>
-              <field_id>boceb33663-bc2b-4e59-ac71-3c34e9c45f60</field_id>
-              <value>La demande doit d'abord &#234;tre accept&#233;e.</value>
-            </field><field>
               <field_id>bo5f0b6137-6c67-46f1-b974-dedb5ee853db</field_id>
               <value>{{ form_var_category_text }}</value>
             </field><field>
@@ -119,17 +116,8 @@
               <name>atal_patrimony_id</name>
               <value>=''</value>
             </item><item>
-              <name>atal_recipient_id</name>
-              <value>=1004</value>
-            </item><item>
               <name>atal_request_type</name>
               <value>=1001</value>
-            </item><item>
-              <name>atal_requester_id</name>
-              <value>=13</value>
-            </item><item>
-              <name>atal_requesting_department_id</name>
-              <value>=690</value>
             </item>
           </post_data><response_type>json</response_type>
           <varname>post_work_request</varname>
@@ -245,7 +233,7 @@
             <value>form_var_private_building_yn == True</value>
           </condition>
         </item><item id="4" type="jump">
-          <status>21</status>
+          <status>22</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items>
@@ -258,7 +246,7 @@
       </visibility><items>
         <item id="1" type="sendmail">
           <to>
-            <item role_id="admints+townstreet@imio.be">admints+townstreet@imio.be</item>
+            <item role_id="daniel.muyshond+townstreet@imio.be">daniel.muyshond+townstreet@imio.be</item>
           </to><mail_template>imio-townstreet-erreur</mail_template>
         </item>
       </items>
@@ -271,7 +259,7 @@
       </visibility><items>
         <item id="1" type="sendmail">
           <to>
-            <item role_id="admints+townstreet@imio.be">admints+townstreet@imio.be</item>
+            <item role_id="daniel.muyshond+townstreet@imio.be">daniel.muyshond+townstreet@imio.be</item>
           </to><mail_template>imio-townstreet-erreur-envoi-des-photos-iatech</mail_template>
         </item>
       </items>
@@ -306,8 +294,11 @@
             <item role_id="_submitter">_submitter</item>
           </to>
         </item><item id="2" type="register-comment">
-          <comment>&lt;b&gt;{% if form_var_street %}{{form_var_street}}&lt;/b&gt;{% endif %} &#224; &lt;b&gt;{{form_var_city}}&lt;/b&gt; ({{form_var_desc}}). {% if form_var_addinfo %}Information additionnelle : &lt;i&gt;{{ form_var_addinfo }}&lt;/i&gt;{% endif %}{% if form_var_addinfother %}Votre commentaire : {{ form_var_addinfother}}{% endif %}</comment>
-          <attachments>
+          <comment>&lt;b&gt;{% if form_var_street %}{{form_var_street}}&lt;/b&gt;{% endif %} &#224; &lt;b&gt;{{form_var_city}}&lt;/b&gt; ({{form_var_desc}}). &lt;br&gt;
+{% if form_var_addinfo %}Information additionnelle : &lt;i&gt;{{ form_var_addinfo }}&lt;/i&gt;{% endif %}{% if form_var_addinfother %}Votre commentaire : {{ form_var_addinfother}}{% endif %}</comment>
+          <to>
+            <item role_id="_submitter">_submitter</item>
+          </to><attachments>
             <attachment>{{ form_var_pic1_raw }}</attachment>
             <attachment>{{ form_var_pic2_raw }}</attachment>
             <attachment>{{ form_var_pic3_raw }}</attachment>
@@ -457,8 +448,10 @@
       <id>21</id>
       <name>Traitement dans ATAL</name>
       <colour>6699FF</colour>
-      <visibility />
-      <items>
+      <backoffice_info_text>&lt;p&gt;Ce statut n'est pas visible par la personne ayant soumis cette demande.&lt;/p&gt;</backoffice_info_text>
+      <visibility>
+        <role>_receiver</role>
+      </visibility><items>
         <item id="1" type="webservice_call">
           <label>R&#233;cup&#233;ration du d&#233;tail dans ATAL</label>
           <url>{{ passerelle_url }}/passerelle-imio-ia-tech/atal-demov6/get_work_request_details</url>
@@ -501,6 +494,18 @@
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 9 and form_var_followyn == "Oui"</value>
           </condition><set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>22</id>
+      <name>En cours de traitement</name>
+      <colour>6699FF</colour>
+      <backoffice_info_text>&lt;p&gt;Visible par le demandeur.&lt;/p&gt;</backoffice_info_text>
+      <visibility />
+      <items>
+        <item id="1" type="jump">
+          <status>21</status>
+          <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items>
     </status>

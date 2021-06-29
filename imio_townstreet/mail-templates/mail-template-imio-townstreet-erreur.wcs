@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<mail-template id="37" url="https://staging2-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/37/">
+<mail-template id="3" url="https://chaumontgistoux-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/3/">
   <name>iMio - Townstreet - Erreur (cr&#233;ation demande iA.Tech)</name>
   <slug>imio-townstreet-erreur</slug>
   <description>iMio - Mail d'erreur envoy&#233; &#224; iMio si une erreur survient au niveau du webservice qui cr&#233;e la demande dans a-Atal (v5).</description>
@@ -24,12 +24,22 @@
 
 D&#233;tail :
 
+{% if form_workflow_data_post_work_request %}
+**App error code** : {{form_workflow_data_post_work_request_error_code}}
+**Response error** : {{form_workflow_data_post_work_request_response_err}}
+**Response error class** : {{form_workflow_data_post_work_request_response_err_class}}
+**Response error desc** : {{form_workflow_data_post_work_request_response_err_desc}}
+**Status** : {{form_workflow_data_post_work_request_status}}
+**Time** : {{form_workflow_data_post_work_request_time}}
+{% endif %}
+{% if form_workflow_data_iatechins %}
 **App error code** : {{form_workflow_data_iatechins_app_error_code}}
 **Response error** : {{form_workflow_data_iatechins_error_response_err}}
 **Response error class** : {{form_workflow_data_iatechins_error_response_err_class}}
 **Response error desc** : {{form_workflow_data_iatechins_error_response_err_desc}}
 **Status** : {{form_workflow_data_iatechins_status}}
 **Time** : {{form_workflow_data_iatechins_time}}
+{% endif %}
 
 `Inspecter cette demande &lt;{{ form_url_backoffice }}&gt;`_</body>
 </mail-template>

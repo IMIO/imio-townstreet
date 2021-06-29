@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<mail-template id="38" url="https://staging2-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/38/">
-  <name>iMio - Townstreet - Erreur (envoi des photos iA.Tech)</name>
+<mail-template id="4" url="https://chaumontgistoux-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/4/">
+  <name>iMio - Townstreet - Erreur (envoi de fichier vers ATAL)</name>
   <slug>imio-townstreet-erreur-envoi-des-photos-iatech</slug>
-  <description>iMio - Mail d'erreur envoy&#233; &#224; iMio si une erreur survient au niveau d'un webservice qui envoie les photos vers iA.Tech (v5).</description>
+  <description>iMio - Mail d'erreur envoy&#233; &#224; iMio si une erreur survient au niveau d'un webservice qui envoie des fichiers vers ATAL.</description>
   <subject>&#120280;&#120319;&#120319;&#120306;&#120322;&#120319; &#120295;&#120316;&#120324;&#120315;&#120320;&#120321;&#120319;&#120306;&#120306;&#120321; ({{commune_name}} -  envoi photos iA.Tech)</subject>
   <body>Townstreet : {{commune_name}} - {{ form_number }}
 
@@ -13,7 +13,7 @@
 
 {{ form_name }} - **{{ form_number }}** (**Code de suivi** : {{ form_tracking_code }})
 
-| Une erreur est survenue lors du d&#233;clenchement d'un webservice cens&#233; envoyer et lier les photos &#224; | une demande ATAL. Une intervention d'iMio est n&#233;cessaire pour cette demande ({{ form_name }} &#8211; {{ form_number }}).
+| Une erreur est survenue lors du d&#233;clenchement d'un webservice cens&#233; envoyer et lier les photos &#224; | une demande e-Atal. Une intervention d'iMio est n&#233;cessaire pour cette demande ({{ form_name }} &#8211; {{ form_number }}).
 
 {% if form_evolution %}
 {{ form_evolution }}
@@ -24,6 +24,7 @@
 
 D&#233;tail :
 
+{% if form_workflow_data_iatechpic1 %}
 {% if form_workflow_data_iatechpic1_app_error_code != 0 %}
 **App error code** : {{form_workflow_data_iatechpic1_app_error_code}}
 **Response error** : {{form_workflow_data_iatechpic1_error_response_err}}
@@ -32,7 +33,9 @@ D&#233;tail :
 **Status** : {{form_workflow_data_iatechpic1_status}}
 **Time** : {{form_workflow_data_iatechpic1_time}}
 {% endif %}
+{% endif %}
 
+{% if form_workflow_data_iatechpic2 %}
 {% if form_workflow_data_iatechpic2_app_error_code != 0 %}
 **App error code** : {{form_workflow_data_iatechpic2_app_error_code}}
 **Response error** : {{form_workflow_data_iatechpic2_error_response_err}}
@@ -41,42 +44,25 @@ D&#233;tail :
 **Status** : {{form_workflow_data_iatechpic2_status}}
 **Time** : {{form_workflow_data_iatechpic2_time}}
 {% endif %}
-
-{% if form_workflow_data_iatechpic3_app_error_code != 0 %}
-**App error code** : {{form_workflow_data_iatechpic3_app_error_code}}
-**Response error** : {{form_workflow_data_iatechpic3_error_response_err}}
-**Response error class** : {{form_workflow_data_iatechpic3_error_response_err_class}}
-**Response error desc** : {{form_workflow_data_iatechpic3_error_response_err_desc}}
-**Status** : {{form_workflow_data_iatechpic3_status}}
-**Time** : {{form_workflow_data_iatechpic3_time}}
+{% endif %}
+{% if form_workflow_post_attachment1 %}
+**App error code** : {{form_workflow_post_attachment1_app_error_code}}
+**Response error** : {{form_workflow_post_attachment1_error_response_err}}
+**Response error class** : {{form_workflow_post_attachment1_error_response_err_class}}
+**Response error desc** : {{form_workflow_post_attachment1_error_response_err_desc}}
+**Status** : {{form_workflow_data_post_attachment1_status}}
+**Time** : {{form_workflow_data_post_attachment1_time}}
 {% endif %}
 
-{% if form_workflow_data_iatechpic4_app_error_code != 0 %}
-**App error code** : {{form_workflow_data_iatechpic4_app_error_code}}
-**Response error** : {{form_workflow_data_iatechpic4_error_response_err}}
-**Response error class** : {{form_workflow_data_iatechpic4_error_response_err_class}}
-**Response error desc** : {{form_workflow_data_iatechpic4_error_response_err_desc}}
-**Status** : {{form_workflow_data_iatechpic4_status}}
-**Time** : {{form_workflow_data_iatechpic4_time}}
+{% if form_workflow_post_attachment2 %}
+**App error code** : {{form_workflow_post_attachment2_app_error_code}}
+**Response error** : {{form_workflow_post_attachment2_error_response_err}}
+**Response error class** : {{form_workflow_post_attachment2_error_response_err_class}}
+**Response error desc** : {{form_workflow_post_attachment2_error_response_err_desc}}
+**Status** : {{form_workflow_data_post_attachment2_status}}
+**Time** : {{form_workflow_data_post_attachment2_time}}
 {% endif %}
 
-{% if form_workflow_data_iatechpic5_app_error_code != 0 %}
-**App error code** : {{form_workflow_data_iatechpic5_app_error_code}}
-**Response error** : {{form_workflow_data_iatechpic5_error_response_err}}
-**Response error class** : {{form_workflow_data_iatechpic5_error_response_err_class}}
-**Response error desc** : {{form_workflow_data_iatechpic5_error_response_err_desc}}
-**Status** : {{form_workflow_data_iatechpic5_status}}
-**Time** : {{form_workflow_data_iatechpic5_time}}
-{% endif %}
-
-{% if form_workflow_data_iatechpic6_app_error_code != 0 %}
-**App error code** : {{form_workflow_data_iatechpic6_app_error_code}}
-**Response error** : {{form_workflow_data_iatechpic6_error_response_err}}
-**Response error class** : {{form_workflow_data_iatechpic6_error_response_err_class}}
-**Response error desc** : {{form_workflow_data_iatechpic6_error_response_err_desc}}
-**Status** : {{form_workflow_data_iatechpic6_status}}
-**Time** : {{form_workflow_data_iatechpic6_time}}
-{% endif %}
 
 `Inspecter cette demande &lt;{{ form_url_backoffice }}&gt;`_</body>
 </mail-template>

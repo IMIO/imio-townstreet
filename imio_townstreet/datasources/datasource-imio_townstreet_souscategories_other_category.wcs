@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<datasource id="296" url="https://staging2-formulaires.guichet-citoyen.be/backoffice/settings/data-sources/296/">
+<datasource id="143" url="https://chaumontgistoux-formulaires.guichet-citoyen.be/backoffice/settings/data-sources/143/">
   <name>iMio Townstreet - Sous-cat&#233;gories 'other_category'</name>
   <slug>imio_townstreet_souscategories_other_category</slug>
   <description>iMio Townstreet - Sous-cat&#233;gories pour la cat&#233;gorie principale 'other_category'.</description>

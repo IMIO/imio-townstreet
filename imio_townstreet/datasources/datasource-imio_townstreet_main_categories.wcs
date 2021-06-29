@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<datasource id="300" url="https://staging2-formulaires.guichet-citoyen.be/backoffice/settings/data-sources/300/">
+<datasource id="136" url="https://chaumontgistoux-formulaires.guichet-citoyen.be/backoffice/settings/data-sources/136/">
   <name>iMio Townstreet - Cat&#233;gories de signalements</name>
   <slug>imio_townstreet_main_categories</slug>
   <description>iMio Townstreet - Cat&#233;gories principales. </description>

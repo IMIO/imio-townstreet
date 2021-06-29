@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<datasource id="299" url="https://staging2-formulaires.guichet-citoyen.be/backoffice/settings/data-sources/299/">
+<datasource id="145" url="https://chaumontgistoux-formulaires.guichet-citoyen.be/backoffice/settings/data-sources/145/">
   <name>iMio Townstreet - Sous-cat&#233;gories 'street_furniture'</name>
   <slug>imio_townstreet_souscategories_street_furniture</slug>
   <description>iMio Townstreet - Sous-cat&#233;gories pour la cat&#233;gorie 'street_furniture'.</description>

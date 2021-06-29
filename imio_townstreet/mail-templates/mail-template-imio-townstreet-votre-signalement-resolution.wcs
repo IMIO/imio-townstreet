@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<mail-template id="44" url="https://staging2-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/44/">
+<mail-template id="11" url="https://chaumontgistoux-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/11/">
   <name>iMio - Townstreet - Votre signalement : r&#233;solution</name>
   <slug>imio-townstreet-votre-signalement-resolution</slug>
   <description>iMio - Courriel envoy&#233; &#224; l'usager lorsque la demande est trait&#233;e et qu'il a souhait&#233; &#234;tre tenu inform&#233;.</description>
@@ -14,22 +14,17 @@ Pour rappel, il s'agit de votre signalement du {{ form_receipt_date|date:"d M y"
 
 **Type de signalement** : {{ form_var_category_text }} {% if form_var_subcategory %}/ {{ form_var_subcategory }}{% endif %}
 
-**D&#233;tail** : {{ form_var_issues }}
+{% if form_var_issues %}**D&#233;tail** : {{ form_var_issues }}{% endif %}
 
 {% if form_tracking_code %}
 Le code de suivi de votre signalement est le suivant : **{{form_tracking_code}}**
-En cas de probl&#232;me, munissez-vous du code de suivi lors de vos &#233;changes avec nous.
 {% endif %}
 
 {% if followresp_var_subject  and followresp_var_body %}
 L'agent ayant trait&#233; votre demande vous communique le message suivant : 
-
 **Objet** :
-
 *{{ followresp_var_subject }}*
-
 **Communication** : 
-
 *{{ followresp_var_body }}*
 {% endif %}
 

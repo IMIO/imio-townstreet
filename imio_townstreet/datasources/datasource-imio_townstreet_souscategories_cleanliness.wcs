@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<datasource id="293" url="https://staging2-formulaires.guichet-citoyen.be/backoffice/settings/data-sources/293/">
+<datasource id="137" url="https://chaumontgistoux-formulaires.guichet-citoyen.be/backoffice/settings/data-sources/137/">
   <name>iMio Townstreet - Sous-cat&#233;gories 'cleanliness'</name>
   <slug>imio_townstreet_souscategories_cleanliness</slug>
   <description>iMio Townstreet - Sous-cat&#233;gories de signalements dont le parent est 'cleanliness'.</description>

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<mail-template id="36" url="https://staging2-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/36/">
+<mail-template id="2" url="https://chaumontgistoux-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/2/">
   <name>iMio - Townstreet - Votre signalement</name>
   <slug>imio-townstreet-acknowledgement</slug>
   <description>iMio - Townstreet - Courriel envoy&#233; d&#232;s la r&#233;ception du signalement.</description>
@@ -19,13 +19,12 @@ Voici le r&#233;sum&#233; des donn&#233;es transmises. {% if form_var_pic1 %}Veu
 
 {% if form_var_subcategory %}**Sous-cat&#233;gorie** : {{ form_var_subcategory }}{% endif %}
 
-**D&#233;tail** : {{ form_var_issues }}
+{% if form_var_issues %}**D&#233;tail** : {{ form_var_issues }}{% endif %}
 
 {% if form_var_reporter_comment %}**Votre commentaire** : {{ form_var_reporter_comment }}{% endif %}
 
 {% if form_tracking_code %}
-Le code de suivi de votre signalement est le suivant : **{{form_tracking_code}}**
-En cas de probl&#232;me, munissez-vous du code de suivi lors de vos &#233;changes avec nous.
+Un code de suivi est li&#233; &#224; votre signalement : **{{form_tracking_code}}**
 {% endif %}
 
 {% if form_comment %}Nouveau commentaire&#160;: {{ form_comment }}{% endif %}

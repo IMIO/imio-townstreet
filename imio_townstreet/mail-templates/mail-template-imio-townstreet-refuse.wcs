@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<mail-template id="43" url="https://staging2-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/43/">
+<mail-template id="9" url="https://chaumontgistoux-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/9/">
   <name>iMio - Townstreet - Refus&#233;</name>
   <slug>imio-townstreet-refuse</slug>
   <description>iMio - Courriel envoy&#233; &#224; l'usager lorsque la demande est refus&#233;e.</description>
