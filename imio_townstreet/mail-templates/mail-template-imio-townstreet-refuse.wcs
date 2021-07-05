@@ -8,7 +8,7 @@
 
 Bonjour,
 
-Merci de nous avoir signal&#233; cet incident, mais ne nous ne peuvont donner suite &#224; ce signalement.
+Merci de nous avoir signal&#233; cet incident, mais ne nous ne pouvons donner suite &#224; ce signalement.
 
 {% if form_comment %}**Commentaire de l'agent&#183;e** : 
 

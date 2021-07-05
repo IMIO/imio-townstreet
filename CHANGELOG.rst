@@ -11,6 +11,13 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.22
+    *[TOWS-48] fix mistake in a mail-template
+
+0.0.21
+    * [TOWS-47] add custom_view (tableau de traitement) [dmu]
+      https://support.imio.be/browse/TOWS-47
+
 0.0.20
     * [TOWS-17] fix subcat not appearing in atal6 and some webservice parameters [dmu]
 
