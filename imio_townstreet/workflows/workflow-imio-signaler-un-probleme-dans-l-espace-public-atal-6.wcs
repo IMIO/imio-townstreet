@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<workflow id="178" url="https://staging2-formulaires.guichet-citoyen.be/backoffice/workflows/178/">
+<workflow id="104" url="https://staging-formulaires.guichet-citoyen.be/backoffice/workflows/104/">
   <name>iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</name>
   <roles>
     <role id="_receiver">Destinataire</role>
@@ -41,6 +41,9 @@
             </field><field>
               <field_id>bo8e50a0f2-09c3-4c33-8099-b6dfdbce719c</field_id>
               <value>="Oui" if vars().get('form_var_follow') == "True" else "Non"</value>
+            </field><field>
+              <field_id>bo6c5e090e-75c1-4269-ac81-6d2b097af7d9</field_id>
+              <value>{{ data_source.imio_townstreet_requesters|get:form_var_requester_id|get:"text" }}</value>
             </field>
           </fields>
         </item><item id="5" type="sendmail">
@@ -135,7 +138,7 @@
           <notify_on_errors>True</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>True</record_errors>
-        </item><item id="3" type="jump">
+        </item><item id="2" type="jump">
           <status>20</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -316,18 +319,18 @@
       </visibility><items>
         <item id="1" type="sendmail">
           <to>
-            <item role_id="5978a0f31cce4d5f8937ba6da3bbf89e">Agent traitant - Townstreet</item>
+            <item role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
           </to><mail_template>imio-townstreet-notification-de-cloture-dans-e-atal</mail_template>
         </item><item id="2" type="displaymsg">
           <message>Ce signalement a &#233;t&#233; cl&#244;tur&#233; dans ATAL, mais la personne l'ayant soumis souhaite &#234;tre tenue inform&#233;e des suites donn&#233;es. Une action de la part d'un agent traitant Townstreet est encore requise pour cette demande.</message>
           <level>info</level>
           <position>top</position>
           <to>
-            <item role_id="5978a0f31cce4d5f8937ba6da3bbf89e">Agent traitant - Townstreet</item>
+            <item role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
           </to>
         </item><item id="3" type="form">
           <by>
-            <item role_id="5978a0f31cce4d5f8937ba6da3bbf89e">Agent traitant - Townstreet</item>
+            <item role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
           </by><varname>followresp</varname>
           <formdef>
             <name>-</name>
@@ -396,7 +399,7 @@
           <level>success</level>
           <position>top</position>
           <to>
-            <item role_id="5978a0f31cce4d5f8937ba6da3bbf89e">Agent traitant - Townstreet</item>
+            <item role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
             <item role_id="_submitter">_submitter</item>
           </to>
         </item>
@@ -523,9 +526,9 @@
       <items>
         <item id="1" type="remove" />
       </items><triggers>
-        <trigger id="4c5b1d27-dc2d-42a2-b3c1-3ffb2952f0a5" type="manual">
+        <trigger id="98cea738-72ea-43ca-903c-9d3c4717ca2e" type="manual">
           <roles>
-            <item role_id="43190215712647a89376713be142a4f5">Debug</item>
+            <item role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
           </roles>
         </trigger>
       </triggers>
@@ -631,6 +634,16 @@
           <display_locations />
           <anonymise>False</anonymise>
           <id>bo374b25d1-10d6-4cf3-b391-88e29f4a5acc</id>
+        </field><field>
+          <label>Envoy&#233; depuis</label>
+          <type>string</type>
+          <required>True</required>
+          <varname>requested_from</varname>
+          <display_locations>
+            <display_location>summary</display_location>
+            <display_location>listings</display_location>
+          </display_locations><anonymise>True</anonymise>
+          <id>bo6c5e090e-75c1-4269-ac81-6d2b097af7d9</id>
         </field>
       </fields>
     </formdef>

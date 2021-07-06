@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.23
+    *[TOWS-52] add requester feature (identify the requester)
+
 0.0.22
     *[TOWS-48] fix mistake in a mail-template
 
