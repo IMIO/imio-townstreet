@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<formdef id="262" url="https://staging2-formulaires.guichet-citoyen.be/backoffice/forms/262/">
+<formdef id="130" url="https://staging-formulaires.guichet-citoyen.be/backoffice/forms/130/">
   <name>Signaler un probl&#232;me dans l'espace public</name>
   <url_name>signaler-un-probleme-espace-public</url_name>
   <keywords>signalement, probl&#232;me, nid de poule, d&#233;chets, d&#233;p&#244;ts, clandestin, sauvage, d&#233;gradation, routes</keywords>
-  <internal_identifier>signaler-un-probleme-dans-l-espace-public</internal_identifier>
+  <internal_identifier>signaler-un-probleme-dans-l-espace-public-1</internal_identifier>
   <discussion>false</discussion>
   <detailed_emails>true</detailed_emails>
   <disabled>false</disabled>
@@ -14,14 +14,21 @@
   <include_download_all_button>false</include_download_all_button>
   <has_captcha>false</has_captcha>
   <skip_from_360_view>false</skip_from_360_view>
-  <category category_id="108">Signaler un probl&#232;me dans l'espace public</category>
-  <workflow workflow_id="178">iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</workflow>
-  <max_field_id>194</max_field_id>
+  <category category_id="113">Signaler un probl&#232;me dans l'espace public</category>
+  <workflow workflow_id="104">iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</workflow>
+  <max_field_id>195</max_field_id>
   <fields>
     <field>
       <label>Votre signalement</label>
       <type>page</type>
       <id>112</id>
+    </field><field>
+      <label>&#201;metteur de la demande</label>
+      <type>computed</type>
+      <varname>requester_id</varname>
+      <value_template>0</value_template>
+      <freeze_on_initial_value>False</freeze_on_initial_value>
+      <id>195</id>
     </field><field>
       <label>Date du constat</label>
       <type>date</type>
@@ -56,7 +63,6 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class>grid-1-1</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>geolocation</type>
         <value>position</value>
       </prefill><initial_zoom>16</initial_zoom>
@@ -276,7 +282,7 @@
       <display_locations />
       <id>115</id>
     </field><field>
-      <label>Veuillez s&#233;lectionner une cat&#233;gorie dans la liste</label>
+      <label>Cat&#233;gorie de signalement</label>
       <type>item</type>
       <required>True</required>
       <varname>category</varname>
@@ -348,7 +354,7 @@
         <display_location>summary</display_location>
       </display_locations><id>190</id>
     </field><field>
-      <label>Veuillez s&#233;lectionner une sous-cat&#233;gorie dans la liste</label>
+      <label>Sous-cat&#233;gorie de signalement</label>
       <type>item</type>
       <condition>
         <type>django</type>
@@ -361,9 +367,9 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class>grid-1-2 newline</extra_css_class>
       <prefill>
+        <locked>False</locked>
         <type>none</type>
-      </prefill><items />
-      <display_mode>list</display_mode>
+      </prefill><display_mode>list</display_mode>
       <data_source>
         <type>imio_townstreet_souscategories_cleanliness</type>
         <value>https://api.imio.be/imio/procedures/v1/townstreet/categories?parent={{form_var_category}}</value>
@@ -373,7 +379,7 @@
       <initial_zoom>13</initial_zoom>
       <id>109</id>
     </field><field>
-      <label>Veuillez s&#233;lectionner une sous-cat&#233;gorie dans la liste</label>
+      <label>Sous-cat&#233;gorie de signalement</label>
       <type>item</type>
       <condition>
         <type>django</type>
@@ -386,9 +392,9 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class>grid-1-2 newline</extra_css_class>
       <prefill>
+        <locked>False</locked>
         <type>none</type>
-      </prefill><items />
-      <display_mode>list</display_mode>
+      </prefill><display_mode>list</display_mode>
       <data_source>
         <type>imio_townstreet_souscategories_public_street</type>
         <value>https://api.imio.be/imio/procedures/v1/townstreet/categories?parent={{form_var_category}}</value>
@@ -398,7 +404,7 @@
       <initial_zoom>13</initial_zoom>
       <id>180</id>
     </field><field>
-      <label>Veuillez s&#233;lectionner une sous-cat&#233;gorie dans la liste</label>
+      <label>Sous-cat&#233;gorie de signalement</label>
       <type>item</type>
       <condition>
         <type>django</type>
@@ -411,9 +417,9 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class>grid-1-2 newline</extra_css_class>
       <prefill>
+        <locked>False</locked>
         <type>none</type>
-      </prefill><items />
-      <display_mode>list</display_mode>
+      </prefill><display_mode>list</display_mode>
       <data_source>
         <type>imio_townstreet_souscategories_green_space</type>
         <value>https://api.imio.be/imio/procedures/v1/townstreet/categories?parent={{form_var_category}}</value>
@@ -423,7 +429,7 @@
       <initial_zoom>13</initial_zoom>
       <id>181</id>
     </field><field>
-      <label>Veuillez s&#233;lectionner une sous-cat&#233;gorie dans la liste</label>
+      <label>Sous-cat&#233;gorie de signalement</label>
       <type>item</type>
       <condition>
         <type>django</type>
@@ -436,9 +442,9 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class>grid-1-2 newline</extra_css_class>
       <prefill>
+        <locked>False</locked>
         <type>none</type>
-      </prefill><items />
-      <display_mode>list</display_mode>
+      </prefill><display_mode>list</display_mode>
       <data_source>
         <type>imio_townstreet_souscategories_graffitis_tags_posters</type>
         <value>https://api.imio.be/imio/procedures/v1/townstreet/categories?parent={{form_var_category}}</value>
@@ -448,7 +454,7 @@
       <initial_zoom>13</initial_zoom>
       <id>182</id>
     </field><field>
-      <label>Veuillez s&#233;lectionner une sous-cat&#233;gorie dans la liste</label>
+      <label>Sous-cat&#233;gorie de signalement</label>
       <type>item</type>
       <condition>
         <type>django</type>
@@ -461,9 +467,9 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class>grid-1-2 newline</extra_css_class>
       <prefill>
+        <locked>False</locked>
         <type>none</type>
-      </prefill><items />
-      <display_mode>list</display_mode>
+      </prefill><display_mode>list</display_mode>
       <data_source>
         <type>imio_townstreet_souscategories_street_furniture</type>
         <value>https://api.imio.be/imio/procedures/v1/townstreet/categories?parent={{form_var_category}}</value>
@@ -473,7 +479,7 @@
       <initial_zoom>13</initial_zoom>
       <id>183</id>
     </field><field>
-      <label>Veuillez s&#233;lectionner une sous-cat&#233;gorie dans la liste</label>
+      <label>Sous-cat&#233;gorie de signalement</label>
       <type>item</type>
       <condition>
         <type>django</type>
@@ -486,9 +492,9 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class>grid-1-2 newline</extra_css_class>
       <prefill>
+        <locked>False</locked>
         <type>none</type>
-      </prefill><items />
-      <display_mode>list</display_mode>
+      </prefill><display_mode>list</display_mode>
       <data_source>
         <type>imio_townstreet_souscategories_public_lighting</type>
         <value>https://api.imio.be/imio/procedures/v1/townstreet/categories?parent={{form_var_category}}</value>
@@ -508,42 +514,6 @@
       <display_locations />
       <id>136</id>
     </field><field>
-      <label>D&#233;tails de votre signalement</label>
-      <type>page</type>
-      <id>132</id>
-    </field><field>
-      <label>D&#233;tails</label>
-      <type>subtitle</type>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><id>193</id>
-    </field><field>
-      <label>Objet du signalement</label>
-      <type>items</type>
-      <condition>
-        <type>django</type>
-        <value>form_var_category_raw != "other_category"</value>
-      </condition><required>True</required>
-      <hint>Veuillez cocher les options qui s'appliqent.</hint>
-      <varname>issues</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-1</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><items />
-      <min_choices>0</min_choices>
-      <max_choices>0</max_choices>
-      <data_source>
-        <type>json</type>
-        <value>{{passerelle_url}}csvdatasource/townstreet_issues/query/filter-by-subcat/?parent={% firstof form_var_subcat_for_cleanliness_raw form_var_subcat_for_public_street_raw form_var_subcat_for_green_space_raw form_var_subcat_for_graffitis_tags_posters_raw form_var_subcat_for_street_furniture_raw form_var_subcat_for_public_lighting_raw %}</value>
-      </data_source><in_filters>False</in_filters>
-      <anonymise>False</anonymise>
-      <display_disabled_items>False</display_disabled_items>
-      <id>189</id>
-    </field><field>
       <label>Information compl&#233;mentaire (optionnel)</label>
       <type>text</type>
       <condition>
@@ -562,7 +532,43 @@
       <maxlength>500</maxlength>
       <id>118</id>
     </field><field>
-      <label>Description</label>
+      <label>D&#233;tails de votre signalement</label>
+      <type>page</type>
+      <id>132</id>
+    </field><field>
+      <label>D&#233;tails</label>
+      <type>subtitle</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id>193</id>
+    </field><field>
+      <label>Objet du signalement</label>
+      <type>items</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_category_raw != "other_category" and form_var_subcat_for_cleanliness != "Autre" and form_var_subcat_for_graffitis_tags_posters != "Autre" and form_var_subcat_for_green_space != "Autre" and form_var_subcat_for_public_lighting != "Autre" and form_var_subcat_for_public_street != "Autre" and form_var_subcat_for_street_furniture != "Autre"</value>
+      </condition><required>True</required>
+      <hint>Veuillez cocher les options qui s'appliqent.</hint>
+      <varname>issues</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class>grid-1-1</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><min_choices>0</min_choices>
+      <max_choices>0</max_choices>
+      <data_source>
+        <type>json</type>
+        <value>{{passerelle_url}}csvdatasource/townstreet_issues/query/filter-by-subcat/?parent={% firstof form_var_subcat_for_cleanliness_raw form_var_subcat_for_public_street_raw form_var_subcat_for_green_space_raw form_var_subcat_for_graffitis_tags_posters_raw form_var_subcat_for_street_furniture_raw form_var_subcat_for_public_lighting_raw %}</value>
+      </data_source><in_filters>False</in_filters>
+      <anonymise>False</anonymise>
+      <display_disabled_items>False</display_disabled_items>
+      <id>189</id>
+    </field><field>
+      <label>Description du signalement</label>
       <type>text</type>
       <condition>
         <type>django</type>
@@ -574,6 +580,7 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class>grid1-2 newline</extra_css_class>
       <prefill>
+        <locked>False</locked>
         <type>none</type>
       </prefill><rows>3</rows>
       <pre>False</pre>
@@ -819,8 +826,11 @@
       <storage>default</storage>
       <id>178</id>
     </field>
-  </fields><roles>
-    <role role_id="43190215712647a89376713be142a4f5" role_key="_ext_bo">Debug</role>
+  </fields><backoffice-submission-roles>
+    <role role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</role>
+  </backoffice-submission-roles><roles>
+    <role role_id="df908b92acec4a68b3a11bbf516263d9" role_key="_ext_bo">Debug</role>
+    <role role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10" role_key="_receiver">Agent traitant - Townstreet</role>
   </roles><options>
     <option varname="eatal_version">5</option>
     <option varname="eatal_version_display">ATAL 5</option>
