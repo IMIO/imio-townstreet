@@ -833,8 +833,25 @@
     <option varname="opt_on_a_private_building" />
     <option varname="postal_code_limit" />
     <option varname="zoom_max">50</option>
-  </options><custom_views />
-  <geolocations>
+  </options><custom_views>
+    <custom_view>
+      <title>iMio Townstreet - Vue par d&#233;faut</title>
+      <slug>imio-townstreet-vue-par-defaut</slug>
+      <visibility>any</visibility>
+      <filters>
+        <filter>all</filter>
+        <filter-status>on</filter-status>
+      </filters><columns>
+        <id>boceb33663-bc2b-4e59-ac71-3c34e9c45f60</id>
+        <id>id</id>
+        <id>time</id>
+        <id>125</id>
+        <id>bo5f0b6137-6c67-46f1-b974-dedb5ee853db</id>
+        <id>bo13e3c664-e561-40a2-a766-ebd455662734</id>
+        <id>status</id>
+      </columns><order_by>-receipt_time</order_by>
+    </custom_view>
+  </custom_views><geolocations>
     <geolocation key="base">Position</geolocation>
   </geolocations>
 </formdef>
