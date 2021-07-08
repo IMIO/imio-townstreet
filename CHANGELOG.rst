@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.26
+    * [TOWS-60] rename map field label and add a hint
+
 0.0.25
     * [TOWS-52] add missing datasource for requester feature (identify the requester)
 

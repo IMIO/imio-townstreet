@@ -55,9 +55,10 @@
         <display_location>summary</display_location>
       </display_locations><id>191</id>
     </field><field>
-      <label>Centrez la carte et double cliquez sur la position exacte ou encodez manuellement une adresse pour la position de votre signalement.</label>
+      <label>Emplacement du signalement</label>
       <type>map</type>
       <required>False</required>
+      <hint>Double-cliquez sur la carte pour placer un pointeur ou encodez manuellement l'adresse exacte.</hint>
       <varname>map</varname>
       <display_locations>
         <display_location>summary</display_location>
