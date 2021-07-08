@@ -11,9 +11,8 @@ imio-townstreet changelog
 Version History
 ===============
 
-0.0.24
-    * [TOWS-47] add default custom view (treatment tables)
-    * [TOWS-52] add requester feature (identify the requester)
+0.0.25
+    * [TOWS-52] add missing datasource for requester feature (identify the requester)
 
 0.0.23
     * [TOWS-52] add requester feature (identify the requester)

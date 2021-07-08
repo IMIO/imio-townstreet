@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<datasource id="386" url="https://demo-formulaires.guichet-citoyen.be/backoffice/settings/data-sources/386/">
+  <name>iMio Townstreet - &#201;metteur de la demande</name>
+  <slug>imio_townstreet_requesters</slug>
+  <data_source>
+    <type>formula</type>
+    <value>[{"id": "0", "text": "T&#233;l&#233;services - Guichet en ligne"}, {"id":"1", "text":"FixMyStreet"}]</value>
+  </data_source><notify_on_errors>true</notify_on_errors>
+  <record_on_errors>true</record_on_errors>
+</datasource>
