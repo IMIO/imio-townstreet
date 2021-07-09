@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<datasource id="411" url="https://demo-formulaires.guichet-citoyen.be/backoffice/settings/data-sources/411/">
+  <name>iMio Townstreet - Issues 'watercourse'</name>
+  <slug>imio_townstreet_issues_watercourse</slug>
+  <description>iMio Townstreet - Issues for 'watercourse'</description>
+  <cache_duration>86400</cache_duration>
+  <data_attribute>items</data_attribute>
+  <data_source>
+    <type>json</type>
+    <value>https://api-staging.imio.be/imio/procedures/v1/townstreet/issues?category=watercourse</value>
+  </data_source><notify_on_errors>true</notify_on_errors>
+  <record_on_errors>true</record_on_errors>
+</datasource>
