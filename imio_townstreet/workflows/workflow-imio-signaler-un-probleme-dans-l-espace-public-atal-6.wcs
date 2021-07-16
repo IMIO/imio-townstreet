@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<workflow id="104" url="https://staging-formulaires.guichet-citoyen.be/backoffice/workflows/104/">
+<workflow id="84" url="https://demo-formulaires.guichet-citoyen.be/backoffice/workflows/84/">
   <name>iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</name>
   <roles>
     <role id="_receiver">Destinataire</role>
@@ -34,7 +34,7 @@
               <value>{{ form_var_category_text }}</value>
             </field><field>
               <field_id>bo810f5e77-1d3b-40b3-bb28-7ea0af191239</field_id>
-              <value>Signalement citoyen depuis le guichet en ligne. D&#233;tail : {{ form_var_category_text }}{%if form_var_subcategory %} / {{ form_var_subcategory}} /{% else%} / {% firstof form_var_subcat_for_cleanliness  form_var_subcat_for_public_street form_var_subcat_for_green_space form_var_subcat_for_graffitis_tags_posters form_var_subcat_for_street_furniture form_var_subcat_for_public_lighting %} / {% endif%}{% if form_var_issues %} {{form_var_issues }}{% endif %}</value>
+              <value>{%if form_var_subcategory_text %}{{ form_var_subcategory_text }} &#183; {% else%} &#183; {% firstof form_var_subcat_for_cleanliness  form_var_subcat_for_public_street form_var_subcat_for_green_space form_var_subcat_for_graffitis_tags_posters form_var_subcat_for_street_furniture form_var_subcat_for_public_lighting %} &#183; {% endif%}{% if form_var_issues %} {{form_var_issues }}{% endif %} &#183; {{ form_var_addinfo }}{{ form_var_addinfother }}</value>
             </field><field>
               <field_id>bo13e3c664-e561-40a2-a766-ebd455662734</field_id>
               <value>{% firstof form_var_number "" %} {% firstof form_var_street "" %} {% firstof form_var_postal_code "" %} {% firstof form_var_city "" %}</value>
@@ -43,7 +43,7 @@
               <value>="Oui" if vars().get('form_var_follow') == "True" else "Non"</value>
             </field><field>
               <field_id>bo6c5e090e-75c1-4269-ac81-6d2b097af7d9</field_id>
-              <value>{{ data_source.imio_townstreet_requesters|get:form_var_requester_id|get:"text" }}</value>
+              <value>{{ form_var_origin_source }}</value>
             </field>
           </fields>
         </item><item id="5" type="sendmail">
@@ -319,18 +319,18 @@
       </visibility><items>
         <item id="1" type="sendmail">
           <to>
-            <item role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
+            <item role_id="1be915b352294450bc488b563d279ea7">Agent traitant - Townstreet</item>
           </to><mail_template>imio-townstreet-notification-de-cloture-dans-e-atal</mail_template>
         </item><item id="2" type="displaymsg">
           <message>Ce signalement a &#233;t&#233; cl&#244;tur&#233; dans ATAL, mais la personne l'ayant soumis souhaite &#234;tre tenue inform&#233;e des suites donn&#233;es. Une action de la part d'un agent traitant Townstreet est encore requise pour cette demande.</message>
           <level>info</level>
           <position>top</position>
           <to>
-            <item role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
+            <item role_id="1be915b352294450bc488b563d279ea7">Agent traitant - Townstreet</item>
           </to>
         </item><item id="3" type="form">
           <by>
-            <item role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
+            <item role_id="1be915b352294450bc488b563d279ea7">Agent traitant - Townstreet</item>
           </by><varname>followresp</varname>
           <formdef>
             <name>-</name>
@@ -399,7 +399,7 @@
           <level>success</level>
           <position>top</position>
           <to>
-            <item role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
+            <item role_id="1be915b352294450bc488b563d279ea7">Agent traitant - Townstreet</item>
             <item role_id="_submitter">_submitter</item>
           </to>
         </item>
@@ -526,9 +526,9 @@
       <items>
         <item id="1" type="remove" />
       </items><triggers>
-        <trigger id="98cea738-72ea-43ca-903c-9d3c4717ca2e" type="manual">
+        <trigger id="14d0beb9-6bf1-400b-818b-59bd0cca2cb9" type="manual">
           <roles>
-            <item role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
           </roles>
         </trigger>
       </triggers>
