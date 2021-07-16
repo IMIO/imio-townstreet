@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.31
+    * [TOWS-1] add last updated working version of the form
+
 0.0.30
     * [TOWS-1] update description
 
