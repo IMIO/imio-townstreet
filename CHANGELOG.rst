@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.30
+    * [TOWS-1] update description
+
 0.0.29
     * [TOWS-1] update to make python tests work too
 
