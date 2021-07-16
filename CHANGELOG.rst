@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.29
+    * [TOWS-1] update to make python tests work too
+
 0.0.28
     * back to multi-pages
 
