@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<wscall id="imio_townstreet_get_issues" url="https://demo-formulaires.guichet-citoyen.be/backoffice/settings/wscalls/imio_townstreet_get_issues/">
+  <name>iMio Townstreet - Issues</name>
+  <slug>imio_townstreet_get_issues</slug>
+  <description>Documentation : https://api-staging.imio.be/imio/procedures/v1/townstreet/docs#/TownStreet/read_issues_imio_procedures_v1_townstreet_issues_get</description>
+  <request>
+    <url>https://api-staging.imio.be/imio/procedures/v1/townstreet/issues</url>
+    <request_signature_key />
+    <method>GET</method>
+    <qs_data>
+      <param key="category">{{ form_var_subcategory_structured_id }}</param>
+    </qs_data><post_data />
+  </request><notify_on_errors>true</notify_on_errors>
+  <record_on_errors>true</record_on_errors>
+</wscall>
