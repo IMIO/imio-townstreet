@@ -19,46 +19,244 @@
   <max_field_id>240</max_field_id>
   <fields>
     <field>
-      <label>Votre signalement</label>
+      <label>Cat&#233;gorie</label>
       <type>page</type>
       <id>112</id>
     </field><field>
-      <label>&#201;metteur de la demande</label>
+      <label>Origine de la d&#233;marche</label>
       <type>computed</type>
-      <varname>requester_id</varname>
-      <value_template>0</value_template>
+      <varname>origin_source</varname>
+      <value_template>imio</value_template>
       <freeze_on_initial_value>False</freeze_on_initial_value>
-      <id>195</id>
+      <id>237</id>
     </field><field>
-      <label>Date du constat</label>
-      <type>date</type>
+      <label>URL d'acc&#232;s &#224; l'origine</label>
+      <type>computed</type>
+      <varname>origin_url</varname>
+      <value_template>{{ form_backoffice_url }}</value_template>
+      <freeze_on_initial_value>False</freeze_on_initial_value>
+      <id>238</id>
+    </field><field>
+      <label>Identifiant de l'origine</label>
+      <type>computed</type>
+      <varname>origin_id</varname>
+      <value_template>{{ form_internal_id }}</value_template>
+      <freeze_on_initial_value>False</freeze_on_initial_value>
+      <id>240</id>
+    </field><field>
+      <label>Cat&#233;gorie</label>
+      <type>subtitle</type>
+      <display_locations>
+        <display_location>validation</display_location>
+      </display_locations><id>186</id>
+    </field><field>
+      <label>Cat&#233;gorie de signalement</label>
+      <type>item</type>
+      <required>True</required>
+      <hint>Veuillez s&#233;lectionner une cat&#233;gorie dans la liste</hint>
+      <varname>category</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><extra_css_class>grid-1-2</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><items />
+      <display_mode>list</display_mode>
+      <data_source>
+        <type>imio_townstreet_main_categories</type>
+        <value>webservice.imio_townstreet_category</value>
+      </data_source><in_filters>False</in_filters>
+      <anonymise>False</anonymise>
+      <display_disabled_items>False</display_disabled_items>
+      <initial_zoom>13</initial_zoom>
+      <id>108</id>
+    </field><field>
+      <label>origin_source</label>
+      <type>computed</type>
+      <varname>origin_source</varname>
+      <freeze_on_initial_value>False</freeze_on_initial_value>
+      <id>239</id>
+    </field><field>
+      <label>Sous-cat&#233;gorie</label>
+      <type>page</type>
+      <id>232</id>
+    </field><field>
+      <label>Sous-cat&#233;gorie</label>
+      <type>subtitle</type>
+      <display_locations>
+        <display_location>validation</display_location>
+      </display_locations><id>190</id>
+    </field><field>
+      <label>Sous-cat&#233;gorie de signalement</label>
+      <type>item</type>
+      <required>True</required>
+      <hint>Veuillez s&#233;lectionner une sous-cat&#233;gorie dans la liste.</hint>
+      <varname>subcategory</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class>grid-1-2 newline</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><items />
+      <display_mode>list</display_mode>
+      <data_source>
+        <type>formula</type>
+        <value>webservice.imio_townstreet_subcategory.get('items')</value>
+      </data_source><in_filters>False</in_filters>
+      <anonymise>False</anonymise>
+      <display_disabled_items>False</display_disabled_items>
+      <initial_zoom>13</initial_zoom>
+      <id>183</id>
+    </field><field>
+      <label>D&#233;tails</label>
+      <type>page</type>
+      <id>233</id>
+    </field><field>
+      <label>D&#233;tails du signalement</label>
+      <type>subtitle</type>
+      <display_locations />
+      <id>193</id>
+    </field><field>
+      <label>Information compl&#233;mentaire (optionnel)</label>
+      <type>text</type>
       <condition>
         <type>django</type>
-        <value>False</value>
-      </condition><required>True</required>
-      <hint>Pr&#233;cisez la date si les photos jointes ne sont pas d'aujourd'hui.</hint>
-      <varname>observed_date</varname>
+        <value>form_var_category_raw != "other_category"</value>
+      </condition><required>False</required>
+      <hint>Max. 500 caract&#232;res et strictement li&#233;e au signalement.</hint>
+      <varname>addinfo</varname>
       <display_locations>
         <display_location>summary</display_location>
-      </display_locations><prefill>
-        <type>string</type>
-        <value>{{ today }}</value>
-      </prefill><minimum_is_future>False</minimum_is_future>
-      <date_in_the_past>True</date_in_the_past>
-      <date_can_be_today>True</date_can_be_today>
-      <id>122</id>
+      </display_locations><extra_css_class>grid1-2 newline</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><rows>3</rows>
+      <pre>False</pre>
+      <maxlength>500</maxlength>
+      <id>118</id>
     </field><field>
-      <label>Localisation</label>
+      <label>Description du signalement</label>
+      <type>text</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_category_raw == 'other_category'</value>
+      </condition><required>True</required>
+      <hint>Information compl&#233;mentaire et strictement li&#233;e au signalement. (obligatoire, 500 caract&#232;res max.)</hint>
+      <varname>addinfother</varname>
+      <display_locations>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class>grid1-2 newline</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><rows>3</rows>
+      <pre>False</pre>
+      <maxlength>500</maxlength>
+      <id>157</id>
+    </field><field>
+      <label>Objet du signalement</label>
+      <type>items</type>
+      <required>False</required>
+      <hint>Veuillez cocher les options qui s'appliqent.</hint>
+      <varname>issues</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class>grid-1-1</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><items />
+      <min_choices>0</min_choices>
+      <max_choices>0</max_choices>
+      <data_source>
+        <type>formula</type>
+        <value>webservice.imio_townstreet_get_issues.get('items')</value>
+      </data_source><in_filters>False</in_filters>
+      <anonymise>False</anonymise>
+      <display_disabled_items>False</display_disabled_items>
+      <id>231</id>
+    </field><field>
+      <label>Photos du signalement</label>
       <type>subtitle</type>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><id>191</id>
+      </display_locations><id>188</id>
     </field><field>
-      <label>Emplacement du signalement</label>
+      <label>Photo 1</label>
+      <type>file</type>
+      <required>True</required>
+      <varname>pic1</varname>
+      <display_locations>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><extra_css_class>grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><document_type>
+        <id>_image</id>
+        <label>Fichiers image</label>
+        <mimetypes>image/*</mimetypes>
+      </document_type><max_file_size>30 Mo</max_file_size>
+      <allow_portfolio_picking>False</allow_portfolio_picking>
+      <automatic_image_resize>True</automatic_image_resize>
+      <storage>default</storage>
+      <id>138</id>
+    </field><field>
+      <label>Photo 2</label>
+      <type>file</type>
+      <required>False</required>
+      <hint>Optionnel.</hint>
+      <varname>pic2</varname>
+      <display_locations>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class>grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><document_type>
+        <id>_image</id>
+        <label>Fichiers image</label>
+        <mimetypes>image/*</mimetypes>
+      </document_type><max_file_size>30 Mo</max_file_size>
+      <allow_portfolio_picking>False</allow_portfolio_picking>
+      <automatic_image_resize>True</automatic_image_resize>
+      <storage>default</storage>
+      <id>139</id>
+    </field><field>
+      <label>Photo 3</label>
+      <type>file</type>
+      <required>False</required>
+      <hint>Optionnel.</hint>
+      <varname>pic3</varname>
+      <display_locations>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class>grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><document_type>
+        <id>_image</id>
+        <label>Fichiers image</label>
+        <mimetypes>image/*</mimetypes>
+      </document_type><max_file_size>30 Mo</max_file_size>
+      <allow_portfolio_picking>False</allow_portfolio_picking>
+      <automatic_image_resize>True</automatic_image_resize>
+      <storage>default</storage>
+      <id>140</id>
+    </field><field>
+      <label>Localisation</label>
+      <type>page</type>
+      <id>235</id>
+    </field><field>
+      <label>Localisation du signalement</label>
+      <type>subtitle</type>
+      <display_locations />
+      <id>191</id>
+    </field><field>
+      <label>Centrez la carte et double cliquez sur la position exacte ou encodez manuellement une adresse pour la position de votre signalement.</label>
       <type>map</type>
       <required>False</required>
-      <hint>Double-cliquez sur la carte pour placer un pointeur ou encodez manuellement l'adresse exacte.</hint>
       <varname>map</varname>
       <display_locations>
         <display_location>summary</display_location>
@@ -128,189 +326,10 @@
       </prefill><anonymise>False</anonymise>
       <id>126</id>
     </field><field>
-      <label>Photos</label>
-      <type>subtitle</type>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><id>188</id>
-    </field><field>
-      <label>Photo 1</label>
-      <type>file</type>
-      <required>False</required>
-      <hint>Optionnel.</hint>
-      <varname>pic1</varname>
-      <display_locations>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-4</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><document_type>
-        <id>_image</id>
-        <label>Fichiers image</label>
-        <mimetypes>image/*</mimetypes>
-      </document_type><max_file_size>30 Mo</max_file_size>
-      <allow_portfolio_picking>False</allow_portfolio_picking>
-      <automatic_image_resize>True</automatic_image_resize>
-      <storage>default</storage>
-      <id>138</id>
-    </field><field>
-      <label>Photo 2</label>
-      <type>file</type>
-      <required>False</required>
-      <hint>Optionnel.</hint>
-      <varname>pic2</varname>
-      <display_locations>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-4</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><document_type>
-        <id>_image</id>
-        <label>Fichiers image</label>
-        <mimetypes>image/*</mimetypes>
-      </document_type><max_file_size>30 Mo</max_file_size>
-      <allow_portfolio_picking>False</allow_portfolio_picking>
-      <automatic_image_resize>True</automatic_image_resize>
-      <storage>default</storage>
-      <id>139</id>
-    </field><field>
-      <label>Photo 3</label>
-      <type>file</type>
-      <condition>
-        <type>django</type>
-        <value>False</value>
-      </condition><required>False</required>
-      <varname>pic3</varname>
-      <display_locations>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-4</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><document_type>
-        <id>_image</id>
-        <label>Fichiers image</label>
-        <mimetypes>image/*</mimetypes>
-      </document_type><max_file_size>30 Mo</max_file_size>
-      <allow_portfolio_picking>False</allow_portfolio_picking>
-      <automatic_image_resize>True</automatic_image_resize>
-      <storage>default</storage>
-      <id>140</id>
-    </field><field>
-      <label>Photo 4</label>
-      <type>file</type>
-      <condition>
-        <type>django</type>
-        <value>False</value>
-      </condition><required>False</required>
-      <varname>pic4</varname>
-      <display_locations>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-4 newline</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><document_type>
-        <id>_image</id>
-        <label>Fichiers image</label>
-        <mimetypes>image/*</mimetypes>
-      </document_type><max_file_size>30 Mo</max_file_size>
-      <allow_portfolio_picking>False</allow_portfolio_picking>
-      <automatic_image_resize>True</automatic_image_resize>
-      <storage>default</storage>
-      <id>142</id>
-    </field><field>
-      <label>Photo 5</label>
-      <type>file</type>
-      <condition>
-        <type>django</type>
-        <value>False</value>
-      </condition><required>False</required>
-      <varname>pic5</varname>
-      <display_locations>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-4</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><document_type>
-        <id>_image</id>
-        <label>Fichiers image</label>
-        <mimetypes>image/*</mimetypes>
-      </document_type><max_file_size>30 Mo</max_file_size>
-      <allow_portfolio_picking>False</allow_portfolio_picking>
-      <automatic_image_resize>True</automatic_image_resize>
-      <storage>default</storage>
-      <id>143</id>
-    </field><field>
-      <label>Photo 6</label>
-      <type>file</type>
-      <condition>
-        <type>django</type>
-        <value>False</value>
-      </condition><required>False</required>
-      <varname>pic6</varname>
-      <display_locations>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-4</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><document_type>
-        <id>_image</id>
-        <label>Fichiers image</label>
-        <mimetypes>image/*</mimetypes>
-      </document_type><max_file_size>30 Mo</max_file_size>
-      <allow_portfolio_picking>False</allow_portfolio_picking>
-      <automatic_image_resize>True</automatic_image_resize>
-      <storage>default</storage>
-      <id>145</id>
-    </field><field>
-      <label>Cat&#233;gorie</label>
-      <type>subtitle</type>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><id>186</id>
-    </field><field>
-      <label>&lt;p&gt;&lt;img alt="" src="https://e-guichet.braine-lalleud.be/media/uploads/2021/02/16/imio-townstreet-illustration-braine-lalleud.png" style="width: 358px; height: 170px;" /&gt;&lt;/p&gt;</label>
-      <type>comment</type>
-      <condition>
-        <type>django</type>
-        <value>False</value>
-      </condition><display_locations />
-      <id>147</id>
-    </field><field>
       <label>&lt;p&gt;{% if form_option_geolimityn %}Attention, vous ne pourrez pas compl&amp;eacute;ter la d&amp;eacute;marche si votre signalement ne figure pas sur le territoire de Verviers (code postaux : {{form_option_postal_code_limit}}).{% endif %}&lt;/p&gt;</label>
       <type>comment</type>
       <display_locations />
       <id>115</id>
-    </field><field>
-      <label>Cat&#233;gorie de signalement</label>
-      <type>item</type>
-      <required>True</required>
-      <varname>category</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-        <display_location>listings</display_location>
-      </display_locations><extra_css_class>grid-1-2</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><items />
-      <display_mode>list</display_mode>
-      <data_source>
-        <type>imio_townstreet_main_categories</type>
-      </data_source><in_filters>False</in_filters>
-      <anonymise>False</anonymise>
-      <display_disabled_items>False</display_disabled_items>
-      <initial_zoom>13</initial_zoom>
-      <id>108</id>
-    </field><field>
-      <label>&lt;p style="color: 28CC89;"&gt;Vous avez s&amp;eacute;lectionn&amp;eacute; &amp;quot;&lt;strong&gt;{{form_var_category}}&lt;/strong&gt;&amp;quot;.&lt;/p&gt;</label>
-      <type>comment</type>
-      <condition>
-        <type>django</type>
-        <value>form_var_category and False</value>
-      </condition><display_locations />
-      <id>133</id>
     </field><field>
       <label>Le tag figure sur un &#233;difice priv&#233;</label>
       <type>bool</type>
@@ -348,245 +367,6 @@
       </condition><display_locations />
       <id>174</id>
     </field><field>
-      <label>Sous-cat&#233;gorie</label>
-      <type>subtitle</type>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><id>190</id>
-    </field><field>
-      <label>Sous-cat&#233;gorie de signalement</label>
-      <type>item</type>
-      <condition>
-        <type>django</type>
-        <value>form_var_category_raw == 'cleanliness'</value>
-      </condition><required>True</required>
-      <hint>Veuillez s&#233;lectionner une sous-cat&#233;gorie dans la liste.</hint>
-      <varname>subcat_for_cleanliness</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-2 newline</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><items />
-      <display_mode>list</display_mode>
-      <data_source>
-        <type>imio_townstreet_souscategories_cleanliness</type>
-        <value>https://api.imio.be/imio/procedures/v1/townstreet/categories?parent={{form_var_category}}</value>
-      </data_source><in_filters>False</in_filters>
-      <anonymise>False</anonymise>
-      <display_disabled_items>False</display_disabled_items>
-      <initial_zoom>13</initial_zoom>
-      <id>109</id>
-    </field><field>
-      <label>Sous-cat&#233;gorie de signalement</label>
-      <type>item</type>
-      <condition>
-        <type>django</type>
-        <value>form_var_category_raw == 'public_street'</value>
-      </condition><required>True</required>
-      <hint>Veuillez s&#233;lectionner une sous-cat&#233;gorie dans la liste.</hint>
-      <varname>subcat_for_public_street</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-2 newline</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><items />
-      <display_mode>list</display_mode>
-      <data_source>
-        <type>imio_townstreet_souscategories_public_street</type>
-        <value>https://api.imio.be/imio/procedures/v1/townstreet/categories?parent={{form_var_category}}</value>
-      </data_source><in_filters>False</in_filters>
-      <anonymise>False</anonymise>
-      <display_disabled_items>False</display_disabled_items>
-      <initial_zoom>13</initial_zoom>
-      <id>180</id>
-    </field><field>
-      <label>Sous-cat&#233;gorie de signalement</label>
-      <type>item</type>
-      <condition>
-        <type>django</type>
-        <value>form_var_category_raw == 'green_space'</value>
-      </condition><required>True</required>
-      <hint>Veuillez s&#233;lectionner une sous-cat&#233;gorie dans la liste.</hint>
-      <varname>subcat_for_green_space</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-2 newline</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><items />
-      <display_mode>list</display_mode>
-      <data_source>
-        <type>imio_townstreet_souscategories_green_space</type>
-        <value>https://api.imio.be/imio/procedures/v1/townstreet/categories?parent={{form_var_category}}</value>
-      </data_source><in_filters>False</in_filters>
-      <anonymise>False</anonymise>
-      <display_disabled_items>False</display_disabled_items>
-      <initial_zoom>13</initial_zoom>
-      <id>181</id>
-    </field><field>
-      <label>Sous-cat&#233;gorie de signalement</label>
-      <type>item</type>
-      <condition>
-        <type>django</type>
-        <value>form_var_category_raw == 'graffitis_tags_posters'</value>
-      </condition><required>True</required>
-      <hint>Veuillez s&#233;lectionner une sous-cat&#233;gorie dans la liste.</hint>
-      <varname>subcat_for_graffitis_tags_posters</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-2 newline</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><items />
-      <display_mode>list</display_mode>
-      <data_source>
-        <type>imio_townstreet_souscategories_graffitis_tags_posters</type>
-        <value>https://api.imio.be/imio/procedures/v1/townstreet/categories?parent={{form_var_category}}</value>
-      </data_source><in_filters>False</in_filters>
-      <anonymise>False</anonymise>
-      <display_disabled_items>False</display_disabled_items>
-      <initial_zoom>13</initial_zoom>
-      <id>182</id>
-    </field><field>
-      <label>Sous-cat&#233;gorie de signalement</label>
-      <type>item</type>
-      <condition>
-        <type>django</type>
-        <value>form_var_category_raw == 'street_furniture'</value>
-      </condition><required>True</required>
-      <hint>Veuillez s&#233;lectionner une sous-cat&#233;gorie dans la liste.</hint>
-      <varname>subcat_for_street_furniture</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-2 newline</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><items />
-      <display_mode>list</display_mode>
-      <data_source>
-        <type>imio_townstreet_souscategories_street_furniture</type>
-        <value>https://api.imio.be/imio/procedures/v1/townstreet/categories?parent={{form_var_category}}</value>
-      </data_source><in_filters>False</in_filters>
-      <anonymise>False</anonymise>
-      <display_disabled_items>False</display_disabled_items>
-      <initial_zoom>13</initial_zoom>
-      <id>183</id>
-    </field><field>
-      <label>Sous-cat&#233;gorie de signalement</label>
-      <type>item</type>
-      <condition>
-        <type>django</type>
-        <value>form_var_category_raw == 'public_lighting'</value>
-      </condition><required>True</required>
-      <hint>Veuillez s&#233;lectionner une sous-cat&#233;gorie dans la liste.</hint>
-      <varname>subcat_for_public_lighting</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-2 newline</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><items />
-      <display_mode>list</display_mode>
-      <data_source>
-        <type>imio_townstreet_souscategories_public_lighting</type>
-        <value>https://api.imio.be/imio/procedures/v1/townstreet/categories?parent={{form_var_category}}</value>
-      </data_source><in_filters>False</in_filters>
-      <anonymise>False</anonymise>
-      <display_disabled_items>False</display_disabled_items>
-      <initial_zoom>13</initial_zoom>
-      <id>184</id>
-    </field><field>
-      <label>&lt;p style="color: 28CC89;"&gt;Vous avez s&amp;eacute;lectionn&amp;eacute; les caract&amp;eacute;ristiques suivantes :&lt;br /&gt;
-&lt;strong&gt;{{form_var_issues}}&lt;/strong&gt;.&lt;/p&gt;</label>
-      <type>comment</type>
-      <condition>
-        <type>django</type>
-        <value>form_var_issues</value>
-      </condition><extra_css_class>grid-1-1 newline</extra_css_class>
-      <display_locations />
-      <id>136</id>
-    </field><field>
-      <label>Information compl&#233;mentaire (optionnel)</label>
-      <type>text</type>
-      <condition>
-        <type>django</type>
-        <value>form_var_category_raw != "other_category"</value>
-      </condition><required>False</required>
-      <hint>Max. 500 caract&#232;res et strictement li&#233;e au signalement.</hint>
-      <varname>addinfo</varname>
-      <display_locations>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid1-2 newline</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><rows>3</rows>
-      <pre>False</pre>
-      <maxlength>500</maxlength>
-      <id>118</id>
-    </field><field>
-      <label>D&#233;tails de votre signalement</label>
-      <type>page</type>
-      <id>132</id>
-    </field><field>
-      <label>D&#233;tails</label>
-      <type>subtitle</type>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><id>193</id>
-    </field><field>
-      <label>Objet du signalement</label>
-      <type>items</type>
-      <condition>
-        <type>django</type>
-        <value>form_var_category_raw != "other_category" and form_var_subcat_for_cleanliness != "Autre" and form_var_subcat_for_graffitis_tags_posters != "Autre" and form_var_subcat_for_green_space != "Autre" and form_var_subcat_for_public_lighting != "Autre" and form_var_subcat_for_public_street != "Autre" and form_var_subcat_for_street_furniture != "Autre"</value>
-      </condition><required>True</required>
-      <hint>Veuillez cocher les options qui s'appliqent.</hint>
-      <varname>issues</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-1</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><items />
-      <min_choices>0</min_choices>
-      <max_choices>0</max_choices>
-      <data_source>
-        <type>json</type>
-        <value>{{passerelle_url}}csvdatasource/townstreet_issues/query/filter-by-subcat/?parent={% firstof form_var_subcat_for_cleanliness_raw form_var_subcat_for_public_street_raw form_var_subcat_for_green_space_raw form_var_subcat_for_graffitis_tags_posters_raw form_var_subcat_for_street_furniture_raw form_var_subcat_for_public_lighting_raw %}</value>
-      </data_source><in_filters>False</in_filters>
-      <anonymise>False</anonymise>
-      <display_disabled_items>False</display_disabled_items>
-      <id>189</id>
-    </field><field>
-      <label>Description du signalement</label>
-      <type>text</type>
-      <condition>
-        <type>django</type>
-        <value>form_var_category_raw == 'other_category'</value>
-      </condition><required>True</required>
-      <hint>Information compl&#233;mentaire et strictement li&#233;e au signalement. (obligatoire, 500 caract&#232;res max.)</hint>
-      <varname>addinfother</varname>
-      <display_locations>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid1-2 newline</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><rows>3</rows>
-      <pre>False</pre>
-      <maxlength>500</maxlength>
-      <id>157</id>
-    </field><field>
       <label>Je souhaite &#234;tre tenu inform&#233;&#183;e des suites qui seront donn&#233;es &#224; ce signalement</label>
       <type>bool</type>
       <required>False</required>
@@ -604,26 +384,8 @@
       <condition>
         <type>django</type>
         <value>form_var_follow == True</value>
-      </condition><display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><id>194</id>
-    </field><field>
-      <label>Nom</label>
-      <type>string</type>
-      <condition>
-        <type>django</type>
-        <value>form_var_follow == True</value>
-      </condition><required>True</required>
-      <varname>lastname</varname>
-      <display_locations>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-4</extra_css_class>
-      <prefill>
-        <type>user</type>
-        <value>_last_name</value>
-      </prefill><anonymise>True</anonymise>
-      <id>151</id>
+      </condition><display_locations />
+      <id>194</id>
     </field><field>
       <label>Pr&#233;nom</label>
       <type>string</type>
@@ -640,6 +402,22 @@
         <value>_first_name</value>
       </prefill><anonymise>True</anonymise>
       <id>152</id>
+    </field><field>
+      <label>Nom</label>
+      <type>string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_follow == True</value>
+      </condition><required>True</required>
+      <varname>lastname</varname>
+      <display_locations>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class>grid-1-4</extra_css_class>
+      <prefill>
+        <type>user</type>
+        <value>_last_name</value>
+      </prefill><anonymise>True</anonymise>
+      <id>151</id>
     </field><field>
       <label>Adresse mail</label>
       <type>email</type>
@@ -845,6 +623,60 @@
     <option varname="zoom_max">50</option>
   </options><custom_views>
     <custom_view>
+      <title>iMio - Townstreet</title>
+      <slug>imio-townstreet</slug>
+      <visibility>any</visibility>
+      <filters>
+        <filter>all</filter>
+        <filter-status>on</filter-status>
+      </filters><columns>
+        <id>id</id>
+        <id>time</id>
+        <id>user-label</id>
+        <id>125</id>
+        <id>108</id>
+        <id>boceb33663-bc2b-4e59-ac71-3c34e9c45f60</id>
+        <id>bo5f0b6137-6c67-46f1-b974-dedb5ee853db</id>
+        <id>bo13e3c664-e561-40a2-a766-ebd455662734</id>
+        <id>status</id>
+      </columns><order_by>-receipt_time</order_by>
+    </custom_view><custom_view>
+      <title>iMio - Townstreet</title>
+      <slug>imio-townstreet</slug>
+      <visibility>any</visibility>
+      <filters>
+        <filter>all</filter>
+        <filter-status>on</filter-status>
+      </filters><columns>
+        <id>id</id>
+        <id>time</id>
+        <id>user-label</id>
+        <id>125</id>
+        <id>108</id>
+        <id>boceb33663-bc2b-4e59-ac71-3c34e9c45f60</id>
+        <id>bo5f0b6137-6c67-46f1-b974-dedb5ee853db</id>
+        <id>bo13e3c664-e561-40a2-a766-ebd455662734</id>
+        <id>status</id>
+      </columns><order_by>-receipt_time</order_by>
+    </custom_view><custom_view>
+      <title>iMio - Townstreet</title>
+      <slug>imio-townstreet</slug>
+      <visibility>any</visibility>
+      <filters>
+        <filter>all</filter>
+        <filter-status>on</filter-status>
+      </filters><columns>
+        <id>id</id>
+        <id>time</id>
+        <id>user-label</id>
+        <id>125</id>
+        <id>108</id>
+        <id>boceb33663-bc2b-4e59-ac71-3c34e9c45f60</id>
+        <id>bo5f0b6137-6c67-46f1-b974-dedb5ee853db</id>
+        <id>bo13e3c664-e561-40a2-a766-ebd455662734</id>
+        <id>status</id>
+      </columns><order_by>-receipt_time</order_by>
+    </custom_view><custom_view>
       <title>iMio - Townstreet</title>
       <slug>imio-townstreet</slug>
       <visibility>any</visibility>
