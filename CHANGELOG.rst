@@ -11,6 +11,10 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.27
+    * ignore deb files and vscode workspace
+    * [TOWS-52] add more requesters
+
 0.0.26
     * [TOWS-60] rename map field label and add a hint
 
