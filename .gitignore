@@ -3,3 +3,5 @@ debian/*.EX
 debian/copyright
 build
 imio_townstreet.egg-info
+*.code-workspace
+*.deb
