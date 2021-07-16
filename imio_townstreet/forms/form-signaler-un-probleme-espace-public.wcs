@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<formdef id="130" url="https://staging-formulaires.guichet-citoyen.be/backoffice/forms/130/">
+<formdef id="229" url="https://demo-formulaires.guichet-citoyen.be/backoffice/forms/229/">
   <name>Signaler un probl&#232;me dans l'espace public</name>
   <url_name>signaler-un-probleme-espace-public</url_name>
   <keywords>signalement, probl&#232;me, nid de poule, d&#233;chets, d&#233;p&#244;ts, clandestin, sauvage, d&#233;gradation, routes</keywords>
@@ -14,9 +14,9 @@
   <include_download_all_button>false</include_download_all_button>
   <has_captcha>false</has_captcha>
   <skip_from_360_view>false</skip_from_360_view>
-  <category category_id="113">Signaler un probl&#232;me dans l'espace public</category>
-  <workflow workflow_id="104">iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</workflow>
-  <max_field_id>195</max_field_id>
+  <category category_id="120">Signaler un probl&#232;me dans l'espace public</category>
+  <workflow workflow_id="84">iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</workflow>
+  <max_field_id>240</max_field_id>
   <fields>
     <field>
       <label>Votre signalement</label>
@@ -293,9 +293,9 @@
         <display_location>listings</display_location>
       </display_locations><extra_css_class>grid-1-2</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>none</type>
-      </prefill><display_mode>list</display_mode>
+      </prefill><items />
+      <display_mode>list</display_mode>
       <data_source>
         <type>imio_townstreet_main_categories</type>
       </data_source><in_filters>False</in_filters>
@@ -368,9 +368,9 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class>grid-1-2 newline</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>none</type>
-      </prefill><display_mode>list</display_mode>
+      </prefill><items />
+      <display_mode>list</display_mode>
       <data_source>
         <type>imio_townstreet_souscategories_cleanliness</type>
         <value>https://api.imio.be/imio/procedures/v1/townstreet/categories?parent={{form_var_category}}</value>
@@ -393,9 +393,9 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class>grid-1-2 newline</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>none</type>
-      </prefill><display_mode>list</display_mode>
+      </prefill><items />
+      <display_mode>list</display_mode>
       <data_source>
         <type>imio_townstreet_souscategories_public_street</type>
         <value>https://api.imio.be/imio/procedures/v1/townstreet/categories?parent={{form_var_category}}</value>
@@ -418,9 +418,9 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class>grid-1-2 newline</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>none</type>
-      </prefill><display_mode>list</display_mode>
+      </prefill><items />
+      <display_mode>list</display_mode>
       <data_source>
         <type>imio_townstreet_souscategories_green_space</type>
         <value>https://api.imio.be/imio/procedures/v1/townstreet/categories?parent={{form_var_category}}</value>
@@ -443,9 +443,9 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class>grid-1-2 newline</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>none</type>
-      </prefill><display_mode>list</display_mode>
+      </prefill><items />
+      <display_mode>list</display_mode>
       <data_source>
         <type>imio_townstreet_souscategories_graffitis_tags_posters</type>
         <value>https://api.imio.be/imio/procedures/v1/townstreet/categories?parent={{form_var_category}}</value>
@@ -468,9 +468,9 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class>grid-1-2 newline</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>none</type>
-      </prefill><display_mode>list</display_mode>
+      </prefill><items />
+      <display_mode>list</display_mode>
       <data_source>
         <type>imio_townstreet_souscategories_street_furniture</type>
         <value>https://api.imio.be/imio/procedures/v1/townstreet/categories?parent={{form_var_category}}</value>
@@ -493,9 +493,9 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class>grid-1-2 newline</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>none</type>
-      </prefill><display_mode>list</display_mode>
+      </prefill><items />
+      <display_mode>list</display_mode>
       <data_source>
         <type>imio_townstreet_souscategories_public_lighting</type>
         <value>https://api.imio.be/imio/procedures/v1/townstreet/categories?parent={{form_var_category}}</value>
@@ -557,9 +557,9 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class>grid-1-1</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>none</type>
-      </prefill><min_choices>0</min_choices>
+      </prefill><items />
+      <min_choices>0</min_choices>
       <max_choices>0</max_choices>
       <data_source>
         <type>json</type>
@@ -581,7 +581,6 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class>grid1-2 newline</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>none</type>
       </prefill><rows>3</rows>
       <pre>False</pre>
@@ -828,10 +827,10 @@
       <id>178</id>
     </field>
   </fields><backoffice-submission-roles>
-    <role role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</role>
+    <role role_id="1be915b352294450bc488b563d279ea7">Agent traitant - Townstreet</role>
   </backoffice-submission-roles><roles>
-    <role role_id="df908b92acec4a68b3a11bbf516263d9" role_key="_ext_bo">Debug</role>
-    <role role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10" role_key="_receiver">Agent traitant - Townstreet</role>
+    <role role_id="08b4ba67eb2d421ea88d4bb0256a9666" role_key="_ext_bo">Debug</role>
+    <role role_id="1be915b352294450bc488b563d279ea7" role_key="_receiver">Agent traitant - Townstreet</role>
   </roles><options>
     <option varname="eatal_version">5</option>
     <option varname="eatal_version_display">ATAL 5</option>
@@ -846,17 +845,19 @@
     <option varname="zoom_max">50</option>
   </options><custom_views>
     <custom_view>
-      <title>iMio Townstreet - Vue par d&#233;faut</title>
-      <slug>imio-townstreet-vue-par-defaut</slug>
+      <title>iMio - Townstreet</title>
+      <slug>imio-townstreet</slug>
       <visibility>any</visibility>
       <filters>
         <filter>all</filter>
         <filter-status>on</filter-status>
       </filters><columns>
-        <id>boceb33663-bc2b-4e59-ac71-3c34e9c45f60</id>
         <id>id</id>
         <id>time</id>
+        <id>user-label</id>
         <id>125</id>
+        <id>108</id>
+        <id>boceb33663-bc2b-4e59-ac71-3c34e9c45f60</id>
         <id>bo5f0b6137-6c67-46f1-b974-dedb5ee853db</id>
         <id>bo13e3c664-e561-40a2-a766-ebd455662734</id>
         <id>status</id>
