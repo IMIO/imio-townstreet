@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.28
+    * back to multi-pages
+
 0.0.27
     * ignore deb files and vscode workspace
     * [TOWS-52] add more requesters
