@@ -34,7 +34,7 @@
               <value>{{ form_var_category_text }}</value>
             </field><field>
               <field_id>bo810f5e77-1d3b-40b3-bb28-7ea0af191239</field_id>
-              <value>{%if form_var_subcategory_text %}{{ form_var_subcategory_text }} &#183; {% else%} &#183; {% firstof form_var_subcat_for_cleanliness  form_var_subcat_for_public_street form_var_subcat_for_green_space form_var_subcat_for_graffitis_tags_posters form_var_subcat_for_street_furniture form_var_subcat_for_public_lighting %} &#183; {% endif%}{% if form_var_issues %} {{form_var_issues }}{% endif %} &#183; {{ form_var_addinfo }}{{ form_var_addinfother }}</value>
+              <value>{%if form_var_subcategory_text %}{{ form_var_subcategory_text }} &#183; {% else%} &#183; {% firstof form_var_subcat_for_cleanliness  form_var_subcat_for_public_street form_var_subcat_for_green_space form_var_subcat_for_graffitis_tags_posters form_var_subcat_for_street_furniture form_var_subcat_for_public_lighting %} &#183; {% endif%}{% if form_var_issues %} {{form_var_issues }}{% endif %} &#183; {% if form_var_addinfo %}{{ form_var_addinfo }}{% endif %}{% if form_var_addinfother %}{{ form_var_addinfother }}{% endif %}</value>
             </field><field>
               <field_id>bo13e3c664-e561-40a2-a766-ebd455662734</field_id>
               <value>{% firstof form_var_number "" %} {% firstof form_var_street "" %} {% firstof form_var_postal_code "" %} {% firstof form_var_city "" %}</value>
