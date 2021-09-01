@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<workflow id="58" url="https://formulaires-e-guichet.braine-lalleud.be/backoffice/workflows/58/">
+<workflow id="90" url="https://olln-formulaires.guichet-citoyen.be/backoffice/workflows/90/">
   <name>iMio - Signaler un probl&#232;me dans l'espace public (ATAL 5)</name>
   <roles>
     <role id="_receiver">Destinataire</role>
@@ -92,7 +92,7 @@
         </item><item id="3" type="choice">
           <label>V&#233;rifier le statut dans iA.Tech (ATAL)</label>
           <by>
-            <item role_id="bc8d703be6294bf2811fbadc90d2d841">Agent traitant - Townstreet</item>
+            <item role_id="b8531e95520a47c1bd98fb13cdb0719a">Agent traitant - Townstreet</item>
           </by><status>3</status>
           <require_confirmation>True</require_confirmation>
           <backoffice_info_text>&lt;p&gt;V&amp;eacute;rifier le statut dans iA.Tech (ATAL) - Cette action v&amp;eacute;rifie le statut de la demande dans ATAL. Regardez dans l'historique pour v&amp;eacute;rifier le statut dans ATAL.&lt;/p&gt;</backoffice_info_text>
@@ -145,13 +145,13 @@
               <value>{% firstof form_var_phonenum session_user_var_phone "none" %}</value>
             </item><item>
               <name>contact_nom</name>
-              <value>{% firstof form_var_lastname session_user_var_last_name "non identifié" %}</value>
+              <value>{% firstof form_var_lastname session_user_var_last_name "non identifi&#233;" %}</value>
             </item><item>
               <name>contact_organisme</name>
               <value>=vars().get('global_title') or ''</value>
             </item><item>
               <name>contact_prenom</name>
-              <value>{% firstof form_var_firstname session_user_var_first_name "non identifié" %}</value>
+              <value>{% firstof form_var_firstname session_user_var_first_name "non identifi&#233;" %}</value>
             </item><item>
               <name>contact_ville</name>
               <value>=vars().get('commune_name') or ''</value>
@@ -405,7 +405,7 @@
             <type>python</type>
             <value>bool(vars().get('form_var_pic6_raw')) == True</value>
           </condition>
-        </item><item id="8" type="webservice_call">
+        </item><item id="7" type="webservice_call">
           <label>authorization post</label>
           <url>{{passerelle_url}}atal/townstreet-eo-atal-connect/upload</url>
           <method>POST</method>
@@ -435,7 +435,7 @@
             <type>django</type>
             <value>form_var_private_building_yn == True</value>
           </condition>
-        </item><item id="7" type="jump">
+        </item><item id="8" type="jump">
           <status>3</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -493,7 +493,7 @@
         </item><item id="3" type="choice">
           <label>Revenir sur la d&#233;cision et accepter</label>
           <by>
-            <item role_id="bc8d703be6294bf2811fbadc90d2d841">Agent traitant - Townstreet</item>
+            <item role_id="b8531e95520a47c1bd98fb13cdb0719a">Agent traitant - Townstreet</item>
           </by><status>15</status>
           <require_confirmation>True</require_confirmation>
           <backoffice_info_text>&lt;p&gt;Revenir sur la d&amp;eacute;cision et accepter - En cas d'erreur, il est tout de m&amp;ecirc;me possible de finalement accepter cette demande.&lt;br /&gt;
@@ -512,14 +512,14 @@
       <items>
         <item id="1" type="sendmail">
           <to>
-            <item role_id="bc8d703be6294bf2811fbadc90d2d841">Agent traitant - Townstreet</item>
+            <item role_id="b8531e95520a47c1bd98fb13cdb0719a">Agent traitant - Townstreet</item>
           </to><mail_template>imio-townstreet-notification-de-refus-dans-e-atal</mail_template>
         </item><item id="2" type="displaymsg">
           <message>Ce signalement a &#233;t&#233; refus&#233; dans ATAL. Une action de la part d'un agent traitant Townstreet est requise.</message>
           <level>info</level>
           <position>top</position>
           <to>
-            <item role_id="bc8d703be6294bf2811fbadc90d2d841">Agent traitant - Townstreet</item>
+            <item role_id="b8531e95520a47c1bd98fb13cdb0719a">Agent traitant - Townstreet</item>
           </to>
         </item><item id="3" type="commentable">
           <label>Commentaire</label>
@@ -546,14 +546,14 @@
       <colour>66FF99</colour>
       <visibility />
       <items>
-        <item id="3" type="displaymsg">
+        <item id="1" type="displaymsg">
           <message>Votre signalement a &#233;t&#233; introduit avec succ&#232;s.</message>
           <level>success</level>
           <position>top</position>
           <to>
             <item role_id="_submitter">_submitter</item>
           </to>
-        </item><item id="1" type="register-comment">
+        </item><item id="2" type="register-comment">
           <comment>&lt;b&gt;{% if form_var_street %}{{form_var_street}}&lt;/b&gt;{% endif %} &#224; &lt;b&gt;{{form_var_city}}&lt;/b&gt; ({{form_var_desc}}). {% if form_var_addinfo %}Information additionnelle : &lt;i&gt;{{ form_var_addinfo }}&lt;/i&gt;{% endif %}{% if form_var_addinfother %}Votre commentaire : {{ form_var_addinfother}}{% endif %}</comment>
           <attachments>
             <attachment>{{ form_var_pic1_raw }}</attachment>
@@ -563,7 +563,7 @@
             <attachment>{{ form_var_pic5_raw }}</attachment>
             <attachment>{{ form_var_pic6_raw }}</attachment>
           </attachments>
-        </item><item id="2" type="jump">
+        </item><item id="3" type="jump">
           <status>4</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -598,7 +598,7 @@
         </item><item id="2" type="choice">
           <label>V&#233;rifier le statut dans iA.Tech (ATAL)</label>
           <by>
-            <item role_id="bc8d703be6294bf2811fbadc90d2d841">Agent traitant - Townstreet</item>
+            <item role_id="b8531e95520a47c1bd98fb13cdb0719a">Agent traitant - Townstreet</item>
           </by><status>11</status>
           <require_confirmation>True</require_confirmation>
           <backoffice_info_text>&lt;p&gt;V&amp;eacute;rifier le statut dans iA.Tech (ATAL) - Cette action v&amp;eacute;rifie le statut de la demande dans ATAL. Regardez dans l'historique pour v&amp;eacute;rifier le statut dans ATAL.&lt;/p&gt;</backoffice_info_text>
@@ -632,18 +632,18 @@
       </visibility><items>
         <item id="1" type="sendmail">
           <to>
-            <item role_id="bc8d703be6294bf2811fbadc90d2d841">Agent traitant - Townstreet</item>
+            <item role_id="b8531e95520a47c1bd98fb13cdb0719a">Agent traitant - Townstreet</item>
           </to><mail_template>imio-townstreet-notification-de-cloture-dans-e-atal</mail_template>
         </item><item id="2" type="displaymsg">
           <message>Ce signalement a &#233;t&#233; cl&#244;tur&#233; dans ATAL, mais la personne l'ayant soumis souhaite &#234;tre tenue inform&#233;e des suites donn&#233;es. Une action de la part d'un agent traitant Townstreet est encore requise pour cette demande.</message>
           <level>info</level>
           <position>top</position>
           <to>
-            <item role_id="bc8d703be6294bf2811fbadc90d2d841">Agent traitant - Townstreet</item>
+            <item role_id="b8531e95520a47c1bd98fb13cdb0719a">Agent traitant - Townstreet</item>
           </to>
         </item><item id="3" type="form">
           <by>
-            <item role_id="bc8d703be6294bf2811fbadc90d2d841">Agent traitant - Townstreet</item>
+            <item role_id="b8531e95520a47c1bd98fb13cdb0719a">Agent traitant - Townstreet</item>
           </by><varname>followresp</varname>
           <formdef>
             <name>-</name>
@@ -712,7 +712,7 @@
           <level>success</level>
           <position>top</position>
           <to>
-            <item role_id="bc8d703be6294bf2811fbadc90d2d841">Agent traitant - Townstreet</item>
+            <item role_id="b8531e95520a47c1bd98fb13cdb0719a">Agent traitant - Townstreet</item>
             <item role_id="_submitter">_submitter</item>
           </to>
         </item>
@@ -776,7 +776,7 @@
       </visibility><items>
         <item id="1" type="sendmail">
           <to>
-            <item role_id="bc8d703be6294bf2811fbadc90d2d841">Agent traitant - Townstreet</item>
+            <item role_id="b8531e95520a47c1bd98fb13cdb0719a">Agent traitant - Townstreet</item>
           </to><mail_template>imio-townstreet-notification-de-cloture-automatique</mail_template>
         </item><item id="2" type="jump">
           <status>13</status>
@@ -814,44 +814,14 @@
     </status>
   </possible_status><global_actions>
     <action>
-      <id>1</id>
-      <name>iMio debug - Retour sur en attente de traitement</name>
-      <items>
-        <item id="1" type="jump">
-          <status>2</status>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-      </items><triggers>
-        <trigger id="c5a8ec22-695d-463a-b8d0-d49ce6dadc47" type="manual">
-          <roles>
-            <item role_id="93f6c58e6cdf4036b1bc8a9a9efa9baf">Debug</item>
-          </roles>
-        </trigger>
-      </triggers>
-    </action><action>
       <id>2</id>
-      <name>iMio - Supprimer</name>
+      <name>&#10060; Supprimer</name>
       <items>
         <item id="1" type="remove" />
       </items><triggers>
-        <trigger id="fabab9ad-20e9-4566-9f4b-1a2aa7f67ccc" type="manual">
+        <trigger id="db2fe3da-128b-4dee-949c-1076b4235ef5" type="manual">
           <roles>
-            <item role_id="93f6c58e6cdf4036b1bc8a9a9efa9baf">Debug</item>
-          </roles>
-        </trigger>
-      </triggers>
-    </action><action>
-      <id>3</id>
-      <name>iMio - Retour sur "En cours de traitement"</name>
-      <items>
-        <item id="1" type="jump">
-          <status>3</status>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-      </items><triggers>
-        <trigger id="fcaad337-3aff-4d3b-8a81-21a084907ba5" type="manual">
-          <roles>
-            <item role_id="93f6c58e6cdf4036b1bc8a9a9efa9baf">Debug</item>
+            <item role_id="d49931dffc5946bcbb9a215ce5c26e79">Debug</item>
           </roles>
         </trigger>
       </triggers>
@@ -892,7 +862,6 @@
           <display_locations>
             <display_location>summary</display_location>
           </display_locations><prefill>
-            <locked>False</locked>
             <type>none</type>
           </prefill><id>3</id>
         </field>
