@@ -157,10 +157,10 @@
               <value>=vars().get('commune_name') or ''</value>
             </item><item>
               <name>coord_x</name>
-              <value>=vars().get('form_var_map_lat') or vars().get('form_geoloc_base_lat')</value>
+              <value>=vars().get('form_geoloc_base_lat') or  vars().get('form_var_map_lat') or 0.00</value>
             </item><item>
               <name>coord_y</name>
-              <value>=vars().get('form_var_map_lon') or vars().get('form_geoloc_base_lon')</value>
+              <value>=vars().get('form_geoloc_base_lon') or  vars().get('form_var_map_lon') or 0.00</value>
             </item><item>
               <name>date_demande</name>
               <value>{{form_receipt_datetime|date:"d/m/Y"}}</value>

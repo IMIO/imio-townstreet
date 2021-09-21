@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.34
+    [MTELEBLAA-27] Fix bug occuring when report is not made clicking on the map (lack of geodata)
+
 0.0.33
     [MTELEOLNA-6] remove dev global actions not necessary anymore
 
