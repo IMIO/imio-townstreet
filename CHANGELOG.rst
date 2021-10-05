@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.34
+    * [INFRA-4003] [TELE-1119] add -k to avoid SSL error following the Infra advice about that
+
 0.0.33
     [MTELEOLNA-6] remove dev global actions not necessary anymore
 
