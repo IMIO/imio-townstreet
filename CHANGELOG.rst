@@ -11,6 +11,12 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.37
+    * [TOWS-65] add thanks alert to user after signal submission 
+
+0.0.36
+    * delete field in double (origin_source) in form
+
 0.0.35
     * [INFRA-4003] [TELE-1119] add -k to avoid SSL error following the Infra advice about that
 

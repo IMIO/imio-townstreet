@@ -515,6 +515,12 @@
         <item id="1" type="jump">
           <status>21</status>
           <set_marker_on_status>False</set_marker_on_status>
+        </item><item type="register-comment" id="2">
+          <comment>Merci pour votre signalement !&lt;br&gt;
+Nous faisons notre possible pour r&#233;gler le probl&#232;me au plus vite, le d&#233;lais d'intervention peut-&#234;tre plus ou moins important en fonction de sa nature.</comment>
+          <to>
+            <item role_id="_submitter">_submitter</item>
+          </to>
         </item>
       </items>
     </status>
