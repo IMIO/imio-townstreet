@@ -73,12 +73,6 @@
       <initial_zoom>13</initial_zoom>
       <id>108</id>
     </field><field>
-      <label>origin_source</label>
-      <type>computed</type>
-      <varname>origin_source</varname>
-      <freeze_on_initial_value>False</freeze_on_initial_value>
-      <id>239</id>
-    </field><field>
       <label>Sous-cat&#233;gorie</label>
       <type>page</type>
       <id>232</id>
