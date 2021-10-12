@@ -5,3 +5,4 @@ build
 imio_townstreet.egg-info
 *.code-workspace
 *.deb
+.vscode
