@@ -16,11 +16,12 @@ class inst(install):
         )
         os.system("sh " + path + "install_imio-townstreet.sh")
 
+version = "0.0.38"
 
 setup(
     name="imio-townstreet",
-    author="Christophe Boulanger, Daniel Muyshond",
-    author_email="admints@imio.be",
+    author="iA.Teleservices",
+    author_email="support-ts@imio.be",
     packages=find_packages(),
     include_package_data=True,
     url="https://github.com/IMIO/imio-townstreet",
