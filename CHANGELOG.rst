@@ -11,6 +11,11 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.39
+    * specify version in setup method
+    * set install path in jenkinsfile
+    [nhi]
+
 0.0.38
     * set author to iA.Teleservices team
     * use iateleservicesCreateDeb pipeline function
