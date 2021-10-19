@@ -16,7 +16,7 @@ class inst(install):
         )
         os.system("sh " + path + "install_imio-townstreet.sh")
 
-version = "0.0.39"
+version = "0.0.40"
 
 setup(
     name="imio-townstreet",

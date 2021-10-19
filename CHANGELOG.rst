@@ -11,6 +11,10 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.40
+    * invert object and additional info fields
+    [nhi]
+
 0.0.39
     * specify version in setup method
     * set install path in jenkinsfile

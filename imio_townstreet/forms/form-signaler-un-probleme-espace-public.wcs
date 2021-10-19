@@ -114,6 +114,28 @@
       <display_locations />
       <id>193</id>
     </field><field>
+      <label>Objet du signalement</label>
+      <type>items</type>
+      <required>False</required>
+      <hint>Veuillez cocher les options qui s'appliqent.</hint>
+      <varname>issues</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class>grid-1-1</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><items />
+      <min_choices>0</min_choices>
+      <max_choices>0</max_choices>
+      <data_source>
+        <type>formula</type>
+        <value>webservice.imio_townstreet_get_issues.get('items')</value>
+      </data_source><in_filters>False</in_filters>
+      <anonymise>False</anonymise>
+      <display_disabled_items>False</display_disabled_items>
+      <id>231</id>
+    </field><field>
       <label>Information compl&#233;mentaire (optionnel)</label>
       <type>text</type>
       <condition>
@@ -149,28 +171,6 @@
       <pre>False</pre>
       <maxlength>500</maxlength>
       <id>157</id>
-    </field><field>
-      <label>Objet du signalement</label>
-      <type>items</type>
-      <required>False</required>
-      <hint>Veuillez cocher les options qui s'appliqent.</hint>
-      <varname>issues</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-1</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><items />
-      <min_choices>0</min_choices>
-      <max_choices>0</max_choices>
-      <data_source>
-        <type>formula</type>
-        <value>webservice.imio_townstreet_get_issues.get('items')</value>
-      </data_source><in_filters>False</in_filters>
-      <anonymise>False</anonymise>
-      <display_disabled_items>False</display_disabled_items>
-      <id>231</id>
     </field><field>
       <label>Photos du signalement</label>
       <type>subtitle</type>
