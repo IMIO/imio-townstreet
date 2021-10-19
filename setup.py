@@ -20,6 +20,7 @@ version = "0.0.38"
 
 setup(
     name="imio-townstreet",
+    version=version,
     author="iA.Teleservices",
     author_email="support-ts@imio.be",
     packages=find_packages(),
@@ -39,5 +40,6 @@ setup(
     zip_safe=False,
     cmdclass={
         "inst": inst,
+        "sdist": version,
     },
 )
