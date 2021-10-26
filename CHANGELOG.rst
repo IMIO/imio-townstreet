@@ -11,6 +11,10 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.41
+    * do not display subcategory and object fields if others was chosen
+    [nhi]
+
 0.0.40
     * invert object and additional info fields
     [nhi]

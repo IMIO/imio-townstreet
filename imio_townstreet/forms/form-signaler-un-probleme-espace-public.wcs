@@ -75,6 +75,10 @@
     </field><field>
       <label>Sous-cat&#233;gorie</label>
       <type>page</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_category_raw != "other_category"</value>
+      </condition>
       <id>232</id>
     </field><field>
       <label>Sous-cat&#233;gorie</label>
@@ -116,6 +120,10 @@
     </field><field>
       <label>Objet du signalement</label>
       <type>items</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_category_raw != "other_category"</value>
+      </condition>
       <required>False</required>
       <hint>Veuillez cocher les options qui s'appliqent.</hint>
       <varname>issues</varname>
