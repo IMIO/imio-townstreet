@@ -12,6 +12,7 @@ Version History
 ===============
 
 0.0.42
+    * remove bold from mail template closed in e-atal
     * use correct variable of work request response
     [nhi]
 
