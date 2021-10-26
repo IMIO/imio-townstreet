@@ -489,7 +489,7 @@
           <status>13</status>
           <condition>
             <type>django</type>
-            <value>get_work_request_details_response_data_RequestState == 9 and form_var_followyn == "Non"</value>
+            <value>work_request_details_response_data_RequestState == 9 and form_var_followyn == "Non"</value>
           </condition><set_marker_on_status>False</set_marker_on_status>
         </item><item id="4" type="jump">
           <status>8</status>
