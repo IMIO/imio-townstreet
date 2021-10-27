@@ -642,60 +642,6 @@
         <id>bo13e3c664-e561-40a2-a766-ebd455662734</id>
         <id>status</id>
       </columns><order_by>-receipt_time</order_by>
-    </custom_view><custom_view>
-      <title>iMio - Townstreet</title>
-      <slug>imio-townstreet</slug>
-      <visibility>any</visibility>
-      <filters>
-        <filter>all</filter>
-        <filter-status>on</filter-status>
-      </filters><columns>
-        <id>id</id>
-        <id>time</id>
-        <id>user-label</id>
-        <id>125</id>
-        <id>108</id>
-        <id>boceb33663-bc2b-4e59-ac71-3c34e9c45f60</id>
-        <id>bo5f0b6137-6c67-46f1-b974-dedb5ee853db</id>
-        <id>bo13e3c664-e561-40a2-a766-ebd455662734</id>
-        <id>status</id>
-      </columns><order_by>-receipt_time</order_by>
-    </custom_view><custom_view>
-      <title>iMio - Townstreet</title>
-      <slug>imio-townstreet</slug>
-      <visibility>any</visibility>
-      <filters>
-        <filter>all</filter>
-        <filter-status>on</filter-status>
-      </filters><columns>
-        <id>id</id>
-        <id>time</id>
-        <id>user-label</id>
-        <id>125</id>
-        <id>108</id>
-        <id>boceb33663-bc2b-4e59-ac71-3c34e9c45f60</id>
-        <id>bo5f0b6137-6c67-46f1-b974-dedb5ee853db</id>
-        <id>bo13e3c664-e561-40a2-a766-ebd455662734</id>
-        <id>status</id>
-      </columns><order_by>-receipt_time</order_by>
-    </custom_view><custom_view>
-      <title>iMio - Townstreet</title>
-      <slug>imio-townstreet</slug>
-      <visibility>any</visibility>
-      <filters>
-        <filter>all</filter>
-        <filter-status>on</filter-status>
-      </filters><columns>
-        <id>id</id>
-        <id>time</id>
-        <id>user-label</id>
-        <id>125</id>
-        <id>108</id>
-        <id>boceb33663-bc2b-4e59-ac71-3c34e9c45f60</id>
-        <id>bo5f0b6137-6c67-46f1-b974-dedb5ee853db</id>
-        <id>bo13e3c664-e561-40a2-a766-ebd455662734</id>
-        <id>status</id>
-      </columns><order_by>-receipt_time</order_by>
     </custom_view>
   </custom_views><geolocations>
     <geolocation key="base">Position</geolocation>

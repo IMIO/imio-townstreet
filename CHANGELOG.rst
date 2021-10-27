@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.44
+    * Removed : duplicates of custom view [dmshd]
+
 0.0.43
     * Removed : old datasources not used anymore [dmshd]
 
