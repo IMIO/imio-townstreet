@@ -269,7 +269,6 @@
       </prefill><initial_zoom>16</initial_zoom>
       <min_zoom>11</min_zoom>
       <max_zoom>19</max_zoom>
-      <default_position>50.4658820451226;4.8650550842285165</default_position>
       <init_with_geoloc>True</init_with_geoloc>
       <id>121</id>
     </field><field>

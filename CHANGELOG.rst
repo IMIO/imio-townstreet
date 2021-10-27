@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.45
+    * Removed : default position in map field [dmshd]
+
 0.0.44
     * Removed : duplicates of custom view [dmshd]
 
