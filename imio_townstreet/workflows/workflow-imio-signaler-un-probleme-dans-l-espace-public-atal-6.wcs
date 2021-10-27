@@ -532,9 +532,41 @@ Nous faisons notre possible pour r&#233;gler le probl&#232;me au plus vite, le d
       <items>
         <item id="1" type="remove" />
       </items><triggers>
-        <trigger id="14d0beb9-6bf1-400b-818b-59bd0cca2cb9" type="manual">
+        <trigger id="ff764db2-4055-4e67-86a9-4099e47de82d" type="manual">
           <roles>
-            <item role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
+            <item role_id="225ff43a97374caba4f8c825d9f95793">Debug</item>
+          </roles>
+        </trigger>
+      </triggers>
+    </action><action>
+      <id>3</id>
+      <name>&#128260; iMio - Cr&#233;er la demande dans Atal</name>
+      <backoffice_info_text>&lt;p&gt;iMio - Saut automatique vers &amp;quot;Cr&amp;eacute;ation dans ATAL&amp;quot; en vue de rejouer le webservice de cr&amp;eacute;ation de la demande dans Atal.&lt;/p&gt;</backoffice_info_text>
+      <items>
+        <item id="1" type="jump">
+          <status>4</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items><triggers>
+        <trigger id="df3813d0-a344-4f93-84c0-46a8a3502c1e" type="manual">
+          <roles>
+            <item role_id="225ff43a97374caba4f8c825d9f95793">Debug</item>
+          </roles>
+        </trigger>
+      </triggers>
+    </action><action>
+      <id>4</id>
+      <name>&#128260; iMio - Envoyer les images dans Atal</name>
+      <backoffice_info_text>&lt;p&gt;iMio - Saut automatique vers le statut &amp;quot;Envoi de fichier vers Atal&amp;quot; en vue de renvoyer les fichiers vers Atal.&lt;/p&gt;</backoffice_info_text>
+      <items>
+        <item id="1" type="jump">
+          <status>6</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items><triggers>
+        <trigger id="0dd332e3-1998-4e86-be35-6dec14cd2b0c" type="manual">
+          <roles>
+            <item role_id="225ff43a97374caba4f8c825d9f95793">Debug</item>
           </roles>
         </trigger>
       </triggers>

@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.46
+    * Added : global actions to resubmit a workrequest or images attached [dmshd]
+
 0.0.45
     * Removed : default position in map field [dmshd]
 
