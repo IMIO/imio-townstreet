@@ -269,7 +269,34 @@
       <forced_endpoint>true</forced_endpoint>
       <visibility />
       <items>
-        <item id="1" type="sendmail">
+        <item id="2" type="webservice_call">
+          <label>Notifier FixMyStreet de la cl&#244;ture</label>
+          <url>https://api-staging.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
+          <method>PATCH</method>
+          <post>False</post>
+          <post_data>
+            <item>
+              <name>alert_status</name>
+              <value>closed</value>
+            </item><item>
+              <name>message</name>
+              <value>Le signalement a &#233;t&#233; class&#233; sans suite.</value>
+            </item>
+          </post_data><response_type>json</response_type>
+          <varname>fms_notification_closed</varname>
+          <action_on_app_error>:pass</action_on_app_error>
+          <action_on_4xx>:stop</action_on_4xx>
+          <action_on_5xx>:stop</action_on_5xx>
+          <action_on_bad_data>:pass</action_on_bad_data>
+          <action_on_network_errors>:stop</action_on_network_errors>
+          <notify_on_errors>False</notify_on_errors>
+          <record_on_errors>True</record_on_errors>
+          <record_errors>False</record_errors>
+          <condition>
+            <type>django</type>
+            <value>form_var_origin_source == "fixmystreet"</value>
+          </condition>
+        </item><item id="1" type="sendmail">
           <to>
             <item role_id="{{ form_var_mail }}">{{ form_var_mail }}</item>
           </to><mail_template>imio-townstreet-refuse</mail_template>
@@ -382,6 +409,34 @@
       <forced_endpoint>true</forced_endpoint>
       <visibility />
       <items>
+        <item id="4" type="webservice_call">
+          <label>Notifier FixMyStreet de la r&#233;solution</label>
+          <url>https://api-staging.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
+          <method>PATCH</method>
+          <post>False</post>
+          <post_data>
+            <item>
+              <name>alert_status</name>
+              <value>solved</value>
+            </item><item>
+              <name>message</name>
+              <value>Le signalement a &#233;t&#233; trait&#233;.</value>
+            </item>
+          </post_data><response_type>json</response_type>
+          <varname>fms_notification_solved</varname>
+          <action_on_app_error>:pass</action_on_app_error>
+          <action_on_4xx>:stop</action_on_4xx>
+          <action_on_5xx>:stop</action_on_5xx>
+          <action_on_bad_data>:pass</action_on_bad_data>
+          <action_on_network_errors>:stop</action_on_network_errors>
+          <notify_on_errors>False</notify_on_errors>
+          <record_on_errors>True</record_on_errors>
+          <record_errors>False</record_errors>
+          <condition>
+            <type>django</type>
+            <value>form_var_origin_source == "fixmystreet"</value>
+          </condition>
+        </item>
         <item id="1" type="register-comment">
           <comment>{% if followresp_var_subject  and followresp_var_body %}
 &lt;p&gt;L'agent ayant trait&#233; votre demande vous communique le message suivant : &lt;/p&gt;

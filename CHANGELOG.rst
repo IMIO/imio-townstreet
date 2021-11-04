@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.47
+    * Added : webservices that notifies fms about the resolution's status [nhi]
+
 0.0.46
     * Added : global actions to resubmit a workrequest or images attached [dmshd]
 
