@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<datasource id="206" url="https://staging-formulaires.guichet-citoyen.be/backoffice/settings/data-sources/206/">
+  <name>iMio Townstreet - Sous-cat&#233;gories</name>
+  <slug>imio_townstreet_sous_categories</slug>
+  <data_attribute>items</data_attribute>
+  <data_source>
+    <type>json</type>
+    <value>https://api.imio.be/imio/procedures/v1/townstreet/categories{% if form_var_category_raw %}?parent={{ form_var_category_raw }}{% endif %}</value>
+  </data_source>
+</datasource>

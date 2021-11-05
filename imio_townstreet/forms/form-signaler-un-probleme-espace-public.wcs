@@ -89,7 +89,10 @@
     </field><field>
       <label>Sous-cat&#233;gorie de signalement</label>
       <type>item</type>
-      <required>True</required>
+      <condition>
+        <type>django</type>
+        <value>form_var_category</value>
+      </condition><required>True</required>
       <hint>Veuillez s&#233;lectionner une sous-cat&#233;gorie dans la liste.</hint>
       <varname>subcategory</varname>
       <display_locations>
@@ -97,12 +100,11 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class>grid-1-2 newline</extra_css_class>
       <prefill>
+        <locked>False</locked>
         <type>none</type>
-      </prefill><items />
-      <display_mode>list</display_mode>
+      </prefill><display_mode>list</display_mode>
       <data_source>
-        <type>formula</type>
-        <value>webservice.imio_townstreet_subcategory.get('items')</value>
+        <type>imio_townstreet_sous_categories</type>
       </data_source><in_filters>False</in_filters>
       <anonymise>False</anonymise>
       <display_disabled_items>False</display_disabled_items>

@@ -11,6 +11,10 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.48
+    * Added : datasource for subcategories [nhi]
+    * Update : subcategory fields for using the new datasource [nhi]
+
 0.0.47
     * Added : webservices that notifies fms about the resolution's status [nhi]
 
