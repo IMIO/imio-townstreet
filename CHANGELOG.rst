@@ -11,6 +11,14 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.49
+    * Added : datasource to select environment [nhi]
+    * Update : worklows atal6 to add environment option [nhi]
+    * Update : workflow atal6 to use environment option [nhi]
+    * Update : form to select environment as option [nhi]
+    * Update : cat, subcat and issues datasources now use environment variable [nhi]
+    * Removed : all wscalls, not used anymore [nhi]
+
 0.0.48
     * Added : datasource for subcategories [nhi]
     * Update : subcategory fields for using the new datasource [nhi]

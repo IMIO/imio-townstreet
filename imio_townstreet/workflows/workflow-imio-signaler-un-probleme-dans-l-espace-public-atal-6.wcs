@@ -271,7 +271,7 @@
       <items>
         <item id="2" type="webservice_call">
           <label>Notifier FixMyStreet de la cl&#244;ture</label>
-          <url>https://api-staging.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
+          <url>https://{{ form_option_environnement_url_apims|default_if_none:"api-staging" }}.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
           <method>PATCH</method>
           <post>False</post>
           <post_data>
@@ -411,7 +411,7 @@
       <items>
         <item id="4" type="webservice_call">
           <label>Notifier FixMyStreet de la r&#233;solution</label>
-          <url>https://api-staging.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
+          <url>https://{{ form_option_environnement_url_apims|default_if_none:"api-staging" }}.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
           <method>PATCH</method>
           <post>False</post>
           <post_data>

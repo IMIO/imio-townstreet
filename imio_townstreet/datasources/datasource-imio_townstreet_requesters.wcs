@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<datasource id="386" url="https://demo-formulaires.guichet-citoyen.be/backoffice/settings/data-sources/386/">
+<datasource id="386">
   <name>iMio Townstreet - &#201;metteur de la demande</name>
   <slug>imio_townstreet_requesters</slug>
   <data_source>

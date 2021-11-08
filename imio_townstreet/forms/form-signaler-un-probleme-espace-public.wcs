@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<formdef id="229" url="https://demo-formulaires.guichet-citoyen.be/backoffice/forms/229/">
+<formdef id="130">
   <name>Signaler un probl&#232;me dans l'espace public</name>
   <url_name>signaler-un-probleme-espace-public</url_name>
   <keywords>signalement, probl&#232;me, nid de poule, d&#233;chets, d&#233;p&#244;ts, clandestin, sauvage, d&#233;gradation, routes</keywords>
-  <internal_identifier>signaler-un-probleme-dans-l-espace-public-1</internal_identifier>
+  <internal_identifier>signaler-un-probleme-dans-l-espace-public</internal_identifier>
   <discussion>false</discussion>
   <detailed_emails>true</detailed_emails>
   <disabled>false</disabled>
@@ -15,7 +15,7 @@
   <has_captcha>false</has_captcha>
   <skip_from_360_view>false</skip_from_360_view>
   <category category_id="120">Signaler un probl&#232;me dans l'espace public</category>
-  <workflow workflow_id="84">iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</workflow>
+  <workflow workflow_id="104">iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</workflow>
   <max_field_id>240</max_field_id>
   <fields>
     <field>
@@ -78,8 +78,7 @@
       <condition>
         <type>django</type>
         <value>form_var_category_raw != "other_category"</value>
-      </condition>
-      <id>232</id>
+      </condition><id>232</id>
     </field><field>
       <label>Sous-cat&#233;gorie</label>
       <type>subtitle</type>
@@ -100,9 +99,9 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class>grid-1-2 newline</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>none</type>
-      </prefill><display_mode>list</display_mode>
+      </prefill><items />
+      <display_mode>list</display_mode>
       <data_source>
         <type>imio_townstreet_sous_categories</type>
       </data_source><in_filters>False</in_filters>
@@ -125,8 +124,7 @@
       <condition>
         <type>django</type>
         <value>form_var_category_raw != "other_category"</value>
-      </condition>
-      <required>False</required>
+      </condition><required>False</required>
       <hint>Veuillez cocher les options qui s'appliqent.</hint>
       <varname>issues</varname>
       <display_locations>
@@ -134,13 +132,12 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class>grid-1-1</extra_css_class>
       <prefill>
+        <locked>False</locked>
         <type>none</type>
-      </prefill><items />
-      <min_choices>0</min_choices>
+      </prefill><min_choices>0</min_choices>
       <max_choices>0</max_choices>
       <data_source>
-        <type>formula</type>
-        <value>webservice.imio_townstreet_get_issues.get('items')</value>
+        <type>imio_townstreet_issues</type>
       </data_source><in_filters>False</in_filters>
       <anonymise>False</anonymise>
       <display_disabled_items>False</display_disabled_items>
@@ -608,14 +605,17 @@
       <id>178</id>
     </field>
   </fields><backoffice-submission-roles>
-    <role role_id="1be915b352294450bc488b563d279ea7">Agent traitant - Townstreet</role>
+    <role role_id="">Agent traitant - Townstreet</role>
   </backoffice-submission-roles><roles>
-    <role role_id="08b4ba67eb2d421ea88d4bb0256a9666" role_key="_ext_bo">Debug</role>
-    <role role_id="1be915b352294450bc488b563d279ea7" role_key="_receiver">Agent traitant - Townstreet</role>
+    <role role_id="" role_key="_ext_bo">Debug</role>
+    <role role_id="" role_key="_receiver">Agent traitant - Townstreet</role>
   </roles><options>
     <option varname="eatal_version">5</option>
     <option varname="eatal_version_display">ATAL 5</option>
     <option varname="eatal_version_structured" />
+    <option varname="environnement">test</option>
+    <option varname="environnement_display">Test</option>
+    <option varname="environnement_structured" />
     <option varname="geolimityn" />
     <option varname="iatech" />
     <option varname="new_signal_alert_mail" />
@@ -626,19 +626,17 @@
     <option varname="zoom_max">50</option>
   </options><custom_views>
     <custom_view>
-      <title>iMio - Townstreet</title>
+      <title>iMio Townstreet</title>
       <slug>imio-townstreet</slug>
       <visibility>any</visibility>
       <filters>
         <filter>all</filter>
         <filter-status>on</filter-status>
       </filters><columns>
+        <id>boceb33663-bc2b-4e59-ac71-3c34e9c45f60</id>
         <id>id</id>
         <id>time</id>
-        <id>user-label</id>
         <id>125</id>
-        <id>108</id>
-        <id>boceb33663-bc2b-4e59-ac71-3c34e9c45f60</id>
         <id>bo5f0b6137-6c67-46f1-b974-dedb5ee853db</id>
         <id>bo13e3c664-e561-40a2-a766-ebd455662734</id>
         <id>status</id>

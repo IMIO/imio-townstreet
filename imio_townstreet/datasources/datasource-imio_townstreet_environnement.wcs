@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<datasource id="207">
+  <name>iMio Townstreet - Environnement</name>
+  <slug>imio_townstreet_environnement</slug>
+  <description>Cette source de donn&#233;es propose la liste des environnements pour la d&#233;marche de Signalement d'une d&#233;gradation pour Townstreet.</description>
+  <data_source>
+    <type>formula</type>
+    <value>[ { "id": "test", "text": "Test", "url_apims": "api-staging", }, { "id": "prod", "text": "Production", "url_apims": "api", } ]</value>
+  </data_source><record_on_errors>true</record_on_errors>
+</datasource>

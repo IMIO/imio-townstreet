@@ -1,10 +1,11 @@
 <?xml version="1.0"?>
-<datasource id="206" url="https://staging-formulaires.guichet-citoyen.be/backoffice/settings/data-sources/206/">
+<datasource id="206">
   <name>iMio Townstreet - Sous-cat&#233;gories</name>
   <slug>imio_townstreet_sous_categories</slug>
+  <description>Cette source de donn&#233;es correspond au choix de la sous-cat&#233;gorie dans le formulaire Signaler une d&#233;gradation de Townstreet.</description>
   <data_attribute>items</data_attribute>
   <data_source>
     <type>json</type>
-    <value>https://api.imio.be/imio/procedures/v1/townstreet/categories{% if form_var_category_raw %}?parent={{ form_var_category_raw }}{% endif %}</value>
-  </data_source>
+    <value>https://{{ form_option_environnement_url_apims|default_if_none:"api-staging" }}.imio.be/imio/procedures/v1/townstreet/categories{% if form_var_category_raw %}?parent={{ form_var_category_raw }}{% endif %}</value>
+  </data_source><record_on_errors>true</record_on_errors>
 </datasource>
