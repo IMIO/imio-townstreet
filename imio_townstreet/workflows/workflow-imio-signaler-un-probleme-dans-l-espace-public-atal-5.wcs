@@ -864,6 +864,20 @@
           </display_locations><prefill>
             <type>none</type>
           </prefill><id>3</id>
+        </field><field>
+          <label>Choisir un environnement</label>
+          <type>item</type>
+          <required>True</required>
+          <hint>--- S&#233;lectionnez l'environnement utilis&#233; pour cette d&#233;marche ---</hint>
+          <varname>environnement</varname>
+          <display_locations />
+          <display_mode>radio</display_mode>
+          <data_source>
+            <type>imio_townstreet_environnement</type>
+          </data_source><in_filters>False</in_filters>
+          <anonymise>False</anonymise>
+          <display_disabled_items>False</display_disabled_items>
+          <id>4</id>
         </field>
       </fields>
     </formdef>
