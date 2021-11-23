@@ -7,6 +7,6 @@
   <data_attribute>items</data_attribute>
   <data_source>
     <type>json</type>
-    <value>https://{{ form_option_environnement_url_apims|default_if_none:"api-staging" }}.imio.be/imio/procedures/v1/townstreet/categories?parent=null</value>
+    <value>https://{{ form_option_environnement_url_apims|default:"api" }}.imio.be/imio/procedures/v1/townstreet/categories?parent=null</value>
   </data_source><record_on_errors>true</record_on_errors>
 </datasource>

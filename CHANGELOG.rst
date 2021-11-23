@@ -11,8 +11,13 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.51
+    * Fix : datasource use default value url in case of empty string [nhi]
+    * Update : default datasources url is now api.imio.be [nhi]
+    * Update : form fields [nhi]
+
 0.0.50 
-    * Added : environment variable on worflows [nhi] 
+    * Added : environment variable on worflows [nhi]
 
 0.0.49
     * Added : datasource to select environment [nhi]

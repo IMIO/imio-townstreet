@@ -66,7 +66,6 @@
       <display_mode>list</display_mode>
       <data_source>
         <type>imio_townstreet_main_categories</type>
-        <value>webservice.imio_townstreet_category</value>
       </data_source><in_filters>False</in_filters>
       <anonymise>False</anonymise>
       <display_disabled_items>False</display_disabled_items>
@@ -99,9 +98,9 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class>grid-1-2 newline</extra_css_class>
       <prefill>
+        <locked>False</locked>
         <type>none</type>
-      </prefill><items />
-      <display_mode>list</display_mode>
+      </prefill><display_mode>list</display_mode>
       <data_source>
         <type>imio_townstreet_sous_categories</type>
       </data_source><in_filters>False</in_filters>
@@ -123,7 +122,7 @@
       <type>items</type>
       <condition>
         <type>django</type>
-        <value>form_var_category_raw != "other_category"</value>
+        <value>form_var_subcategory and form_var_category_raw != "other_category"</value>
       </condition><required>False</required>
       <hint>Veuillez cocher les options qui s'appliqent.</hint>
       <varname>issues</varname>
