@@ -124,7 +124,7 @@
         <type>django</type>
         <value>form_var_subcategory and form_var_category_raw != "other_category"</value>
       </condition><required>False</required>
-      <hint>Veuillez cocher les options qui s'appliqent.</hint>
+      <hint>Veuillez cocher les options qui s'appliquent.</hint>
       <varname>issues</varname>
       <display_locations>
         <display_location>validation</display_location>
