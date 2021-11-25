@@ -437,7 +437,7 @@
       <label>L'&#233;quipe charg&#233;e de traiter ce signalement peut m'appeler pour me demander des informations compl&#233;mentaires</label>
       <type>bool</type>
       <required>False</required>
-      <hint>En cas de besoins et pour localiser ou traiter au mieux l'objet de votre signalement.</hint>
+      <hint>En cas de besoin et pour localiser ou traiter au mieux l'objet de votre signalement.</hint>
       <varname>helpacknow</varname>
       <display_locations>
         <display_location>summary</display_location>
