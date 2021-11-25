@@ -11,6 +11,10 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.52
+    * Update : automatize user's notification
+    * Removed : customised part of user's notification email
+
 0.0.51
     * Fix : datasource use default value url in case of empty string [nhi]
     * Update : default datasources url is now api.imio.be [nhi]

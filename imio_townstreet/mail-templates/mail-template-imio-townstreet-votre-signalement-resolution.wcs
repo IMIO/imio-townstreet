@@ -20,14 +20,6 @@ Pour rappel, il s'agit de votre signalement du {{ form_receipt_date|date:"d M y"
 Le code de suivi de votre signalement est le suivant : **{{form_tracking_code}}**
 {% endif %}
 
-{% if followresp_var_subject  and followresp_var_body %}
-L'agent ayant trait&#233; votre demande vous communique le message suivant : 
-**Objet** :
-*{{ followresp_var_subject }}*
-**Communication** : 
-*{{ followresp_var_body }}*
-{% endif %}
-
 `Afficher l'historique de ma demande &lt;{{ form_url }}&gt;`_
 
 Bien &#224; vous,

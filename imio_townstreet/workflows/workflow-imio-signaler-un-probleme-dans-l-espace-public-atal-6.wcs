@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<workflow id="84" url="https://demo-formulaires.guichet-citoyen.be/backoffice/workflows/84/">
+<workflow id="84" url="">
   <name>iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</name>
   <roles>
     <role id="_receiver">Destinataire</role>
@@ -269,7 +269,7 @@
       <forced_endpoint>true</forced_endpoint>
       <visibility />
       <items>
-        <item id="2" type="webservice_call">
+        <item id="1" type="webservice_call">
           <label>Notifier FixMyStreet de la cl&#244;ture</label>
           <url>https://{{ form_option_environnement_url_apims|default_if_none:"api-staging" }}.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
           <method>PATCH</method>
@@ -296,7 +296,7 @@
             <type>django</type>
             <value>form_var_origin_source == "fixmystreet"</value>
           </condition>
-        </item><item id="1" type="sendmail">
+        </item><item id="2" type="sendmail">
           <to>
             <item role_id="{{ form_var_mail }}">{{ form_var_mail }}</item>
           </to><mail_template>imio-townstreet-refuse</mail_template>
@@ -338,70 +338,6 @@
         </item>
       </items>
     </status><status>
-      <id>12</id>
-      <name>Cl&#244;tur&#233; dans ATAL</name>
-      <colour>999999</colour>
-      <visibility>
-        <role>_receiver</role>
-      </visibility><items>
-        <item id="1" type="sendmail">
-          <to>
-            <item role_id="1be915b352294450bc488b563d279ea7">Agent traitant - Townstreet</item>
-          </to><mail_template>imio-townstreet-notification-de-cloture-dans-e-atal</mail_template>
-        </item><item id="2" type="displaymsg">
-          <message>Ce signalement a &#233;t&#233; cl&#244;tur&#233; dans ATAL, mais la personne l'ayant soumis souhaite &#234;tre tenue inform&#233;e des suites donn&#233;es. Une action de la part d'un agent traitant Townstreet est encore requise pour cette demande.</message>
-          <level>info</level>
-          <position>top</position>
-          <to>
-            <item role_id="1be915b352294450bc488b563d279ea7">Agent traitant - Townstreet</item>
-          </to>
-        </item><item id="3" type="form">
-          <by>
-            <item role_id="1be915b352294450bc488b563d279ea7">Agent traitant - Townstreet</item>
-          </by><varname>followresp</varname>
-          <formdef>
-            <name>-</name>
-            <fields>
-              <field>
-                <label>Objet de la r&#233;ponse &#224; la personne ayant signal&#233;</label>
-                <type>string</type>
-                <required>True</required>
-                <hint>Veuillez indiquer un objet de r&#233;ponse (exemple: "Retour par rapport &#224; votre signalement")</hint>
-                <varname>subject</varname>
-                <display_locations>
-                  <display_location>validation</display_location>
-                  <display_location>summary</display_location>
-                </display_locations><extra_css_class>grid-1-1</extra_css_class>
-                <prefill>
-                  <type>string</type>
-                  <value>Retour par rapport &#224; votre signalement</value>
-                </prefill><anonymise>False</anonymise>
-                <id>1</id>
-              </field><field>
-                <label>Corps de texte de la r&#233;ponse  &#224; la personne ayant signal&#233;</label>
-                <type>text</type>
-                <required>True</required>
-                <hint>Veuillez agr&#233;menter ce champ d'un message personnalis&#233; qui sera transmis par mail &#224; la personne ayant soumis ce signalement (la personne a souhait&#233;e &#234;tre tenue inform&#233;e). Cliquez sur "Valider" pour soumettre votre message et marquer la demande comme trait&#233;e.</hint>
-                <varname>body</varname>
-                <display_locations>
-                  <display_location>validation</display_location>
-                  <display_location>summary</display_location>
-                </display_locations><extra_css_class>grid-1-1</extra_css_class>
-                <prefill>
-                  <type>string</type>
-                  <value>Merci pour votre signalement, il a &#233;t&#233; trait&#233; par les services de la ville.</value>
-                </prefill><rows>3</rows>
-                <pre>False</pre>
-                <id>3</id>
-              </field>
-            </fields>
-          </formdef>
-        </item><item id="4" type="jumponsubmit">
-          <status>14</status>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-      </items>
-    </status><status>
       <id>13</id>
       <name>Finalis&#233;</name>
       <colour>66FF99</colour>
@@ -409,7 +345,7 @@
       <forced_endpoint>true</forced_endpoint>
       <visibility />
       <items>
-        <item id="4" type="webservice_call">
+        <item id="1" type="webservice_call">
           <label>Notifier FixMyStreet de la r&#233;solution</label>
           <url>https://{{ form_option_environnement_url_apims|default_if_none:"api-staging" }}.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
           <method>PATCH</method>
@@ -436,8 +372,7 @@
             <type>django</type>
             <value>form_var_origin_source == "fixmystreet"</value>
           </condition>
-        </item>
-        <item id="1" type="register-comment">
+        </item><item id="2" type="register-comment">
           <comment>{% if followresp_var_subject  and followresp_var_body %}
 &lt;p&gt;L'agent ayant trait&#233; votre demande vous communique le message suivant : &lt;/p&gt;
 
@@ -449,12 +384,12 @@
             <type>django</type>
             <value>followresp_var_subject  and followresp_var_body</value>
           </condition>
-        </item><item id="2" type="displaymsg">
+        </item><item id="3" type="displaymsg">
           <message>Cette demande a &#233;t&#233; trait&#233;e.</message>
           <level>success</level>
           <position>top</position>
           <to>
-            <item role_id="1be915b352294450bc488b563d279ea7">Agent traitant - Townstreet</item>
+            <item role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
             <item role_id="_submitter">_submitter</item>
           </to>
         </item>
@@ -553,7 +488,7 @@
             <value>work_request_details_response_data_RequestState == 3</value>
           </condition><set_marker_on_status>False</set_marker_on_status>
         </item><item id="5" type="jump">
-          <status>12</status>
+          <status>14</status>
           <condition>
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 9 and form_var_followyn == "Oui"</value>
@@ -570,7 +505,7 @@
         <item id="1" type="jump">
           <status>21</status>
           <set_marker_on_status>False</set_marker_on_status>
-        </item><item type="register-comment" id="2">
+        </item><item id="2" type="register-comment">
           <comment>Merci pour votre signalement !&lt;br&gt;
 Nous faisons notre possible pour r&#233;gler le probl&#232;me au plus vite, le d&#233;lais d'intervention peut-&#234;tre plus ou moins important en fonction de sa nature.</comment>
           <to>
@@ -587,9 +522,9 @@ Nous faisons notre possible pour r&#233;gler le probl&#232;me au plus vite, le d
       <items>
         <item id="1" type="remove" />
       </items><triggers>
-        <trigger id="ff764db2-4055-4e67-86a9-4099e47de82d" type="manual">
+        <trigger id="ef43ceeb-1776-40db-8ce1-882085c4a79a" type="manual">
           <roles>
-            <item role_id="225ff43a97374caba4f8c825d9f95793">Debug</item>
+            <item role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
           </roles>
         </trigger>
       </triggers>
@@ -603,9 +538,9 @@ Nous faisons notre possible pour r&#233;gler le probl&#232;me au plus vite, le d
           <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items><triggers>
-        <trigger id="df3813d0-a344-4f93-84c0-46a8a3502c1e" type="manual">
+        <trigger id="b48158ee-9118-4c48-a79c-233a68bb4071" type="manual">
           <roles>
-            <item role_id="225ff43a97374caba4f8c825d9f95793">Debug</item>
+            <item role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
           </roles>
         </trigger>
       </triggers>
@@ -619,9 +554,9 @@ Nous faisons notre possible pour r&#233;gler le probl&#232;me au plus vite, le d
           <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items><triggers>
-        <trigger id="0dd332e3-1998-4e86-be35-6dec14cd2b0c" type="manual">
+        <trigger id="d176e7bb-e677-4c99-b646-272f136ac9c8" type="manual">
           <roles>
-            <item role_id="225ff43a97374caba4f8c825d9f95793">Debug</item>
+            <item role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
           </roles>
         </trigger>
       </triggers>
@@ -671,6 +606,7 @@ Nous faisons notre possible pour r&#233;gler le probl&#232;me au plus vite, le d
           <hint>--- S&#233;lectionnez l'environnement utilis&#233; pour cette d&#233;marche ---</hint>
           <varname>environnement</varname>
           <display_locations />
+          <items />
           <display_mode>radio</display_mode>
           <data_source>
             <type>imio_townstreet_environnement</type>
