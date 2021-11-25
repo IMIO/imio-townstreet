@@ -12,8 +12,11 @@ Version History
 ===============
 
 0.0.52
-    * Update : automatize user's notification
-    * Removed : customised part of user's notification email
+    * Update : automatize user's notification [nhi]
+    * Removed : customised part of user's notification email [nhi]
+    * Fixed : Apims url in workflow atal6 [nhi]
+    * Fixed : environment description [nhi]
+    * Removed : pics 4 to 6 webservices in workflow atal5 [nhi]
 
 0.0.51
     * Fix : datasource use default value url in case of empty string [nhi]

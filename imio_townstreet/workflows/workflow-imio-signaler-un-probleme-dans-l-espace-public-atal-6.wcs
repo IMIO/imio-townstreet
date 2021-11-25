@@ -271,7 +271,7 @@
       <items>
         <item id="1" type="webservice_call">
           <label>Notifier FixMyStreet de la cl&#244;ture</label>
-          <url>https://{{ form_option_environnement_url_apims|default_if_none:"api-staging" }}.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
+          <url>https://{{ form_option_environnement_url_apims|default:"api" }}.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
           <method>PATCH</method>
           <post>False</post>
           <post_data>
@@ -347,7 +347,7 @@
       <items>
         <item id="1" type="webservice_call">
           <label>Notifier FixMyStreet de la r&#233;solution</label>
-          <url>https://{{ form_option_environnement_url_apims|default_if_none:"api-staging" }}.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
+          <url>https://{{ form_option_environnement_url_apims|default:"api" }}.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
           <method>PATCH</method>
           <post>False</post>
           <post_data>
@@ -603,7 +603,7 @@ Nous faisons notre possible pour r&#233;gler le probl&#232;me au plus vite, le d
           <label>Choisir un environnement</label>
           <type>item</type>
           <required>True</required>
-          <hint>--- S&#233;lectionnez l'environnement utilis&#233; pour cette d&#233;marche ---</hint>
+          <hint>S&#233;lectionnez l'environnement utilis&#233; pour cette d&#233;marche</hint>
           <varname>environnement</varname>
           <display_locations />
           <items />
