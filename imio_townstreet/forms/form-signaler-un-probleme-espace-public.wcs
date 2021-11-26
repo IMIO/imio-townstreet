@@ -142,6 +142,24 @@
       <display_disabled_items>False</display_disabled_items>
       <id>231</id>
     </field><field>
+      <label>N&#176; d'&#233;clairage</label>
+      <type>string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_category_raw == "public_lighting"</value>
+      </condition><required>False</required>
+      <hint>Le num&#233;ro de l'&#233;clairage est indispensable afin que votre signalement puisse &#234;tre trait&#233;. Merci de l'indiquer dans le champ concern&#233; ou de nous envoyer une photo l'affichant clairement.</hint>
+      <varname>numero_eclairage</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class>newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise>False</anonymise>
+      <id>196</id>
+    </field><field>
       <label>Information compl&#233;mentaire (optionnel)</label>
       <type>text</type>
       <condition>

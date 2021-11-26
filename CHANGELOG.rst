@@ -11,6 +11,11 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.53
+    * Fixed : description in atal6 [nhi]
+    * Added : field number for public lighting [nhi]
+    * Added : send number of public lighting to atal in both wf [nhi]
+
 0.0.52
     * Update : automatize user's notification [nhi]
     * Removed : customised part of user's notification email [nhi]
