@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.54
+   * Changed : display of the alert's location
+
 0.0.53
     * Fixed : description in atal6 [nhi]
     * Added : field number for public lighting [nhi]

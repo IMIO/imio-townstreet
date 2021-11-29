@@ -288,20 +288,6 @@
       <init_with_geoloc>True</init_with_geoloc>
       <id>121</id>
     </field><field>
-      <label>Num&#233;ro</label>
-      <type>string</type>
-      <required>False</required>
-      <varname>number</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-6</extra_css_class>
-      <prefill>
-        <type>geolocation</type>
-        <value>house</value>
-      </prefill><anonymise>False</anonymise>
-      <id>123</id>
-    </field><field>
       <label>Rue</label>
       <type>string</type>
       <required>True</required>
@@ -309,12 +295,26 @@
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-2-6</extra_css_class>
+      </display_locations><extra_css_class>grid-3-4</extra_css_class>
       <prefill>
         <type>geolocation</type>
         <value>road</value>
       </prefill><anonymise>False</anonymise>
       <id>124</id>
+    </field><field>
+      <label>Num&#233;ro</label>
+      <type>string</type>
+      <required>False</required>
+      <varname>number</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class>grid-1-4</extra_css_class>
+      <prefill>
+        <type>geolocation</type>
+        <value>house</value>
+      </prefill><anonymise>False</anonymise>
+      <id>123</id>
     </field><field>
       <label>Code postal</label>
       <type>string</type>
@@ -336,7 +336,7 @@
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-2-6</extra_css_class>
+      </display_locations><extra_css_class>grid-5-6</extra_css_class>
       <prefill>
         <type>geolocation</type>
         <value>city</value>
