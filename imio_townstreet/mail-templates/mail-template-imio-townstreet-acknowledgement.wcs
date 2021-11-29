@@ -4,9 +4,7 @@
   <slug>imio-townstreet-acknowledgement</slug>
   <description>iMio - Townstreet - Courriel envoy&#233; d&#232;s la r&#233;ception du signalement.</description>
   <subject>Merci pour votre signalement.</subject>
-  <body>{% if form_var_firstname %}Ch&#232;r&#183;e {{ form_var_firstname }}{% endif %}
-
-Bonjour,
+  <body>Bonjour{% if form_var_firstname %} {{ form_var_firstname }}{% endif %},
 
 Merci pour votre signalement. 
 

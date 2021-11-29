@@ -12,7 +12,8 @@ Version History
 ===============
 
 0.0.54
-   * Changed : display of the alert's location
+   * Changed : display of the alert's location [nhi]
+   * Changed : geetings in mail [nhi]
 
 0.0.53
     * Fixed : description in atal6 [nhi]

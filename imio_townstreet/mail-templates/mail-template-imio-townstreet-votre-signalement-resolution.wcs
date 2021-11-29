@@ -4,9 +4,7 @@
   <slug>imio-townstreet-votre-signalement-resolution</slug>
   <description>iMio - Courriel envoy&#233; &#224; l'usager lorsque la demande est trait&#233;e et qu'il a souhait&#233; &#234;tre tenu inform&#233;.</description>
   <subject>Votre signalement a &#233;t&#233; marqu&#233; comme trait&#233;.</subject>
-  <body>{% if form_var_firstname %}Ch&#232;r&#183;e {{ form_var_firstname }}{% endif %}
-
-Bonjour,
+  <body>Bonjour{% if form_var_firstname %} {{ form_var_firstname }}{% endif %},
 
 **Votre signalement a &#233;t&#233; marqu&#233; comme trait&#233;**.
 
