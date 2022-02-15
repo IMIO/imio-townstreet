@@ -11,6 +11,11 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.55
+   * Added: datasource of iA.Tech services [nhi]
+   * Added: form_option in atalv6 workflow for selecting iA.Tech requesting service [nhi]
+   * Update: overall update of atalv6 workflow [nhi]
+
 0.0.54
    * Changed : display of the alert's location [nhi]
    * Changed : geetings in mail [nhi]

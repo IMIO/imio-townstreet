@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <workflow id="84" url="">
   <name>iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</name>
+  <slug>imio-signaler-un-probleme-dans-l-espace-public-atal-6</slug>
   <roles>
     <role id="_receiver">Destinataire</role>
   </roles><possible_status>
@@ -111,7 +112,7 @@
               <value>=1001</value>
             </item><item>
               <name>atal_requesting_department_id</name>
-              <value>=50</value>
+              <value>{% firstof form_option_service_demandeur_raw "50" %}</value>
             </item><item>
               <name>atal_requester_id</name>
               <value>=-1</value>
@@ -389,7 +390,7 @@
           <level>success</level>
           <position>top</position>
           <to>
-            <item role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
+            <item role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10" slug="agent-traitant-townstreet">Agent traitant - Townstreet</item>
             <item role_id="_submitter">_submitter</item>
           </to>
         </item>
@@ -522,9 +523,9 @@ Nous faisons notre possible pour r&#233;gler le probl&#232;me au plus vite, le d
       <items>
         <item id="1" type="remove" />
       </items><triggers>
-        <trigger id="ef43ceeb-1776-40db-8ce1-882085c4a79a" type="manual">
+        <trigger id="e5c48428-cabb-46fc-809d-5d6cd2106f46" type="manual">
           <roles>
-            <item role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item role_id="df908b92acec4a68b3a11bbf516263d9" slug="debug">Debug</item>
           </roles>
         </trigger>
       </triggers>
@@ -538,9 +539,9 @@ Nous faisons notre possible pour r&#233;gler le probl&#232;me au plus vite, le d
           <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items><triggers>
-        <trigger id="b48158ee-9118-4c48-a79c-233a68bb4071" type="manual">
+        <trigger id="fd713edb-cd9d-40eb-bb80-8576cf6120a2" type="manual">
           <roles>
-            <item role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item role_id="df908b92acec4a68b3a11bbf516263d9" slug="debug">Debug</item>
           </roles>
         </trigger>
       </triggers>
@@ -554,9 +555,9 @@ Nous faisons notre possible pour r&#233;gler le probl&#232;me au plus vite, le d
           <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items><triggers>
-        <trigger id="d176e7bb-e677-4c99-b646-272f136ac9c8" type="manual">
+        <trigger id="f28eac4c-b2b5-427d-92c5-2889fe50d1d2" type="manual">
           <roles>
-            <item role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item role_id="df908b92acec4a68b3a11bbf516263d9" slug="debug">Debug</item>
           </roles>
         </trigger>
       </triggers>
@@ -566,54 +567,69 @@ Nous faisons notre possible pour r&#233;gler le probl&#232;me au plus vite, le d
       <name>-</name>
       <fields>
         <field>
-          <label>Limiter le p&#233;rim&#232;tre g&#233;ographique des signalements</label>
-          <type>bool</type>
-          <required>False</required>
-          <hint>Cochez cette case pour limiter le p&#233;rim&#232;tre g&#233;ographique des signalements autoris&#233;s. Le formulaire ne pourra pas &#234;tre valid&#233; par le citoyen si cette case est coch&#233;e et que des codes postaux sont d&#233;finis ci-dessous. Un commentaire en premi&#232;re page du formulaire s'affichera pour avertir le citoyen des codes postaux autoris&#233;s.</hint>
-          <varname>geolimityn</varname>
+          <label type="str">Limiter le p&#233;rim&#232;tre g&#233;ographique des signalements</label>
+          <type type="str">bool</type>
+          <required type="bool">False</required>
+          <hint type="str">Cochez cette case pour limiter le p&#233;rim&#232;tre g&#233;ographique des signalements autoris&#233;s. Le formulaire ne pourra pas &#234;tre valid&#233; par le citoyen si cette case est coch&#233;e et que des codes postaux sont d&#233;finis ci-dessous. Un commentaire en premi&#232;re page du formulaire s'affichera pour avertir le citoyen des codes postaux autoris&#233;s.</hint>
+          <varname type="str">geolimityn</varname>
           <display_locations>
             <display_location>summary</display_location>
           </display_locations><prefill>
             <type>none</type>
-          </prefill><id>2</id>
+          </prefill><id type="str">2</id>
         </field><field>
-          <label>Limiter le p&#233;rim&#232;tre g&#233;ographique des signalements - Code postaux</label>
-          <type>string</type>
-          <required>False</required>
-          <hint>Code postaux s&#233;par&#233;s par des virgules. (Exemple : 6000,6001,6002)</hint>
-          <varname>postal_code_limit</varname>
+          <label type="str">Limiter le p&#233;rim&#232;tre g&#233;ographique des signalements - Code postaux</label>
+          <type type="str">string</type>
+          <required type="bool">False</required>
+          <hint type="str">Code postaux s&#233;par&#233;s par des virgules. (Exemple : 6000,6001,6002)</hint>
+          <varname type="str">postal_code_limit</varname>
           <display_locations>
             <display_location>summary</display_location>
           </display_locations><prefill>
             <type>none</type>
-          </prefill><anonymise>True</anonymise>
-          <id>1</id>
+          </prefill><anonymise type="bool">True</anonymise>
+          <id type="str">1</id>
         </field><field>
-          <label>Activer l'option "sur un b&#226;timent priv&#233;"</label>
-          <type>bool</type>
-          <required>False</required>
-          <hint>Cochez cette case pour que les &#233;l&#233;ments de formulaires li&#233;s &#224; cette option s'affiche. Il s'agit de champs commentaire, une page suppl&#233;mentaires demandes des informations li&#233;es, champs fichier, etc.</hint>
-          <varname>onaprivatebuilding</varname>
+          <label type="str">Activer l'option "sur un b&#226;timent priv&#233;"</label>
+          <type type="str">bool</type>
+          <required type="bool">False</required>
+          <hint type="str">Cochez cette case pour que les &#233;l&#233;ments de formulaires li&#233;s &#224; cette option s'affiche. Il s'agit de champs commentaire, une page suppl&#233;mentaires demandes des informations li&#233;es, champs fichier, etc.</hint>
+          <varname type="str">onaprivatebuilding</varname>
           <display_locations>
             <display_location>summary</display_location>
           </display_locations><prefill>
             <type>none</type>
-          </prefill><id>3</id>
+          </prefill><id type="str">3</id>
         </field><field>
-          <label>Choisir un environnement</label>
-          <type>item</type>
-          <required>True</required>
-          <hint>S&#233;lectionnez l'environnement utilis&#233; pour cette d&#233;marche</hint>
-          <varname>environnement</varname>
+          <label type="str">Choisir un environnement</label>
+          <type type="str">item</type>
+          <required type="bool">True</required>
+          <hint type="str">S&#233;lectionnez l'environnement utilis&#233; pour cette d&#233;marche</hint>
+          <varname type="str">environnement</varname>
           <display_locations />
           <items />
-          <display_mode>radio</display_mode>
+          <display_mode type="str">radio</display_mode>
           <data_source>
             <type>imio_townstreet_environnement</type>
-          </data_source><in_filters>False</in_filters>
-          <anonymise>False</anonymise>
-          <display_disabled_items>False</display_disabled_items>
-          <id>4</id>
+          </data_source><in_filters type="bool">False</in_filters>
+          <anonymise type="bool">False</anonymise>
+          <display_disabled_items type="bool">False</display_disabled_items>
+          <id type="str">4</id>
+        </field><field>
+          <label type="str">Service demandeur</label>
+          <type type="str">item</type>
+          <required type="bool">False</required>
+          <hint type="str">S&#233;lectionnez le service demandeur pour la cr&#233;ation des signalement dans iA.Tech</hint>
+          <varname type="str">service_demandeur</varname>
+          <display_locations />
+          <display_mode type="str">list</display_mode>
+          <data_source>
+            <type>imio_townstreet_services_iatech</type>
+            <value>{{passerelle_url}}passerelle-imio-ia-tech/atal-demov6/third-parties</value>
+          </data_source><in_filters type="bool">False</in_filters>
+          <anonymise type="bool">False</anonymise>
+          <display_disabled_items type="bool">False</display_disabled_items>
+          <id type="str">5</id>
         </field>
       </fields>
     </formdef>
@@ -622,71 +638,71 @@ Nous faisons notre possible pour r&#233;gler le probl&#232;me au plus vite, le d
       <name>-</name>
       <fields>
         <field>
-          <label>Num&#233;ro DIT dans ATAL</label>
-          <type>string</type>
-          <required>False</required>
-          <varname>ditnu</varname>
+          <label type="str">Num&#233;ro DIT dans ATAL</label>
+          <type type="str">string</type>
+          <required type="bool">False</required>
+          <varname type="str">ditnu</varname>
           <display_locations>
             <display_location>summary</display_location>
             <display_location>listings</display_location>
-          </display_locations><anonymise>False</anonymise>
-          <id>boceb33663-bc2b-4e59-ac71-3c34e9c45f60</id>
+          </display_locations><anonymise type="bool">False</anonymise>
+          <id type="str">boceb33663-bc2b-4e59-ac71-3c34e9c45f60</id>
         </field><field>
-          <label>Objet</label>
-          <type>string</type>
-          <required>False</required>
-          <varname>obj</varname>
+          <label type="str">Objet</label>
+          <type type="str">string</type>
+          <required type="bool">False</required>
+          <varname type="str">obj</varname>
           <display_locations>
             <display_location>summary</display_location>
             <display_location>listings</display_location>
-          </display_locations><anonymise>False</anonymise>
-          <id>bo5f0b6137-6c67-46f1-b974-dedb5ee853db</id>
+          </display_locations><anonymise type="bool">False</anonymise>
+          <id type="str">bo5f0b6137-6c67-46f1-b974-dedb5ee853db</id>
         </field><field>
-          <label>Description</label>
-          <type>string</type>
-          <required>True</required>
-          <varname>desc</varname>
+          <label type="str">Description</label>
+          <type type="str">string</type>
+          <required type="bool">True</required>
+          <varname type="str">desc</varname>
           <display_locations>
             <display_location>summary</display_location>
-          </display_locations><anonymise>False</anonymise>
-          <id>bo810f5e77-1d3b-40b3-bb28-7ea0af191239</id>
+          </display_locations><anonymise type="bool">False</anonymise>
+          <id type="str">bo810f5e77-1d3b-40b3-bb28-7ea0af191239</id>
         </field><field>
-          <label>Lieu</label>
-          <type>string</type>
-          <required>True</required>
-          <varname>place</varname>
+          <label type="str">Lieu</label>
+          <type type="str">string</type>
+          <required type="bool">True</required>
+          <varname type="str">place</varname>
           <display_locations>
             <display_location>summary</display_location>
             <display_location>listings</display_location>
-          </display_locations><anonymise>False</anonymise>
-          <id>bo13e3c664-e561-40a2-a766-ebd455662734</id>
+          </display_locations><anonymise type="bool">False</anonymise>
+          <id type="str">bo13e3c664-e561-40a2-a766-ebd455662734</id>
         </field><field>
-          <label>Souhaite &#234;tre tenu inform&#233;</label>
-          <type>string</type>
-          <required>True</required>
-          <varname>followyn</varname>
+          <label type="str">Souhaite &#234;tre tenu inform&#233;</label>
+          <type type="str">string</type>
+          <required type="bool">True</required>
+          <varname type="str">followyn</varname>
           <display_locations>
             <display_location>summary</display_location>
-          </display_locations><anonymise>False</anonymise>
-          <id>bo8e50a0f2-09c3-4c33-8099-b6dfdbce719c</id>
+          </display_locations><anonymise type="bool">False</anonymise>
+          <id type="str">bo8e50a0f2-09c3-4c33-8099-b6dfdbce719c</id>
         </field><field>
-          <label>uuid dans ATAL</label>
-          <type>string</type>
-          <required>False</required>
-          <varname>atal_uuid</varname>
+          <label type="str">uuid dans ATAL</label>
+          <type type="str">string</type>
+          <required type="bool">False</required>
+          <varname type="str">atal_uuid</varname>
           <display_locations />
-          <anonymise>False</anonymise>
-          <id>bo374b25d1-10d6-4cf3-b391-88e29f4a5acc</id>
+          <anonymise type="bool">False</anonymise>
+          <id type="str">bo374b25d1-10d6-4cf3-b391-88e29f4a5acc</id>
         </field><field>
-          <label>Envoy&#233; depuis</label>
-          <type>string</type>
-          <required>True</required>
-          <varname>requested_from</varname>
+          <label type="str">Envoy&#233; depuis</label>
+          <type type="str">string</type>
+          <required type="bool">True</required>
+          <varname type="str">requested_from</varname>
           <display_locations>
             <display_location>summary</display_location>
             <display_location>listings</display_location>
-          </display_locations><anonymise>True</anonymise>
-          <id>bo6c5e090e-75c1-4269-ac81-6d2b097af7d9</id>
+          </display_locations><anonymise type="bool">True</anonymise>
+          <id type="str">bo6c5e090e-75c1-4269-ac81-6d2b097af7d9</id>
         </field>
       </fields>
     </formdef>

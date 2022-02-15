@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<datasource id="" url="">
+  <name>iMio Townstreet - Services iA.Tech</name>
+  <slug>imio_townstreet_services_iatech</slug>
+  <id_attribute>Id</id_attribute>
+  <text_attribute>Name</text_attribute>
+  <data_source>
+    <type>json</type>
+    <value>{{ passerelle_url }}passerelle-imio-ia-tech/atal-demov6/third-parties</value>
+  </data_source>
+</datasource>
