@@ -35,7 +35,7 @@
               <value>{{ form_var_category }}{% if form_var_numero_eclairage %} - {{ form_var_numero_eclairage }}{% endif %}</value>
             </field><field>
               <field_id>bo810f5e77-1d3b-40b3-bb28-7ea0af191239</field_id>
-              <value>Signalement citoyen depuis le guichet en ligne. D&#233;tail : {{form_var_category }}{%if form_var_subcategory %} / {{ form_var_subcategory}} /{% endif%}{% if form_var_issues %} {{form_var_issues }}{% endif %}</value>
+              <value>Signalement citoyen depuis le guichet en ligne. D&#233;tail : {{form_var_category }}{%if form_var_subcategory %} &#183; {{ form_var_subcategory}} &#183;{% endif%}{% if form_var_issues %} {{form_var_issues }}{% endif %}{% if form_var_addinfo or form_var_addinfother %} &#183; Information additionnelle : {% firstof form_var_addinfo form_var_addinfother %}{% endif %}</value>
             </field><field>
               <field_id>bo13e3c664-e561-40a2-a766-ebd455662734</field_id>
               <value>{% firstof form_var_number "" %} {% firstof form_var_street "" %} {% firstof form_var_postal_code "" %} {% firstof form_var_city "" %}</value>
@@ -321,11 +321,8 @@
             <item role_id="_submitter">_submitter</item>
           </to>
         </item><item id="2" type="register-comment">
-          <comment>&lt;b&gt;{% if form_var_street %}{{form_var_street}}&lt;/b&gt;{% endif %} &#224; &lt;b&gt;{{form_var_city}}&lt;/b&gt; ({{form_var_desc}}). &lt;br&gt;
-{% if form_var_addinfo %}Information additionnelle : &lt;i&gt;{{ form_var_addinfo }}&lt;/i&gt;{% endif %}{% if form_var_addinfother %}Votre commentaire : {{ form_var_addinfother}}{% endif %}</comment>
-          <to>
-            <item role_id="_submitter">_submitter</item>
-          </to><attachments>
+              <comment>&lt;b&gt;{% if form_var_street %}{{form_var_street}}&lt;/b&gt;{% endif %} &#224; &lt;b&gt;{{form_var_city}}&lt;/b&gt; ({{form_var_desc}}).</comment>
+          <attachments>
             <attachment>{{ form_var_pic1_raw }}</attachment>
             <attachment>{{ form_var_pic2_raw }}</attachment>
             <attachment>{{ form_var_pic3_raw }}</attachment>

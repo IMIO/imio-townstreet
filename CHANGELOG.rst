@@ -11,6 +11,11 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.56
+   * Fixed: additional information did not appears in issues [dmshd]
+   * Changed: remove "Votre commentaire : " in description because the description is showed for both citizens and city employees [dmshd]
+   * Changed: set "Message dans l'historique" containing description appears to both citizens and city employees [dmshd]
+
 0.0.55
    * Added: datasource of iA.Tech services [nhi]
    * Added: form_option in atalv6 workflow for selecting iA.Tech requesting service [nhi]
@@ -38,7 +43,7 @@ Version History
     * Update : default datasources url is now api.imio.be [nhi]
     * Update : form fields [nhi]
 
-0.0.50 
+0.0.50
     * Added : environment variable on worflows [nhi]
 
 0.0.49
@@ -91,7 +96,7 @@ Version History
     [nhi]
 
 0.0.37
-    * [TOWS-65] add thanks alert to user after signal submission 
+    * [TOWS-65] add thanks alert to user after signal submission
 
 0.0.36
     * delete field in double (origin_source) in form
@@ -150,10 +155,10 @@ Version History
     * [TOWS-17] add last upgrades following chaumont-gistoux setup [dmu]
 
 0.0.17
-    * [TOWS-17] add atal connector to setup to avoid doing it manually [dmu] 
+    * [TOWS-17] add atal connector to setup to avoid doing it manually [dmu]
 
 0.0.16
-    * [TOWS-17] fix attachment2 var [dmu] 
+    * [TOWS-17] fix attachment2 var [dmu]
 
 0.0.15
     * [TOWS-1] add cleanWs() to fix workspace not cleaned [bsu]
@@ -161,7 +166,7 @@ Version History
 0.0.14
     * [TOWS-17] upgrade for ATAL 6 [dmu] [nhi]
     https://support.imio.be/browse/TOWS-17
-    
+
 
 0.0.13
     * add missing passerelle module [dmu]
@@ -194,4 +199,4 @@ Version History
     * [TOWS-33] add passerelle folder to MANIFEST.in [dmu]
 
 0.0.3
-    * [TOWS-33] Init changelog 
+    * [TOWS-33] Init changelog

@@ -1,10 +1,11 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
+
 from setuptools import find_packages
 from setuptools import setup
 from setuptools.command.install import install
-import os
 
 
 class inst(install):
@@ -17,7 +18,7 @@ class inst(install):
         os.system("sh " + path + "install_imio-townstreet.sh")
 
 
-version = "0.0.55"
+version = "0.0.56"
 
 setup(
     name="imio-townstreet",
