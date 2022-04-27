@@ -471,7 +471,7 @@
           <record_errors>False</record_errors>
         </item><item id="2" type="jump">
           <status>21</status>
-          <timeout>1200</timeout>
+          <timeout>86400</timeout>
           <set_marker_on_status>False</set_marker_on_status>
         </item><item id="3" type="jump">
           <status>13</status>
