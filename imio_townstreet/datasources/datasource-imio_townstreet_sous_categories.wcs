@@ -3,6 +3,7 @@
   <name>iMio Townstreet - Sous-cat&#233;gories</name>
   <slug>imio_townstreet_sous_categories</slug>
   <description>Cette source de donn&#233;es correspond au choix de la sous-cat&#233;gorie dans le formulaire Signaler une d&#233;gradation de Townstreet.</description>
+  <cache_duration>86400</cache_duration>
   <data_attribute>items</data_attribute>
   <data_source>
     <type>json</type>
