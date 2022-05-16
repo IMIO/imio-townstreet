@@ -11,6 +11,11 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.57
+* [TOWS-103] Added : missing cache duration and description [dmshd]
+* [TOWS-103] Update : add 'refused' comment from ATAL in mail-template [dmshd]
+* [TOWS-103] Update : set timeout to daily for iA.Tech (20min was init for dev) [dmshd]
+
 0.0.56
    * Fixed: additional information did not appears in issues [dmshd]
    * Changed: remove "Votre commentaire : " in description because the description is showed for both citizens and city employees [dmshd]
