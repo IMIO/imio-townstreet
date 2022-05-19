@@ -84,7 +84,7 @@
           <action_on_network_errors>:stop</action_on_network_errors>
           <notify_on_errors>True</notify_on_errors>
           <record_on_errors>True</record_on_errors>
-          <record_errors>True</record_errors>
+          <record_errors>False</record_errors>
         </item><item id="2" type="jump">
           <status>3</status>
           <timeout>86400</timeout>
@@ -198,7 +198,7 @@
           <action_on_network_errors>:stop</action_on_network_errors>
           <notify_on_errors>True</notify_on_errors>
           <record_on_errors>True</record_on_errors>
-          <record_errors>True</record_errors>
+          <record_errors>False</record_errors>
         </item><item id="2" type="register-comment">
           <comment>La demande a &#233;t&#233; cr&#233;&#233;e dans ATAL ({{ iatechins_response_data_demande_number }}).</comment>
           <condition>
@@ -250,7 +250,7 @@
           <action_on_network_errors>:stop</action_on_network_errors>
           <notify_on_errors>True</notify_on_errors>
           <record_on_errors>True</record_on_errors>
-          <record_errors>True</record_errors>
+          <record_errors>False</record_errors>
           <condition>
             <type>python</type>
             <value>bool(vars().get('form_var_pic1_raw')) == True</value>
@@ -280,7 +280,7 @@
           <action_on_network_errors>:stop</action_on_network_errors>
           <notify_on_errors>True</notify_on_errors>
           <record_on_errors>True</record_on_errors>
-          <record_errors>True</record_errors>
+          <record_errors>False</record_errors>
           <condition>
             <type>python</type>
             <value>bool(vars().get('form_var_pic2_raw')) == True</value>
@@ -310,7 +310,7 @@
           <action_on_network_errors>:stop</action_on_network_errors>
           <notify_on_errors>True</notify_on_errors>
           <record_on_errors>True</record_on_errors>
-          <record_errors>True</record_errors>
+          <record_errors>False</record_errors>
           <condition>
             <type>python</type>
             <value>bool(vars().get('form_var_pic3_raw')) == True</value>
@@ -504,7 +504,7 @@
           <action_on_network_errors>:stop</action_on_network_errors>
           <notify_on_errors>True</notify_on_errors>
           <record_on_errors>True</record_on_errors>
-          <record_errors>True</record_errors>
+          <record_errors>False</record_errors>
         </item><item id="2" type="choice">
           <label>V&#233;rifier le statut dans iA.Tech (ATAL)</label>
           <by>
