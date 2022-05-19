@@ -11,6 +11,8 @@ imio-townstreet changelog
 Version History
 ===============
 
+* [SUP-23324] now hide error on traitment panel [dmshd]
+
 0.0.57
 * [TOWS-103] Added : missing cache duration and description [dmshd]
 * [TOWS-103] Update : add 'refused' comment from ATAL in mail-template [dmshd]
