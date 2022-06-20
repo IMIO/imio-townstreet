@@ -282,7 +282,7 @@
       <prefill>
         <type>geolocation</type>
         <value>position</value>
-      </prefill><initial_zoom>16</initial_zoom>
+      </prefill><initial_zoom>13</initial_zoom>
       <min_zoom>11</min_zoom>
       <max_zoom>19</max_zoom>
       <init_with_geoloc>True</init_with_geoloc>
