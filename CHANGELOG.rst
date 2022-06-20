@@ -11,6 +11,7 @@ imio-townstreet changelog
 Version History
 ===============
 
+* [MTELEFONA-10]  map field : fix initial zoom too small [dmshd]
 * [SUP-23324] now hide error on traitment panel [dmshd]
 
 0.0.57
