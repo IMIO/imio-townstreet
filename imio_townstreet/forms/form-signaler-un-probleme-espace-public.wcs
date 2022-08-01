@@ -318,7 +318,6 @@
     </field><field>
       <label>Code postal</label>
       <type>string</type>
-      <required>True</required>
       <varname>postal_code</varname>
       <display_locations>
         <display_location>listings</display_location>
