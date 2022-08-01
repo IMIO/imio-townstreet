@@ -272,9 +272,10 @@
       <display_locations />
       <id>191</id>
     </field><field>
-      <label>Centrez la carte et double cliquez sur la position exacte ou encodez manuellement une adresse pour la position de votre signalement.</label>
+      <label>Emplacement du signalement</label>
       <type>map</type>
       <required>False</required>
+      <hint>Centrez la carte et double cliquez sur la position exacte ou encodez manuellement une adresse pour la position de votre signalement.</hint>
       <varname>map</varname>
       <display_locations>
         <display_location>summary</display_location>
