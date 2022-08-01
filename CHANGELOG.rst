@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.58
+* [TOWS-54] Changed : Avoid being stuck when selecting a road/place who does not have postal code in OpenStreetMap
+* [TOWS-60] Added/Changed : Define hint, rename label
 * [MTELEFONA-10]  map field : fix initial zoom too small [dmshd]
 * [SUP-23324] now hide error on traitment panel [dmshd]
 
