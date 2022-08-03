@@ -644,6 +644,14 @@ Nous faisons notre possible pour r&#233;gler le probl&#232;me au plus vite, le d
           <anonymise type="bool">False</anonymise>
           <display_disabled_items type="bool">False</display_disabled_items>
           <id type="str">6</id>
+        </field><field>
+          <label type="str">Photo non-obligatoire</label>
+          <type type="str">bool</type>
+          <required type="bool">False</required>
+          <hint type="str">Cochez cette case pour rendre le champ "Photo 1" optionnel (au moins 1 photo obligatoire par d&#233;faut).</hint>
+          <varname type="str">pic_not_required</varname>
+          <display_locations />
+          <id type="str">7</id>
         </field>
       </fields>
     </formdef>

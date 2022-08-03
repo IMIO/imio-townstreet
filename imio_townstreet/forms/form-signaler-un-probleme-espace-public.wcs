@@ -16,7 +16,7 @@
   <skip_from_360_view>false</skip_from_360_view>
   <category category_id="113" slug="signaler-un-probleme-espace-public">Signaler un probl&#232;me dans l'espace public</category>
   <workflow slug="imio-signaler-un-probleme-dans-l-espace-public-atal-6" workflow_id="104">iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</workflow>
-  <max_field_id>207</max_field_id>
+  <max_field_id>208</max_field_id>
   <fields>
     <field>
       <label type="str">Votre signalement</label>
@@ -138,10 +138,14 @@
     </field><field>
       <label type="str">Photo 1</label>
       <type type="str">file</type>
-      <required type="bool">True</required>
+      <condition>
+        <type>django</type>
+        <value>not form_option_pic_not_required</value>
+      </condition><required type="bool">True</required>
       <hint type="str">Veuillez joindre une photo.</hint>
       <varname type="str">pic1</varname>
       <display_locations>
+        <display_location>validation</display_location>
         <display_location>summary</display_location>
         <display_location>listings</display_location>
       </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
@@ -154,6 +158,29 @@
       <automatic_image_resize type="bool">True</automatic_image_resize>
       <storage type="str">default</storage>
       <id type="str">138</id>
+    </field><field>
+      <label type="str">Photo 1</label>
+      <type type="str">file</type>
+      <condition>
+        <type>django</type>
+        <value>form_option_pic_not_required</value>
+      </condition><required type="bool">False</required>
+      <hint type="str">Optionnel.</hint>
+      <varname type="str">pic1</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
+      <document_type>
+        <id>_image</id>
+        <label>Fichiers image</label>
+        <mimetypes>image/*</mimetypes>
+      </document_type><max_file_size type="str">30 Mo</max_file_size>
+      <allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      <automatic_image_resize type="bool">True</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">208</id>
     </field><field>
       <label type="str">Photo 2</label>
       <type type="str">file</type>
@@ -614,6 +641,7 @@
     <option varname="on_a_private_building" />
     <option varname="onaprivatebuilding" />
     <option varname="opt_on_a_private_building" />
+    <option varname="pic_not_required" />
     <option varname="postal_code_limit" />
     <option varname="proprete_et_depots_sauvages" />
     <option varname="proprete_et_depots_sauvages_display" />
