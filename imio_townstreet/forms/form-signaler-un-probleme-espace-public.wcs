@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<formdef id="130">
+<formdef id="130" url="https://staging-formulaires.guichet-citoyen.be/backoffice/forms/130/">
   <name>Signaler un probl&#232;me dans l'espace public</name>
   <url_name>signaler-un-probleme-espace-public</url_name>
   <keywords>signalement, probl&#232;me, nid de poule, d&#233;chets, d&#233;p&#244;ts, clandestin, sauvage, d&#233;gradation, routes</keywords>
@@ -14,637 +14,669 @@
   <include_download_all_button>false</include_download_all_button>
   <has_captcha>false</has_captcha>
   <skip_from_360_view>false</skip_from_360_view>
-  <category category_id="120">Signaler un probl&#232;me dans l'espace public</category>
-  <workflow workflow_id="104">iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</workflow>
-  <max_field_id>240</max_field_id>
+  <category category_id="113" slug="signaler-un-probleme-espace-public">Signaler un probl&#232;me dans l'espace public</category>
+  <workflow slug="imio-signaler-un-probleme-dans-l-espace-public-atal-6" workflow_id="104">iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</workflow>
+  <max_field_id>206</max_field_id>
   <fields>
     <field>
-      <label>Cat&#233;gorie</label>
-      <type>page</type>
-      <id>112</id>
+      <label type="str">Cat&#233;gorie</label>
+      <type type="str">page</type>
+      <id type="str">112</id>
     </field><field>
-      <label>Origine de la d&#233;marche</label>
-      <type>computed</type>
-      <varname>origin_source</varname>
-      <value_template>imio</value_template>
-      <freeze_on_initial_value>False</freeze_on_initial_value>
-      <id>237</id>
+      <label type="str">Origine de la d&#233;marche</label>
+      <type type="str">computed</type>
+      <varname type="str">origin_source</varname>
+      <value_template type="str">imio</value_template>
+      <freeze_on_initial_value type="bool">False</freeze_on_initial_value>
+      <id type="str">237</id>
     </field><field>
-      <label>URL d'acc&#232;s &#224; l'origine</label>
-      <type>computed</type>
-      <varname>origin_url</varname>
-      <value_template>{{ form_backoffice_url }}</value_template>
-      <freeze_on_initial_value>False</freeze_on_initial_value>
-      <id>238</id>
+      <label type="str">URL d'acc&#232;s &#224; l'origine</label>
+      <type type="str">computed</type>
+      <varname type="str">origin_url</varname>
+      <value_template type="str">{{ form_backoffice_url }}</value_template>
+      <freeze_on_initial_value type="bool">False</freeze_on_initial_value>
+      <id type="str">238</id>
     </field><field>
-      <label>Identifiant de l'origine</label>
-      <type>computed</type>
-      <varname>origin_id</varname>
-      <value_template>{{ form_internal_id }}</value_template>
-      <freeze_on_initial_value>False</freeze_on_initial_value>
-      <id>240</id>
+      <label type="str">Identifiant de l'origine</label>
+      <type type="str">computed</type>
+      <varname type="str">origin_id</varname>
+      <value_template type="str">{{ form_internal_id }}</value_template>
+      <freeze_on_initial_value type="bool">False</freeze_on_initial_value>
+      <id type="str">240</id>
     </field><field>
-      <label>Cat&#233;gorie</label>
-      <type>subtitle</type>
+      <label type="str">Cat&#233;gorie</label>
+      <type type="str">subtitle</type>
       <display_locations>
         <display_location>validation</display_location>
-      </display_locations><id>186</id>
+      </display_locations><id type="str">186</id>
     </field><field>
-      <label>Cat&#233;gorie de signalement</label>
-      <type>item</type>
-      <required>True</required>
-      <hint>Veuillez s&#233;lectionner une cat&#233;gorie dans la liste</hint>
-      <varname>category</varname>
+      <label type="str">Cat&#233;gorie de signalement</label>
+      <type type="str">item</type>
+      <required type="bool">True</required>
+      <hint type="str">S&#233;lectionnez une cat&#233;gorie</hint>
+      <varname type="str">category</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
         <display_location>listings</display_location>
-      </display_locations><extra_css_class>grid-1-2</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><items />
-      <display_mode>list</display_mode>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <display_mode type="str">list</display_mode>
       <data_source>
-        <type>imio_townstreet_main_categories</type>
-      </data_source><in_filters>False</in_filters>
-      <anonymise>False</anonymise>
-      <display_disabled_items>False</display_disabled_items>
-      <initial_zoom>13</initial_zoom>
-      <id>108</id>
+        <type>formula</type>
+        <value>form_option_categories_filtered_structured or data_source.imio_townstreet_main_categories</value>
+      </data_source><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <initial_zoom type="str">13</initial_zoom>
+      <id type="str">108</id>
     </field><field>
-      <label>Sous-cat&#233;gorie</label>
-      <type>page</type>
+      <label type="str">Sous-cat&#233;gorie</label>
+      <type type="str">page</type>
       <condition>
         <type>django</type>
         <value>form_var_category_raw != "other_category"</value>
-      </condition><id>232</id>
+      </condition><id type="str">232</id>
     </field><field>
-      <label>Sous-cat&#233;gorie</label>
-      <type>subtitle</type>
+      <label type="str">Sous-cat&#233;gorie</label>
+      <type type="str">subtitle</type>
       <display_locations>
         <display_location>validation</display_location>
-      </display_locations><id>190</id>
+      </display_locations><id type="str">190</id>
     </field><field>
-      <label>Sous-cat&#233;gorie de signalement</label>
-      <type>item</type>
+      <label type="str">Sous-cat&#233;gorie de signalement</label>
+      <type type="str">item</type>
       <condition>
         <type>django</type>
         <value>form_var_category</value>
-      </condition><required>True</required>
-      <hint>Veuillez s&#233;lectionner une sous-cat&#233;gorie dans la liste.</hint>
-      <varname>subcategory</varname>
+      </condition><required type="bool">True</required>
+      <hint type="str">Veuillez s&#233;lectionner une sous-cat&#233;gorie dans la liste.</hint>
+      <varname type="str">subcategory</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-2 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2 newline</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>none</type>
-      </prefill><display_mode>list</display_mode>
+      </prefill><display_mode type="str">list</display_mode>
+      <items />
       <data_source>
         <type>imio_townstreet_sous_categories</type>
-      </data_source><in_filters>False</in_filters>
-      <anonymise>False</anonymise>
-      <display_disabled_items>False</display_disabled_items>
-      <initial_zoom>13</initial_zoom>
-      <id>183</id>
+      </data_source><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <initial_zoom type="str">13</initial_zoom>
+      <id type="str">183</id>
     </field><field>
-      <label>D&#233;tails</label>
-      <type>page</type>
-      <id>233</id>
+      <label type="str">D&#233;tails</label>
+      <type type="str">page</type>
+      <id type="str">233</id>
     </field><field>
-      <label>D&#233;tails du signalement</label>
-      <type>subtitle</type>
+      <label type="str">D&#233;tails du signalement</label>
+      <type type="str">subtitle</type>
       <display_locations />
-      <id>193</id>
+      <id type="str">193</id>
     </field><field>
-      <label>Objet du signalement</label>
-      <type>items</type>
+      <label type="str">Objet du signalement</label>
+      <type type="str">items</type>
       <condition>
         <type>django</type>
         <value>form_var_subcategory and form_var_category_raw != "other_category"</value>
-      </condition><required>False</required>
-      <hint>Veuillez cocher les options qui s'appliquent.</hint>
-      <varname>issues</varname>
+      </condition><required type="bool">False</required>
+      <hint type="str">Veuillez cocher les options qui s'appliquent.</hint>
+      <varname type="str">issues</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-1</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>none</type>
-      </prefill><min_choices>0</min_choices>
-      <max_choices>0</max_choices>
+      </prefill><items />
+      <display_mode type="str">checkboxes</display_mode>
+      <min_choices type="int">0</min_choices>
+      <max_choices type="int">0</max_choices>
       <data_source>
         <type>imio_townstreet_issues</type>
-      </data_source><in_filters>False</in_filters>
-      <anonymise>False</anonymise>
-      <display_disabled_items>False</display_disabled_items>
-      <id>231</id>
+      </data_source><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">231</id>
     </field><field>
-      <label>N&#176; d'&#233;clairage</label>
-      <type>string</type>
+      <label type="str">N&#176; d'&#233;clairage</label>
+      <type type="str">string</type>
       <condition>
         <type>django</type>
         <value>form_var_category_raw == "public_lighting"</value>
-      </condition><required>False</required>
-      <hint>Le num&#233;ro de l'&#233;clairage est indispensable afin que votre signalement puisse &#234;tre trait&#233;. Merci de l'indiquer dans le champ concern&#233; ou de nous envoyer une photo l'affichant clairement.</hint>
-      <varname>numero_eclairage</varname>
+      </condition><required type="bool">False</required>
+      <hint type="str">Le num&#233;ro de l'&#233;clairage est indispensable afin que votre signalement puisse &#234;tre trait&#233;. Merci de l'indiquer dans le champ concern&#233; ou de nous envoyer une photo l'affichant clairement.</hint>
+      <varname type="str">numero_eclairage</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class>newline</extra_css_class>
+      </display_locations><extra_css_class type="str">newline</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>none</type>
-      </prefill><anonymise>False</anonymise>
-      <id>196</id>
+      </prefill><anonymise type="bool">False</anonymise>
+      <id type="str">196</id>
     </field><field>
-      <label>Information compl&#233;mentaire (optionnel)</label>
-      <type>text</type>
+      <label type="str">Information compl&#233;mentaire (optionnel)</label>
+      <type type="str">text</type>
       <condition>
         <type>django</type>
         <value>form_var_category_raw != "other_category"</value>
-      </condition><required>False</required>
-      <hint>Max. 500 caract&#232;res et strictement li&#233;e au signalement.</hint>
-      <varname>addinfo</varname>
+      </condition><required type="bool">False</required>
+      <hint type="str">Max. 500 caract&#232;res et strictement li&#233;e au signalement.</hint>
+      <varname type="str">addinfo</varname>
       <display_locations>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid1-2 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid1-2 newline</extra_css_class>
       <prefill>
         <type>none</type>
-      </prefill><rows>3</rows>
-      <pre>False</pre>
-      <maxlength>500</maxlength>
-      <id>118</id>
+      </prefill><rows type="str">3</rows>
+      <pre type="bool">False</pre>
+      <maxlength type="str">500</maxlength>
+      <id type="str">118</id>
     </field><field>
-      <label>Description du signalement</label>
-      <type>text</type>
+      <label type="str">Description du signalement</label>
+      <type type="str">text</type>
       <condition>
         <type>django</type>
         <value>form_var_category_raw == 'other_category'</value>
-      </condition><required>True</required>
-      <hint>Information compl&#233;mentaire et strictement li&#233;e au signalement. (obligatoire, 500 caract&#232;res max.)</hint>
-      <varname>addinfother</varname>
+      </condition><required type="bool">True</required>
+      <hint type="str">Information compl&#233;mentaire et strictement li&#233;e au signalement. (obligatoire, 500 caract&#232;res max.)</hint>
+      <varname type="str">addinfother</varname>
       <display_locations>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid1-2 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid1-2 newline</extra_css_class>
       <prefill>
         <type>none</type>
-      </prefill><rows>3</rows>
-      <pre>False</pre>
-      <maxlength>500</maxlength>
-      <id>157</id>
+      </prefill><rows type="str">3</rows>
+      <pre type="bool">False</pre>
+      <maxlength type="str">500</maxlength>
+      <id type="str">157</id>
     </field><field>
-      <label>Photos du signalement</label>
-      <type>subtitle</type>
+      <label type="str">Photos du signalement</label>
+      <type type="str">subtitle</type>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><id>188</id>
+      </display_locations><id type="str">188</id>
     </field><field>
-      <label>Photo 1</label>
-      <type>file</type>
-      <required>True</required>
-      <varname>pic1</varname>
+      <label type="str">Photo 1</label>
+      <type type="str">file</type>
+      <required type="bool">True</required>
+      <varname type="str">pic1</varname>
       <display_locations>
         <display_location>summary</display_location>
         <display_location>listings</display_location>
-      </display_locations><extra_css_class>grid-1-4</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
       <prefill>
         <type>none</type>
       </prefill><document_type>
         <id>_image</id>
         <label>Fichiers image</label>
         <mimetypes>image/*</mimetypes>
-      </document_type><max_file_size>30 Mo</max_file_size>
-      <allow_portfolio_picking>False</allow_portfolio_picking>
-      <automatic_image_resize>True</automatic_image_resize>
-      <storage>default</storage>
-      <id>138</id>
+      </document_type><max_file_size type="str">30 Mo</max_file_size>
+      <allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      <automatic_image_resize type="bool">True</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">138</id>
     </field><field>
-      <label>Photo 2</label>
-      <type>file</type>
-      <required>False</required>
-      <hint>Optionnel.</hint>
-      <varname>pic2</varname>
+      <label type="str">Photo 2</label>
+      <type type="str">file</type>
+      <required type="bool">False</required>
+      <hint type="str">Optionnel.</hint>
+      <varname type="str">pic2</varname>
       <display_locations>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-4</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
       <prefill>
         <type>none</type>
       </prefill><document_type>
         <id>_image</id>
         <label>Fichiers image</label>
         <mimetypes>image/*</mimetypes>
-      </document_type><max_file_size>30 Mo</max_file_size>
-      <allow_portfolio_picking>False</allow_portfolio_picking>
-      <automatic_image_resize>True</automatic_image_resize>
-      <storage>default</storage>
-      <id>139</id>
+      </document_type><max_file_size type="str">30 Mo</max_file_size>
+      <allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      <automatic_image_resize type="bool">True</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">139</id>
     </field><field>
-      <label>Photo 3</label>
-      <type>file</type>
-      <required>False</required>
-      <hint>Optionnel.</hint>
-      <varname>pic3</varname>
+      <label type="str">Photo 3</label>
+      <type type="str">file</type>
+      <required type="bool">False</required>
+      <hint type="str">Optionnel.</hint>
+      <varname type="str">pic3</varname>
       <display_locations>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-4</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
       <prefill>
         <type>none</type>
       </prefill><document_type>
         <id>_image</id>
         <label>Fichiers image</label>
         <mimetypes>image/*</mimetypes>
-      </document_type><max_file_size>30 Mo</max_file_size>
-      <allow_portfolio_picking>False</allow_portfolio_picking>
-      <automatic_image_resize>True</automatic_image_resize>
-      <storage>default</storage>
-      <id>140</id>
+      </document_type><max_file_size type="str">30 Mo</max_file_size>
+      <allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      <automatic_image_resize type="bool">True</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">140</id>
     </field><field>
-      <label>Localisation</label>
-      <type>page</type>
-      <id>235</id>
+      <label type="str">Localisation</label>
+      <type type="str">page</type>
+      <id type="str">235</id>
     </field><field>
-      <label>Localisation du signalement</label>
-      <type>subtitle</type>
+      <label type="str">Localisation du signalement</label>
+      <type type="str">subtitle</type>
       <display_locations />
-      <id>191</id>
+      <id type="str">191</id>
     </field><field>
-      <label>Emplacement du signalement</label>
-      <type>map</type>
-      <required>False</required>
-      <hint>Centrez la carte et double cliquez sur la position exacte ou encodez manuellement une adresse pour la position de votre signalement.</hint>
-      <varname>map</varname>
+      <label type="str">Emplacement du signalement</label>
+      <type type="str">map</type>
+      <required type="bool">False</required>
+      <hint type="str">Centrez la carte et double cliquez sur la position exacte ou encodez manuellement une adresse pour la position de votre signalement.</hint>
+      <varname type="str">map</varname>
       <display_locations>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-1</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
       <prefill>
         <type>geolocation</type>
         <value>position</value>
-      </prefill><initial_zoom>13</initial_zoom>
-      <min_zoom>11</min_zoom>
-      <max_zoom>19</max_zoom>
-      <init_with_geoloc>True</init_with_geoloc>
-      <id>121</id>
+      </prefill><initial_zoom type="str">13</initial_zoom>
+      <min_zoom type="str">11</min_zoom>
+      <max_zoom type="str">19</max_zoom>
+      <init_with_geoloc type="bool">True</init_with_geoloc>
+      <id type="str">121</id>
     </field><field>
-      <label>Rue</label>
-      <type>string</type>
-      <required>True</required>
-      <varname>street</varname>
+      <label type="str">Rue</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">street</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-3-4</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-3-4</extra_css_class>
       <prefill>
         <type>geolocation</type>
         <value>road</value>
-      </prefill><anonymise>False</anonymise>
-      <id>124</id>
+      </prefill><anonymise type="bool">False</anonymise>
+      <id type="str">124</id>
     </field><field>
-      <label>Num&#233;ro</label>
-      <type>string</type>
-      <required>False</required>
-      <varname>number</varname>
+      <label type="str">Num&#233;ro</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">number</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-4</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
       <prefill>
         <type>geolocation</type>
         <value>house</value>
-      </prefill><anonymise>False</anonymise>
-      <id>123</id>
+      </prefill><anonymise type="bool">False</anonymise>
+      <id type="str">123</id>
     </field><field>
-      <label>Code postal</label>
-      <type>string</type>
-      <varname>postal_code</varname>
+      <label type="str">Code postal</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">postal_code</varname>
       <display_locations>
         <display_location>listings</display_location>
-      </display_locations><extra_css_class>grid-1-6</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-6</extra_css_class>
       <prefill>
         <type>geolocation</type>
         <value>postcode</value>
-      </prefill><anonymise>False</anonymise>
-      <id>125</id>
+      </prefill><anonymise type="bool">False</anonymise>
+      <id type="str">125</id>
     </field><field>
-      <label>Localit&#233;</label>
-      <type>string</type>
-      <required>True</required>
-      <varname>city</varname>
+      <label type="str">Localit&#233;</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">city</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-5-6</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-5-6</extra_css_class>
       <prefill>
         <type>geolocation</type>
         <value>city</value>
-      </prefill><anonymise>False</anonymise>
-      <id>126</id>
+      </prefill><anonymise type="bool">False</anonymise>
+      <id type="str">126</id>
     </field><field>
-      <label>&lt;p&gt;{% if form_option_geolimityn %}Attention, vous ne pourrez pas compl&amp;eacute;ter la d&amp;eacute;marche si votre signalement ne figure pas sur le territoire de Verviers (code postaux : {{form_option_postal_code_limit}}).{% endif %}&lt;/p&gt;</label>
-      <type>comment</type>
+      <label type="str">&lt;p&gt;{% if form_option_geolimityn %}Attention, vous ne pourrez pas compl&amp;eacute;ter la d&amp;eacute;marche si votre signalement ne figure pas sur le territoire de Verviers (code postaux : {{form_option_postal_code_limit}}).{% endif %}&lt;/p&gt;</label>
+      <type type="str">comment</type>
       <display_locations />
-      <id>115</id>
+      <id type="str">115</id>
     </field><field>
-      <label>Le tag figure sur un &#233;difice priv&#233;</label>
-      <type>bool</type>
+      <label type="str">Le tag figure sur un &#233;difice priv&#233;</label>
+      <type type="str">bool</type>
       <condition>
         <type>django</type>
         <value>form_option_onaprivatebuilding == True and form_var_category_raw  == 'graffitis_tags_posters'</value>
-      </condition><required>False</required>
-      <hint>Cochez cette case si l'objet du signalement figure sur un b&#226;timent priv&#233;.</hint>
-      <varname>private_building_yn</varname>
+      </condition><required type="bool">False</required>
+      <hint type="str">Cochez cette case si l'objet du signalement figure sur un b&#226;timent priv&#233;.</hint>
+      <varname type="str">private_building_yn</varname>
       <display_locations>
         <display_location>summary</display_location>
         <display_location>listings</display_location>
-      </display_locations><extra_css_class>grid-1-1 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-1 newline</extra_css_class>
       <prefill>
         <type>none</type>
-      </prefill><id>149</id>
+      </prefill><id type="str">149</id>
     </field><field>
-      <label>&lt;p&gt;&lt;strong&gt;Si l'objet de ce signalement de figure sur un b&amp;acirc;timent priv&amp;eacute; et afin que nous puission intervenir&lt;/strong&gt; :&lt;/p&gt;
+      <label type="str">&lt;p&gt;&lt;strong&gt;Si l'objet de ce signalement de figure sur un b&amp;acirc;timent priv&amp;eacute; et afin que nous puission intervenir&lt;/strong&gt; :&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Veuillez vous munir&lt;/strong&gt; &lt;strong&gt;des coordonn&amp;eacute;es du propri&amp;eacute;taire du b&amp;acirc;timent&lt;/strong&gt;, &lt;strong&gt;du N&amp;deg; de proc&amp;egrave;s verbal de la plainte d&amp;eacute;pos&amp;eacute;e pour vandalisme aupr&amp;egrave;s de la zone de police&lt;/strong&gt;, &lt;strong&gt;ainsi que d'un scan de la plainte&lt;/strong&gt;, &lt;strong&gt;de m&amp;ecirc;me qu'un scan d'une autorisation dat&amp;eacute;e et sign&amp;eacute;e de votre part nous autorisant &amp;agrave; intervenir sur votre bien&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;p&gt;Veuillez joindre ces documents &amp;agrave; cette d&amp;eacute;marche via les champs de t&amp;eacute;l&amp;eacute;versement de fichiers, pr&amp;eacute;vus &amp;agrave; cet effet.&lt;/p&gt;</label>
-      <type>comment</type>
+      <type type="str">comment</type>
       <condition>
         <type>django</type>
         <value>form_var_category_raw  == 'graffitis_tags_posters' and form_var_private_building_yn == True</value>
       </condition><display_locations />
-      <id>176</id>
+      <id type="str">176</id>
     </field><field>
-      <label>&lt;p&gt;&lt;strong&gt;Attention, seuls les graffitis pr&amp;eacute;sents sur les photos jointes &amp;agrave; ce formulaire et visibles depuis la voie publique seront pris en consid&amp;eacute;ration.&lt;/strong&gt;&lt;/p&gt;</label>
-      <type>comment</type>
+      <label type="str">&lt;p&gt;&lt;strong&gt;Attention, seuls les graffitis pr&amp;eacute;sents sur les photos jointes &amp;agrave; ce formulaire et visibles depuis la voie publique seront pris en consid&amp;eacute;ration.&lt;/strong&gt;&lt;/p&gt;</label>
+      <type type="str">comment</type>
       <condition>
         <type>django</type>
         <value>form_var_private_building_yn == True</value>
       </condition><display_locations />
-      <id>174</id>
+      <id type="str">174</id>
     </field><field>
-      <label>Je souhaite &#234;tre tenu inform&#233;&#183;e des suites qui seront donn&#233;es &#224; ce signalement</label>
-      <type>bool</type>
-      <required>False</required>
-      <hint>Cochez cette case pour &#234;tre tenu inform&#233;&#183;e. Vous serez invit&#233;&#183;e &#224; communiquer vos coordonn&#233;es.</hint>
-      <varname>follow</varname>
+      <label type="str">Je souhaite &#234;tre tenu inform&#233;&#183;e des suites qui seront donn&#233;es &#224; ce signalement</label>
+      <type type="str">bool</type>
+      <required type="bool">False</required>
+      <hint type="str">Cochez cette case pour &#234;tre tenu inform&#233;&#183;e. Vous serez invit&#233;&#183;e &#224; communiquer vos coordonn&#233;es.</hint>
+      <varname type="str">follow</varname>
       <display_locations>
         <display_location>listings</display_location>
-      </display_locations><extra_css_class>grid-1-1 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-1 newline</extra_css_class>
       <prefill>
         <type>none</type>
-      </prefill><id>150</id>
+      </prefill><id type="str">150</id>
     </field><field>
-      <label>Vos coordonn&#233;es</label>
-      <type>subtitle</type>
+      <label type="str">Vos coordonn&#233;es</label>
+      <type type="str">subtitle</type>
       <condition>
         <type>django</type>
         <value>form_var_follow == True</value>
       </condition><display_locations />
-      <id>194</id>
+      <id type="str">194</id>
     </field><field>
-      <label>Pr&#233;nom</label>
-      <type>string</type>
+      <label type="str">Pr&#233;nom</label>
+      <type type="str">string</type>
       <condition>
         <type>django</type>
         <value>form_var_follow == True</value>
-      </condition><required>True</required>
-      <varname>firstname</varname>
+      </condition><required type="bool">True</required>
+      <varname type="str">firstname</varname>
       <display_locations>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-4</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
       <prefill>
         <type>user</type>
         <value>_first_name</value>
-      </prefill><anonymise>True</anonymise>
-      <id>152</id>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">152</id>
     </field><field>
-      <label>Nom</label>
-      <type>string</type>
+      <label type="str">Nom</label>
+      <type type="str">string</type>
       <condition>
         <type>django</type>
         <value>form_var_follow == True</value>
-      </condition><required>True</required>
-      <varname>lastname</varname>
+      </condition><required type="bool">True</required>
+      <varname type="str">lastname</varname>
       <display_locations>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-4</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
       <prefill>
         <type>user</type>
         <value>_last_name</value>
-      </prefill><anonymise>True</anonymise>
-      <id>151</id>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">151</id>
     </field><field>
-      <label>Adresse mail</label>
-      <type>email</type>
+      <label type="str">Adresse mail</label>
+      <type type="str">email</type>
       <condition>
         <type>django</type>
         <value>form_var_follow == True</value>
-      </condition><required>True</required>
-      <varname>mail</varname>
+      </condition><required type="bool">True</required>
+      <varname type="str">mail</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-2 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2 newline</extra_css_class>
       <prefill>
         <type>user</type>
         <value>_email</value>
-      </prefill><id>156</id>
+      </prefill><id type="str">156</id>
     </field><field>
-      <label>L'&#233;quipe charg&#233;e de traiter ce signalement peut m'appeler pour me demander des informations compl&#233;mentaires</label>
-      <type>bool</type>
-      <required>False</required>
-      <hint>En cas de besoin et pour localiser ou traiter au mieux l'objet de votre signalement.</hint>
-      <varname>helpacknow</varname>
+      <label type="str">L'&#233;quipe charg&#233;e de traiter ce signalement peut m'appeler pour me demander des informations compl&#233;mentaires</label>
+      <type type="str">bool</type>
+      <required type="bool">False</required>
+      <hint type="str">En cas de besoin et pour localiser ou traiter au mieux l'objet de votre signalement.</hint>
+      <varname type="str">helpacknow</varname>
       <display_locations>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-1 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-1 newline</extra_css_class>
       <prefill>
         <type>none</type>
-      </prefill><id>158</id>
+      </prefill><id type="str">158</id>
     </field><field>
-      <label>Votre num&#233;ro de t&#233;l&#233;phone</label>
-      <type>string</type>
+      <label type="str">Votre num&#233;ro de t&#233;l&#233;phone</label>
+      <type type="str">string</type>
       <condition>
         <type>django</type>
         <value>form_var_helpacknow == True</value>
-      </condition><required>True</required>
-      <varname>phonenum</varname>
+      </condition><required type="bool">True</required>
+      <varname type="str">phonenum</varname>
       <display_locations>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-2 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2 newline</extra_css_class>
       <prefill>
         <type>user</type>
         <value>_phone</value>
-      </prefill><anonymise>True</anonymise>
-      <id>154</id>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">154</id>
     </field><field>
-      <label>Informations n&#233;c&#233;ssaires (graffiti sur b&#226;timent priv&#233;)</label>
-      <type>page</type>
+      <label type="str">Informations n&#233;c&#233;ssaires (graffiti sur b&#226;timent priv&#233;)</label>
+      <type type="str">page</type>
       <condition>
         <type>django</type>
         <value>form_var_private_building_yn == True</value>
-      </condition><id>163</id>
+      </condition><id type="str">163</id>
     </field><field>
-      <label>Convention pour l'enl&#232;vement de graffitis sur un bien priv&#233;</label>
-      <type>title</type>
+      <label type="str">Convention pour l'enl&#232;vement de graffitis sur un bien priv&#233;</label>
+      <type type="str">title</type>
       <display_locations />
-      <id>164</id>
+      <id type="str">164</id>
     </field><field>
-      <label>Coordonn&#233;es du demandeur</label>
-      <type>subtitle</type>
+      <label type="str">Coordonn&#233;es du demandeur</label>
+      <type type="str">subtitle</type>
       <display_locations />
-      <id>165</id>
+      <id type="str">165</id>
     </field><field>
-      <label>Nom</label>
-      <type>string</type>
-      <required>True</required>
-      <varname>tags_reporter_lastn</varname>
+      <label type="str">Nom</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">tags_reporter_lastn</varname>
       <display_locations />
-      <extra_css_class>grid-1-2</extra_css_class>
+      <extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
         <type>string</type>
         <value>{{ form_var_lastname }}</value>
-      </prefill><anonymise>False</anonymise>
-      <id>166</id>
+      </prefill><anonymise type="bool">False</anonymise>
+      <id type="str">166</id>
     </field><field>
-      <label>Pr&#233;nom</label>
-      <type>string</type>
-      <required>True</required>
-      <varname>tags_reporter_firstn</varname>
+      <label type="str">Pr&#233;nom</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">tags_reporter_firstn</varname>
       <display_locations />
-      <extra_css_class>grid-1-2</extra_css_class>
+      <extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
         <type>string</type>
         <value>{{ form_var_firstname }}</value>
-      </prefill><anonymise>False</anonymise>
-      <id>167</id>
+      </prefill><anonymise type="bool">False</anonymise>
+      <id type="str">167</id>
     </field><field>
-      <label>Coordonn&#233;es du propri&#233;taire (si diff&#233;rent du demandeur)</label>
-      <type>subtitle</type>
+      <label type="str">Coordonn&#233;es du propri&#233;taire (si diff&#233;rent du demandeur)</label>
+      <type type="str">subtitle</type>
       <display_locations />
-      <id>168</id>
+      <id type="str">168</id>
     </field><field>
-      <label>Nom</label>
-      <type>string</type>
-      <required>False</required>
-      <hint>Uniquement si diff&#233;rent du demandeur.</hint>
-      <varname>tags_building_owner_lastname</varname>
+      <label type="str">Nom</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <hint type="str">Uniquement si diff&#233;rent du demandeur.</hint>
+      <varname type="str">tags_building_owner_lastname</varname>
       <display_locations />
-      <extra_css_class>grid-1-2</extra_css_class>
+      <extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
         <type>none</type>
-      </prefill><anonymise>False</anonymise>
-      <id>169</id>
+      </prefill><anonymise type="bool">False</anonymise>
+      <id type="str">169</id>
     </field><field>
-      <label>Pr&#233;nom</label>
-      <type>string</type>
-      <required>False</required>
-      <varname>tags_building_owner_firstname</varname>
+      <label type="str">Pr&#233;nom</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">tags_building_owner_firstname</varname>
       <display_locations />
-      <extra_css_class>grid-1-2</extra_css_class>
+      <extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
         <type>none</type>
-      </prefill><anonymise>True</anonymise>
-      <id>170</id>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">170</id>
     </field><field>
-      <label>Renseignemens compl&#233;mentaires</label>
-      <type>subtitle</type>
+      <label type="str">Renseignemens compl&#233;mentaires</label>
+      <type type="str">subtitle</type>
       <display_locations />
-      <id>171</id>
+      <id type="str">171</id>
     </field><field>
-      <label>Confirmation de la localisation du bien &#224; nettoyer</label>
-      <type>string</type>
-      <required>True</required>
-      <hint>Merci de confirmer le lieu en inscrivant l'adresse compl&#232;te du bien &#224; nettoyer.</hint>
-      <varname>tags_owner_addressconfirm</varname>
+      <label type="str">Confirmation de la localisation du bien &#224; nettoyer</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <hint type="str">Merci de confirmer le lieu en inscrivant l'adresse compl&#232;te du bien &#224; nettoyer.</hint>
+      <varname type="str">tags_owner_addressconfirm</varname>
       <display_locations />
-      <extra_css_class>grid-1-1</extra_css_class>
+      <extra_css_class type="str">grid-1-1</extra_css_class>
       <prefill>
         <type>none</type>
-      </prefill><anonymise>False</anonymise>
-      <id>175</id>
+      </prefill><anonymise type="bool">False</anonymise>
+      <id type="str">175</id>
     </field><field>
-      <label>Type(s) de surface(s) &#224; nettoyer</label>
-      <type>string</type>
-      <required>True</required>
-      <hint>Exemples : pierres, briques, b&#233;ton, PVC, verre, bois,...</hint>
-      <varname>tags_surface_type</varname>
+      <label type="str">Type(s) de surface(s) &#224; nettoyer</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <hint type="str">Exemples : pierres, briques, b&#233;ton, PVC, verre, bois,...</hint>
+      <varname type="str">tags_surface_type</varname>
       <display_locations>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-2</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
         <type>none</type>
-      </prefill><anonymise>False</anonymise>
-      <id>172</id>
+      </prefill><anonymise type="bool">False</anonymise>
+      <id type="str">172</id>
     </field><field>
-      <label>Surface approximative &#224; nettoyer (m&#178;)</label>
-      <type>string</type>
-      <required>True</required>
-      <varname>tags_surface_dim</varname>
+      <label type="str">Surface approximative &#224; nettoyer (m&#178;)</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">tags_surface_dim</varname>
       <display_locations>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-2</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
         <type>none</type>
-      </prefill><anonymise>False</anonymise>
-      <id>173</id>
+      </prefill><anonymise type="bool">False</anonymise>
+      <id type="str">173</id>
     </field><field>
-      <label>Scan de la plainte d&#233;pos&#233;e</label>
-      <type>file</type>
-      <required>True</required>
-      <varname>scan_complaint</varname>
+      <label type="str">Scan de la plainte d&#233;pos&#233;e</label>
+      <type type="str">file</type>
+      <required type="bool">True</required>
+      <varname type="str">scan_complaint</varname>
       <display_locations>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-1</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
       <prefill>
         <type>none</type>
-      </prefill><max_file_size>35 Mo</max_file_size>
-      <allow_portfolio_picking>False</allow_portfolio_picking>
-      <automatic_image_resize>True</automatic_image_resize>
-      <storage>default</storage>
-      <id>177</id>
+      </prefill><max_file_size type="str">35 Mo</max_file_size>
+      <allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      <automatic_image_resize type="bool">True</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">177</id>
     </field><field>
-      <label>Attestation dat&#233;e et sign&#233;e nous autorisant &#224; intervenir</label>
-      <type>file</type>
-      <required>True</required>
-      <varname>scan_authorization</varname>
+      <label type="str">Attestation dat&#233;e et sign&#233;e nous autorisant &#224; intervenir</label>
+      <type type="str">file</type>
+      <required type="bool">True</required>
+      <varname type="str">scan_authorization</varname>
       <display_locations>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class>grid-1-1</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
       <prefill>
         <type>none</type>
-      </prefill><max_file_size>35 Mo</max_file_size>
-      <allow_portfolio_picking>False</allow_portfolio_picking>
-      <automatic_image_resize>True</automatic_image_resize>
-      <storage>default</storage>
-      <id>178</id>
+      </prefill><max_file_size type="str">35 Mo</max_file_size>
+      <allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      <automatic_image_resize type="bool">True</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">178</id>
     </field>
   </fields><backoffice-submission-roles>
-    <role role_id="">Agent traitant - Townstreet</role>
+    <role role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10" slug="agent-traitant-townstreet">Agent traitant - Townstreet</role>
   </backoffice-submission-roles><roles>
-    <role role_id="" role_key="_ext_bo">Debug</role>
-    <role role_id="" role_key="_receiver">Agent traitant - Townstreet</role>
+    <role role_id="df908b92acec4a68b3a11bbf516263d9" role_key="_ext_bo" slug="debug">Debug</role>
+    <role role_id="9be8b3ce1b3244be8f6e05a9aa003cf0" role_key="_receiver" slug="agent-ayant-acces-aux-fabriques">Agent ayant acces aux fabriques</role>
   </roles><options>
+    <option varname="categories_filtered" />
+    <option varname="categories_filtered_display">Propret&#233; et d&#233;p&#244;ts sauvages, Voies publiques, Graffitis, Tags et affichages sauvages, Espaces verts, D&#233;gradations du mobilier urbain, Autres types de signalement</option>
+    <option varname="categories_filtered_structured" />
+    <option varname="degradations_du_mobilier_urbain" />
+    <option varname="degradations_du_mobilier_urbain_display" />
+    <option varname="degradations_du_mobilier_urbain_structured" />
     <option varname="eatal_version">5</option>
     <option varname="eatal_version_display">ATAL 5</option>
     <option varname="eatal_version_structured" />
+    <option varname="eclairages_publics" />
+    <option varname="eclairages_publics_display" />
+    <option varname="eclairages_publics_structured" />
     <option varname="environnement">test</option>
     <option varname="environnement_display">Test</option>
     <option varname="environnement_structured" />
+    <option varname="espaces_verts" />
+    <option varname="espaces_verts_display" />
+    <option varname="espaces_verts_structured" />
     <option varname="geolimityn" />
+    <option varname="graffitis_tags_et_affichages_sauvages" />
+    <option varname="graffitis_tags_et_affichages_sauvages_display" />
+    <option varname="graffitis_tags_et_affichages_sauvages_structured" />
     <option varname="iatech" />
     <option varname="new_signal_alert_mail" />
     <option varname="on_a_private_building" />
     <option varname="onaprivatebuilding" />
     <option varname="opt_on_a_private_building" />
     <option varname="postal_code_limit" />
+    <option varname="proprete_et_depots_sauvages" />
+    <option varname="proprete_et_depots_sauvages_display" />
+    <option varname="proprete_et_depots_sauvages_structured" />
+    <option varname="selected_categories" />
+    <option varname="selected_categories_display" />
+    <option varname="selected_categories_structured" />
+    <option varname="selected_subcategories" />
+    <option varname="selected_subcategories_display">Poubelles conteneurs et corbeilles, Conteneurs de textiles</option>
+    <option varname="selected_subcategories_structured" />
+    <option varname="service_demandeur">2595</option>
+    <option varname="service_demandeur_display">Demandes citoyennes</option>
+    <option varname="service_demandeur_structured" />
+    <option varname="souscategories_de_signalement_offertes" />
+    <option varname="souscategories_de_signalement_offertes_display" />
+    <option varname="souscategories_de_signalement_offertes_structured" />
+    <option varname="voies_publiques" />
+    <option varname="voies_publiques_display" />
+    <option varname="voies_publiques_structured" />
     <option varname="zoom_max">50</option>
   </options><custom_views>
     <custom_view>
-      <title>iMio Townstreet</title>
-      <slug>imio-townstreet</slug>
+      <title>iMio Townstreet - Vue par d&#233;faut</title>
+      <slug>imio-townstreet-vue-par-defaut</slug>
       <visibility>any</visibility>
       <filters>
         <filter>all</filter>

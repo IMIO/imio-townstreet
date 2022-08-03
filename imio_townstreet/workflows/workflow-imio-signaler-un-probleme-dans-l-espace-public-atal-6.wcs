@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<workflow id="84" url="">
+<workflow id="104" url="https://staging-formulaires.guichet-citoyen.be/backoffice/workflows/104/">
   <name>iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</name>
   <slug>imio-signaler-un-probleme-dans-l-espace-public-atal-6</slug>
   <roles>
@@ -321,7 +321,7 @@
             <item role_id="_submitter">_submitter</item>
           </to>
         </item><item id="2" type="register-comment">
-              <comment>&lt;b&gt;{% if form_var_street %}{{form_var_street}}&lt;/b&gt;{% endif %} &#224; &lt;b&gt;{{form_var_city}}&lt;/b&gt; ({{form_var_desc}}).</comment>
+          <comment>&lt;b&gt;{% if form_var_street %}{{form_var_street}}&lt;/b&gt;{% endif %} &#224; &lt;b&gt;{{form_var_city}}&lt;/b&gt; ({{form_var_desc}}).</comment>
           <attachments>
             <attachment>{{ form_var_pic1_raw }}</attachment>
             <attachment>{{ form_var_pic2_raw }}</attachment>
@@ -520,7 +520,7 @@ Nous faisons notre possible pour r&#233;gler le probl&#232;me au plus vite, le d
       <items>
         <item id="1" type="remove" />
       </items><triggers>
-        <trigger id="e5c48428-cabb-46fc-809d-5d6cd2106f46" type="manual">
+        <trigger id="721f63d5-b4f3-44f2-9795-0c1f3b7d15dd" type="manual">
           <roles>
             <item role_id="df908b92acec4a68b3a11bbf516263d9" slug="debug">Debug</item>
           </roles>
@@ -536,7 +536,7 @@ Nous faisons notre possible pour r&#233;gler le probl&#232;me au plus vite, le d
           <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items><triggers>
-        <trigger id="fd713edb-cd9d-40eb-bb80-8576cf6120a2" type="manual">
+        <trigger id="a163c24c-ad45-486b-bef8-72bafeaeb566" type="manual">
           <roles>
             <item role_id="df908b92acec4a68b3a11bbf516263d9" slug="debug">Debug</item>
           </roles>
@@ -552,7 +552,7 @@ Nous faisons notre possible pour r&#233;gler le probl&#232;me au plus vite, le d
           <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items><triggers>
-        <trigger id="f28eac4c-b2b5-427d-92c5-2889fe50d1d2" type="manual">
+        <trigger id="a3ad0c5b-3c73-47e8-a072-c04f6b863c69" type="manual">
           <roles>
             <item role_id="df908b92acec4a68b3a11bbf516263d9" slug="debug">Debug</item>
           </roles>
@@ -604,8 +604,8 @@ Nous faisons notre possible pour r&#233;gler le probl&#232;me au plus vite, le d
           <hint type="str">S&#233;lectionnez l'environnement utilis&#233; pour cette d&#233;marche</hint>
           <varname type="str">environnement</varname>
           <display_locations />
-          <items />
           <display_mode type="str">radio</display_mode>
+          <items />
           <data_source>
             <type>imio_townstreet_environnement</type>
           </data_source><in_filters type="bool">False</in_filters>
@@ -620,6 +620,7 @@ Nous faisons notre possible pour r&#233;gler le probl&#232;me au plus vite, le d
           <varname type="str">service_demandeur</varname>
           <display_locations />
           <display_mode type="str">list</display_mode>
+          <items />
           <data_source>
             <type>imio_townstreet_services_iatech</type>
             <value>{{passerelle_url}}passerelle-imio-ia-tech/atal-demov6/third-parties</value>
@@ -627,6 +628,22 @@ Nous faisons notre possible pour r&#233;gler le probl&#232;me au plus vite, le d
           <anonymise type="bool">False</anonymise>
           <display_disabled_items type="bool">False</display_disabled_items>
           <id type="str">5</id>
+        </field><field>
+          <label type="str">Cat&#233;gories offertes</label>
+          <type type="str">items</type>
+          <required type="bool">False</required>
+          <hint type="str">Cochez les cat&#233;gories qui appara&#238;tront dans le menu d&#233;roulant du formulaire. N'en cochez aucune pour les employer toutes.</hint>
+          <varname type="str">categories_filtered</varname>
+          <display_locations />
+          <display_mode type="str">checkboxes</display_mode>
+          <min_choices type="int">0</min_choices>
+          <max_choices type="int">0</max_choices>
+          <data_source>
+            <type>imio_townstreet_main_categories</type>
+          </data_source><in_filters type="bool">False</in_filters>
+          <anonymise type="bool">False</anonymise>
+          <display_disabled_items type="bool">False</display_disabled_items>
+          <id type="str">6</id>
         </field>
       </fields>
     </formdef>
