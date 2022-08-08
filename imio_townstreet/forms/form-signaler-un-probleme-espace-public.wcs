@@ -16,7 +16,7 @@
   <skip_from_360_view>false</skip_from_360_view>
   <category category_id="113" slug="signaler-un-probleme-espace-public">Signaler un probl&#232;me dans l'espace public</category>
   <workflow slug="imio-signaler-un-probleme-dans-l-espace-public-atal-6" workflow_id="104">iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</workflow>
-  <max_field_id>208</max_field_id>
+  <max_field_id>210</max_field_id>
   <fields>
     <field>
       <label type="str">Votre signalement</label>
@@ -56,6 +56,7 @@
         <display_location>statistics</display_location>
       </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <display_mode type="str">list</display_mode>
+      <items />
       <data_source>
         <type>formula</type>
         <value>form_option_categories_filtered_structured or data_source.imio_townstreet_main_categories</value>
@@ -80,6 +81,7 @@
         <display_location>statistics</display_location>
       </display_locations><extra_css_class type="str">grid-1-2 newline</extra_css_class>
       <display_mode type="str">list</display_mode>
+      <items />
       <data_source>
         <type>imio_townstreet_sous_categories</type>
       </data_source><in_filters type="bool">False</in_filters>
@@ -102,6 +104,7 @@
         <display_location>listings</display_location>
         <display_location>statistics</display_location>
       </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
+      <items />
       <display_mode type="str">checkboxes</display_mode>
       <min_choices type="int">0</min_choices>
       <max_choices type="int">0</max_choices>
@@ -111,6 +114,41 @@
       <anonymise type="bool">False</anonymise>
       <display_disabled_items type="bool">False</display_disabled_items>
       <id type="str">231</id>
+    </field><field>
+      <label type="str">Description du signalement "Autre"</label>
+      <type type="str">text</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_category_raw == 'other_category'</value>
+      </condition><required type="bool">True</required>
+      <hint type="str">Veuillez pr&#233;ciser "Autre". Max. 500 caract&#232;res.</hint>
+      <varname type="str">addinfother</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><extra_css_class type="str">grid1-2 newline</extra_css_class>
+      <rows type="str">3</rows>
+      <pre type="bool">False</pre>
+      <maxlength type="str">500</maxlength>
+      <id type="str">157</id>
+    </field><field>
+      <label type="str">Information compl&#233;mentaire</label>
+      <type type="str">text</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_category_raw != "other_category"</value>
+      </condition><required type="bool">False</required>
+      <hint type="str">Toute information compl&#233;mentaire ou utile &#224; votre signalement. Optionnel. Max. 500 caract&#232;res.</hint>
+      <varname type="str">addinfo</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><extra_css_class type="str">grid1-2 newline</extra_css_class>
+      <pre type="bool">False</pre>
+      <maxlength type="str">500</maxlength>
+      <id type="str">207</id>
     </field><field>
       <label type="str">N&#176; d'&#233;clairage</label>
       <type type="str">string</type>
@@ -217,24 +255,6 @@
       <automatic_image_resize type="bool">True</automatic_image_resize>
       <storage type="str">default</storage>
       <id type="str">140</id>
-    </field><field>
-      <label type="str">Description du signalement "Autre"</label>
-      <type type="str">text</type>
-      <condition>
-        <type>django</type>
-        <value>form_var_category_raw == 'other_category'</value>
-      </condition><required type="bool">True</required>
-      <hint type="str">Veuillez pr&#233;ciser "Autre". Max. 500 caract&#232;res.</hint>
-      <varname type="str">addinfother</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-        <display_location>listings</display_location>
-      </display_locations><extra_css_class type="str">grid1-2 newline</extra_css_class>
-      <rows type="str">3</rows>
-      <pre type="bool">False</pre>
-      <maxlength type="str">500</maxlength>
-      <id type="str">157</id>
     </field><field>
       <label type="str">Localisation du signalement</label>
       <type type="str">subtitle</type>
@@ -449,23 +469,6 @@
         <value>_phone</value>
       </prefill><anonymise type="bool">True</anonymise>
       <id type="str">154</id>
-    </field><field>
-      <label type="str">Information compl&#233;mentaire</label>
-      <type type="str">text</type>
-      <condition>
-        <type>django</type>
-        <value>form_var_category_raw != "other_category"</value>
-      </condition><required type="bool">False</required>
-      <hint type="str">Toute information compl&#233;mentaire ou utile &#224; votre signalement. Optionnel. Max. 500 caract&#232;res.</hint>
-      <varname type="str">addinfo</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-        <display_location>listings</display_location>
-      </display_locations><extra_css_class type="str">grid1-2 newline</extra_css_class>
-      <pre type="bool">False</pre>
-      <maxlength type="str">500</maxlength>
-      <id type="str">207</id>
     </field><field>
       <label type="str">Informations n&#233;c&#233;ssaires (graffiti sur b&#226;timent priv&#233;)</label>
       <type type="str">page</type>
