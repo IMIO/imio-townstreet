@@ -16,7 +16,7 @@
   <skip_from_360_view>false</skip_from_360_view>
   <category category_id="113" slug="signaler-un-probleme-espace-public">Signaler un probl&#232;me dans l'espace public</category>
   <workflow slug="imio-signaler-un-probleme-dans-l-espace-public-atal-6" workflow_id="104">iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</workflow>
-  <max_field_id>212</max_field_id>
+  <max_field_id>213</max_field_id>
   <fields>
     <field>
       <label type="str">Votre signalement</label>
@@ -280,6 +280,17 @@
       <max_zoom type="str">19</max_zoom>
       <init_with_geoloc type="bool">True</init_with_geoloc>
       <id type="str">121</id>
+    </field><field>
+      <label type="str">&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;div id="gtx-trans" style=""&gt;
+&lt;div class="gtx-trans-icon"&gt;&amp;nbsp;&lt;/div&gt;
+&lt;/div&gt;
+</label>
+      <type type="str">comment</type>
+      <extra_css_class type="str">newline grid-1-1 template-tows_flyto_button</extra_css_class>
+      <display_locations />
+      <id type="str">213</id>
     </field><field>
       <label type="str">Rue</label>
       <type type="str">string</type>
