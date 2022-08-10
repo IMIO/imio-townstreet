@@ -12,11 +12,12 @@ Version History
 ===============
 
 0.0.59
-[TOWS-106] Add option to allow agent to specify Pic 1 as optional
-[TOWS-107] display all form on 1 page
-[TOWS-42] add option to allow agent select with main categories display in the form
-[TOWS-60] Define hint, rename label
-[TOWS-54] Avoid being stuck when selecting a road/place who does not have postal code in OpenStreetMap
+* [TOWS-108] Do not send mail when data comes from FixMyStreet
+* [TOWS-106] Add option to allow agent to specify Pic 1 as optional
+* [TOWS-107] display all form on 1 page
+* [TOWS-42] add option to allow agent select with main categories display in the form
+* [TOWS-60] Define hint, rename label
+* [TOWS-54] Avoid being stuck when selecting a road/place who does not have postal code in OpenStreetMap
 
 0.0.58
 * [TOWS-54] Changed : Avoid being stuck when selecting a road/place who does not have postal code in OpenStreetMap
