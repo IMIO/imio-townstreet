@@ -132,7 +132,7 @@
         <display_location>validation</display_location>
         <display_location>summary</display_location>
         <display_location>listings</display_location>
-      </display_locations><extra_css_class type="str">newline grid1-3</extra_css_class>
+      </display_locations><extra_css_class type="str">newline grid-1-3</extra_css_class>
       <pre type="bool">False</pre>
       <maxlength type="str">500</maxlength>
       <id type="str">207</id>
@@ -149,7 +149,7 @@
         <display_location>validation</display_location>
         <display_location>summary</display_location>
         <display_location>listings</display_location>
-      </display_locations><extra_css_class type="str">grid1-3 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
       <rows type="str">3</rows>
       <pre type="bool">False</pre>
       <maxlength type="str">500</maxlength>
