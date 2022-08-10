@@ -23,14 +23,6 @@
       <type type="str">page</type>
       <id type="str">112</id>
     </field><field>
-      <label type="str">Votre signalement</label>
-      <type type="str">title</type>
-      <extra_css_class type="str">grid-1-1 newline</extra_css_class>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><id type="str">211</id>
-    </field><field>
       <label type="str">Origine de la d&#233;marche</label>
       <type type="str">computed</type>
       <varname type="str">origin_source</varname>
@@ -64,6 +56,7 @@
         <display_location>statistics</display_location>
       </display_locations><extra_css_class type="str">newline grid-1-4</extra_css_class>
       <display_mode type="str">list</display_mode>
+      <items />
       <data_source>
         <type>formula</type>
         <value>form_option_categories_filtered_structured or data_source.imio_townstreet_main_categories</value>
@@ -88,6 +81,7 @@
         <display_location>statistics</display_location>
       </display_locations><extra_css_class type="str">newline grid-1-3</extra_css_class>
       <display_mode type="str">list</display_mode>
+      <items />
       <data_source>
         <type>imio_townstreet_sous_categories</type>
       </data_source><in_filters type="bool">False</in_filters>
@@ -110,6 +104,7 @@
         <display_location>listings</display_location>
         <display_location>statistics</display_location>
       </display_locations><extra_css_class type="str">grid-1-1 newline</extra_css_class>
+      <items />
       <display_mode type="str">checkboxes</display_mode>
       <min_choices type="int">0</min_choices>
       <max_choices type="int">0</max_choices>
@@ -132,7 +127,7 @@
         <display_location>validation</display_location>
         <display_location>summary</display_location>
         <display_location>listings</display_location>
-      </display_locations><extra_css_class type="str">newline grid-1-3</extra_css_class>
+      </display_locations><extra_css_class type="str">newline grid-1-2</extra_css_class>
       <pre type="bool">False</pre>
       <maxlength type="str">500</maxlength>
       <id type="str">207</id>
@@ -149,7 +144,7 @@
         <display_location>validation</display_location>
         <display_location>summary</display_location>
         <display_location>listings</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2 newline</extra_css_class>
       <rows type="str">3</rows>
       <pre type="bool">False</pre>
       <maxlength type="str">500</maxlength>
@@ -278,7 +273,6 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">newline grid-1-1</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>geolocation</type>
         <value>position</value>
       </prefill><initial_zoom type="str">13</initial_zoom>
@@ -296,7 +290,6 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">newline grid-2-6</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>geolocation</type>
         <value>road</value>
       </prefill><anonymise type="bool">False</anonymise>
@@ -311,7 +304,6 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-6</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>geolocation</type>
         <value>house</value>
       </prefill><anonymise type="bool">False</anonymise>
@@ -327,7 +319,6 @@
         <display_location>listings</display_location>
       </display_locations><extra_css_class type="str">newline grid-2-12</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>geolocation</type>
         <value>postcode</value>
       </prefill><anonymise type="bool">False</anonymise>
@@ -342,7 +333,6 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-4-12</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>geolocation</type>
         <value>city</value>
       </prefill><anonymise type="bool">False</anonymise>
@@ -394,43 +384,6 @@
       <display_locations />
       <id type="str">174</id>
     </field><field>
-      <label type="str">L'&#233;quipe charg&#233;e de traiter ce signalement peut m'appeler pour me demander des informations compl&#233;mentaires</label>
-      <type type="str">bool</type>
-      <required type="bool">False</required>
-      <hint type="str">En cas de besoin et pour localiser ou traiter au mieux l'objet de votre signalement.</hint>
-      <varname type="str">helpacknow</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-        <display_location>listings</display_location>
-      </display_locations><extra_css_class type="str">grid-1-1 newline</extra_css_class>
-      <id type="str">158</id>
-    </field><field>
-      <label type="str">Votre num&#233;ro de t&#233;l&#233;phone</label>
-      <type type="str">string</type>
-      <condition>
-        <type>django</type>
-        <value>form_var_helpacknow == True</value>
-      </condition><required type="bool">True</required>
-      <varname type="str">phonenum</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-2 newline</extra_css_class>
-      <prefill>
-        <locked>False</locked>
-        <type>user</type>
-        <value>_phone</value>
-      </prefill><anonymise type="bool">True</anonymise>
-      <id type="str">154</id>
-    </field><field>
-      <label type="str">Suivre la r&#233;solution</label>
-      <type type="str">title</type>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><id type="str">212</id>
-    </field><field>
       <label type="str">Je souhaite &#234;tre tenu inform&#233;&#183;e des suites qui seront donn&#233;es &#224; ce signalement</label>
       <type type="str">bool</type>
       <required type="bool">False</required>
@@ -465,7 +418,6 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">newline grid-1-4</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>user</type>
         <value>_first_name</value>
       </prefill><anonymise type="bool">True</anonymise>
@@ -482,7 +434,6 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>user</type>
         <value>_last_name</value>
       </prefill><anonymise type="bool">True</anonymise>
@@ -500,10 +451,38 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-2 newline</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>user</type>
         <value>_email</value>
       </prefill><id type="str">156</id>
+    </field><field>
+      <label type="str">L'&#233;quipe charg&#233;e de traiter ce signalement peut m'appeler pour me demander des informations compl&#233;mentaires</label>
+      <type type="str">bool</type>
+      <required type="bool">False</required>
+      <hint type="str">En cas de besoin et pour localiser ou traiter au mieux l'objet de votre signalement.</hint>
+      <varname type="str">helpacknow</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><extra_css_class type="str">grid-1-1 newline</extra_css_class>
+      <id type="str">158</id>
+    </field><field>
+      <label type="str">Votre num&#233;ro de t&#233;l&#233;phone</label>
+      <type type="str">string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_helpacknow == True</value>
+      </condition><required type="bool">True</required>
+      <varname type="str">phonenum</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2 newline</extra_css_class>
+      <prefill>
+        <type>user</type>
+        <value>_phone</value>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">154</id>
     </field><field>
       <label type="str">Informations n&#233;c&#233;ssaires (graffiti sur b&#226;timent priv&#233;)</label>
       <type type="str">page</type>
@@ -535,7 +514,6 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">newline grid-1-2</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>string</type>
         <value>{{ form_var_lastname }}</value>
       </prefill><anonymise type="bool">False</anonymise>
@@ -550,7 +528,6 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>string</type>
         <value>{{ form_var_firstname }}</value>
       </prefill><anonymise type="bool">False</anonymise>
