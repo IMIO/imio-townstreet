@@ -12,6 +12,7 @@ Version History
 ===============
 
 0.0.59
+* Added: flyTo btn (link to help recenter the map on desktop when geoloc is wrong) [dmshd]
 * [TOWS-108] Do not send mail when data comes from FixMyStreet
 * [TOWS-106] Add option to allow agent to specify Pic 1 as optional
 * [TOWS-107] display all form on 1 page
