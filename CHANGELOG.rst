@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.60
+* [TOWS-123] Display tracking code only to connected user to avoid frustrated users [dmshd]
+
 0.0.59
 * Added: flyTo btn (link to help recenter the map on desktop when geoloc is wrong) [dmshd]
 * [TOWS-108] Do not send mail when data comes from FixMyStreet

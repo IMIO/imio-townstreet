@@ -21,7 +21,7 @@ Voici le r&#233;sum&#233; des donn&#233;es transmises. {% if form_var_pic1 %}Veu
 
 {% if form_var_reporter_comment %}**Votre commentaire** : {{ form_var_reporter_comment }}{% endif %}
 
-{% if form_tracking_code %}
+{% if form_user and form_tracking_code %}
 Un code de suivi est li&#233; &#224; votre signalement : **{{form_tracking_code}}**
 {% endif %}
 

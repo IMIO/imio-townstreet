@@ -18,7 +18,7 @@ Pour rappel, il s'agit de votre signalement du {{ form_receipt_date|date:"d M y"
 **D&#233;tail** : {{ form_var_issues }}
 {% if form_var_reporter_comment %}**Votre commentaire** : {{ form_var_reporter_comment }}{% endif %}
 
-{% if form_tracking_code %}
+{% if form_user and form_tracking_code %}
 **Le code de suivi de votre signalement est le suivant** : **{{form_tracking_code}}**
 En cas de probl&#232;me, munissez-vous du code de suivi lors de vos &#233;changes avec nous.
 {% endif %}

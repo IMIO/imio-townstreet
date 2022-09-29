@@ -14,7 +14,7 @@ Pour rappel, il s'agit de votre signalement du {{ form_receipt_date|date:"d M y"
 
 {% if form_var_issues %}**D&#233;tail** : {{ form_var_issues }}{% endif %}
 
-{% if form_tracking_code %}
+{% if form_user and form_tracking_code %}
 Le code de suivi de votre signalement est le suivant : **{{form_tracking_code}}**
 {% endif %}
 

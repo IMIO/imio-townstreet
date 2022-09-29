@@ -23,7 +23,7 @@ Vous pouvez en prendre connaissance en suivant ce lien :
 `Afficher l'historique de ma demande &lt;{{ form_url }}&gt;`_
 {% endif %}
 
-{% if form_tracking_code %}
+{% if form_user and form_tracking_code %}
 Un code de suivi est li&#233; &#224; ce signalement : **{{ form_tracking_code }}**.
 {% endif %}
 
