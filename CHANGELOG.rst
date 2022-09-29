@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.61
+* [SUP-25729] Fix attachment piece missing using Django instead of Python [dmshd]
+
 0.0.60
 * [TOWS-123] Display tracking code only to connected user to avoid frustrated users [dmshd]
 

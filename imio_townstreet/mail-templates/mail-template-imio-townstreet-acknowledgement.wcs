@@ -31,11 +31,11 @@ Un code de suivi est li&#233; &#224; votre signalement : **{{form_tracking_code}
 
 Bien &#224; vous,</body>
   <attachments>
-    <item>vars().get('form_var_pic1_raw')</item>
-    <item>vars().get('form_var_pic2_raw')</item>
-    <item>vars().get('form_var_pic3_raw')</item>
-    <item>vars().get('form_var_pic4_raw')</item>
-    <item>vars().get('form_var_pic5_raw')</item>
-    <item>vars().get('form_var_pic6_raw')</item>
+    <item>{{ form_var_pic1 }}</item>
+    <item>{{ form_var_pic2 }}</item>
+    <item>{{ form_var_pic3 }}</item>
+    <item>{{ form_var_pic4 }}</item>
+    <item>{{ form_var_pic5 }}</item>
+    <item>{{ form_var_pic6 }}</item>
   </attachments>
 </mail-template>
