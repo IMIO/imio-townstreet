@@ -11,6 +11,9 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.62
+* [MTELEBLAA-34] properly display atal comments on refused mail notif [dmshd]
+
 0.0.61
 * [SUP-25729] Fix attachment piece missing using Django instead of Python [dmshd]
 
