@@ -12,22 +12,22 @@
       <visibility>
         <role>_receiver</role>
       </visibility><items>
-        <item id="1" type="geolocate">
+        <item type="geolocate" id="1">
           <method>map_variable</method>
           <map_variable>{{form_var_map}}</map_variable>
           <overwrite>True</overwrite>
-        </item><item id="2" type="geolocate">
+        </item><item type="geolocate" id="2">
           <method>address_string</method>
           <address_string>{{form_var_number|default:""}} {{ form_var_street }}, {{ form_var_postal_code }}, {{ form_var_city }}, Belgique</address_string>
           <overwrite>True</overwrite>
-        </item><item id="3" type="displaymsg">
+        </item><item type="displaymsg" id="3">
           <message>Merci pour votre signalement. Les donn&#233;es nous sont parvenues avec succ&#232;s.</message>
           <level>success</level>
           <position>top</position>
           <to>
             <item role_id="_submitter">_submitter</item>
           </to>
-        </item><item id="4" type="set-backoffice-fields">
+        </item><item type="set-backoffice-fields" id="4">
           <label>Informations utiles pour ATAL</label>
           <fields>
             <field>
@@ -47,7 +47,7 @@
               <value>{{ form_var_origin_source }}</value>
             </field>
           </fields>
-        </item><item id="5" type="sendmail">
+        </item><item type="sendmail" id="5">
           <to>
             <item role_id="{{ form_var_mail }}">{{ form_var_mail }}</item>
           </to><mail_template>imio-townstreet-new-signal</mail_template>
@@ -55,7 +55,7 @@
             <type>django</type>
             <value>form_var_requested_from != "fixmystreet" and form_var_mail == True</value>
           </condition>
-        </item><item id="6" type="sendmail">
+        </item><item type="sendmail" id="6">
           <to>
             <item role_id="_submitter">_submitter</item>
           </to><mail_template>imio-townstreet-acknowledgement</mail_template>
@@ -63,7 +63,7 @@
             <type>django</type>
             <value>form_var_requested_from != "fixmystreet"</value>
           </condition>
-        </item><item id="7" type="jump">
+        </item><item type="jump" id="7">
           <status>10</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -75,7 +75,7 @@
       <visibility>
         <role>_receiver</role>
       </visibility><items>
-        <item id="1" type="webservice_call">
+        <item type="webservice_call" id="1">
           <label>Cr&#233;ation de la demande de travaux dans ATAL</label>
           <url>{{passerelle_url}}passerelle-imio-ia-tech/atal-demov6/create_work_request</url>
           <method>POST</method>
@@ -143,7 +143,7 @@
           <notify_on_errors>True</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>False</record_errors>
-        </item><item id="2" type="jump">
+        </item><item type="jump" id="2">
           <status>20</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -155,7 +155,7 @@
       <visibility>
         <role>_receiver</role>
       </visibility><items>
-        <item id="1" type="webservice_call">
+        <item type="webservice_call" id="1">
           <label>Photo 1</label>
           <url>{{passerelle_url}}passerelle-imio-ia-tech/atal-demov6/post_attachment</url>
           <method>POST</method>
@@ -182,7 +182,7 @@
             <type>python</type>
             <value>bool(vars().get('form_var_pic1_raw')) == True</value>
           </condition>
-        </item><item id="2" type="webservice_call">
+        </item><item type="webservice_call" id="2">
           <label>Photo 2</label>
           <url>{{passerelle_url}}passerelle-imio-ia-tech/atal-demov6/post_attachment</url>
           <method>POST</method>
@@ -209,7 +209,7 @@
             <type>python</type>
             <value>bool(vars().get('form_var_pic2_raw')) == True</value>
           </condition>
-        </item><item id="3" type="webservice_call">
+        </item><item type="webservice_call" id="3">
           <label>Envoi de l'autorisation d'intervenir</label>
           <url>{{passerelle_url}}passerelle-imio-ia-tech/atal-demov6/post_attachment</url>
           <method>POST</method>
@@ -236,7 +236,7 @@
             <type>django</type>
             <value>form_var_private_building_yn == True</value>
           </condition>
-        </item><item id="4" type="jump">
+        </item><item type="jump" id="4">
           <status>22</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -248,7 +248,7 @@
       <visibility>
         <role>_receiver</role>
       </visibility><items>
-        <item id="1" type="sendmail">
+        <item type="sendmail" id="1">
           <to>
             <item role_id="daniel.muyshond+townstreet@imio.be">daniel.muyshond+townstreet@imio.be</item>
           </to><mail_template>imio-townstreet-erreur</mail_template>
@@ -261,7 +261,7 @@
       <visibility>
         <role>_receiver</role>
       </visibility><items>
-        <item id="1" type="sendmail">
+        <item type="sendmail" id="1">
           <to>
             <item role_id="daniel.muyshond+townstreet@imio.be">daniel.muyshond+townstreet@imio.be</item>
           </to><mail_template>imio-townstreet-erreur-envoi-des-photos-iatech</mail_template>
@@ -274,7 +274,7 @@
       <forced_endpoint>true</forced_endpoint>
       <visibility />
       <items>
-        <item id="1" type="webservice_call">
+        <item type="webservice_call" id="1">
           <label>Notifier FixMyStreet de la cl&#244;ture</label>
           <url>https://{{ form_option_environnement_url_apims|default:"api" }}.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
           <method>PATCH</method>
@@ -301,7 +301,7 @@
             <type>django</type>
             <value>form_var_origin_source == "fixmystreet"</value>
           </condition>
-        </item><item id="2" type="sendmail">
+        </item><item type="sendmail" id="2">
           <to>
             <item role_id="{{ form_var_mail }}">{{ form_var_mail }}</item>
           </to><mail_template>imio-townstreet-refuse</mail_template>
@@ -317,14 +317,14 @@
       <colour>FFFF99</colour>
       <visibility />
       <items>
-        <item id="1" type="displaymsg">
+        <item type="displaymsg" id="1">
           <message>Votre signalement a &#233;t&#233; introduit avec succ&#232;s.</message>
           <level>success</level>
           <position>top</position>
           <to>
             <item role_id="_submitter">_submitter</item>
           </to>
-        </item><item id="2" type="register-comment">
+        </item><item type="register-comment" id="2">
           <comment>&lt;b&gt;{% if form_var_street %}{{form_var_street}}&lt;/b&gt;{% endif %} &#224; &lt;b&gt;{{form_var_city}}&lt;/b&gt; ({{form_var_desc}}).</comment>
           <attachments>
             <attachment>{{ form_var_pic1_raw }}</attachment>
@@ -334,7 +334,7 @@
             <attachment>{{ form_var_pic5_raw }}</attachment>
             <attachment>{{ form_var_pic6_raw }}</attachment>
           </attachments>
-        </item><item id="3" type="jump">
+        </item><item type="jump" id="3">
           <status>4</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -347,7 +347,7 @@
       <forced_endpoint>true</forced_endpoint>
       <visibility />
       <items>
-        <item id="1" type="webservice_call">
+        <item type="webservice_call" id="1">
           <label>Notifier FixMyStreet de la r&#233;solution</label>
           <url>https://{{ form_option_environnement_url_apims|default:"api" }}.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
           <method>PATCH</method>
@@ -374,7 +374,7 @@
             <type>django</type>
             <value>form_var_origin_source == "fixmystreet"</value>
           </condition>
-        </item><item id="2" type="register-comment">
+        </item><item type="register-comment" id="2">
           <comment>{% if followresp_var_subject  and followresp_var_body %}
 &lt;p&gt;L'agent ayant trait&#233; votre demande vous communique le message suivant : &lt;/p&gt;
 
@@ -386,12 +386,12 @@
             <type>django</type>
             <value>followresp_var_subject  and followresp_var_body</value>
           </condition>
-        </item><item id="3" type="displaymsg">
+        </item><item type="displaymsg" id="3">
           <message>Cette demande a &#233;t&#233; trait&#233;e.</message>
           <level>success</level>
           <position>top</position>
           <to>
-            <item role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10" slug="agent-traitant-townstreet">Agent traitant - Townstreet</item>
+            <item slug="agent-traitant-townstreet" role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
             <item role_id="_submitter">_submitter</item>
           </to>
         </item>
@@ -403,11 +403,11 @@
       <visibility>
         <role>_receiver</role>
       </visibility><items>
-        <item id="1" type="sendmail">
+        <item type="sendmail" id="1">
           <to>
             <item role_id="{{ form_var_mail }}">{{ form_var_mail }}</item>
           </to><mail_template>imio-townstreet-votre-signalement-resolution</mail_template>
-        </item><item id="2" type="jump">
+        </item><item type="jump" id="2">
           <status>13</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -419,7 +419,7 @@
       <visibility>
         <role>_receiver</role>
       </visibility><items>
-        <item id="1" type="set-backoffice-fields">
+        <item type="set-backoffice-fields" id="1">
           <label>Num&#233;ros d'identification dans ATAL</label>
           <fields>
             <field>
@@ -430,10 +430,10 @@
               <value>{{ form_workflow_data_post_work_request_response_data_Id }}</value>
             </field>
           </fields>
-        </item><item id="2" type="jump">
+        </item><item type="jump" id="2">
           <status>6</status>
           <set_marker_on_status>False</set_marker_on_status>
-        </item><item id="3" type="register-comment">
+        </item><item type="register-comment" id="3">
           <comment>La demande a &#233;t&#233; cr&#233;&#233;e dans ATAL ({{ post_work_request_response_data_Number }}).
 
 </comment>
@@ -453,7 +453,7 @@
       <visibility>
         <role>_receiver</role>
       </visibility><items>
-        <item id="1" type="webservice_call">
+        <item type="webservice_call" id="1">
           <label>R&#233;cup&#233;ration du d&#233;tail dans ATAL</label>
           <url>{{ passerelle_url }}/passerelle-imio-ia-tech/atal-demov6/get_work_request_details</url>
           <method>POST</method>
@@ -473,23 +473,34 @@
           <notify_on_errors>True</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>False</record_errors>
-        </item><item id="2" type="jump">
+        </item><item type="set-backoffice-fields" id="6">
+          <label>Commentaire dans Atal pour Tableau de traitement</label>
+          <fields>
+            <field>
+              <field_id>bo55a0bd45-9af6-4112-9d93-20027cf5d721</field_id>
+              <value>{% for c in form_workflow_data_work_request_details_response_data_Responses reversed %}&#183; {{ c.Comments}}{% endfor %}</value>
+            </field>
+          </fields><condition>
+            <type>django</type>
+            <value>form_workflow_data_work_request_details_response_data_Responses</value>
+          </condition>
+        </item><item type="jump" id="2">
           <status>21</status>
           <timeout>86400</timeout>
           <set_marker_on_status>False</set_marker_on_status>
-        </item><item id="3" type="jump">
+        </item><item type="jump" id="3">
           <status>13</status>
           <condition>
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 9 and form_var_followyn == "Non"</value>
           </condition><set_marker_on_status>False</set_marker_on_status>
-        </item><item id="4" type="jump">
+        </item><item type="jump" id="4">
           <status>8</status>
           <condition>
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 3</value>
           </condition><set_marker_on_status>False</set_marker_on_status>
-        </item><item id="5" type="jump">
+        </item><item type="jump" id="5">
           <status>14</status>
           <condition>
             <type>django</type>
@@ -504,10 +515,10 @@
       <backoffice_info_text>&lt;p&gt;Visible par le demandeur.&lt;/p&gt;</backoffice_info_text>
       <visibility />
       <items>
-        <item id="1" type="jump">
+        <item type="jump" id="1">
           <status>21</status>
           <set_marker_on_status>False</set_marker_on_status>
-        </item><item id="2" type="register-comment">
+        </item><item type="register-comment" id="2">
           <comment>Merci pour votre signalement !&lt;br&gt;
 Nous faisons notre possible pour r&#233;gler le probl&#232;me au plus vite, le d&#233;lais d'intervention peut-&#234;tre plus ou moins important en fonction de sa nature.</comment>
           <to>
@@ -522,11 +533,11 @@ Nous faisons notre possible pour r&#233;gler le probl&#232;me au plus vite, le d
       <name>&#10060; Supprimer cette demande</name>
       <backoffice_info_text>&lt;p&gt;&lt;strong&gt;Attention, la suppression entra&amp;icirc;ne une perte irreversible des donn&amp;eacute;es.&lt;/strong&gt;&lt;/p&gt;</backoffice_info_text>
       <items>
-        <item id="1" type="remove" />
+        <item type="remove" id="1" />
       </items><triggers>
-        <trigger id="c4eff390-fe37-4a9d-9e95-1297fce449a5" type="manual">
+        <trigger type="manual" id="5195410f-d64b-4ba7-a8b1-8c0bdcf27061">
           <roles>
-            <item role_id="df908b92acec4a68b3a11bbf516263d9" slug="debug">Debug</item>
+            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
           </roles>
         </trigger>
       </triggers>
@@ -535,14 +546,14 @@ Nous faisons notre possible pour r&#233;gler le probl&#232;me au plus vite, le d
       <name>&#128260; iMio - Cr&#233;er la demande dans Atal</name>
       <backoffice_info_text>&lt;p&gt;iMio - Saut automatique vers &amp;quot;Cr&amp;eacute;ation dans ATAL&amp;quot; en vue de rejouer le webservice de cr&amp;eacute;ation de la demande dans Atal.&lt;/p&gt;</backoffice_info_text>
       <items>
-        <item id="1" type="jump">
+        <item type="jump" id="1">
           <status>4</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items><triggers>
-        <trigger id="f98bdfc4-59cf-4d4b-bb9f-2b2bb1fcc0fa" type="manual">
+        <trigger type="manual" id="871a8c92-747a-460d-9e36-b9348000c0e9">
           <roles>
-            <item role_id="df908b92acec4a68b3a11bbf516263d9" slug="debug">Debug</item>
+            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
           </roles>
         </trigger>
       </triggers>
@@ -551,14 +562,29 @@ Nous faisons notre possible pour r&#233;gler le probl&#232;me au plus vite, le d
       <name>&#128260; iMio - Envoyer les images dans Atal</name>
       <backoffice_info_text>&lt;p&gt;iMio - Saut automatique vers le statut &amp;quot;Envoi de fichier vers Atal&amp;quot; en vue de renvoyer les fichiers vers Atal.&lt;/p&gt;</backoffice_info_text>
       <items>
-        <item id="1" type="jump">
+        <item type="jump" id="1">
           <status>6</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items><triggers>
-        <trigger id="dc135628-0de3-4843-bb73-bd3afaec5a28" type="manual">
+        <trigger type="manual" id="b2738ce0-09ef-43e4-82d9-0fa4c13c382e">
           <roles>
-            <item role_id="df908b92acec4a68b3a11bbf516263d9" slug="debug">Debug</item>
+            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+          </roles>
+        </trigger>
+      </triggers>
+    </action><action>
+      <id>5</id>
+      <name>&#128260; iMio - V&#233;rifier le statut dans Atal</name>
+      <items>
+        <item type="jump" id="1">
+          <status>22</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items><triggers>
+        <trigger type="manual" id="c5804db0-a8b6-4d26-bb3d-2af1167495b6">
+          <roles>
+            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
           </roles>
         </trigger>
       </triggers>
@@ -730,6 +756,16 @@ Nous faisons notre possible pour r&#233;gler le probl&#232;me au plus vite, le d
             <display_location>listings</display_location>
           </display_locations><anonymise type="bool">True</anonymise>
           <id type="str">bo6c5e090e-75c1-4269-ac81-6d2b097af7d9</id>
+        </field><field>
+          <label type="str">Commentaires dans Atal</label>
+          <type type="str">string</type>
+          <required type="bool">False</required>
+          <varname type="str">atal_comments</varname>
+          <display_locations>
+            <display_location>summary</display_location>
+            <display_location>listings</display_location>
+          </display_locations><anonymise type="bool">True</anonymise>
+          <id type="str">bo55a0bd45-9af6-4112-9d93-20027cf5d721</id>
         </field>
       </fields>
     </formdef>

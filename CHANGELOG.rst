@@ -12,6 +12,10 @@ Version History
 ===============
 
 0.0.62
+* [MTELEBLAA-34] Add new "donnée de traitement" that will contain Atal comments [dmshd]
+
+
+0.0.62
 * [MTELEBLAA-34] properly display atal comments on refused mail notif [dmshd]
 
 0.0.61
