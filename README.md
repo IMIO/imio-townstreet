@@ -7,8 +7,6 @@ La démarche fût historiquement initiée par Christophe Boulanger en collaborat
 Comment instancier Townstreet ? (2021/02/17)
 
 
-
-
 ## Installation
 - `apt update && apt install imio-townstreet`
 - `cd /usr/lib/imio_townstreet && ./install_imio-townstreet.sh`
@@ -16,5 +14,5 @@ Comment instancier Townstreet ? (2021/02/17)
 ### Note
 Pour plus d'information sur la démarche, voir la documentation interne Téléservices, catégorie "Townstreet"
 
-## Maintenance 
+## Maintenance
 Veuillez être rigoureux et noter tout changement dans le changelog en vous référrant aux principes directeurs décrits dans celui-ci.
