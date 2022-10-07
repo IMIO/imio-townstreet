@@ -7,12 +7,9 @@
   <body>Bonjour{% if form_var_firstname %} {{ form_var_firstname }}{% endif %},
 
 Merci de nous avoir signal&#233; cet incident, mais ne nous ne pouvons donner suite &#224; ce signalement.
-{% if form_workflow_data_debug_details_response_data_Responses %}
 
 {% if form_workflow_data_work_request_details_response_data_Responses %}
-
 Commentaire de l'agent, li&#233; au refus :
-
 {% for c in form_workflow_data_work_request_details_response_data_Responses reversed %}
 · {{ c.Comments}}
 {% endfor %}

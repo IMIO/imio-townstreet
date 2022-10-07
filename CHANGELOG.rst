@@ -11,9 +11,11 @@ imio-townstreet changelog
 Version History
 ===============
 
-0.0.62
-* [MTELEBLAA-34] Add new "donnée de traitement" that will contain Atal comments [dmshd]
+0.0.64
+* [MTELEBLAA-34] fix syntax error in mail [dmshd]s
 
+0.0.63
+* [MTELEBLAA-34] Add new "donnée de traitement" that will contain Atal comments [dmshd]
 
 0.0.62
 * [MTELEBLAA-34] properly display atal comments on refused mail notif [dmshd]
