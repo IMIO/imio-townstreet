@@ -11,8 +11,11 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.65
+* [SUP-26456] change python expression to django when sending images to iA.Tech
+
 0.0.64
-* [MTELEBLAA-34] fix syntax error in mail [dmshd]s
+* [MTELEBLAA-34] fix syntax error in mail [dmshd]
 
 0.0.63
 * [MTELEBLAA-34] Add new "donnée de traitement" that will contain Atal comments [dmshd]

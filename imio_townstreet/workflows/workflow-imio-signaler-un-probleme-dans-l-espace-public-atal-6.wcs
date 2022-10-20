@@ -179,8 +179,8 @@
           <record_on_errors>True</record_on_errors>
           <record_errors>False</record_errors>
           <condition>
-            <type>python</type>
-            <value>bool(vars().get('form_var_pic1_raw')) == True</value>
+            <type>django</type>
+            <value>form_var_pic1_raw</value>
           </condition>
         </item><item type="webservice_call" id="2">
           <label>Photo 2</label>
@@ -206,8 +206,8 @@
           <record_on_errors>True</record_on_errors>
           <record_errors>False</record_errors>
           <condition>
-            <type>python</type>
-            <value>bool(vars().get('form_var_pic2_raw')) == True</value>
+            <type>django</type>
+            <value>form_var_pic2_raw</value>
           </condition>
         </item><item type="webservice_call" id="3">
           <label>Envoi de l'autorisation d'intervenir</label>
