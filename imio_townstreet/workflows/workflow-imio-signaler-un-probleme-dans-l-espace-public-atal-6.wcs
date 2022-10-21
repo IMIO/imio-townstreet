@@ -180,7 +180,7 @@
           <record_errors>False</record_errors>
           <condition>
             <type>django</type>
-            <value>form_var_pic1_raw</value>
+            <value>form_var_pic1</value>
           </condition>
         </item><item type="webservice_call" id="2">
           <label>Photo 2</label>
@@ -207,7 +207,7 @@
           <record_errors>False</record_errors>
           <condition>
             <type>django</type>
-            <value>form_var_pic2_raw</value>
+            <value>form_var_pic2</value>
           </condition>
         </item><item type="webservice_call" id="3">
           <label>Envoi de l'autorisation d'intervenir</label>
