@@ -25,8 +25,6 @@ Voici le r&#233;sum&#233; des donn&#233;es transmises. {% if form_var_pic1 %}Veu
 Un code de suivi est li&#233; &#224; votre signalement : **{{form_tracking_code}}**
 {% endif %}
 
-{% if form_comment %}Nouveau commentaire&#160;: {{ form_comment }}{% endif %}
-
 `Suivre l'&#233;tat de mon signalement &lt;{{form_url}}&gt;`_
 
 Bien &#224; vous,</body>
