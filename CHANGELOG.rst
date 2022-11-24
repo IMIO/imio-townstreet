@@ -11,8 +11,12 @@ imio-townstreet changelog
 Version History
 ===============
 
+0.0.66
+* [TOWS-128] use addinfo instead of form_comment or form_var_reporter_comment in ack mail [nhi]
+* [TOWS-129] remove mention of verviers from comment [nhi]
+
 0.0.65
-* [SUP-26456] change python expression to django when sending images to iA.Tech
+* [SUP-26456] change python expression to django when sending images to iA.Tech [nhi]
 
 0.0.64
 * [MTELEBLAA-34] fix syntax error in mail [dmshd]
