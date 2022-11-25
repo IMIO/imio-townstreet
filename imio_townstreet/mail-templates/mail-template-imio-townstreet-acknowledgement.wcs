@@ -21,7 +21,7 @@ Voici le r&#233;sum&#233; des donn&#233;es transmises. {% if form_var_pic1 %}Veu
 **D&#233;tail** : {{ form_var_issues }}
 {% endif %}
 
-**Adresse :** {{ form_var_street }} {{ form-var_number }}, {{ form_var_postal_code }} {{ form_var_city }}
+**Adresse :** {{ form_var_street }} {{ form_var_number }}, {{ form_var_postal_code }} {{ form_var_city }}
 
 {% if form_var_addinfo %}
 **Information complémentaire :** {{ form_var_addinfo }}
