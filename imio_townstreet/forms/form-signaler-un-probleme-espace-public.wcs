@@ -349,10 +349,13 @@
       </prefill><anonymise type="bool">False</anonymise>
       <id type="str">126</id>
     </field><field>
-      <label type="str">&lt;p&gt;{% if form_option_geolimityn %}Attention, vous ne pourrez pas compl&amp;eacute;ter la d&amp;eacute;marche si votre signalement ne figure pas sur le territoire de Verviers (code postaux : {{form_option_postal_code_limit}}).{% endif %}&lt;/p&gt;
+      <label type="str">&lt;p&gt;Attention, vous pouvez uniquement compl&amp;eacute;ter la d&amp;eacute;marche pour un signalement concernant les localit&amp;eacute;s suivantes (codes postaux) : {{form_option_postal_code_limit}}).&lt;/p&gt;
 </label>
       <type type="str">comment</type>
-      <extra_css_class type="str">newline grid-1-1</extra_css_class>
+      <condition>
+        <type>django</type>
+        <value>form_option_geolimityn</value>
+      </condition><extra_css_class type="str">newline grid-1-1</extra_css_class>
       <display_locations />
       <id type="str">115</id>
     </field><field>
