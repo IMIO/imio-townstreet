@@ -349,7 +349,7 @@
       </prefill><anonymise type="bool">False</anonymise>
       <id type="str">126</id>
     </field><field>
-      <label type="str">&lt;p&gt;Attention, vous pouvez uniquement compl&amp;eacute;ter la d&amp;eacute;marche pour un signalement concernant les localit&amp;eacute;s suivantes (codes postaux) : {{form_option_postal_code_limit}}).&lt;/p&gt;
+      <label type="str">&lt;p&gt;Attention, vous pouvez uniquement compl&amp;eacute;ter la d&amp;eacute;marche pour un signalement concernant les localit&amp;eacute;s suivantes (codes postaux) : {{form_option_postal_code_limit}}.&lt;/p&gt;
 </label>
       <type type="str">comment</type>
       <condition>
