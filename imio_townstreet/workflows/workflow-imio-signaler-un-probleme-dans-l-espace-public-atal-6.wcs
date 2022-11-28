@@ -209,6 +209,33 @@
             <type>django</type>
             <value>form_var_pic2</value>
           </condition>
+        </item><item type="webservice_call" id="5">
+          <label>Photo 3</label>
+          <url>{{passerelle_url}}passerelle-imio-ia-tech/atal-demov6/post_attachment</url>
+          <method>POST</method>
+          <post>False</post>
+          <post_data>
+            <item>
+              <name>atal_attachment1</name>
+              <value>{{ form_var_pic3 }}</value>
+            </item><item>
+              <name>atal_work_request_uuid</name>
+              <value>{{ post_work_request_response_data_Id }}</value>
+            </item>
+          </post_data><response_type>json</response_type>
+          <varname>post_attachment3</varname>
+          <action_on_app_error>7</action_on_app_error>
+          <action_on_4xx>7</action_on_4xx>
+          <action_on_5xx>7</action_on_5xx>
+          <action_on_bad_data>:pass</action_on_bad_data>
+          <action_on_network_errors>:stop</action_on_network_errors>
+          <notify_on_errors>True</notify_on_errors>
+          <record_on_errors>True</record_on_errors>
+          <record_errors>False</record_errors>
+          <condition>
+            <type>django</type>
+            <value>form_var_pic2</value>
+          </condition>
         </item><item type="webservice_call" id="3">
           <label>Envoi de l'autorisation d'intervenir</label>
           <url>{{passerelle_url}}passerelle-imio-ia-tech/atal-demov6/post_attachment</url>
@@ -470,7 +497,7 @@
           <notify_on_errors>True</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>False</record_errors>
-        </item><item type="set-backoffice-fields" id="6">
+        </item><item type="set-backoffice-fields" id="2">
           <label>Commentaire dans Atal pour Tableau de traitement</label>
           <fields>
             <field>
@@ -481,23 +508,23 @@
             <type>django</type>
             <value>form_workflow_data_work_request_details_response_data_Responses</value>
           </condition>
-        </item><item type="jump" id="2">
+        </item><item type="jump" id="3">
           <status>21</status>
           <timeout>86400</timeout>
           <set_marker_on_status>False</set_marker_on_status>
-        </item><item type="jump" id="3">
+        </item><item type="jump" id="4">
           <status>13</status>
           <condition>
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 9 and form_var_followyn == "Non"</value>
           </condition><set_marker_on_status>False</set_marker_on_status>
-        </item><item type="jump" id="4">
+        </item><item type="jump" id="5">
           <status>8</status>
           <condition>
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 3</value>
           </condition><set_marker_on_status>False</set_marker_on_status>
-        </item><item type="jump" id="5">
+        </item><item type="jump" id="6">
           <status>14</status>
           <condition>
             <type>django</type>
