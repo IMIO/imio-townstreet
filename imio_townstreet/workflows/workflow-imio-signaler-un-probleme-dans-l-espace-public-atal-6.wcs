@@ -41,7 +41,7 @@
               <value>{% firstof form_var_number "" %} {% firstof form_var_street "" %} {% firstof form_var_postal_code "" %} {% firstof form_var_city "" %}</value>
             </field><field>
               <field_id>bo8e50a0f2-09c3-4c33-8099-b6dfdbce719c</field_id>
-              <value>="Oui" if vars().get('form_var_follow') == "True" else "Non"</value>
+              <value>{% if form_var_follow %}Oui{% else %}Non{% endif %}</value>
             </field><field>
               <field_id>bo6c5e090e-75c1-4269-ac81-6d2b097af7d9</field_id>
               <value>{{ form_var_origin_source }}</value>
@@ -95,10 +95,10 @@
               <value>{% firstof form_var_firstname '' %}</value>
             </item><item>
               <name>atal_latitude</name>
-              <value>=vars().get('form_var_map_lat') or vars().get('form_geoloc_base_lat')</value>
+              <value>{% firstof form_var_map_lat form_geoloc_base_lat %}</value>
             </item><item>
               <name>atal_longitude</name>
-              <value>=vars().get('form_var_map_lon') or vars().get('form_geoloc_base_lon')</value>
+              <value>{% firstof form_var_map_lon form_geoloc_base_lon %}</value>
             </item><item>
               <name>atal_description</name>
               <value>{% firstof form_var_desc 'Non renseign&#233;' %}</value>
@@ -440,8 +440,8 @@
           <to>
             <item role_id="_receiver">_receiver</item>
           </to><condition>
-            <type>python</type>
-            <value>vars().get('post_work_request_app_error_code') == 0 and bool(post_work_request_response_data_Number) == True</value>
+            <type>django</type>
+            <value>post_work_request_app_error_code == 0 and post_work_request_response_data_Number</value>
           </condition>
         </item>
       </items>
