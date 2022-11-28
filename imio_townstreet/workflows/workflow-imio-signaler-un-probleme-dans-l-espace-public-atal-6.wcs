@@ -330,9 +330,6 @@
             <attachment>{{ form_var_pic1_raw }}</attachment>
             <attachment>{{ form_var_pic2_raw }}</attachment>
             <attachment>{{ form_var_pic3_raw }}</attachment>
-            <attachment>{{ form_var_pic4_raw }}</attachment>
-            <attachment>{{ form_var_pic5_raw }}</attachment>
-            <attachment>{{ form_var_pic6_raw }}</attachment>
           </attachments>
         </item><item type="jump" id="3">
           <status>4</status>

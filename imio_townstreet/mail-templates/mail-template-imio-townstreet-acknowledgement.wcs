@@ -38,8 +38,5 @@ Bien &#224; vous,</body>
     <item>{{ form_var_pic1 }}</item>
     <item>{{ form_var_pic2 }}</item>
     <item>{{ form_var_pic3 }}</item>
-    <item>{{ form_var_pic4 }}</item>
-    <item>{{ form_var_pic5 }}</item>
-    <item>{{ form_var_pic6 }}</item>
   </attachments>
 </mail-template>
