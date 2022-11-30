@@ -15,6 +15,9 @@ Version History
 * [TOWS-128] use addinfo instead of form_comment or form_var_reporter_comment in ack mail [nhi]
 * [TOWS-129] remove mention of verviers from comment [nhi]
 * [TOWS-127] Update latest python declaration to use django [dmshd]
+* [TOWS-127] Remove pic4,5,6 cause they do not exist anymore [dmshd]
+* [TOWS-127] Add missing webservice for pic3 [dmshd]
+* [SUP-26690] Improve map hint to prevent support]
 
 0.0.65
 * [SUP-26456] change python expression to django when sending images to iA.Tech [nhi]

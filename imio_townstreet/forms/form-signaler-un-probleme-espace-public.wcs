@@ -266,7 +266,7 @@
       <label type="str">Emplacement du signalement</label>
       <type type="str">map</type>
       <required type="bool">False</required>
-      <hint type="str">Centrez la carte et double cliquez sur la position exacte ou encodez manuellement une adresse pour la position de votre signalement.</hint>
+      <hint type="str">Cliquez sur la carte pour positionner un curseur qui alimentera les champs de localisation ci-dessous. Les donn&#233;es modifi&#233;es dans ces champs prendront le dessus sur la position et n'actualiseront pas la position sur la carte.</hint>
       <varname type="str">map</varname>
       <display_locations>
         <display_location>validation</display_location>
