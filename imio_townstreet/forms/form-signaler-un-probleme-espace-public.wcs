@@ -292,7 +292,7 @@
       <display_locations />
       <id type="str">213</id>
     </field><field>
-      <label type="str">Rue</label>
+      <label type="str">Rue du signalement</label>
       <type type="str">string</type>
       <required type="bool">True</required>
       <varname type="str">street</varname>
@@ -306,7 +306,7 @@
       </prefill><anonymise type="bool">False</anonymise>
       <id type="str">124</id>
     </field><field>
-      <label type="str">Num&#233;ro</label>
+      <label type="str">Num&#233;ro du signalement</label>
       <type type="str">string</type>
       <required type="bool">False</required>
       <varname type="str">number</varname>
