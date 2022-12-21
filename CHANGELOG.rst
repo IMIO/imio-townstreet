@@ -18,6 +18,7 @@ Version History
 * [TOWS-127] Remove pic4,5,6 cause they do not exist anymore [dmshd]
 * [TOWS-127] Add missing webservice for pic3 [dmshd]
 * [SUP-26690] Improve map hint to prevent support [dmshd]
+* [TOWS-125] Relabel street + number fields [dmshd]
 
 0.0.65
 * [SUP-26456] change python expression to django when sending images to iA.Tech [nhi]
