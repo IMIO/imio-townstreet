@@ -77,8 +77,8 @@
       </visibility><items>
         <item type="webservice_call" id="1">
           <label>Cr&#233;ation de la demande de travaux dans ATAL</label>
-          <url>{{passerelle_url}}passerelle-imio-ia-tech/atal-demov6/create_work_request</url>
           <method>POST</method>
+          <url>{{passerelle_url}}passerelle-imio-ia-tech/atal-demov6/create_work_request</url>
           <post>False</post>
           <post_data>
             <item>
@@ -157,8 +157,8 @@
       </visibility><items>
         <item type="webservice_call" id="1">
           <label>Photo 1</label>
-          <url>{{passerelle_url}}passerelle-imio-ia-tech/atal-demov6/post_attachment</url>
           <method>POST</method>
+          <url>{{passerelle_url}}passerelle-imio-ia-tech/atal-demov6/post_attachment</url>
           <post>False</post>
           <post_data>
             <item>
@@ -184,8 +184,8 @@
           </condition>
         </item><item type="webservice_call" id="2">
           <label>Photo 2</label>
-          <url>{{passerelle_url}}passerelle-imio-ia-tech/atal-demov6/post_attachment</url>
           <method>POST</method>
+          <url>{{passerelle_url}}passerelle-imio-ia-tech/atal-demov6/post_attachment</url>
           <post>False</post>
           <post_data>
             <item>
@@ -209,10 +209,10 @@
             <type>django</type>
             <value>form_var_pic2</value>
           </condition>
-        </item><item type="webservice_call" id="5">
+        </item><item type="webservice_call" id="3">
           <label>Photo 3</label>
-          <url>{{passerelle_url}}passerelle-imio-ia-tech/atal-demov6/post_attachment</url>
           <method>POST</method>
+          <url>{{passerelle_url}}passerelle-imio-ia-tech/atal-demov6/post_attachment</url>
           <post>False</post>
           <post_data>
             <item>
@@ -236,10 +236,10 @@
             <type>django</type>
             <value>form_var_pic2</value>
           </condition>
-        </item><item type="webservice_call" id="3">
+        </item><item type="webservice_call" id="4">
           <label>Envoi de l'autorisation d'intervenir</label>
-          <url>{{passerelle_url}}passerelle-imio-ia-tech/atal-demov6/post_attachment</url>
           <method>POST</method>
+          <url>{{passerelle_url}}passerelle-imio-ia-tech/atal-demov6/post_attachment</url>
           <post>False</post>
           <post_data>
             <item>
@@ -263,7 +263,7 @@
             <type>django</type>
             <value>form_var_private_building_yn == True</value>
           </condition>
-        </item><item type="jump" id="4">
+        </item><item type="jump" id="5">
           <status>22</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -303,8 +303,8 @@
       <items>
         <item type="webservice_call" id="1">
           <label>Notifier FixMyStreet de la cl&#244;ture</label>
-          <url>https://{{ form_option_environnement_url_apims|default:"api" }}.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
           <method>PATCH</method>
+          <url>https://{{ form_option_environnement_url_apims|default:"api" }}.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
           <post>False</post>
           <post_data>
             <item>
@@ -334,7 +334,7 @@
           </to><mail_template>imio-townstreet-refuse</mail_template>
           <condition>
             <type>django</type>
-            <value>form_var_follow == True</value>
+            <value>form_option_end_notification_to_user == "Oui" and form_var_follow == True</value>
           </condition>
         </item>
       </items>
@@ -373,8 +373,8 @@
       <items>
         <item type="webservice_call" id="1">
           <label>Notifier FixMyStreet de la r&#233;solution</label>
-          <url>https://{{ form_option_environnement_url_apims|default:"api" }}.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
           <method>PATCH</method>
+          <url>https://{{ form_option_environnement_url_apims|default:"api" }}.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
           <post>False</post>
           <post_data>
             <item>
@@ -431,6 +431,10 @@
           <to>
             <item role_id="{{ form_var_mail }}">{{ form_var_mail }}</item>
           </to><mail_template>imio-townstreet-votre-signalement-resolution</mail_template>
+          <condition>
+            <type>django</type>
+            <value>form_option_end_notification_to_user == "Oui"</value>
+          </condition>
         </item><item type="jump" id="2">
           <status>13</status>
           <set_marker_on_status>False</set_marker_on_status>
@@ -479,8 +483,8 @@
       </visibility><items>
         <item type="webservice_call" id="1">
           <label>R&#233;cup&#233;ration du d&#233;tail dans ATAL</label>
-          <url>{{ passerelle_url }}/passerelle-imio-ia-tech/atal-demov6/get_work_request_details</url>
           <method>POST</method>
+          <url>{{ passerelle_url }}/passerelle-imio-ia-tech/atal-demov6/get_work_request_details</url>
           <post>False</post>
           <post_data>
             <item>
@@ -707,6 +711,21 @@ Nous faisons notre possible pour r&#233;gler le probl&#232;me au plus vite, le d
           <varname type="str">pic_not_required</varname>
           <display_locations />
           <id type="str">7</id>
+        </field><field>
+          <label type="str">Notifier automatiquement par mail de la cl&#244;ture ou du refus</label>
+          <type type="str">item</type>
+          <required type="bool">False</required>
+          <hint type="str">Un mail sera automatiquement envoy&#233; depuis cette plateforme &#224; la cl&#244;ture ou au refus de la demande dans Atal (un d&#233;lai normal de max. 24h subsiste entre l'action Atal et l'apparition du changement apparent dans cette plateforme). D&#233;sactiver cette fonctionnalit&#233; masquera &#233;galement le champ "Souhaitez-vous &#234;tre tenu inform&#233; des suites..." du formulaire propos&#233; &#224; l'usager.</hint>
+          <varname type="str">end_notification_to_user</varname>
+          <display_locations />
+          <display_mode type="str">radio</display_mode>
+          <items>
+            <item>Oui</item>
+            <item>Non</item>
+          </items><in_filters type="bool">False</in_filters>
+          <anonymise type="bool">False</anonymise>
+          <display_disabled_items type="bool">False</display_disabled_items>
+          <id type="str">8</id>
         </field>
       </fields>
     </formdef>

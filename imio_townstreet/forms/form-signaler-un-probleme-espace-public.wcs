@@ -348,7 +348,6 @@
         <display_location>listings</display_location>
       </display_locations><extra_css_class type="str">newline grid-2-12</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>geolocation</type>
         <value>postcode</value>
       </prefill><anonymise type="bool">False</anonymise>
@@ -397,7 +396,7 @@
       <display_locations />
       <id type="str">176</id>
     </field><field>
-    <label type="str">&lt;p&gt;&lt;strong&gt;Attention, seuls les graffitis pr&amp;eacute;sents sur les photos jointes &amp;agrave; ce formulaire et visibles depuis la voie publique seront pris en consid&amp;eacute;ration.&lt;/strong&gt;&lt;/p&gt;
+      <label type="str">&lt;p&gt;&lt;strong&gt;Attention, seuls les graffitis pr&amp;eacute;sents sur les photos jointes &amp;agrave; ce formulaire et visibles depuis la voie publique seront pris en consid&amp;eacute;ration.&lt;/strong&gt;&lt;/p&gt;
 </label>
       <type type="str">comment</type>
       <condition>
@@ -409,7 +408,10 @@
     </field><field>
       <label type="str">Je souhaite &#234;tre tenu inform&#233;&#183;e des suites qui seront donn&#233;es &#224; ce signalement</label>
       <type type="str">bool</type>
-      <required type="bool">False</required>
+      <condition>
+        <type>django</type>
+        <value>form_option_end_notification_to_user == "Oui"</value>
+      </condition><required type="bool">False</required>
       <hint type="str">Cochez cette case pour &#234;tre tenu inform&#233;&#183;e. Vous serez invit&#233;&#183;e &#224; communiquer vos coordonn&#233;es.</hint>
       <varname type="str">follow</varname>
       <display_locations>
@@ -655,10 +657,10 @@
       <id type="str">178</id>
     </field>
   </fields><backoffice-submission-roles>
-    <role role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10" slug="agent-traitant-townstreet">Agent traitant - Townstreet</role>
+    <role slug="agent-traitant-townstreet" role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</role>
   </backoffice-submission-roles><roles>
-    <role role_id="df908b92acec4a68b3a11bbf516263d9" role_key="_ext_bo" slug="debug">Debug</role>
-    <role role_id="9be8b3ce1b3244be8f6e05a9aa003cf0" role_key="_receiver" slug="agent-ayant-acces-aux-fabriques">Agent ayant acces aux fabriques</role>
+    <role slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9" role_key="_ext_bo">Debug</role>
+    <role slug="agent-ayant-acces-aux-fabriques" role_id="9be8b3ce1b3244be8f6e05a9aa003cf0" role_key="_receiver">Agent ayant acces aux fabriques</role>
   </roles><options>
     <option varname="categories_filtered" />
     <option varname="categories_filtered_display">Propret&#233; et d&#233;p&#244;ts sauvages, Voies publiques, Graffitis, Tags et affichages sauvages, Espaces verts, D&#233;gradations du mobilier urbain, Autres types de signalement</option>
@@ -672,6 +674,9 @@
     <option varname="eclairages_publics" />
     <option varname="eclairages_publics_display" />
     <option varname="eclairages_publics_structured" />
+    <option varname="end_notification_to_user">Non</option>
+    <option varname="end_notification_to_user_display">Non</option>
+    <option varname="end_notification_to_user_structured" />
     <option varname="environnement">test</option>
     <option varname="environnement_display">Test</option>
     <option varname="environnement_structured" />
