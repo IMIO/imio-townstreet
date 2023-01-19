@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<mail-template id="57" url="https://staging-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/57/">
+  <name>iMio - Townstreet - Refus&#233; avec personnalisation</name>
+  <slug>imio-townstreet-refuse-avec-personnalisation</slug>
+  <description>Courriel envoy&#233; &#224; l'usager lorsque la demande est refus&#233;e, avec personnalisation du contenu du mail par l'agent.</description>
+  <subject>form_workflow_form_custom_end_answer_form_var_custom_feedback_body</subject>
+  <body>Bonjour{% if form_var_firstname %} {{ form_var_firstname }}{% endif %},
+
+Merci de nous avoir signal&#233; cet incident, mais ne nous ne pouvons donner suite &#224; ce signalement.
+
+{% if form_workflow_form_custom_end_answer_form_var_custom_feedback_body %}
+Commentaire de l'administration : 
+{{ form_workflow_form_custom_end_answer_form_var_custom_feedback_body }}
+{% endif %}
+
+{% if form_user %}
+Vous pouvez en prendre connaissance en suivant ce lien :
+
+`Afficher l'historique de ma demande &lt;{{ form_url }}&gt;`_
+{% endif %}
+
+{% if form_user and form_tracking_code %}
+Un code de suivi est li&#233; &#224; ce signalement : **{{ form_tracking_code }}**.
+{% endif %}
+
+Bien &#224; vous,</body>
+</mail-template>
