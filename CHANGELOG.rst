@@ -21,6 +21,7 @@ Version History
 * [TOWS-125] Relabel street + number fields [dmshd]
 * [TOWS-131] Properly implement postal code restriction option [dmshd]
 * [TOWS-132] Add form_option to make the end mail notification conditionnal [dmshd]
+* [TOWS-133] Fix bug making form evoluate to atal file send status while there is no demand created before [dmshd]
 
 0.0.65
 * [SUP-26456] change python expression to django when sending images to iA.Tech [nhi]
