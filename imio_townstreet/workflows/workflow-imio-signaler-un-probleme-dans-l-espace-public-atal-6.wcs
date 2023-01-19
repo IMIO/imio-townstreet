@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<workflow id="138" url="https://staging-formulaires.guichet-citoyen.be/backoffice/workflows/138/">
+<workflow id="104" url="https://staging-formulaires.guichet-citoyen.be/backoffice/workflows/104/">
   <name>iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</name>
   <slug>imio-signaler-un-probleme-dans-l-espace-public-atal-6</slug>
   <roles>
@@ -145,7 +145,25 @@
           <record_errors>False</record_errors>
         </item><item type="jump" id="2">
           <status>20</status>
-          <set_marker_on_status>False</set_marker_on_status>
+          <condition>
+            <type>django</type>
+            <value>not form_workflow_data_post_work_request_response_data_errors</value>
+          </condition><set_marker_on_status>False</set_marker_on_status>
+        </item><item type="sendmail" id="3">
+          <to>
+            <item role_id="daniel.muyshond@imio.be">daniel.muyshond@imio.be</item>
+          </to><subject>Erreur ATAL bloquant un signalement</subject>
+          <body>Bonjour,
+
+Il y a une demande bloqu&#233;e ici : {{ form_url_backoffice }}
+Ce courriel de debug est destin&#233; &#224; &#234;tre temporaire et supprim&#233; ult&#233;rieurement.
+
+Bien &#224; vous,
+iMio</body>
+          <condition>
+            <type>django</type>
+            <value>form_workflow_data_post_work_request_response_data_errors</value>
+          </condition>
         </item>
       </items>
     </status><status>
@@ -288,7 +306,7 @@
       <visibility>
         <role>_receiver</role>
       </visibility><items>
-        <item type="choice" id="2">
+        <item type="choice" id="1">
           <label>D&#233;bug &#183; R&#233;essayer d'envoyer les images dans ATAL</label>
           <by>
             <item role_id="_receiver">_receiver</item>
@@ -310,13 +328,13 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
       <forced_endpoint>true</forced_endpoint>
       <visibility />
       <items>
-        <item type="register-comment" id="4">
+        <item type="register-comment" id="1">
           <comment>Commentaire de l'administration : {{ form_workflow_form_custom_end_answer_form_var_custom_feedback_body }}</comment>
           <condition>
             <type>django</type>
             <value>form_workflow_form_custom_end_answer_form_var_custom_feedback_body</value>
           </condition>
-        </item><item type="webservice_call" id="1">
+        </item><item type="webservice_call" id="2">
           <label>Notifier FixMyStreet de la cl&#244;ture</label>
           <method>PATCH</method>
           <url>https://{{ form_option_environnement_url_apims|default:"api" }}.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
@@ -343,7 +361,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
             <type>django</type>
             <value>form_var_origin_source == "fixmystreet"</value>
           </condition>
-        </item><item type="sendmail" id="2">
+        </item><item type="sendmail" id="3">
           <to>
             <item role_id="{{ form_var_mail }}">{{ form_var_mail }}</item>
           </to><mail_template>imio-townstreet-refuse</mail_template>
@@ -351,7 +369,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
             <type>django</type>
             <value>form_option_custom_end_notification == "Non" and  form_var_follow == True</value>
           </condition>
-        </item><item type="sendmail" id="3">
+        </item><item type="sendmail" id="4">
           <to>
             <item role_id="{{ form_var_mail }}">{{ form_var_mail }}</item>
           </to><mail_template>imio-townstreet-refuse-avec-personnalisation</mail_template>
@@ -394,13 +412,13 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
       <forced_endpoint>true</forced_endpoint>
       <visibility />
       <items>
-        <item type="register-comment" id="4">
+        <item type="register-comment" id="1">
           <comment>Commentaire de l'administration : {{ form_workflow_form_custom_end_answer_form_var_custom_feedback_body }}</comment>
           <condition>
             <type>django</type>
             <value>form_workflow_form_custom_end_answer_form_var_custom_feedback_body</value>
           </condition>
-        </item><item type="webservice_call" id="1">
+        </item><item type="webservice_call" id="2">
           <label>Notifier FixMyStreet de la r&#233;solution</label>
           <method>PATCH</method>
           <url>https://{{ form_option_environnement_url_apims|default:"api" }}.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
@@ -543,29 +561,29 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 3 and form_option_custom_end_notification == "Oui" and  form_var_follow == True</value>
           </condition><set_marker_on_status>False</set_marker_on_status>
-        </item><item type="jump" id="8">
+        </item><item type="jump" id="4">
           <status>23</status>
           <condition>
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 9 and form_option_custom_end_notification == "Oui" and  form_var_follow == True</value>
           </condition><set_marker_on_status>False</set_marker_on_status>
-        </item><item type="jump" id="4">
+        </item><item type="jump" id="5">
           <status>21</status>
           <timeout>86400</timeout>
           <set_marker_on_status>False</set_marker_on_status>
-        </item><item type="jump" id="5">
+        </item><item type="jump" id="6">
           <status>13</status>
           <condition>
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 9 and form_var_followyn == "Non"</value>
           </condition><set_marker_on_status>False</set_marker_on_status>
-        </item><item type="jump" id="6">
+        </item><item type="jump" id="7">
           <status>8</status>
           <condition>
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 3</value>
           </condition><set_marker_on_status>False</set_marker_on_status>
-        </item><item type="jump" id="7">
+        </item><item type="jump" id="8">
           <status>14</status>
           <condition>
             <type>django</type>
@@ -580,14 +598,14 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
       <backoffice_info_text>&lt;p&gt;Visible par le demandeur.&lt;/p&gt;</backoffice_info_text>
       <visibility />
       <items>
-        <item type="displaymsg" id="3">
+        <item type="displaymsg" id="1">
           <message>Votre signalement a &#233;t&#233; introduit avec succ&#232;s.</message>
           <level>success</level>
           <position>top</position>
           <to>
             <item role_id="_submitter">_submitter</item>
           </to>
-        </item><item type="jump" id="1">
+        </item><item type="jump" id="2">
           <status>21</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -599,7 +617,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
       <visibility>
         <role>_receiver</role>
       </visibility><items>
-        <item type="displaymsg" id="5">
+        <item type="displaymsg" id="1">
           <message>Cette demande est cl&#244;tur&#233;e dans ATAL et attends votre intervention pour la r&#233;daction d'une r&#233;ponse.</message>
           <level>info</level>
           <position>top</position>
@@ -609,7 +627,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 9</value>
           </condition>
-        </item><item type="displaymsg" id="7">
+        </item><item type="displaymsg" id="2">
           <message>Cette demande est refus&#233;e dans ATAL et attends votre intervention pour la r&#233;daction d'une r&#233;ponse.</message>
           <level>info</level>
           <position>top</position>
@@ -619,7 +637,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 3</value>
           </condition>
-        </item><item type="register-comment" id="4">
+        </item><item type="register-comment" id="3">
           <comment>Ce signalement portant le num&#233;ro {{ form_var_ditnu }} a &#233;t&#233; marqu&#233; comme cl&#244;tur&#233; dans ATAL.</comment>
           <to>
             <item role_id="_receiver">_receiver</item>
@@ -627,7 +645,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 9</value>
           </condition>
-        </item><item type="register-comment" id="6">
+        </item><item type="register-comment" id="4">
           <comment>Ce signalement portant le num&#233;ro {{ form_var_ditnu }} a &#233;t&#233; marqu&#233; comme refus&#233; dans ATAL.</comment>
           <to>
             <item role_id="_receiver">_receiver</item>
@@ -635,7 +653,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 3</value>
           </condition>
-        </item><item type="form" id="1">
+        </item><item type="form" id="5">
           <by>
             <item role_id="_receiver">_receiver</item>
           </by><varname>custom_end_answer_form</varname>
@@ -686,7 +704,6 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
                 <varname type="str">custom_feedback_body</varname>
                 <display_locations />
                 <prefill>
-                  <locked>False</locked>
                   <type>string</type>
                   <value>{% if form_var_atal_comments %}{{ form_var_atal_comments }}{% endif %}</value>
                 </prefill><display_mode type="str">pre</display_mode>
@@ -694,14 +711,14 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
               </field>
             </fields>
           </formdef>
-        </item><item type="jumponsubmit" id="2">
+        </item><item type="jumponsubmit" id="6">
           <status>8</status>
           <set_marker_on_status>False</set_marker_on_status>
           <condition>
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 3</value>
           </condition>
-        </item><item type="jumponsubmit" id="3">
+        </item><item type="jumponsubmit" id="7">
           <status>14</status>
           <set_marker_on_status>False</set_marker_on_status>
           <condition>
