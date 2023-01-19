@@ -234,7 +234,7 @@
           <record_errors>False</record_errors>
           <condition>
             <type>django</type>
-            <value>form_var_pic2</value>
+            <value>form_var_pic3</value>
           </condition>
         </item><item type="webservice_call" id="4">
           <label>Envoi de l'autorisation d'intervenir</label>
