@@ -22,6 +22,8 @@ Version History
 * [TOWS-131] Properly implement postal code restriction option [dmshd]
 * [TOWS-132] Add form_option to make the end mail notification conditionnal [dmshd]
 * [TOWS-133] Fix bug making form evoluate to atal file send status while there is no demand created before [dmshd]
+* [TOWS-133] Fix bug in condition (wrong pic number) [dmshd]
+* [TOWS-133] Implement manual custom answer feature [dmshd]
 
 0.0.65
 * [SUP-26456] change python expression to django when sending images to iA.Tech [nhi]
