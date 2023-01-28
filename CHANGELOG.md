@@ -10,7 +10,7 @@
 ### Added
 
     * Add ability to manually set latitude longitude in backoffice [dmshd]
-
+    * Add missing message in final statuses, rename debug global action (iMio) [dmshd]
 ## 0.0.66
 
     * [TOWS-128] use addinfo instead of form_comment or form_var_reporter_comment in ack mail [nhi]
