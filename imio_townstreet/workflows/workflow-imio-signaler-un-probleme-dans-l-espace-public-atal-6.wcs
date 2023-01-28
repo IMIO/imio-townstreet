@@ -328,7 +328,13 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
       <forced_endpoint>true</forced_endpoint>
       <visibility />
       <items>
-        <item type="register-comment" id="1">
+        <item type="register-comment" id="5">
+          <comment>Commentaire de l'administration : {{ form_var_atal_comments }}</comment>
+          <condition>
+            <type>django</type>
+            <value>form_var_atal_comments and form_option_custom_end_notification != "Oui"</value>
+          </condition>
+        </item><item type="register-comment" id="1">
           <comment>Commentaire de l'administration : {{ form_workflow_form_custom_end_answer_form_var_custom_feedback_body }}</comment>
           <condition>
             <type>django</type>
@@ -412,7 +418,13 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
       <forced_endpoint>true</forced_endpoint>
       <visibility />
       <items>
-        <item type="register-comment" id="1">
+        <item type="register-comment" id="4">
+          <comment>Commentaire de l'administration : {{ form_var_atal_comments }}</comment>
+          <condition>
+            <type>django</type>
+            <value>form_var_atal_comments and form_option_custom_end_notification != "Oui"</value>
+          </condition>
+        </item><item type="register-comment" id="1">
           <comment>Commentaire de l'administration : {{ form_workflow_form_custom_end_answer_form_var_custom_feedback_body }}</comment>
           <condition>
             <type>django</type>
@@ -830,7 +842,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       </triggers>
     </action><action>
       <id>6</id>
-      <name>Compl&#233;ter g&#233;odonn&#233;es</name>
+      <name>&#128260; iMio - Compl&#233;ter g&#233;odonn&#233;es</name>
       <items>
         <item type="jump" id="1">
           <status>24</status>
