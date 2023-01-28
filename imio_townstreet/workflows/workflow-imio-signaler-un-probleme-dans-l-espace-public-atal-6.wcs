@@ -95,10 +95,10 @@
               <value>{% firstof form_var_firstname '' %}</value>
             </item><item>
               <name>atal_latitude</name>
-              <value>{% firstof form_var_map_lat form_geoloc_base_lat %}</value>
+              <value>{% firstof form_var_map_lat form_geoloc_base_lat form_workflow_form_manual_geodata_var_lat %}</value>
             </item><item>
               <name>atal_longitude</name>
-              <value>{% firstof form_var_map_lon form_geoloc_base_lon %}</value>
+              <value>{% firstof form_var_map_lon form_geoloc_base_lon form_workflow_form_manual_geodata_var_lat %}</value>
             </item><item>
               <name>atal_description</name>
               <value>{% firstof form_var_desc 'Non renseign&#233;' %}</value>
@@ -310,7 +310,7 @@ iMio</body>
           <label>D&#233;bug &#183; R&#233;essayer d'envoyer les images dans ATAL</label>
           <by>
             <item role_id="_receiver">_receiver</item>
-            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item slug="debug" role_id="8f1736aa223b40aeab03e97f6ee5da51">Debug</item>
           </by><status>6</status>
           <require_confirmation>True</require_confirmation>
           <backoffice_info_text>&lt;p&gt;Action de d&amp;eacute;bug en cas d&amp;#39;erreur vers l&amp;#39;envoi de fichier dans ATAL.&lt;br&gt;
@@ -450,7 +450,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
           <level>success</level>
           <position>top</position>
           <to>
-            <item slug="agent-traitant-townstreet" role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
+            <item slug="agent-traitant-townstreet" role_id="021d169dbcff471bb83e4df7035fe06a">Agent traitant - Townstreet</item>
             <item role_id="_submitter">_submitter</item>
           </to>
         </item>
@@ -727,6 +727,45 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           </condition>
         </item>
       </items>
+    </status><status>
+      <id>24</id>
+      <name>Compl&#233;tion g&#233;odonn&#233;es</name>
+      <colour>FFFFFF</colour>
+      <visibility>
+        <role>_receiver</role>
+      </visibility><items>
+        <item type="form" id="1">
+          <by>
+            <item slug="debug" role_id="8f1736aa223b40aeab03e97f6ee5da51">Debug</item>
+          </by><varname>manual_geodata</varname>
+          <hide_submit_button>False</hide_submit_button>
+          <formdef>
+            <name>-</name>
+            <fields>
+              <field>
+                <label type="str">Latitude du signalement</label>
+                <type type="str">string</type>
+                <required type="bool">True</required>
+                <varname type="str">lat</varname>
+                <display_locations />
+                <anonymise type="bool">True</anonymise>
+                <id type="str">1</id>
+              </field><field>
+                <label type="str">Longitude du signalement</label>
+                <type type="str">string</type>
+                <required type="bool">True</required>
+                <varname type="str">lon</varname>
+                <display_locations />
+                <anonymise type="bool">True</anonymise>
+                <id type="str">2</id>
+              </field>
+            </fields>
+          </formdef>
+        </item><item type="jumponsubmit" id="2">
+          <status>4</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
     </status>
   </possible_status><global_actions>
     <action>
@@ -738,7 +777,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       </items><triggers>
         <trigger type="manual" id="5195410f-d64b-4ba7-a8b1-8c0bdcf27061">
           <roles>
-            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item slug="debug" role_id="8f1736aa223b40aeab03e97f6ee5da51">Debug</item>
           </roles>
         </trigger>
       </triggers>
@@ -754,7 +793,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       </items><triggers>
         <trigger type="manual" id="871a8c92-747a-460d-9e36-b9348000c0e9">
           <roles>
-            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item slug="debug" role_id="8f1736aa223b40aeab03e97f6ee5da51">Debug</item>
           </roles>
         </trigger>
       </triggers>
@@ -770,7 +809,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       </items><triggers>
         <trigger type="manual" id="b2738ce0-09ef-43e4-82d9-0fa4c13c382e">
           <roles>
-            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item slug="debug" role_id="8f1736aa223b40aeab03e97f6ee5da51">Debug</item>
           </roles>
         </trigger>
       </triggers>
@@ -785,7 +824,22 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       </items><triggers>
         <trigger type="manual" id="c5804db0-a8b6-4d26-bb3d-2af1167495b6">
           <roles>
-            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item slug="debug" role_id="8f1736aa223b40aeab03e97f6ee5da51">Debug</item>
+          </roles>
+        </trigger>
+      </triggers>
+    </action><action>
+      <id>6</id>
+      <name>Compl&#233;ter g&#233;odonn&#233;es</name>
+      <items>
+        <item type="jump" id="1">
+          <status>24</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items><triggers>
+        <trigger type="manual" id="028b85d4-bcf1-4c33-8e1f-591968e32872">
+          <roles>
+            <item slug="debug" role_id="8f1736aa223b40aeab03e97f6ee5da51">Debug</item>
           </roles>
         </trigger>
       </triggers>
