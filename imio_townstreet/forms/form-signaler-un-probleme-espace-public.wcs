@@ -495,15 +495,19 @@
         <type>django</type>
         <value>form_var_helpacknow == True</value>
       </condition><required type="bool">True</required>
+      <hint type="str">Exemple : +3281005678 ou 0123456789.</hint>
       <varname type="str">phonenum</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-2 newline</extra_css_class>
       <prefill>
+        <locked>False</locked>
         <type>user</type>
         <value>_phone</value>
-      </prefill><anonymise type="bool">True</anonymise>
+      </prefill><validation>
+        <type>phone</type>
+      </validation><anonymise type="bool">True</anonymise>
       <id type="str">154</id>
     </field><field>
       <label type="str">Informations n&#233;c&#233;ssaires (graffiti sur b&#226;timent priv&#233;)</label>
@@ -693,7 +697,7 @@
     <option varname="onaprivatebuilding" />
     <option varname="opt_on_a_private_building" />
     <option varname="pic_not_required" />
-    <option varname="postal_code_limit" />
+    <option varname="postal_code_limit">5000,4000,3000,1000,5032</option>
     <option varname="proprete_et_depots_sauvages" />
     <option varname="proprete_et_depots_sauvages_display" />
     <option varname="proprete_et_depots_sauvages_structured" />

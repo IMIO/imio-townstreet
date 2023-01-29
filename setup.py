@@ -3,8 +3,7 @@
 
 import os
 
-from setuptools import find_packages
-from setuptools import setup
+from setuptools import find_packages, setup
 from setuptools.command.install import install
 
 
@@ -18,7 +17,7 @@ class inst(install):
         os.system("sh " + path + "install_imio-townstreet.sh")
 
 
-version = "0.0.66"
+version = "0.0.67"
 
 setup(
     name="imio-townstreet",
