@@ -502,7 +502,6 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-2 newline</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>user</type>
         <value>_phone</value>
       </prefill><validation>
@@ -657,11 +656,13 @@
       <storage type="str">default</storage>
       <id type="str">178</id>
     </field>
-  </fields><backoffice-submission-roles>
+  </fields><user-roles>
+    <role slug="citoyen-test" role_id="facf46c672034a8ca2009c6c499e53bf">Citoyen (test)</role>
+  </user-roles><backoffice-submission-roles>
     <role slug="agent-traitant-townstreet" role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</role>
   </backoffice-submission-roles><roles>
     <role slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9" role_key="_ext_bo">Debug</role>
-    <role slug="agent-ayant-acces-aux-fabriques" role_id="9be8b3ce1b3244be8f6e05a9aa003cf0" role_key="_receiver">Agent ayant acces aux fabriques</role>
+    <role slug="agent-traitant-townstreet" role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10" role_key="_receiver">Agent traitant - Townstreet</role>
   </roles><options>
     <option varname="categories_filtered" />
     <option varname="categories_filtered_display">Propret&#233; et d&#233;p&#244;ts sauvages, Voies publiques, Graffitis, Tags et affichages sauvages, Espaces verts, D&#233;gradations du mobilier urbain, Autres types de signalement</option>
