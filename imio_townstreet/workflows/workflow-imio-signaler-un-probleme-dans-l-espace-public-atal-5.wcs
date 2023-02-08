@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
-<workflow id="90" url="">
+<workflow id="103" url="https://staging-formulaires.guichet-citoyen.be/backoffice/workflows/103/">
   <name>iMio - Signaler un probl&#232;me dans l'espace public (ATAL 5)</name>
+  <slug>imio-signaler-un-probleme-dans-l-espace-public-atal-5</slug>
   <roles>
     <role id="_receiver">Destinataire</role>
   </roles><possible_status>
@@ -11,22 +12,22 @@
       <visibility>
         <role>_receiver</role>
       </visibility><items>
-        <item id="1" type="geolocate">
+        <item type="geolocate" id="1">
           <method>map_variable</method>
           <map_variable>{{form_var_map}}</map_variable>
           <overwrite>True</overwrite>
-        </item><item id="2" type="geolocate">
+        </item><item type="geolocate" id="2">
           <method>address_string</method>
           <address_string>{{form_var_number|default:""}} {{ form_var_street }}, {{ form_var_postal_code }}, {{ form_var_city }}, Belgique</address_string>
           <overwrite>True</overwrite>
-        </item><item id="3" type="displaymsg">
+        </item><item type="displaymsg" id="3">
           <message>Merci pour votre signalement. Les donn&#233;es nous sont parvenues avec succ&#232;s.</message>
           <level>success</level>
           <position>top</position>
           <to>
             <item role_id="_submitter">_submitter</item>
           </to>
-        </item><item id="4" type="set-backoffice-fields">
+        </item><item type="set-backoffice-fields" id="4">
           <label>Informations utiles pour ATAL</label>
           <fields>
             <field>
@@ -43,18 +44,18 @@
               <value>{% firstof form_var_number "" %} {% firstof form_var_street "" %} {% firstof form_var_postal_code "" %} {% firstof form_var_city "" %}</value>
             </field><field>
               <field_id>bo8e50a0f2-09c3-4c33-8099-b6dfdbce719c</field_id>
-              <value>="Oui" if vars().get('form_var_follow') == "True" else "Non"</value>
+              <value>{% if form_var_follow %}Oui{% else %}Non{% endif %}</value>
             </field>
           </fields>
-        </item><item id="5" type="sendmail">
+        </item><item type="sendmail" id="5">
           <to>
             <item role_id="{{ form_var_mail }}">{{ form_var_mail }}</item>
           </to><mail_template>imio-townstreet-new-signal</mail_template>
-        </item><item id="6" type="sendmail">
+        </item><item type="sendmail" id="6">
           <to>
             <item role_id="_submitter">_submitter</item>
           </to><mail_template>imio-townstreet-acknowledgement</mail_template>
-        </item><item id="7" type="jump">
+        </item><item type="jump" id="7">
           <status>10</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -65,16 +66,16 @@
       <colour>006699</colour>
       <visibility />
       <items>
-        <item id="1" type="webservice_call">
+        <item type="webservice_call" id="1">
           <label>retrieveDetailsDemande GET</label>
+          <method>GET</method>
           <url>{{passerelle_url}}atal/townstreet-eo-atal-connect/retrieve-details-demande/{{form_var_ditnu}}/</url>
           <qs_data>
             <item>
               <name>demande_number</name>
               <value>{{form_var_ditnu}}</value>
             </item>
-          </qs_data><method>GET</method>
-          <post>False</post>
+          </qs_data><post>False</post>
           <response_type>json</response_type>
           <varname>iatechdetails</varname>
           <action_on_app_error>:pass</action_on_app_error>
@@ -85,38 +86,38 @@
           <notify_on_errors>True</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>False</record_errors>
-        </item><item id="2" type="jump">
+        </item><item type="jump" id="2">
           <status>3</status>
           <timeout>86400</timeout>
           <set_marker_on_status>False</set_marker_on_status>
-        </item><item id="3" type="choice">
+        </item><item type="choice" id="3">
           <label>V&#233;rifier le statut dans iA.Tech (ATAL)</label>
           <by>
-            <item role_id="">Agent traitant - Townstreet</item>
+            <item slug="agent-traitant-townstreet" role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
           </by><status>3</status>
           <require_confirmation>True</require_confirmation>
           <backoffice_info_text>&lt;p&gt;V&amp;eacute;rifier le statut dans iA.Tech (ATAL) - Cette action v&amp;eacute;rifie le statut de la demande dans ATAL. Regardez dans l'historique pour v&amp;eacute;rifier le statut dans ATAL.&lt;/p&gt;</backoffice_info_text>
           <ignore_form_errors>False</ignore_form_errors>
           <set_marker_on_status>False</set_marker_on_status>
-        </item><item id="4" type="jump">
+        </item><item type="jump" id="4">
           <status>19</status>
           <condition>
             <type>django</type>
             <value>iatechdetails_response_data_etatDemande_description == "REFUSEE"</value>
           </condition><set_marker_on_status>False</set_marker_on_status>
-        </item><item id="5" type="jump">
+        </item><item type="jump" id="5">
           <status>16</status>
           <condition>
             <type>python</type>
             <value>vars().get('iatechdetails_response_data_etatDemande_description') == "PRISE EN COMPTE"</value>
           </condition><set_marker_on_status>False</set_marker_on_status>
-        </item><item id="6" type="jump">
+        </item><item type="jump" id="6">
           <status>18</status>
           <condition>
             <type>django</type>
             <value>iatechdetails_response_data_etatDemande_description == "CLOTUREE"  and form_var_follow == True</value>
           </condition><set_marker_on_status>False</set_marker_on_status>
-        </item><item id="7" type="jump">
+        </item><item type="jump" id="7">
           <status>17</status>
           <condition>
             <type>django</type>
@@ -131,10 +132,10 @@
       <visibility>
         <role>_receiver</role>
       </visibility><items>
-        <item id="1" type="webservice_call">
+        <item type="webservice_call" id="1">
           <label>Insert demande complet by type</label>
-          <url>{{passerelle_url}}atal/townstreet-eo-atal-connect/insert-demande-complet-by-type</url>
           <method>POST</method>
+          <url>{{passerelle_url}}atal/townstreet-eo-atal-connect/insert-demande-complet-by-type</url>
           <post>False</post>
           <post_data>
             <item>
@@ -148,19 +149,19 @@
               <value>{% firstof form_var_lastname session_user_var_last_name "non identifi&#233;" %}</value>
             </item><item>
               <name>contact_organisme</name>
-              <value>=vars().get('global_title') or ''</value>
+              <value>{% firstof global_title '' %}</value>
             </item><item>
               <name>contact_prenom</name>
               <value>{% firstof form_var_firstname session_user_var_first_name "non identifi&#233;" %}</value>
             </item><item>
               <name>contact_ville</name>
-              <value>=vars().get('commune_name') or ''</value>
+              <value>{% firstof commune_name '' %}</value>
             </item><item>
               <name>coord_x</name>
-              <value>=vars().get('form_geoloc_base_lat') or  vars().get('form_var_map_lat') or 0.00</value>
+              <value>{% firstof form_geoloc_base_lat form_var_map_lat '0.00' %}</value>
             </item><item>
               <name>coord_y</name>
-              <value>=vars().get('form_geoloc_base_lon') or  vars().get('form_var_map_lon') or 0.00</value>
+              <value>{% firstof form_geoloc_base_lon form_var_map_lon '0.00' %}</value>
             </item><item>
               <name>date_demande</name>
               <value>{{form_receipt_datetime|date:"d/m/Y"}}</value>
@@ -175,13 +176,13 @@
               <value>2</value>
             </item><item>
               <name>code_equipement</name>
-              <value>=''</value>
+              <value>''</value>
             </item><item>
               <name>code_thematique</name>
-              <value>=''</value>
+              <value>''</value>
             </item><item>
               <name>code_service_demandeur</name>
-              <value>=''</value>
+              <value>''</value>
             </item><item>
               <name>demande_lieu</name>
               <value>{{form_var_place}}</value>
@@ -199,13 +200,13 @@
           <notify_on_errors>True</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>False</record_errors>
-        </item><item id="2" type="register-comment">
+        </item><item type="register-comment" id="2">
           <comment>La demande a &#233;t&#233; cr&#233;&#233;e dans ATAL ({{ iatechins_response_data_demande_number }}).</comment>
           <condition>
-            <type>python</type>
-            <value>form_workflow_data_iatechins_app_error_code == 0 and bool(form_workflow_data_iatechins_response_data_demande_number) == True</value>
+            <type>django</type>
+            <value>form_workflow_data_iatechins_app_error_code == 0 and form_workflow_data_iatechins_response_data_demande_number</value>
           </condition>
-        </item><item id="3" type="set-backoffice-fields">
+        </item><item type="set-backoffice-fields" id="3">
           <label>Store DIT number</label>
           <fields>
             <field>
@@ -213,7 +214,7 @@
               <value>{{ iatechins_response_data_demande_number }}</value>
             </field>
           </fields>
-        </item><item id="4" type="jump">
+        </item><item type="jump" id="4">
           <status>6</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -225,10 +226,10 @@
       <visibility>
         <role>_receiver</role>
       </visibility><items>
-        <item id="1" type="webservice_call">
+        <item type="webservice_call" id="1">
           <label>Pic1 POST</label>
-          <url>{{passerelle_url}}atal/townstreet-eo-atal-connect/upload</url>
           <method>POST</method>
+          <url>{{passerelle_url}}atal/townstreet-eo-atal-connect/upload</url>
           <post>False</post>
           <post_data>
             <item>
@@ -236,7 +237,7 @@
               <value>={"content": form_var_pic1_raw.get_base64_content()}</value>
             </item><item>
               <name>nom_fichier</name>
-              <value>=vars().get('form_var_pic1')</value>
+              <value>{{ form_var_pic1}}</value>
             </item><item>
               <name>numero_demande</name>
               <value>{{ form_var_ditnu }}</value>
@@ -255,10 +256,10 @@
             <type>django</type>
             <value>form_var_pic1</value>
           </condition>
-        </item><item id="2" type="webservice_call">
+        </item><item type="webservice_call" id="2">
           <label>Pic2 POST</label>
-          <url>{{passerelle_url}}atal/townstreet-eo-atal-connect/upload</url>
           <method>POST</method>
+          <url>{{passerelle_url}}atal/townstreet-eo-atal-connect/upload</url>
           <post>False</post>
           <post_data>
             <item>
@@ -285,10 +286,10 @@
             <type>django</type>
             <value>form_var_pic2</value>
           </condition>
-        </item><item id="3" type="webservice_call">
+        </item><item type="webservice_call" id="3">
           <label>Pic3 POST</label>
-          <url>{{passerelle_url}}atal/townstreet-eo-atal-connect/upload</url>
           <method>POST</method>
+          <url>{{passerelle_url}}atal/townstreet-eo-atal-connect/upload</url>
           <post>False</post>
           <post_data>
             <item>
@@ -315,10 +316,10 @@
             <type>python</type>
             <value>bool(vars().get('form_var_pic3_raw')) == True</value>
           </condition>
-        </item><item id="7" type="webservice_call">
+        </item><item type="webservice_call" id="4">
           <label>authorization post</label>
-          <url>{{passerelle_url}}atal/townstreet-eo-atal-connect/upload</url>
           <method>POST</method>
+          <url>{{passerelle_url}}atal/townstreet-eo-atal-connect/upload</url>
           <post>False</post>
           <post_data>
             <item>
@@ -345,7 +346,7 @@
             <type>django</type>
             <value>form_var_private_building_yn == True</value>
           </condition>
-        </item><item id="8" type="jump">
+        </item><item type="jump" id="5">
           <status>3</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -357,7 +358,7 @@
       <visibility>
         <role>_receiver</role>
       </visibility><items>
-        <item id="1" type="sendmail">
+        <item type="sendmail" id="1">
           <to>
             <item role_id="admints+townstreet@imio.be">admints+townstreet@imio.be</item>
           </to><mail_template>imio-townstreet-erreur</mail_template>
@@ -370,7 +371,7 @@
       <visibility>
         <role>_receiver</role>
       </visibility><items>
-        <item id="1" type="sendmail">
+        <item type="sendmail" id="1">
           <to>
             <item role_id="admints+townstreet@imio.be">admints+townstreet@imio.be</item>
           </to><mail_template>imio-townstreet-erreur-envoi-des-photos-iatech</mail_template>
@@ -383,7 +384,7 @@
       <forced_endpoint>true</forced_endpoint>
       <visibility />
       <items>
-        <item id="1" type="sendmail">
+        <item type="sendmail" id="1">
           <to>
             <item role_id="{{ form_var_mail }}">{{ form_var_mail }}</item>
           </to><mail_template>imio-townstreet-refuse</mail_template>
@@ -391,7 +392,7 @@
             <type>django</type>
             <value>form_var_follow == True</value>
           </condition>
-        </item><item id="2" type="commentable">
+        </item><item type="commentable" id="2">
           <label>Message &#224; communiquer en cas de changement de d&#233;cision et d'acceptation :</label>
           <button_label />
           <hint>Veuillez ajouter un commentaire &#224; l'historique de la demande en cas de changement de d&#233;cision. Le message s'inscrira au changement d'action.</hint>
@@ -400,10 +401,10 @@
           </by><varname>motifretournouvsign</varname>
           <backoffice_info_text>&lt;p&gt;Message &amp;agrave; communiquer en cas de changement de d&amp;eacute;cision et d'acceptation&amp;nbsp;- &lt;strong&gt;Ce commentaire s'inscrira &amp;agrave; l'historique de la demande et sera visible par l'usager. Il lui sera &amp;eacute;galement transmis par mail.&lt;/strong&gt;&lt;/p&gt;</backoffice_info_text>
           <required>False</required>
-        </item><item id="3" type="choice">
+        </item><item type="choice" id="3">
           <label>Revenir sur la d&#233;cision et accepter</label>
           <by>
-            <item role_id="">Agent traitant - Townstreet</item>
+            <item slug="agent-traitant-townstreet" role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
           </by><status>15</status>
           <require_confirmation>True</require_confirmation>
           <backoffice_info_text>&lt;p&gt;Revenir sur la d&amp;eacute;cision et accepter - En cas d'erreur, il est tout de m&amp;ecirc;me possible de finalement accepter cette demande.&lt;br /&gt;
@@ -420,18 +421,18 @@
       <colour>FFFF00</colour>
       <visibility />
       <items>
-        <item id="1" type="sendmail">
+        <item type="sendmail" id="1">
           <to>
-            <item role_id="">Agent traitant - Townstreet</item>
+            <item slug="agent-traitant-townstreet" role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
           </to><mail_template>imio-townstreet-notification-de-refus-dans-e-atal</mail_template>
-        </item><item id="2" type="displaymsg">
+        </item><item type="displaymsg" id="2">
           <message>Ce signalement a &#233;t&#233; refus&#233; dans ATAL. Une action de la part d'un agent traitant Townstreet est requise.</message>
           <level>info</level>
           <position>top</position>
           <to>
-            <item role_id="">Agent traitant - Townstreet</item>
+            <item slug="agent-traitant-townstreet" role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
           </to>
-        </item><item id="3" type="commentable">
+        </item><item type="commentable" id="3">
           <label>Commentaire</label>
           <button_label />
           <hint>Commentaire &#8211; Veuillez ajouter un commentaire dans l'historique avant d'actionner un refus. L'objet du refus sera transmis par mail au demandeur. Tout autre commenaire sans actionner le refus sera visible par l'usager dans l'historique de sa demande.</hint>
@@ -439,7 +440,7 @@
             <item role_id="_receiver">_receiver</item>
           </by><backoffice_info_text>&lt;p&gt;Commentaire &amp;ndash; &lt;strong&gt;Veuillez ajouter un commentaire dans l'historique avant d'actionner un refus&lt;/strong&gt;. L'objet du refus sera transmis par mail au demandeur.&lt;/p&gt;</backoffice_info_text>
           <required>False</required>
-        </item><item id="4" type="choice">
+        </item><item type="choice" id="4">
           <label>Marquer comme refus&#233;</label>
           <by>
             <item role_id="_receiver">_receiver</item>
@@ -456,14 +457,14 @@
       <colour>66FF99</colour>
       <visibility />
       <items>
-        <item id="1" type="displaymsg">
+        <item type="displaymsg" id="1">
           <message>Votre signalement a &#233;t&#233; introduit avec succ&#232;s.</message>
           <level>success</level>
           <position>top</position>
           <to>
             <item role_id="_submitter">_submitter</item>
           </to>
-        </item><item id="2" type="register-comment">
+        </item><item type="register-comment" id="2">
           <comment>&lt;b&gt;{% if form_var_street %}{{form_var_street}}&lt;/b&gt;{% endif %} &#224; &lt;b&gt;{{form_var_city}}&lt;/b&gt; ({{form_var_desc}}). {% if form_var_addinfo %}Information additionnelle : &lt;i&gt;{{ form_var_addinfo }}&lt;/i&gt;{% endif %}{% if form_var_addinfother %}Votre commentaire : {{ form_var_addinfother}}{% endif %}</comment>
           <attachments>
             <attachment>{{ form_var_pic1_raw }}</attachment>
@@ -473,7 +474,7 @@
             <attachment>{{ form_var_pic5_raw }}</attachment>
             <attachment>{{ form_var_pic6_raw }}</attachment>
           </attachments>
-        </item><item id="3" type="jump">
+        </item><item type="jump" id="3">
           <status>4</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -485,16 +486,16 @@
       <visibility>
         <role>_receiver</role>
       </visibility><items>
-        <item id="1" type="webservice_call">
+        <item type="webservice_call" id="1">
           <label>retrieveDetailsDemande GET</label>
+          <method>GET</method>
           <url>{{passerelle_url}}atal/townstreet-eo-atal-connect/retrieve-details-demande/{{form_var_ditnu}}/</url>
           <qs_data>
             <item>
               <name>demande_number</name>
               <value>{{form_var_ditnu}}</value>
             </item>
-          </qs_data><method>GET</method>
-          <post>False</post>
+          </qs_data><post>False</post>
           <response_type>json</response_type>
           <varname>iatechdetails_priseEnCompte</varname>
           <action_on_app_error>:pass</action_on_app_error>
@@ -505,27 +506,27 @@
           <notify_on_errors>True</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>False</record_errors>
-        </item><item id="2" type="choice">
+        </item><item type="choice" id="2">
           <label>V&#233;rifier le statut dans iA.Tech (ATAL)</label>
           <by>
-            <item role_id="">Agent traitant - Townstreet</item>
+            <item slug="agent-traitant-townstreet" role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
           </by><status>11</status>
           <require_confirmation>True</require_confirmation>
           <backoffice_info_text>&lt;p&gt;V&amp;eacute;rifier le statut dans iA.Tech (ATAL) - Cette action v&amp;eacute;rifie le statut de la demande dans ATAL. Regardez dans l'historique pour v&amp;eacute;rifier le statut dans ATAL.&lt;/p&gt;</backoffice_info_text>
           <ignore_form_errors>False</ignore_form_errors>
           <set_marker_on_status>False</set_marker_on_status>
-        </item><item id="3" type="register-comment" />
-        <item id="4" type="jump">
+        </item><item type="register-comment" id="3" />
+        <item type="jump" id="4">
           <status>11</status>
           <timeout>1200</timeout>
           <set_marker_on_status>False</set_marker_on_status>
-        </item><item id="5" type="jump">
+        </item><item type="jump" id="5">
           <status>18</status>
           <condition>
             <type>django</type>
             <value>form_workflow_data_iatechdetails_priseEnCompte_response_data_etatDemande_description == "CLOTUREE"  and form_var_follow == True</value>
           </condition><set_marker_on_status>False</set_marker_on_status>
-        </item><item id="6" type="jump">
+        </item><item type="jump" id="6">
           <status>17</status>
           <condition>
             <type>django</type>
@@ -541,7 +542,7 @@
       <forced_endpoint>true</forced_endpoint>
       <visibility />
       <items>
-        <item id="1" type="register-comment">
+        <item type="register-comment" id="1">
           <comment>{% if followresp_var_subject  and followresp_var_body %}
 &lt;p&gt;L'agent ayant trait&#233; votre demande vous communique le message suivant : &lt;/p&gt;
 
@@ -553,12 +554,12 @@
             <type>django</type>
             <value>followresp_var_subject  and followresp_var_body</value>
           </condition>
-        </item><item id="2" type="displaymsg">
+        </item><item type="displaymsg" id="2">
           <message>Cette demande a &#233;t&#233; trait&#233;e.</message>
           <level>success</level>
           <position>top</position>
           <to>
-            <item role_id="">Agent traitant - Townstreet</item>
+            <item slug="agent-traitant-townstreet" role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
             <item role_id="_submitter">_submitter</item>
           </to>
         </item>
@@ -570,11 +571,11 @@
       <visibility>
         <role>_receiver</role>
       </visibility><items>
-        <item id="1" type="sendmail">
+        <item type="sendmail" id="1">
           <to>
             <item role_id="{{ form_var_mail }}">{{ form_var_mail }}</item>
           </to><mail_template>imio-townstreet-votre-signalement-resolution</mail_template>
-        </item><item id="2" type="jump">
+        </item><item type="jump" id="2">
           <status>13</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -586,7 +587,7 @@
       <visibility>
         <role>_receiver</role>
       </visibility><items>
-        <item id="1" type="sendmail">
+        <item type="sendmail" id="1">
           <to>
             <item role_id="{{ form_var_mail }}">{{ form_var_mail }}</item>
           </to><mail_template>imio-townstreet-accepte</mail_template>
@@ -594,7 +595,7 @@
             <type>django</type>
             <value>form_var_follow == True</value>
           </condition>
-        </item><item id="2" type="jump">
+        </item><item type="jump" id="2">
           <status>4</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -606,9 +607,9 @@
       <visibility>
         <role>_receiver</role>
       </visibility><items>
-        <item id="1" type="register-comment">
+        <item type="register-comment" id="1">
           <comment>{{ form_workflow_data_iatechdetails_response_data_commentairesDestinataires }}</comment>
-        </item><item id="2" type="jump">
+        </item><item type="jump" id="2">
           <status>11</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -620,11 +621,11 @@
       <visibility>
         <role>_receiver</role>
       </visibility><items>
-        <item id="1" type="sendmail">
+        <item type="sendmail" id="1">
           <to>
-            <item role_id="">Agent traitant - Townstreet</item>
+            <item slug="agent-traitant-townstreet" role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
           </to><mail_template>imio-townstreet-notification-de-cloture-automatique</mail_template>
-        </item><item id="2" type="jump">
+        </item><item type="jump" id="2">
           <status>13</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -636,9 +637,9 @@
       <visibility>
         <role>_receiver</role>
       </visibility><items>
-        <item id="1" type="register-comment">
+        <item type="register-comment" id="1">
           <comment>{{ form_workflow_data_iatechdetails_priseEnCompte_response_data_commentairesDestinataires }}</comment>
-        </item><item id="2" type="jump">
+        </item><item type="jump" id="2">
           <status>14</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -650,9 +651,9 @@
       <visibility>
         <role>_receiver</role>
       </visibility><items>
-        <item id="1" type="register-comment">
+        <item type="register-comment" id="1">
           <comment>{{ iatechdetails_response_data_commentairesDestinataires }}</comment>
-        </item><item id="2" type="jump">
+        </item><item type="jump" id="2">
           <status>9</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -663,11 +664,11 @@
       <id>2</id>
       <name>&#10060; Supprimer</name>
       <items>
-        <item id="1" type="remove" />
+        <item type="remove" id="1" />
       </items><triggers>
-        <trigger id="ac521ebb-75dc-4175-9549-c5cf79ae023c" type="manual">
+        <trigger type="manual" id="ac521ebb-75dc-4175-9549-c5cf79ae023c">
           <roles>
-            <item role_id="">Debug</item>
+            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
           </roles>
         </trigger>
       </triggers>
@@ -677,54 +678,54 @@
       <name>-</name>
       <fields>
         <field>
-          <label>Limiter le p&#233;rim&#232;tre g&#233;ographique des signalements</label>
-          <type>bool</type>
-          <required>False</required>
-          <hint>Cochez cette case pour limiter le p&#233;rim&#232;tre g&#233;ographique des signalements autoris&#233;s. Le formulaire ne pourra pas &#234;tre valid&#233; par le citoyen si cette case est coch&#233;e et que des codes postaux sont d&#233;finis ci-dessous. Un commentaire en premi&#232;re page du formulaire s'affichera pour avertir le citoyen des codes postaux autoris&#233;s.</hint>
-          <varname>geolimityn</varname>
+          <label type="str">Limiter le p&#233;rim&#232;tre g&#233;ographique des signalements</label>
+          <type type="str">bool</type>
+          <required type="bool">False</required>
+          <hint type="str">Cochez cette case pour limiter le p&#233;rim&#232;tre g&#233;ographique des signalements autoris&#233;s. Le formulaire ne pourra pas &#234;tre valid&#233; par le citoyen si cette case est coch&#233;e et que des codes postaux sont d&#233;finis ci-dessous. Un commentaire en premi&#232;re page du formulaire s'affichera pour avertir le citoyen des codes postaux autoris&#233;s.</hint>
+          <varname type="str">geolimityn</varname>
           <display_locations>
             <display_location>summary</display_location>
           </display_locations><prefill>
             <type>none</type>
-          </prefill><id>2</id>
+          </prefill><id type="str">2</id>
         </field><field>
-          <label>Limiter le p&#233;rim&#232;tre g&#233;ographique des signalements - Code postaux</label>
-          <type>string</type>
-          <required>False</required>
-          <hint>Code postaux s&#233;par&#233;s par des virgules. (Exemple : 6000,6001,6002)</hint>
-          <varname>postal_code_limit</varname>
+          <label type="str">Limiter le p&#233;rim&#232;tre g&#233;ographique des signalements - Code postaux</label>
+          <type type="str">string</type>
+          <required type="bool">False</required>
+          <hint type="str">Code postaux s&#233;par&#233;s par des virgules. (Exemple : 6000,6001,6002)</hint>
+          <varname type="str">postal_code_limit</varname>
           <display_locations>
             <display_location>summary</display_location>
           </display_locations><prefill>
             <type>none</type>
-          </prefill><anonymise>True</anonymise>
-          <id>1</id>
+          </prefill><anonymise type="bool">True</anonymise>
+          <id type="str">1</id>
         </field><field>
-          <label>Activer l'option "sur un b&#226;timent priv&#233;"</label>
-          <type>bool</type>
-          <required>False</required>
-          <hint>Cochez cette case pour que les &#233;l&#233;ments de formulaires li&#233;s &#224; cette option s'affiche. Il s'agit de champs commentaire, une page suppl&#233;mentaires demandes des informations li&#233;es, champs fichier, etc.</hint>
-          <varname>onaprivatebuilding</varname>
+          <label type="str">Activer l'option "sur un b&#226;timent priv&#233;"</label>
+          <type type="str">bool</type>
+          <required type="bool">False</required>
+          <hint type="str">Cochez cette case pour que les &#233;l&#233;ments de formulaires li&#233;s &#224; cette option s'affiche. Il s'agit de champs commentaire, une page suppl&#233;mentaires demandes des informations li&#233;es, champs fichier, etc.</hint>
+          <varname type="str">onaprivatebuilding</varname>
           <display_locations>
             <display_location>summary</display_location>
           </display_locations><prefill>
             <type>none</type>
-          </prefill><id>3</id>
+          </prefill><id type="str">3</id>
         </field><field>
-          <label>Choisir un environnement</label>
-          <type>item</type>
-          <required>True</required>
-          <hint>--- S&#233;lectionnez l'environnement utilis&#233; pour cette d&#233;marche ---</hint>
-          <varname>environnement</varname>
+          <label type="str">Choisir un environnement</label>
+          <type type="str">item</type>
+          <required type="bool">True</required>
+          <hint type="str">--- S&#233;lectionnez l'environnement utilis&#233; pour cette d&#233;marche ---</hint>
+          <varname type="str">environnement</varname>
           <display_locations />
+          <display_mode type="str">radio</display_mode>
           <items />
-          <display_mode>radio</display_mode>
           <data_source>
             <type>imio_townstreet_environnement</type>
-          </data_source><in_filters>False</in_filters>
-          <anonymise>False</anonymise>
-          <display_disabled_items>False</display_disabled_items>
-          <id>4</id>
+          </data_source><in_filters type="bool">False</in_filters>
+          <anonymise type="bool">False</anonymise>
+          <display_disabled_items type="bool">False</display_disabled_items>
+          <id type="str">4</id>
         </field>
       </fields>
     </formdef>
@@ -733,53 +734,53 @@
       <name>-</name>
       <fields>
         <field>
-          <label>R&#233;f&#233;rence ATAL</label>
-          <type>string</type>
-          <required>False</required>
-          <varname>ditnu</varname>
+          <label type="str">R&#233;f&#233;rence ATAL</label>
+          <type type="str">string</type>
+          <required type="bool">False</required>
+          <varname type="str">ditnu</varname>
           <display_locations>
             <display_location>summary</display_location>
             <display_location>listings</display_location>
-          </display_locations><anonymise>False</anonymise>
-          <id>boceb33663-bc2b-4e59-ac71-3c34e9c45f60</id>
+          </display_locations><anonymise type="bool">False</anonymise>
+          <id type="str">boceb33663-bc2b-4e59-ac71-3c34e9c45f60</id>
         </field><field>
-          <label>Objet</label>
-          <type>string</type>
-          <required>False</required>
-          <varname>obj</varname>
+          <label type="str">Objet</label>
+          <type type="str">string</type>
+          <required type="bool">False</required>
+          <varname type="str">obj</varname>
           <display_locations>
             <display_location>summary</display_location>
             <display_location>listings</display_location>
-          </display_locations><anonymise>False</anonymise>
-          <id>bo5f0b6137-6c67-46f1-b974-dedb5ee853db</id>
+          </display_locations><anonymise type="bool">False</anonymise>
+          <id type="str">bo5f0b6137-6c67-46f1-b974-dedb5ee853db</id>
         </field><field>
-          <label>Description</label>
-          <type>string</type>
-          <required>True</required>
-          <varname>desc</varname>
+          <label type="str">Description</label>
+          <type type="str">string</type>
+          <required type="bool">True</required>
+          <varname type="str">desc</varname>
           <display_locations>
             <display_location>summary</display_location>
-          </display_locations><anonymise>False</anonymise>
-          <id>bo810f5e77-1d3b-40b3-bb28-7ea0af191239</id>
+          </display_locations><anonymise type="bool">False</anonymise>
+          <id type="str">bo810f5e77-1d3b-40b3-bb28-7ea0af191239</id>
         </field><field>
-          <label>Lieu</label>
-          <type>string</type>
-          <required>True</required>
-          <varname>place</varname>
+          <label type="str">Lieu</label>
+          <type type="str">string</type>
+          <required type="bool">True</required>
+          <varname type="str">place</varname>
           <display_locations>
             <display_location>summary</display_location>
             <display_location>listings</display_location>
-          </display_locations><anonymise>False</anonymise>
-          <id>bo13e3c664-e561-40a2-a766-ebd455662734</id>
+          </display_locations><anonymise type="bool">False</anonymise>
+          <id type="str">bo13e3c664-e561-40a2-a766-ebd455662734</id>
         </field><field>
-          <label>Souhaite &#234;tre tenu inform&#233;</label>
-          <type>string</type>
-          <required>True</required>
-          <varname>followyn</varname>
+          <label type="str">Souhaite &#234;tre tenu inform&#233;</label>
+          <type type="str">string</type>
+          <required type="bool">True</required>
+          <varname type="str">followyn</varname>
           <display_locations>
             <display_location>summary</display_location>
-          </display_locations><anonymise>False</anonymise>
-          <id>bo8e50a0f2-09c3-4c33-8099-b6dfdbce719c</id>
+          </display_locations><anonymise type="bool">False</anonymise>
+          <id type="str">bo8e50a0f2-09c3-4c33-8099-b6dfdbce719c</id>
         </field>
       </fields>
     </formdef>
