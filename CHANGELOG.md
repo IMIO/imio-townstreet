@@ -13,6 +13,10 @@
 - Add missing message in final statuses, rename debug global action (iMio) [dmshd]
 - Fix atal creation not happening because of wrong input phone format [dmshd]
 
+### Fixed
+
+- [TELE-1638] Fix default roles using proper ones (Agent Townstreet, Citoyen (test) [dmshd]
+
 ## 0.0.66
 
 - [TOWS-128] use addinfo instead of form_comment or form_var_reporter_comment in ack mail [nhi]
