@@ -17,6 +17,10 @@
 
 - [TELE-1638] Fix default roles using proper ones (Agent Townstreet, Citoyen (test) [dmshd]
 
+### Changed
+
+- [TELE-1605] Update atal5 wf : xml, convert python to django [dmshd]
+
 ## 0.0.66
 
 - [TOWS-128] use addinfo instead of form_comment or form_var_reporter_comment in ack mail [nhi]
