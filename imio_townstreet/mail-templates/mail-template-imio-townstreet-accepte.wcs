@@ -4,7 +4,7 @@
   <slug>imio-townstreet-accepte</slug>
   <description>iMio - Courriel envoy&#233; &#224; l'usager lorsque l'agent appuie sur "accepter".</description>
   <subject>Votre signalement a &#233;t&#233; accept&#233;.</subject>
-  <body>Bonjour, {% if form_var_firstname %} {{ form_var_firstname }}{% endif %},
+  <body>Bonjour{% if greetings_lastname_firstname %} {{ form_user_var_last_name }} {{ form_user_var_first_name }}{% endif %},
 
 {% if form_status_changed %}
 **Le statut de la demande que vous avez transmise vient de changer**.

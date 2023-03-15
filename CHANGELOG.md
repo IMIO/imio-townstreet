@@ -12,6 +12,7 @@
 - Add ability to manually set latitude longitude in backoffice [dmshd]
 - Add missing message in final statuses, rename debug global action (iMio) [dmshd]
 - Fix atal creation not happening because of wrong input phone format [dmshd]
+- Possiblity to activate "Bonjour Nom Prenom," in mail template (Mons desiderate) [dmshd]
 
 ### Fixed
 

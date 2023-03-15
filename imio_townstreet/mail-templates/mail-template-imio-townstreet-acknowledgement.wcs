@@ -4,9 +4,9 @@
   <slug>imio-townstreet-acknowledgement</slug>
   <description>iMio - Townstreet - Courriel envoy&#233; d&#232;s la r&#233;ception du signalement.</description>
   <subject>Merci pour votre signalement.</subject>
-  <body>Bonjour{% if form_var_firstname %} {{ form_var_firstname }}{% endif %},
+  <body>Bonjour{% if greetings_lastname_firstname %} {{ form_user_var_last_name }} {{ form_user_var_first_name }}{% endif %},
 
-Merci pour votre signalement. 
+Merci pour votre signalement.
 
 Ce courriel est un rappel automatique concernant le formulaire que vous venez de soumettre. 
 

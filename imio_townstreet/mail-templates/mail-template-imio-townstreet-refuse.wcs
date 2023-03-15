@@ -4,7 +4,7 @@
   <slug>imio-townstreet-refuse</slug>
   <description>iMio - Courriel envoy&#233; &#224; l'usager lorsque la demande est refus&#233;e.</description>
   <subject>Nous ne pouvons donner suite &#224; votre signalement.</subject>
-  <body>Bonjour{% if form_var_firstname %} {{ form_var_firstname }}{% endif %},
+  <body>Bonjour{% if greetings_lastname_firstname %} {{ form_user_var_last_name }} {{ form_user_var_first_name }}{% endif %},
 
 Merci de nous avoir signal&#233; cet incident, mais ne nous ne pouvons donner suite &#224; ce signalement.
 
