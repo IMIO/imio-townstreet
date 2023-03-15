@@ -20,6 +20,7 @@
 ### Changed
 
 - [TELE-1605] Update atal5 wf : xml, convert python to django [dmshd]
+- Give back opportunity to refresh Atal data from iA.Téléservices (was debug, now agents) [dmshd]
 
 ## 0.0.66
 
