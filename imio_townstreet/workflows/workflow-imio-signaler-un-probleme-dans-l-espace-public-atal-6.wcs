@@ -149,31 +149,12 @@
             <type>django</type>
             <value>not form_workflow_data_post_work_request_response_data_errors</value>
           </condition><set_marker_on_status>False</set_marker_on_status>
-        </item><item type="sendmail" id="3">
-          <to>
-            <item role_id="daniel.muyshond+townstreet@imio.be">daniel.muyshond+townstreet@imio.be</item>
-            <item role_id="caroline.frippiat+townstreet@imio.be">caroline.frippiat+townstreet@imio.be</item>
-          </to><subject>Erreur ATAL bloquante pour un signalement citoyen {% if commune_slug %}({{commune_slug}}){% endif %}</subject>
-          <body>Bonjour,
-
-Il y a une demande bloqu&#233;e ici : {{ form_url_backoffice }}
-
-Cela signifie &#224; priori que bien qu'une demande citoyenne compl&#232;te ait &#233;t&#233; encod&#233;es dans T&#233;l&#233;services, les donn&#233;es ne figureraient pas encore dans ATAL.
-
-Cela requi&#232;re donc notre attention et doit &#234;tre d&#233;bloqu&#233; manuellement (voir actions de debug "iMio -".
-
-La fr&#233;quence de ce courriel doit normalement diminuer au fil du temps jusqu'&#224; ne quasiment plus survenir au fur et &#224; mesure des patches.
-
-{% if form_workflow_data_post_work_request_response_data_status %}
-form_workflow_data_post_work_request_response_data_status
-{% endif %}
-
-Bien &#224; vous,
-iMio</body>
+        </item><item type="jump" id="5">
+          <status>5</status>
           <condition>
             <type>django</type>
-            <value>form_workflow_data_post_work_request_response_data_errors</value>
-          </condition>
+            <value>form_workflow_data_post_work_request_response_data_status == 400 or form_workflow_data_post_work_request_response_data_status == 500</value>
+          </condition><set_marker_on_status>False</set_marker_on_status>
         </item>
       </items>
     </status><status>
@@ -320,7 +301,7 @@ iMio</body>
           <label>D&#233;bug &#183; R&#233;essayer d'envoyer les images dans ATAL</label>
           <by>
             <item role_id="_receiver">_receiver</item>
-            <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
+            <item slug="debug" role_id="ea3c7b7f1a23494984a23d00ce87c42a">Debug</item>
           </by><status>6</status>
           <require_confirmation>True</require_confirmation>
           <backoffice_info_text>&lt;p&gt;Action de d&amp;eacute;bug en cas d&amp;#39;erreur vers l&amp;#39;envoi de fichier dans ATAL.&lt;br&gt;
@@ -472,7 +453,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
           <level>success</level>
           <position>top</position>
           <to>
-            <item slug="agent-traitant-townstreet" role_id="1be915b352294450bc488b563d279ea7">Agent traitant - Townstreet</item>
+            <item slug="agent-traitant-townstreet" role_id="d5e01a6501cc4cdc83aa774dfcec7cf6">Agent traitant - Townstreet</item>
             <item role_id="_submitter">_submitter</item>
           </to>
         </item>
@@ -758,7 +739,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       </visibility><items>
         <item type="form" id="1">
           <by>
-            <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
+            <item slug="debug" role_id="ea3c7b7f1a23494984a23d00ce87c42a">Debug</item>
           </by><varname>manual_geodata</varname>
           <hide_submit_button>False</hide_submit_button>
           <formdef>
@@ -799,7 +780,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       </items><triggers>
         <trigger type="manual" id="5195410f-d64b-4ba7-a8b1-8c0bdcf27061">
           <roles>
-            <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
+            <item slug="debug" role_id="ea3c7b7f1a23494984a23d00ce87c42a">Debug</item>
           </roles>
         </trigger>
       </triggers>
@@ -815,7 +796,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       </items><triggers>
         <trigger type="manual" id="871a8c92-747a-460d-9e36-b9348000c0e9">
           <roles>
-            <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
+            <item slug="debug" role_id="ea3c7b7f1a23494984a23d00ce87c42a">Debug</item>
           </roles>
         </trigger>
       </triggers>
@@ -831,7 +812,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       </items><triggers>
         <trigger type="manual" id="b2738ce0-09ef-43e4-82d9-0fa4c13c382e">
           <roles>
-            <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
+            <item slug="debug" role_id="ea3c7b7f1a23494984a23d00ce87c42a">Debug</item>
           </roles>
         </trigger>
       </triggers>
@@ -846,7 +827,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       </items><triggers>
         <trigger type="manual" id="c5804db0-a8b6-4d26-bb3d-2af1167495b6">
           <roles>
-            <item slug="agent-traitant-townstreet" role_id="1be915b352294450bc488b563d279ea7">Agent traitant - Townstreet</item>
+            <item slug="agent-traitant-townstreet" role_id="d5e01a6501cc4cdc83aa774dfcec7cf6">Agent traitant - Townstreet</item>
           </roles>
         </trigger>
       </triggers>
@@ -861,7 +842,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       </items><triggers>
         <trigger type="manual" id="028b85d4-bcf1-4c33-8e1f-591968e32872">
           <roles>
-            <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
+            <item slug="debug" role_id="ea3c7b7f1a23494984a23d00ce87c42a">Debug</item>
           </roles>
         </trigger>
       </triggers>
