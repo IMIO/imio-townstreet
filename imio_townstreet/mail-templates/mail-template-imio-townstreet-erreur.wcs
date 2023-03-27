@@ -19,7 +19,7 @@
 {{ form_evolution }}
 {% else %}
 **D&#233;clench&#233;e par** : {{ session_user_display_name }}
-**Adresse mail de l'agent** : {{ session_user_mail }}
+**Adresse mail de l'agent·e** : {{ session_user_mail }}
 {% endif %}
 
 D&#233;tail :

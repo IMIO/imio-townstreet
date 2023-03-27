@@ -19,7 +19,7 @@ Le code de suivi de votre signalement est le suivant : **{{form_tracking_code}}*
 {% endif %}
 
 {% if form_workflow_form_custom_end_answer_form_var_custom_feedback_body %}
-Commentaire de l'administration : 
+Commentaire de l'agent·e :
 {{ form_workflow_form_custom_end_answer_form_var_custom_feedback_body }}
 {% endif %}
 

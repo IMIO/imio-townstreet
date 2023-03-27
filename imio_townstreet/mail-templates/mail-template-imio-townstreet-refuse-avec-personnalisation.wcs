@@ -9,7 +9,7 @@
 Merci de nous avoir signal&#233; cet incident, mais ne nous ne pouvons donner suite &#224; ce signalement.
 
 {% if form_workflow_form_custom_end_answer_form_var_custom_feedback_body %}
-Commentaire de l'administration :
+Commentaire de l'agent·e :
 {{ form_workflow_form_custom_end_answer_form_var_custom_feedback_body }}
 {% endif %}
 
