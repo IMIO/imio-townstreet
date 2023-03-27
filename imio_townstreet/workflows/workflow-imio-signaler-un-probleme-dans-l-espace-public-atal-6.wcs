@@ -845,7 +845,8 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       </items><triggers>
         <trigger type="manual" id="c5804db0-a8b6-4d26-bb3d-2af1167495b6">
           <roles>
-            <item slug="agent-traitant-townstreet" role_id="d5e01a6501cc4cdc83aa774dfcec7cf6">Agent traitant - Townstreet</item>
+            <item slug="agent-traitant-townstreet" role_id="e7b7387c4c784deba3f819618b77d989">Agent traitant - Townstreet</item>
+            <item slug="debug" role_id="fefe7abc76a44b15b46873a4a07e45fe">Debug</item>
           </roles>
         </trigger>
       </triggers>
