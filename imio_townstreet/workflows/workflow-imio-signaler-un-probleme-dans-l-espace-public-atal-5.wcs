@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<workflow id="103" url="https://staging-formulaires.guichet-citoyen.be/backoffice/workflows/103/">
+<workflow id="103" url="">
   <name>iMio - Signaler un probl&#232;me dans l'espace public (ATAL 5)</name>
   <slug>imio-signaler-un-probleme-dans-l-espace-public-atal-5</slug>
   <roles>
@@ -86,6 +86,7 @@
           <notify_on_errors>True</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>False</record_errors>
+          <set_marker_on_status>False</set_marker_on_status>
         </item><item type="jump" id="2">
           <status>3</status>
           <timeout>86400</timeout>
@@ -108,8 +109,8 @@
         </item><item type="jump" id="5">
           <status>16</status>
           <condition>
-            <type>python</type>
-            <value>vars().get('iatechdetails_response_data_etatDemande_description') == "PRISE EN COMPTE"</value>
+            <type>django</type>
+            <value>iatechdetails_response_data_etatDemande_description == "PRISE EN COMPTE"</value>
           </condition><set_marker_on_status>False</set_marker_on_status>
         </item><item type="jump" id="6">
           <status>18</status>
@@ -200,6 +201,7 @@
           <notify_on_errors>True</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>False</record_errors>
+          <set_marker_on_status>False</set_marker_on_status>
         </item><item type="register-comment" id="2">
           <comment>La demande a &#233;t&#233; cr&#233;&#233;e dans ATAL ({{ iatechins_response_data_demande_number }}).</comment>
           <condition>
@@ -255,7 +257,7 @@
           <condition>
             <type>django</type>
             <value>form_var_pic1</value>
-          </condition>
+          </condition><set_marker_on_status>False</set_marker_on_status>
         </item><item type="webservice_call" id="2">
           <label>Pic2 POST</label>
           <method>POST</method>
@@ -285,7 +287,7 @@
           <condition>
             <type>django</type>
             <value>form_var_pic2</value>
-          </condition>
+          </condition><set_marker_on_status>False</set_marker_on_status>
         </item><item type="webservice_call" id="3">
           <label>Pic3 POST</label>
           <method>POST</method>
@@ -313,9 +315,9 @@
           <record_on_errors>True</record_on_errors>
           <record_errors>False</record_errors>
           <condition>
-            <type>python</type>
-            <value>bool(vars().get('form_var_pic3_raw')) == True</value>
-          </condition>
+            <type>django</type>
+            <value>form_var_pic3_raw</value>
+          </condition><set_marker_on_status>False</set_marker_on_status>
         </item><item type="webservice_call" id="4">
           <label>authorization post</label>
           <method>POST</method>
@@ -345,7 +347,7 @@
           <condition>
             <type>django</type>
             <value>form_var_private_building_yn == True</value>
-          </condition>
+          </condition><set_marker_on_status>False</set_marker_on_status>
         </item><item type="jump" id="5">
           <status>3</status>
           <set_marker_on_status>False</set_marker_on_status>
@@ -506,6 +508,7 @@
           <notify_on_errors>True</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>False</record_errors>
+          <set_marker_on_status>False</set_marker_on_status>
         </item><item type="choice" id="2">
           <label>V&#233;rifier le statut dans iA.Tech (ATAL)</label>
           <by>
@@ -678,8 +681,8 @@
       <name>-</name>
       <fields>
         <field>
+          <type>bool</type>
           <label type="str">Limiter le p&#233;rim&#232;tre g&#233;ographique des signalements</label>
-          <type type="str">bool</type>
           <required type="bool">False</required>
           <hint type="str">Cochez cette case pour limiter le p&#233;rim&#232;tre g&#233;ographique des signalements autoris&#233;s. Le formulaire ne pourra pas &#234;tre valid&#233; par le citoyen si cette case est coch&#233;e et que des codes postaux sont d&#233;finis ci-dessous. Un commentaire en premi&#232;re page du formulaire s'affichera pour avertir le citoyen des codes postaux autoris&#233;s.</hint>
           <varname type="str">geolimityn</varname>
@@ -689,8 +692,8 @@
             <type>none</type>
           </prefill><id type="str">2</id>
         </field><field>
+          <type>string</type>
           <label type="str">Limiter le p&#233;rim&#232;tre g&#233;ographique des signalements - Code postaux</label>
-          <type type="str">string</type>
           <required type="bool">False</required>
           <hint type="str">Code postaux s&#233;par&#233;s par des virgules. (Exemple : 6000,6001,6002)</hint>
           <varname type="str">postal_code_limit</varname>
@@ -701,8 +704,8 @@
           </prefill><anonymise type="bool">True</anonymise>
           <id type="str">1</id>
         </field><field>
+          <type>bool</type>
           <label type="str">Activer l'option "sur un b&#226;timent priv&#233;"</label>
-          <type type="str">bool</type>
           <required type="bool">False</required>
           <hint type="str">Cochez cette case pour que les &#233;l&#233;ments de formulaires li&#233;s &#224; cette option s'affiche. Il s'agit de champs commentaire, une page suppl&#233;mentaires demandes des informations li&#233;es, champs fichier, etc.</hint>
           <varname type="str">onaprivatebuilding</varname>
@@ -712,8 +715,8 @@
             <type>none</type>
           </prefill><id type="str">3</id>
         </field><field>
+          <type>item</type>
           <label type="str">Choisir un environnement</label>
-          <type type="str">item</type>
           <required type="bool">True</required>
           <hint type="str">--- S&#233;lectionnez l'environnement utilis&#233; pour cette d&#233;marche ---</hint>
           <varname type="str">environnement</varname>
@@ -725,6 +728,7 @@
           </data_source><in_filters type="bool">False</in_filters>
           <anonymise type="bool">False</anonymise>
           <display_disabled_items type="bool">False</display_disabled_items>
+          <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
           <id type="str">4</id>
         </field>
       </fields>
@@ -734,8 +738,8 @@
       <name>-</name>
       <fields>
         <field>
+          <type>string</type>
           <label type="str">R&#233;f&#233;rence ATAL</label>
-          <type type="str">string</type>
           <required type="bool">False</required>
           <varname type="str">ditnu</varname>
           <display_locations>
@@ -744,8 +748,8 @@
           </display_locations><anonymise type="bool">False</anonymise>
           <id type="str">boceb33663-bc2b-4e59-ac71-3c34e9c45f60</id>
         </field><field>
+          <type>string</type>
           <label type="str">Objet</label>
-          <type type="str">string</type>
           <required type="bool">False</required>
           <varname type="str">obj</varname>
           <display_locations>
@@ -754,8 +758,8 @@
           </display_locations><anonymise type="bool">False</anonymise>
           <id type="str">bo5f0b6137-6c67-46f1-b974-dedb5ee853db</id>
         </field><field>
+          <type>string</type>
           <label type="str">Description</label>
-          <type type="str">string</type>
           <required type="bool">True</required>
           <varname type="str">desc</varname>
           <display_locations>
@@ -763,8 +767,8 @@
           </display_locations><anonymise type="bool">False</anonymise>
           <id type="str">bo810f5e77-1d3b-40b3-bb28-7ea0af191239</id>
         </field><field>
+          <type>string</type>
           <label type="str">Lieu</label>
-          <type type="str">string</type>
           <required type="bool">True</required>
           <varname type="str">place</varname>
           <display_locations>
@@ -773,8 +777,8 @@
           </display_locations><anonymise type="bool">False</anonymise>
           <id type="str">bo13e3c664-e561-40a2-a766-ebd455662734</id>
         </field><field>
+          <type>string</type>
           <label type="str">Souhaite &#234;tre tenu inform&#233;</label>
-          <type type="str">string</type>
           <required type="bool">True</required>
           <varname type="str">followyn</varname>
           <display_locations>
