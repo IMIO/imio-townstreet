@@ -236,7 +236,7 @@
           <post_data>
             <item>
               <name>file</name>
-              <value>={"content": form_var_pic1_raw.get_base64_content()}</value>
+              <value>{{ form_var_pic1_raw }}</value>
             </item><item>
               <name>nom_fichier</name>
               <value>{{ form_var_pic1}}</value>
@@ -266,10 +266,10 @@
           <post_data>
             <item>
               <name>file</name>
-              <value>={"content": form_var_pic2_raw.get_base64_content()}</value>
+              <value>{{ form_var_pic2_raw }}</value>
             </item><item>
               <name>nom_fichier</name>
-              <value>=vars().get('form_var_pic2')</value>
+              <value>{{ form_var_pic2 }}</value>
             </item><item>
               <name>numero_demande</name>
               <value>{{ form_var_ditnu }}</value>
@@ -296,10 +296,10 @@
           <post_data>
             <item>
               <name>file</name>
-              <value>={"content": form_var_pic3_raw.get_base64_content()}</value>
+              <value>{{ form_var_pic3_raw }}</value>
             </item><item>
               <name>nom_fichier</name>
-              <value>=vars().get('form_var_pic3')</value>
+              <value>{{ form_var_pic3 }}</value>
             </item><item>
               <name>numero_demande</name>
               <value>{{ form_var_ditnu }}</value>
@@ -326,10 +326,10 @@
           <post_data>
             <item>
               <name>file</name>
-              <value>={"content": form_var_scan_authorization_raw.get_base64_content()}</value>
+              <value>{{ form_var_scan_authorization_raw }}</value>
             </item><item>
               <name>nom_fichier</name>
-              <value>=vars().get('form_var_scan_authorization')</value>
+              <value>{{ form_var_scan_authorization }}</value>
             </item><item>
               <name>numero_demande</name>
               <value>{{ form_var_ditnu }}</value>
