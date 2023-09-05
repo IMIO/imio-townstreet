@@ -13,18 +13,15 @@ Ce courriel est un rappel automatique concernant le formulaire que vous venez de
 Voici le r&#233;sum&#233; des donn&#233;es transmises. {% if form_var_pic1 %}Veuillez trouver une copie de vos photos en pi&#232;ces jointes de ce mail.{% endif %}
 
 **Type de signalement** : {{ form_var_category_text }}
-
 {% if form_var_subcategory %}
 **Sous-cat&#233;gorie** : {{ form_var_subcategory }}
 {% endif %}
 {% if form_var_issues %}
 **D&#233;tail** : {{ form_var_issues }}
 {% endif %}
-
 **Adresse :** {{ form_var_street }} {{ form_var_number }}, {{ form_var_postal_code }} {{ form_var_city }}
-
 {% if form_var_addinfo %}
-**Information complémentaire :** {{ form_var_addinfo }}
+**Information compl&#233;mentaire :** {{ form_var_addinfo }}
 {% endif %}
 
 {% if form_user and form_tracking_code %}

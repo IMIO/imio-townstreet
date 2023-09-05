@@ -15,7 +15,7 @@ La demande suivante a &#233;t&#233; refus&#233;e dans ATAL.
 {{ form_name }} - **{{ form_number }}** (**Code de suivi** : {{ form_tracking_code }})
 
 **Veuillez inspecter l'historique de cette demande et prendre action si n&#233;cessaire.**.
- 
+
 Type de signalement : {{ form_var_category_text }}
 {% if form_var_subcategory %}Sous-cat&#233;gorie : {{ form_var_subcategory }}{% endif %}
 
