@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <mail-template id="4" url="https://chaumontgistoux-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/4/">
-  <name>iMio - Townstreet - Erreur (envoi de fichier vers ATAL)</name>
+  <name>iMio - Townstreet (ATAL 5) - Erreur (envoi de fichier vers ATAL)</name>
   <slug>imio-townstreet-erreur-envoi-des-photos-iatech</slug>
   <description>iMio - Mail d'erreur envoy&#233; &#224; iMio si une erreur survient au niveau d'un webservice qui envoie des fichiers vers ATAL.</description>
   <subject>&#120280;&#120319;&#120319;&#120306;&#120322;&#120319; &#120295;&#120316;&#120324;&#120315;&#120320;&#120321;&#120319;&#120306;&#120306;&#120321; ({{commune_name}} -  envoi photos iA.Tech)</subject>
