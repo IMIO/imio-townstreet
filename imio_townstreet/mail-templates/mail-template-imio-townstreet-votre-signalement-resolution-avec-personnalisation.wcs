@@ -23,7 +23,9 @@ Commentaire de l'agent·e :
 {{ form_workflow_form_custom_end_answer_form_var_custom_feedback_body }}
 {% endif %}
 
+{% if form_user %}
 `Afficher l'historique de ma demande &lt;{{ form_url }}&gt;`_
+{% endif %}
 
 Bien &#224; vous,
 </body>

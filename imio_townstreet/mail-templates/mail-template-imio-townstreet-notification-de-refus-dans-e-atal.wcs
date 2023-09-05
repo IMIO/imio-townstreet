@@ -24,6 +24,7 @@ D&#233;tail :
 {% if form_var_issues %}{{ form_var_issues }}{% endif %}
 {% if form_var_addinfo  %}{{ form_var_addinfo}}{% endif %}
 {% endif %}
-
-`Inspecter l'historique &lt;{{ form_url_backoffice }}&gt;`_</body>
+{% if form_user %}
+`Inspecter l'historique &lt;{{ form_url_backoffice }}&gt;`_
+{% endif %}</body>
 </mail-template>

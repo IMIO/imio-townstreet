@@ -41,5 +41,7 @@ D&#233;tail :
 **Time** : {{form_workflow_data_iatechins_time}}
 {% endif %}
 
-`Inspecter cette demande &lt;{{ form_url_backoffice }}&gt;`_</body>
+{% if form_user %}
+`Inspecter cette demande &lt;{{ form_url_backoffice }}&gt;`_
+{% endif %}</body>
 </mail-template>

@@ -20,6 +20,7 @@ Un nouveau probl&#232;me dans l'espace public vient d'&#234;tre signal&#233;.
 {% if form_var_issues %}**D&#233;tail** :{{ form_var_issues }}{% endif %}
 
 {% if form_var_addinfo %}**Commentaire additionnel** : {{ form_var_addinfo}}{% endif %}
-
-`Inspecter cette demande &lt;{{ form_url_backoffice }}&gt;`_</body>
+{% if form_user %}
+`Inspecter cette demande &lt;{{ form_url_backoffice }}&gt;`_
+{% endif %}</body>
 </mail-template>

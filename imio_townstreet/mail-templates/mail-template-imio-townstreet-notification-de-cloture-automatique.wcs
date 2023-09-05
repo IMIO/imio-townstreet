@@ -18,6 +18,7 @@ Type de signalement : {{ form_var_category_text }}
 D&#233;tail :
 {{ form_var_issues }}
 {{ form_var_addinfo}}
-
-`V&#233;rifier cette demande &lt;{{ form_url_backoffice }}&gt;`_</body>
+{% if form_user %}
+`V&#233;rifier cette demande &lt;{{ form_url_backoffice }}&gt;`_
+{% endif %}</body>
 </mail-template>
