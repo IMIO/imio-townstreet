@@ -23,5 +23,9 @@ Vous pouvez en prendre connaissance en suivant ce lien :
 Un code de suivi est li&#233; &#224; ce signalement : **{{ form_tracking_code }}**.
 {% endif %}
 
+{% if form_var_ditnu %}
+Le num&#233;ro DIT associ&#233; &#224; votre signalement est le suivant : **{{ form_var_ditnu }}**
+{% endif %}
+
 Bien &#224; vous,</body>
 </mail-template>

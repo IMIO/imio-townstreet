@@ -23,6 +23,10 @@ Pour rappel, il s'agit de votre signalement du {{ form_receipt_date|date:"d M y"
 En cas de probl&#232;me, munissez-vous du code de suivi lors de vos &#233;changes avec nous.
 {% endif %}
 
+{% if form_var_ditnu %}
+Le num&#233;ro DIT associ&#233; &#224; votre signalement est le suivant : **{{ form_var_ditnu }}**
+{% endif %}
+
 {% if form_comment %}Nouveau commentaire&#160;: {{ form_comment }}{% endif %}
 
 Vous pouvez en prendre connaissance en suivant ce lien&#160;:

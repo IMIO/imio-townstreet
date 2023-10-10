@@ -13,6 +13,8 @@
 
 La demande ATAL li&#233;e &#224; ce signalement citoyen vient de se marquer automatiquement comme trait&#233;e. En effet, le citoyen n'a pas souhait&#233; &#234;tre tenu inform&#233; des suites donn&#233;es &#224; son signalement.
 
+{% if form_var_ditnu %}Num&#233;ro DIT : {{ form_var_ditnu }}{% endif %}
+
 Type de signalement : {{ form_var_category_text }}
 {% if form_var_subcategory %}Sous-cat&#233;gorie : {{ form_var_subcategory }}{% endif %}
 D&#233;tail :
