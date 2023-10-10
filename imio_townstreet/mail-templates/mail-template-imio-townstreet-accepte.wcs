@@ -25,7 +25,7 @@ En cas de probl&#232;me, munissez-vous du code de suivi lors de vos &#233;change
 
 {% if form_comment %}Nouveau commentaire&#160;: {{ form_comment }}{% endif %}
 
-Vous pouvez en prendre connaissance en suivant ce lien&#160;: 
+Vous pouvez en prendre connaissance en suivant ce lien&#160;:
 {% if form_user %}
 `Afficher l'historique de ma demande &lt;{{ form_url }}&gt;`_
 {% endif %}
