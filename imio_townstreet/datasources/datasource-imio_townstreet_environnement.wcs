@@ -3,6 +3,7 @@
   <name>iMio Townstreet - Environnement</name>
   <slug>imio_townstreet_environnement</slug>
   <description>Cette source de donn&#233;es propose la liste des environnements pour la d&#233;marche de Signalement d'une d&#233;gradation pour Townstreet.</description>
+  <cache_duration>86400</cache_duration>
   <data_source>
     <type>jsonvalue</type>
     <value>[{"id":"test","text":"Test","url_apims":"api-staging"},{"id":"prod","text":"Production","url_apims":"api"}]</value>

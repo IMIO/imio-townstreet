@@ -3,7 +3,7 @@
   <name>iMio Townstreet - &#201;metteur de la demande</name>
   <slug>imio_townstreet_requesters</slug>
   <description>iMio, FixMyStreet, Wallonie en poche,...</description>
-  <cache_duration>600</cache_duration>
+  <cache_duration>86400</cache_duration>
   <data_source>
     <type>jsonvalue</type>
     <value>[{"id": "imio", "text": "T&#233;l&#233;services - Guichet en ligne"}, {"id":"fixmystreet", "text":"FixMyStreet"}, {"id":"letsgocity", "text":"Letsgocity"}]</value>
