@@ -32,10 +32,10 @@
           <fields>
             <field>
               <field_id>bo5f0b6137-6c67-46f1-b974-dedb5ee853db</field_id>
-              <value>{% if form_var_category %}{{ form_var_category }}{% elif form_var_atal_thematic %}{{ form_var_atal_thematic }}{% endif %}{% if form_var_numero_eclairage %} - {{ form_var_numero_eclairage }}{% endif %}</value>
+              <value>{{ form_var_category }}{% if form_var_numero_eclairage %} - {{ form_var_numero_eclairage }}{% endif %}</value>
             </field><field>
               <field_id>bo810f5e77-1d3b-40b3-bb28-7ea0af191239</field_id>
-              <value>Signalement citoyen depuis le guichet en ligne. D&#233;tail : {% if form_var_category %}{{form_var_category }}{% elif form_var_atal_thematic %}{{ form_var_atal_thematic }}{% endif %} {%if form_var_subcategory %} &#183; {{ form_var_subcategory}} &#183;{% endif%}{% if form_var_issues %} {{form_var_issues }}{% endif %}{% if form_var_addinfo or form_var_addinfother %} &#183; Information additionnelle : {% firstof form_var_addinfo form_var_addinfother %}{% endif %}</value>
+              <value>Signalement citoyen depuis le guichet en ligne. D&#233;tail : {{form_var_category }}{%if form_var_subcategory %} &#183; {{ form_var_subcategory}} &#183;{% endif%}{% if form_var_issues %} {{form_var_issues }}{% endif %}{% if form_var_addinfo or form_var_addinfother %} &#183; Information additionnelle : {% firstof form_var_addinfo form_var_addinfother %}{% endif %}</value>
             </field><field>
               <field_id>bo13e3c664-e561-40a2-a766-ebd455662734</field_id>
               <value>{% firstof form_var_number "" %} {% firstof form_var_street "" %} {% firstof form_var_postal_code "" %} {% firstof form_var_city "" %}</value>
@@ -975,6 +975,14 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <anonymise type="bool">False</anonymise>
           <display_disabled_items type="bool">False</display_disabled_items>
           <id type="str">8</id>
+        </field><field>
+          <type>bool</type>
+          <label type="str">Employer les th&#233;matiques d'ATAL</label>
+          <required type="bool">False</required>
+          <hint type="str">Cochez cette case pour employer les th&#233;matiques (Travaux) d'ATAL en guise de cat&#233;gories de signalement.</hint>
+          <varname type="str">use_atal_thematics</varname>
+          <display_locations />
+          <id type="str">561ea67d-ac6d-4f63-bc65-27ee1b1feff0</id>
         </field>
       </fields>
     </formdef>
