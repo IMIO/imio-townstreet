@@ -15,7 +15,7 @@ La demande ATAL li&#233;e &#224; ce signalement citoyen vient de se marquer auto
 
 {% if form_var_ditnu %}Num&#233;ro DIT : {{ form_var_ditnu }}{% endif %}
 
-Type de signalement : {{ form_var_category_text }}
+**Type de signalement** : {% if form_var_category %}{{ form_var_category_text }}{% elif form_var_atal_thematic %}{{ form_var_atal_thematic_complete_label }}{% endif %}
 {% if form_var_subcategory %}Sous-cat&#233;gorie : {{ form_var_subcategory }}{% endif %}
 D&#233;tail :
 {{ form_var_issues }}

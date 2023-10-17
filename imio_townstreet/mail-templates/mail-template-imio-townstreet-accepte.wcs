@@ -13,9 +13,9 @@
 
 Pour rappel, il s'agit de votre signalement du {{ form_receipt_date|date:"d M y" }} dont voici le d&#233;tail :
 
-**Type de signalement** : {{ form_var_category_text }} {% if form_var_subcategory %}/ {{ form_var_subcategory }}{% endif %}
+**Type de signalement** : {% if form_var_category %}{{ form_var_category_text }}{% elif form_var_atal_thematic_complete_label %}{{ form_var_atal_thematic_complete_label }}{% endif %}{% if form_var_subcategory %} / {{ form_var_subcategory }}{% endif %}
 
-**D&#233;tail** : {{ form_var_issues }}
+{% if not form_var_atal_thematic %}**D&#233;tail** : {{ form_var_issues }}{% endif %}
 {% if form_var_reporter_comment %}**Votre commentaire** : {{ form_var_reporter_comment }}{% endif %}
 
 {% if form_user and form_tracking_code %}

@@ -10,7 +10,7 @@
 
 Pour rappel, il s'agit de votre signalement du {{ form_receipt_date|date:"d M y" }} dont voici le d&#233;tail :
 
-**Type de signalement** : {{ form_var_category_text }} {% if form_var_subcategory %}/ {{ form_var_subcategory }}{% endif %}
+**Type de signalement** : {% if form_var_category_text %}{{ form_var_category_text }}{% elif form_var_atal_thematic_complete_label %}{{ form_var_atal_thematic_complete_label }}{% endif %}{% if form_var_subcategory %} / {{ form_var_subcategory }}{% endif %}
 
 {% if form_var_issues %}**D&#233;tail** : {{ form_var_issues }}{% endif %}
 

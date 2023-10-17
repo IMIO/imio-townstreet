@@ -15,7 +15,7 @@ Un nouveau probl&#232;me dans l'espace public vient d'&#234;tre signal&#233;.
 
 {% if form_var_ditnu %}Num&#233;ro DIT : {{ form_var_ditnu }}{% endif %}
 
-**Type de signalement** : {{ form_var_category_text }}
+**Type de signalement** : {% if form_var_category %}{{ form_var_category_text }}{% elif form_var_atal_thematic %}{{ form_var_atal_thematic_complete_label }}{% endif %}
 
 {% if form_var_subcategory %}**Sous-cat&#233;gorie** : {{ form_var_subcategory }}{% endif %}
 

@@ -18,7 +18,7 @@ La demande suivante a &#233;t&#233; refus&#233;e dans ATAL.
 
 {% if form_var_ditnu %}Num&#233;ro DIT : {{ form_var_ditnu }}{% endif %}
 
-Type de signalement : {{ form_var_category_text }}
+**Type de signalement** : {% if form_var_category %}{{ form_var_category_text }}{% elif form_var_atal_thematic %}{{ form_var_atal_thematic_complete_label }}{% endif %}
 {% if form_var_subcategory %}Sous-cat&#233;gorie : {{ form_var_subcategory }}{% endif %}
 
 {% if form_var_issues or form_var_addinfo  %}
