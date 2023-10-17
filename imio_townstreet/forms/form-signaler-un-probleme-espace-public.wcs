@@ -61,9 +61,40 @@
       <display_locations />
       <id type="str">115</id>
     </field><field>
+      <type>item</type>
       <label type="str">Cat&#233;gorie de signalement</label>
-      <type type="str">item</type>
-      <required type="bool">True</required>
+      <condition>
+        <type>django</type>
+        <value>form_option_use_atal_thematics</value>
+      </condition><required type="bool">True</required>
+      <hint type="str">S&#233;lectionnez une cat&#233;gorie</hint>
+      <varname type="str">atal_thematic</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+        <display_location>statistics</display_location>
+      </display_locations><extra_css_class type="str">newline grid-1-4</extra_css_class>
+      <display_mode type="str">list</display_mode>
+      <items />
+      <data_source>
+        <type>imio_townstreet_atal_natures_all</type>
+        <value>form_option_categories_filtered_structured or data_source.imio_townstreet_main_categories</value>
+      </data_source><in_filters type="bool">False</in_filters>
+      <anonymise type="str">no</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <initial_zoom type="str">13</initial_zoom>
+      <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
+      <image_desktop_size type="int">150</image_desktop_size>
+      <image_mobile_size type="int">75</image_mobile_size>
+      <id type="str">108</id>
+    </field><field>
+      <type>item</type>
+      <label type="str">Cat&#233;gorie de signalement</label>
+      <condition>
+        <type>django</type>
+        <value>not form_option_use_atal_thematics</value>
+      </condition><required type="bool">True</required>
       <hint type="str">S&#233;lectionnez une cat&#233;gorie</hint>
       <varname type="str">category</varname>
       <display_locations>
@@ -90,7 +121,7 @@
       <label type="str">Sous-cat&#233;gorie de signalement</label>
       <condition>
         <type>django</type>
-        <value>form_var_category and form_var_category_raw != "other_category"</value>
+        <value>not form_option_use_atal_thematics and form_var_category and form_var_category_raw != "other_category"</value>
       </condition><required type="bool">True</required>
       <hint type="str">Veuillez s&#233;lectionner une sous-cat&#233;gorie</hint>
       <varname type="str">subcategory</varname>
@@ -117,7 +148,7 @@
       <label type="str">Objet du signalement</label>
       <condition>
         <type>django</type>
-        <value>form_var_subcategory and form_var_category_raw != "other_category"</value>
+        <value>not form_option_use_atal_thematics and form_var_subcategory and form_var_category_raw != "other_category"</value>
       </condition><required type="bool">False</required>
       <hint type="str">Veuillez cocher les options qui s'appliquent.</hint>
       <varname type="str">issues</varname>
@@ -723,6 +754,7 @@
     <option varname="souscategories_de_signalement_offertes" />
     <option varname="souscategories_de_signalement_offertes_display" />
     <option varname="souscategories_de_signalement_offertes_structured" />
+    <option varname="use_atal_thematics" type="bool">true</option>
     <option varname="voies_publiques" />
     <option varname="voies_publiques_display" />
     <option varname="voies_publiques_structured" />
