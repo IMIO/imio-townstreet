@@ -143,6 +143,7 @@
           <notify_on_errors>True</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>False</record_errors>
+          <set_marker_on_status>False</set_marker_on_status>
         </item><item type="jump" id="2">
           <status>20</status>
           <condition>
@@ -190,7 +191,7 @@
           <condition>
             <type>django</type>
             <value>form_var_pic1</value>
-          </condition>
+          </condition><set_marker_on_status>False</set_marker_on_status>
         </item><item type="webservice_call" id="2">
           <label>Photo 2</label>
           <method>POST</method>
@@ -217,7 +218,7 @@
           <condition>
             <type>django</type>
             <value>form_var_pic2</value>
-          </condition>
+          </condition><set_marker_on_status>False</set_marker_on_status>
         </item><item type="webservice_call" id="3">
           <label>Photo 3</label>
           <method>POST</method>
@@ -244,7 +245,7 @@
           <condition>
             <type>django</type>
             <value>form_var_pic3</value>
-          </condition>
+          </condition><set_marker_on_status>False</set_marker_on_status>
         </item><item type="webservice_call" id="4">
           <label>Envoi de l'autorisation d'intervenir</label>
           <method>POST</method>
@@ -271,7 +272,7 @@
           <condition>
             <type>django</type>
             <value>form_var_private_building_yn == True</value>
-          </condition>
+          </condition><set_marker_on_status>False</set_marker_on_status>
         </item><item type="jump" id="5">
           <status>22</status>
           <set_marker_on_status>False</set_marker_on_status>
@@ -301,7 +302,7 @@
           <label>D&#233;bug &#183; R&#233;essayer d'envoyer les images dans ATAL</label>
           <by>
             <item role_id="_receiver">_receiver</item>
-            <item slug="debug" role_id="fefe7abc76a44b15b46873a4a07e45fe">Debug</item>
+            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
           </by><status>6</status>
           <require_confirmation>True</require_confirmation>
           <backoffice_info_text>&lt;p&gt;Action de d&amp;eacute;bug en cas d&amp;#39;erreur vers l&amp;#39;envoi de fichier dans ATAL.&lt;br&gt;
@@ -357,7 +358,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
           <condition>
             <type>django</type>
             <value>form_var_origin_source == "fixmystreet"</value>
-          </condition>
+          </condition><set_marker_on_status>False</set_marker_on_status>
         </item><item type="sendmail" id="4">
           <to>
             <item role_id="{{ form_var_mail }}">{{ form_var_mail }}</item>
@@ -447,13 +448,13 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
           <condition>
             <type>django</type>
             <value>form_var_origin_source == "fixmystreet"</value>
-          </condition>
+          </condition><set_marker_on_status>False</set_marker_on_status>
         </item><item type="displaymsg" id="4">
           <message>Cette demande a &#233;t&#233; trait&#233;e.</message>
           <level>success</level>
           <position>top</position>
           <to>
-            <item slug="agent-traitant-townstreet" role_id="e7b7387c4c784deba3f819618b77d989">Agent traitant - Townstreet</item>
+            <item slug="agent-traitant-townstreet" role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
             <item role_id="_submitter">_submitter</item>
           </to>
         </item>
@@ -547,6 +548,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
           <notify_on_errors>True</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>False</record_errors>
+          <set_marker_on_status>False</set_marker_on_status>
         </item><item type="set-backoffice-fields" id="2">
           <label>Commentaire dans Atal pour Tableau de traitement</label>
           <fields>
@@ -683,10 +685,10 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
             <name>-</name>
             <fields>
               <field>
+                <type>comment</type>
                 <label type="str">&lt;p&gt;Le signalement a &amp;eacute;t&amp;eacute; marqu&amp;eacute; comme refus&amp;eacute; dans ATAL pour cette demande{% if form_var_ditnu %} ({{ form_var_ditnu }}).{% else %}.{% endif %}&lt;br&gt;
 Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une motivation de refus.&lt;/p&gt;
 </label>
-                <type type="str">comment</type>
                 <condition>
                   <type>django</type>
                   <value>work_request_details_response_data_RequestState == 3</value>
@@ -694,10 +696,10 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une motivation de refus.
                 <display_locations />
                 <id type="str">4</id>
               </field><field>
+                <type>comment</type>
                 <label type="str">&lt;p&gt;Le signalement a &amp;eacute;t&amp;eacute; marqu&amp;eacute; comme finalis&amp;eacute; dans ATAL pour cette demande{% if form_var_ditnu %} ({{ form_var_ditnu }}).{% else %}.{% endif %}&lt;br&gt;
 Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse en ce sens (demande accept&amp;eacute;e).&lt;/p&gt;
 </label>
-                <type type="str">comment</type>
                 <condition>
                   <type>django</type>
                   <value>work_request_details_response_data_RequestState == 9</value>
@@ -705,21 +707,21 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
                 <display_locations />
                 <id type="str">5</id>
               </field><field>
+                <type>subtitle</type>
                 <label type="str">R&#233;pondre</label>
-                <type type="str">subtitle</type>
                 <display_locations />
                 <id type="str">1</id>
               </field><field>
+                <type>comment</type>
                 <label type="str">&lt;p&gt;&amp;Agrave; l&amp;#39;attention de la personne &amp;agrave; l&amp;#39;origine de ce signalement.&lt;/p&gt;
 
 &lt;p&gt;Ce message s&amp;#39;inscrira dans le mail envoy&amp;eacute; en feedback de ce signalement lorsque vous l&amp;#39;aurez valid&amp;eacute; sous la mention &amp;quot;Commentaire de l&amp;#39;administration :&amp;quot;.&amp;nbsp;&lt;/p&gt;
 </label>
-                <type type="str">comment</type>
                 <display_locations />
                 <id type="str">2</id>
               </field><field>
+                <type>text</type>
                 <label type="str">Contenu personnalis&#233; du mail</label>
-                <type type="str">text</type>
                 <required type="bool">True</required>
                 <hint type="str">Cliquez sur Valider pour envoyer ce mail et mettre &#224; jour le statut.</hint>
                 <varname type="str">custom_feedback_body</varname>
@@ -728,6 +730,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
                   <type>string</type>
                   <value>{% if form_var_atal_comments %}{{ form_var_atal_comments }}{% endif %}</value>
                 </prefill><display_mode type="str">pre</display_mode>
+                <anonymise type="str">final</anonymise>
                 <id type="str">3</id>
               </field>
             </fields>
@@ -757,27 +760,27 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       </visibility><items>
         <item type="form" id="1">
           <by>
-            <item slug="debug" role_id="fefe7abc76a44b15b46873a4a07e45fe">Debug</item>
+            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
           </by><varname>manual_geodata</varname>
           <hide_submit_button>False</hide_submit_button>
           <formdef>
             <name>-</name>
             <fields>
               <field>
+                <type>string</type>
                 <label type="str">Latitude du signalement</label>
-                <type type="str">string</type>
                 <required type="bool">True</required>
                 <varname type="str">lat</varname>
                 <display_locations />
-                <anonymise type="bool">True</anonymise>
+                <anonymise type="str">final</anonymise>
                 <id type="str">1</id>
               </field><field>
+                <type>string</type>
                 <label type="str">Longitude du signalement</label>
-                <type type="str">string</type>
                 <required type="bool">True</required>
                 <varname type="str">lon</varname>
                 <display_locations />
-                <anonymise type="bool">True</anonymise>
+                <anonymise type="str">final</anonymise>
                 <id type="str">2</id>
               </field>
             </fields>
@@ -798,8 +801,8 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       </items><triggers>
         <trigger type="manual" id="5195410f-d64b-4ba7-a8b1-8c0bdcf27061">
           <roles>
-            <item slug="debug" role_id="fefe7abc76a44b15b46873a4a07e45fe">Debug</item>
-          </roles>
+            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+          </roles><allow_as_mass_action>True</allow_as_mass_action>
         </trigger>
       </triggers>
     </action><action>
@@ -814,8 +817,8 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       </items><triggers>
         <trigger type="manual" id="871a8c92-747a-460d-9e36-b9348000c0e9">
           <roles>
-            <item slug="debug" role_id="fefe7abc76a44b15b46873a4a07e45fe">Debug</item>
-          </roles>
+            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+          </roles><allow_as_mass_action>True</allow_as_mass_action>
         </trigger>
       </triggers>
     </action><action>
@@ -830,8 +833,8 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       </items><triggers>
         <trigger type="manual" id="b2738ce0-09ef-43e4-82d9-0fa4c13c382e">
           <roles>
-            <item slug="debug" role_id="fefe7abc76a44b15b46873a4a07e45fe">Debug</item>
-          </roles>
+            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+          </roles><allow_as_mass_action>True</allow_as_mass_action>
         </trigger>
       </triggers>
     </action><action>
@@ -845,9 +848,9 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       </items><triggers>
         <trigger type="manual" id="c5804db0-a8b6-4d26-bb3d-2af1167495b6">
           <roles>
-            <item slug="agent-traitant-townstreet" role_id="e7b7387c4c784deba3f819618b77d989">Agent traitant - Townstreet</item>
-            <item slug="debug" role_id="fefe7abc76a44b15b46873a4a07e45fe">Debug</item>
-          </roles>
+            <item slug="agent-traitant-townstreet" role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
+            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+          </roles><allow_as_mass_action>True</allow_as_mass_action>
         </trigger>
       </triggers>
     </action><action>
@@ -861,8 +864,8 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       </items><triggers>
         <trigger type="manual" id="028b85d4-bcf1-4c33-8e1f-591968e32872">
           <roles>
-            <item slug="debug" role_id="fefe7abc76a44b15b46873a4a07e45fe">Debug</item>
-          </roles>
+            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+          </roles><allow_as_mass_action>True</allow_as_mass_action>
         </trigger>
       </triggers>
     </action>
@@ -871,8 +874,8 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       <name>-</name>
       <fields>
         <field>
+          <type>bool</type>
           <label type="str">Limiter le p&#233;rim&#232;tre g&#233;ographique des signalements</label>
-          <type type="str">bool</type>
           <required type="bool">False</required>
           <hint type="str">Cochez cette case pour limiter le p&#233;rim&#232;tre g&#233;ographique des signalements autoris&#233;s. Le formulaire ne pourra pas &#234;tre valid&#233; par le citoyen si cette case est coch&#233;e et que des codes postaux sont d&#233;finis ci-dessous. Un commentaire en premi&#232;re page du formulaire s'affichera pour avertir le citoyen des codes postaux autoris&#233;s.</hint>
           <varname type="str">geolimityn</varname>
@@ -882,8 +885,8 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
             <type>none</type>
           </prefill><id type="str">2</id>
         </field><field>
+          <type>string</type>
           <label type="str">Limiter le p&#233;rim&#232;tre g&#233;ographique des signalements - Code postaux</label>
-          <type type="str">string</type>
           <required type="bool">False</required>
           <hint type="str">Code postaux s&#233;par&#233;s par des virgules. (Exemple : 6000,6001,6002)</hint>
           <varname type="str">postal_code_limit</varname>
@@ -891,11 +894,11 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
             <display_location>summary</display_location>
           </display_locations><prefill>
             <type>none</type>
-          </prefill><anonymise type="bool">True</anonymise>
+          </prefill><anonymise type="str">final</anonymise>
           <id type="str">1</id>
         </field><field>
+          <type>bool</type>
           <label type="str">Activer l'option "sur un b&#226;timent priv&#233;"</label>
-          <type type="str">bool</type>
           <required type="bool">False</required>
           <hint type="str">Cochez cette case pour que les &#233;l&#233;ments de formulaires li&#233;s &#224; cette option s'affiche. Il s'agit de champs commentaire, une page suppl&#233;mentaires demandes des informations li&#233;es, champs fichier, etc.</hint>
           <varname type="str">onaprivatebuilding</varname>
@@ -905,8 +908,8 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
             <type>none</type>
           </prefill><id type="str">3</id>
         </field><field>
+          <type>item</type>
           <label type="str">Choisir un environnement</label>
-          <type type="str">item</type>
           <required type="bool">True</required>
           <hint type="str">S&#233;lectionnez l'environnement utilis&#233; pour cette d&#233;marche</hint>
           <varname type="str">environnement</varname>
@@ -918,10 +921,13 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           </data_source><in_filters type="bool">False</in_filters>
           <anonymise type="bool">False</anonymise>
           <display_disabled_items type="bool">False</display_disabled_items>
+          <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
+          <image_desktop_size type="int">150</image_desktop_size>
+          <image_mobile_size type="int">75</image_mobile_size>
           <id type="str">4</id>
         </field><field>
+          <type>item</type>
           <label type="str">Service demandeur</label>
-          <type type="str">item</type>
           <required type="bool">False</required>
           <hint type="str">S&#233;lectionnez le service demandeur pour la cr&#233;ation des signalement dans iA.Tech</hint>
           <varname type="str">service_demandeur</varname>
@@ -934,10 +940,13 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           </data_source><in_filters type="bool">False</in_filters>
           <anonymise type="bool">False</anonymise>
           <display_disabled_items type="bool">False</display_disabled_items>
+          <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
+          <image_desktop_size type="int">150</image_desktop_size>
+          <image_mobile_size type="int">75</image_mobile_size>
           <id type="str">5</id>
         </field><field>
+          <type>items</type>
           <label type="str">Cat&#233;gories offertes</label>
-          <type type="str">items</type>
           <required type="bool">False</required>
           <hint type="str">Cochez les cat&#233;gories qui appara&#238;tront dans le menu d&#233;roulant du formulaire. N'en cochez aucune pour les employer toutes.</hint>
           <varname type="str">categories_filtered</varname>
@@ -951,18 +960,20 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           </data_source><in_filters type="bool">False</in_filters>
           <anonymise type="bool">False</anonymise>
           <display_disabled_items type="bool">False</display_disabled_items>
+          <image_desktop_size type="int">150</image_desktop_size>
+          <image_mobile_size type="int">75</image_mobile_size>
           <id type="str">6</id>
         </field><field>
+          <type>bool</type>
           <label type="str">Photo non-obligatoire</label>
-          <type type="str">bool</type>
           <required type="bool">False</required>
           <hint type="str">Cochez cette case pour rendre le champ "Photo 1" optionnel (au moins 1 photo obligatoire par d&#233;faut).</hint>
           <varname type="str">pic_not_required</varname>
           <display_locations />
           <id type="str">7</id>
         </field><field>
+          <type>item</type>
           <label type="str">Envoi manuel de la notification de cl&#244;ture ou de refus et pas automatique</label>
-          <type type="str">item</type>
           <required type="bool">False</required>
           <hint type="str">Afin de pouvoir &#233;diter / personnaliser le message.</hint>
           <varname type="str">custom_end_notification</varname>
@@ -974,6 +985,9 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           </items><in_filters type="bool">False</in_filters>
           <anonymise type="bool">False</anonymise>
           <display_disabled_items type="bool">False</display_disabled_items>
+          <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
+          <image_desktop_size type="int">150</image_desktop_size>
+          <image_mobile_size type="int">75</image_mobile_size>
           <id type="str">8</id>
         </field><field>
           <type>bool</type>
@@ -991,80 +1005,80 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       <name>-</name>
       <fields>
         <field>
+          <type>string</type>
           <label type="str">Num&#233;ro DIT dans ATAL</label>
-          <type type="str">string</type>
           <required type="bool">False</required>
           <varname type="str">ditnu</varname>
           <display_locations>
             <display_location>summary</display_location>
             <display_location>listings</display_location>
-          </display_locations><anonymise type="bool">False</anonymise>
+          </display_locations><anonymise type="str">no</anonymise>
           <id type="str">boceb33663-bc2b-4e59-ac71-3c34e9c45f60</id>
         </field><field>
+          <type>string</type>
           <label type="str">Objet</label>
-          <type type="str">string</type>
           <required type="bool">False</required>
           <varname type="str">obj</varname>
           <display_locations>
             <display_location>summary</display_location>
             <display_location>listings</display_location>
-          </display_locations><anonymise type="bool">False</anonymise>
+          </display_locations><anonymise type="str">no</anonymise>
           <id type="str">bo5f0b6137-6c67-46f1-b974-dedb5ee853db</id>
         </field><field>
+          <type>string</type>
           <label type="str">Description</label>
-          <type type="str">string</type>
           <required type="bool">True</required>
           <varname type="str">desc</varname>
           <display_locations>
             <display_location>summary</display_location>
-          </display_locations><anonymise type="bool">False</anonymise>
+          </display_locations><anonymise type="str">no</anonymise>
           <id type="str">bo810f5e77-1d3b-40b3-bb28-7ea0af191239</id>
         </field><field>
+          <type>string</type>
           <label type="str">Lieu</label>
-          <type type="str">string</type>
           <required type="bool">True</required>
           <varname type="str">place</varname>
           <display_locations>
             <display_location>summary</display_location>
             <display_location>listings</display_location>
-          </display_locations><anonymise type="bool">False</anonymise>
+          </display_locations><anonymise type="str">no</anonymise>
           <id type="str">bo13e3c664-e561-40a2-a766-ebd455662734</id>
         </field><field>
+          <type>string</type>
           <label type="str">Souhaite &#234;tre tenu inform&#233;</label>
-          <type type="str">string</type>
           <required type="bool">True</required>
           <varname type="str">followyn</varname>
           <display_locations>
             <display_location>summary</display_location>
-          </display_locations><anonymise type="bool">False</anonymise>
+          </display_locations><anonymise type="str">no</anonymise>
           <id type="str">bo8e50a0f2-09c3-4c33-8099-b6dfdbce719c</id>
         </field><field>
+          <type>string</type>
           <label type="str">uuid dans ATAL</label>
-          <type type="str">string</type>
           <required type="bool">False</required>
           <varname type="str">atal_uuid</varname>
           <display_locations />
-          <anonymise type="bool">False</anonymise>
+          <anonymise type="str">no</anonymise>
           <id type="str">bo374b25d1-10d6-4cf3-b391-88e29f4a5acc</id>
         </field><field>
+          <type>string</type>
           <label type="str">Envoy&#233; depuis</label>
-          <type type="str">string</type>
           <required type="bool">True</required>
           <varname type="str">requested_from</varname>
           <display_locations>
             <display_location>summary</display_location>
             <display_location>listings</display_location>
-          </display_locations><anonymise type="bool">True</anonymise>
+          </display_locations><anonymise type="str">final</anonymise>
           <id type="str">bo6c5e090e-75c1-4269-ac81-6d2b097af7d9</id>
         </field><field>
+          <type>string</type>
           <label type="str">Commentaires dans Atal</label>
-          <type type="str">string</type>
           <required type="bool">False</required>
           <varname type="str">atal_comments</varname>
           <display_locations>
             <display_location>summary</display_location>
             <display_location>listings</display_location>
-          </display_locations><anonymise type="bool">True</anonymise>
+          </display_locations><anonymise type="str">final</anonymise>
           <id type="str">bo55a0bd45-9af6-4112-9d93-20027cf5d721</id>
         </field>
       </fields>
