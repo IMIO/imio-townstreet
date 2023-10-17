@@ -14,14 +14,11 @@ Voici le r&#233;sum&#233; des donn&#233;es transmises. {% if form_var_pic1 %}Veu
 
 **Type de signalement** : {% if form_var_category %}{{ form_var_category_text }}{% elif form_var_atal_thematic_complete_label %}{{ form_var_atal_thematic_complete_label }}{% endif %}
 {% if form_var_subcategory %}**Sous-cat&#233;gorie** : {{ form_var_subcategory }}{% endif %}
+{% if form_var_issues %}**D&#233;tail** : {{ form_var_issues }}{% endif %}
 **Adresse :** {{ form_var_street }} {{ form_var_number }}, {{ form_var_postal_code }} {{ form_var_city }}
-{% if form_var_addinfo %}
-**Information compl&#233;mentaire :** {{ form_var_addinfo }}
-{% endif %}
+{% if form_var_addinfo %}**Information compl&#233;mentaire :** {{ form_var_addinfo }}{% endif %}
 
-{% if form_user and form_tracking_code %}
-Un code de suivi est li&#233; &#224; votre signalement : **{{form_tracking_code}}**
-{% endif %}
+{% if form_user and form_tracking_code %}Un code de suivi est li&#233; &#224; votre signalement : **{{form_tracking_code}}**{% endif %}
 
 {% if form_var_ditnu %}
 Le num&#233;ro DIT associ&#233; &#224; votre signalement est le suivant : **{{ form_var_ditnu }}**

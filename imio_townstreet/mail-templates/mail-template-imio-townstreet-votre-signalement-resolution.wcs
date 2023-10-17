@@ -14,17 +14,11 @@ Pour rappel, il s'agit de votre signalement du {{ form_receipt_date|date:"d M y"
 
 {% if form_var_issues %}**D&#233;tail** : {{ form_var_issues }}{% endif %}
 
-{% if form_user and form_tracking_code %}
-Le code de suivi de votre signalement est le suivant : **{{form_tracking_code}}**
-{% endif %}
+{% if form_user and form_tracking_code %}Le code de suivi de votre signalement est le suivant : **{{form_tracking_code}}**{% endif %}
 
-{% if form_var_ditnu %}
-Le num&#233;ro DIT associ&#233; &#224; votre signalement est le suivant : **{{ form_var_ditnu }}**
-{% endif %}
+{% if form_var_ditnu %}Le num&#233;ro DIT associ&#233; &#224; votre signalement est le suivant : **{{ form_var_ditnu }}**{% endif %}
 
-{% if form_user %}
-`Afficher l'historique de ma demande &lt;{{ form_url }}&gt;`_
-{% endif %}
+{% if form_user %}`Afficher l'historique de ma demande &lt;{{ form_url }}&gt;`_{% endif %}
 
 Bien &#224; vous,
 </body>
