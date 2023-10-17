@@ -3,7 +3,7 @@
   <name>iMio Townstreet - Services iA.Tech</name>
   <slug>imio_townstreet_services_iatech</slug>
   <description>Liste des services demandeurs dans Atal</description>
-  <cache_duration>160</cache_duration>
+  <cache_duration>86400</cache_duration>
   <id_attribute>Id</id_attribute>
   <text_attribute>Name</text_attribute>
   <data_source>
