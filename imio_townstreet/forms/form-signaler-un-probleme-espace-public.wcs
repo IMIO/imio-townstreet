@@ -705,7 +705,7 @@
     <role slug="agent-traitant-townstreet" role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10" role_key="_receiver">Agent traitant - Townstreet</role>
   </roles><options>
     <option varname="categories_filtered" />
-    <option varname="categories_filtered_display">Propret&#233; et d&#233;p&#244;ts sauvages, Voies publiques, Graffitis, Tags et affichages sauvages, Espaces verts, D&#233;gradations du mobilier urbain, Autres types de signalement</option>
+    <option varname="categories_filtered_display" />
     <option varname="categories_filtered_structured" />
     <option varname="custom_end_notification">Non</option>
     <option varname="custom_end_notification_display">Non</option>
