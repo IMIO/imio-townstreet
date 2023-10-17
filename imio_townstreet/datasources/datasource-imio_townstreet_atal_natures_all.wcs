@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<datasource id="324" url="https://staging-formulaires.guichet-citoyen.be/backoffice/settings/data-sources/324/">
+  <name>iMio Townstreet - Natures d'ATAL (Th&#233;matiques)</name>
+  <slug>imio_townstreet_atal_natures_all</slug>
+  <description>Renvoie la liste des th&#233;matiques figurant dans ATAL.</description>
+  <data_attribute>data</data_attribute>
+  <id_attribute>id</id_attribute>
+  <text_attribute>complete_label</text_attribute>
+  <data_source>
+    <type>json</type>
+    <value>{{ passerelle_url }}passerelle-imio-ia-tech/atal-demov6/get-natures</value>
+  </data_source>
+</datasource>
