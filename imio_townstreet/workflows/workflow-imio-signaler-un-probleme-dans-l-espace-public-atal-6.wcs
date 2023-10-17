@@ -132,6 +132,9 @@
             </item><item>
               <name>atal_contact_city</name>
               <value>=''</value>
+            </item><item>
+              <name>atal_thematic_id</name>
+              <value>{{ form_var_atal_thematic_parent_id }}</value>
             </item>
           </post_data><response_type>json</response_type>
           <varname>post_work_request</varname>
