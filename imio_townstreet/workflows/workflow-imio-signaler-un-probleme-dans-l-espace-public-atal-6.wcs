@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<workflow id="104" url="https://staging-formulaires.guichet-citoyen.be/backoffice/workflows/104/">
+<workflow id="175" url="https://staging-formulaires.guichet-citoyen.be/backoffice/workflows/175/">
   <name>iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</name>
   <slug>imio-signaler-un-probleme-dans-l-espace-public-atal-6</slug>
   <roles>
@@ -47,10 +47,18 @@
               <value>{{ form_var_origin_source }}</value>
             </field>
           </fields>
+        </item><item type="sendmail" id="8">
+          <to>
+            <item role_id="_receiver">_receiver</item>
+          </to><mail_template>imio-townstreet-new-signal</mail_template>
+          <condition>
+            <type>django</type>
+            <value>form_option_recevoir_un_mail_pour_chaque_nouveau_signalement and form_option_recevoir_un_mail_pour_chaque_nouveau_signalement == True</value>
+          </condition>
         </item><item type="sendmail" id="5">
           <to>
             <item role_id="{{ form_var_mail }}">{{ form_var_mail }}</item>
-          </to><mail_template>imio-townstreet-new-signal</mail_template>
+          </to><mail_template>imio-townstreet-acknowledgement</mail_template>
           <condition>
             <type>django</type>
             <value>form_var_requested_from != "fixmystreet" and form_var_mail == True</value>
@@ -61,7 +69,7 @@
           </to><mail_template>imio-townstreet-acknowledgement</mail_template>
           <condition>
             <type>django</type>
-            <value>form_var_requested_from != "fixmystreet"</value>
+            <value>form_var_requested_from != "fixmystreet" and form_user</value>
           </condition>
         </item><item type="jump" id="7">
           <status>10</status>
@@ -290,7 +298,7 @@
       </visibility><items>
         <item type="sendmail" id="1">
           <to>
-            <item role_id="daniel.muyshond+townstreet@imio.be">daniel.muyshond+townstreet@imio.be</item>
+            <item role_id="admints+townstreet-errors@imio.be">admints+townstreet-errors@imio.be</item>
           </to><mail_template>imio-townstreet-erreur</mail_template>
         </item>
       </items>
@@ -314,6 +322,10 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
 </backoffice_info_text>
           <ignore_form_errors>False</ignore_form_errors>
           <set_marker_on_status>False</set_marker_on_status>
+        </item><item type="sendmail" id="2">
+          <to>
+            <item role_id="admints+townstreet-errors@imio.be">admints+townstreet-errors@imio.be</item>
+          </to><mail_template>imio-townstreet-erreur-envoi-des-fichiers-vers-iatech</mail_template>
         </item>
       </items>
     </status><status>
@@ -877,6 +889,20 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       <name>-</name>
       <fields>
         <field>
+          <type>bool</type>
+          <label type="str">Recevoir un mail pour chaque nouveau signalement</label>
+          <required type="bool">False</required>
+          <varname type="str">recevoir_un_mail_pour_chaque_nouveau_signalement</varname>
+          <display_locations />
+          <id type="str">21674f95-23b1-478b-a0f9-01da8dafeea6</id>
+        </field><field>
+          <type>bool</type>
+          <label type="str">Rendre les champs adresse mail et num&#233;ro de t&#233;l&#233;phone obligatoires</label>
+          <required type="bool">False</required>
+          <varname type="str">champs_mail_et_tel_obligatoires</varname>
+          <display_locations />
+          <id type="str">7443cc2b-5ca1-4355-830e-a81f24d678d1</id>
+        </field><field>
           <type>bool</type>
           <label type="str">Limiter le p&#233;rim&#232;tre g&#233;ographique des signalements</label>
           <required type="bool">False</required>

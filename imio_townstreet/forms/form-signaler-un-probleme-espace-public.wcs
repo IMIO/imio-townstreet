@@ -447,7 +447,10 @@
     </field><field>
       <type>bool</type>
       <label type="str">Je souhaite &#234;tre tenu inform&#233;&#183;e des suites qui seront donn&#233;es &#224; ce signalement</label>
-      <required type="bool">False</required>
+      <condition>
+        <type>django</type>
+        <value>form_option_champs_mail_et_tel_obligatoires != True</value>
+      </condition><required type="bool">False</required>
       <hint type="str">Cochez cette case pour &#234;tre tenu inform&#233;&#183;e. Vous serez invit&#233;&#183;e &#224; communiquer vos coordonn&#233;es.</hint>
       <varname type="str">follow</varname>
       <display_locations>
@@ -462,7 +465,7 @@
       <label type="str">Vos coordonn&#233;es</label>
       <condition>
         <type>django</type>
-        <value>form_var_follow == True</value>
+        <value>form_option_champs_mail_et_tel_obligatoires == True or form_var_follow == True</value>
       </condition><extra_css_class type="str">newline grid-1-1</extra_css_class>
       <display_locations />
       <id type="str">194</id>
@@ -471,7 +474,7 @@
       <label type="str">Pr&#233;nom</label>
       <condition>
         <type>django</type>
-        <value>form_var_follow == True</value>
+        <value>form_var_follow == True or form_option_champs_mail_et_tel_obligatoires == True</value>
       </condition><required type="bool">True</required>
       <varname type="str">firstname</varname>
       <display_locations>
@@ -479,6 +482,7 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">newline grid-1-4</extra_css_class>
       <prefill>
+        <locked>False</locked>
         <type>user</type>
         <value>_first_name</value>
       </prefill><anonymise type="str">final</anonymise>
@@ -488,13 +492,14 @@
       <label type="str">Nom</label>
       <condition>
         <type>django</type>
-        <value>form_var_follow == True</value>
+        <value>form_option_champs_mail_et_tel_obligatoires == True or form_var_follow == True</value>
       </condition><required type="bool">True</required>
       <varname type="str">lastname</varname>
       <display_locations>
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
       <prefill>
+        <locked>False</locked>
         <type>user</type>
         <value>_last_name</value>
       </prefill><anonymise type="str">final</anonymise>
@@ -504,7 +509,7 @@
       <label type="str">Adresse mail</label>
       <condition>
         <type>django</type>
-        <value>form_var_follow == True</value>
+        <value>form_option_champs_mail_et_tel_obligatoires == True or form_var_follow == True</value>
       </condition><required type="bool">True</required>
       <varname type="str">mail</varname>
       <display_locations>
@@ -512,13 +517,17 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-2 newline</extra_css_class>
       <prefill>
+        <locked>False</locked>
         <type>user</type>
         <value>_email</value>
       </prefill><id type="str">156</id>
     </field><field>
       <type>bool</type>
       <label type="str">L'&#233;quipe charg&#233;e de traiter ce signalement peut m'appeler pour me demander des informations compl&#233;mentaires</label>
-      <required type="bool">False</required>
+      <condition>
+        <type>django</type>
+        <value>form_option_champs_mail_et_tel_obligatoires != True</value>
+      </condition><required type="bool">False</required>
       <hint type="str">En cas de besoin et pour localiser ou traiter au mieux l'objet de votre signalement.</hint>
       <varname type="str">helpacknow</varname>
       <display_locations>
@@ -530,10 +539,9 @@
     </field><field>
       <type>string</type>
       <label type="str">Votre num&#233;ro de t&#233;l&#233;phone</label>
-      <type type="str">string</type>
       <condition>
         <type>django</type>
-        <value>form_var_helpacknow == True</value>
+        <value>form_option_champs_mail_et_tel_obligatoires == True or form_var_helpacknow == True</value>
       </condition><required type="bool">True</required>
       <hint type="str">Exemple : +3281005678 ou 0123456789.</hint>
       <varname type="str">phonenum</varname>
@@ -542,6 +550,7 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-2 newline</extra_css_class>
       <prefill>
+        <locked>False</locked>
         <type>user</type>
         <value>_phone</value>
       </prefill><validation>
@@ -707,6 +716,7 @@
     <option varname="categories_filtered" />
     <option varname="categories_filtered_display" />
     <option varname="categories_filtered_structured" />
+    <option varname="champs_mail_et_tel_obligatoires" type="bool">false</option>
     <option varname="custom_end_notification">Non</option>
     <option varname="custom_end_notification_display">Non</option>
     <option varname="custom_end_notification_structured" />
@@ -742,6 +752,7 @@
     <option varname="proprete_et_depots_sauvages" />
     <option varname="proprete_et_depots_sauvages_display" />
     <option varname="proprete_et_depots_sauvages_structured" />
+    <option varname="recevoir_un_mail_pour_chaque_nouveau_signalement" type="bool">false</option>
     <option varname="selected_categories" />
     <option varname="selected_categories_display" />
     <option varname="selected_categories_structured" />
@@ -754,7 +765,7 @@
     <option varname="souscategories_de_signalement_offertes" />
     <option varname="souscategories_de_signalement_offertes_display" />
     <option varname="souscategories_de_signalement_offertes_structured" />
-    <option varname="use_atal_thematics" type="bool">true</option>
+    <option varname="use_atal_thematics" type="bool">false</option>
     <option varname="voies_publiques" />
     <option varname="voies_publiques_display" />
     <option varname="voies_publiques_structured" />
