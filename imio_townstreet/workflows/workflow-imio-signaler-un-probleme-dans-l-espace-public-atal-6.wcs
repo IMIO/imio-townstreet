@@ -325,7 +325,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
         </item><item type="sendmail" id="2">
           <to>
             <item role_id="admints+townstreet-errors@imio.be">admints+townstreet-errors@imio.be</item>
-          </to><mail_template>imio-townstreet-erreur-envoi-des-fichiers-vers-iatech</mail_template>
+          </to><mail_template>imio-townstreet-erreur-envoi-des-photos-iatech</mail_template>
         </item>
       </items>
     </status><status>
