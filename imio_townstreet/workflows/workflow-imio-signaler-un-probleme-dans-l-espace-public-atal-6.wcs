@@ -103,10 +103,10 @@
               <value>{% firstof form_var_firstname '' %}</value>
             </item><item>
               <name>atal_latitude</name>
-              <value>{% firstof form_var_map_lat form_geoloc_base_lat form_workflow_form_manual_geodata_var_lat %}</value>
+              <value>{% firstof form_var_map_lat form_geoloc_base_lat form_workflow_form_manual_geodata_var_lat "0" %}</value>
             </item><item>
               <name>atal_longitude</name>
-              <value>{% firstof form_var_map_lon form_geoloc_base_lon form_workflow_form_manual_geodata_var_lat %}</value>
+              <value>{% firstof form_var_map_lon form_geoloc_base_lon form_workflow_form_manual_geodata_var_lat "0" %}</value>
             </item><item>
               <name>atal_description</name>
               <value>{% firstof form_var_desc 'Non renseign&#233;' %}</value>
