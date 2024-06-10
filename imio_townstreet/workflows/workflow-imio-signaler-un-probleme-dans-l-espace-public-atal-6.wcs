@@ -8,9 +8,9 @@
     <status>
       <id>1</id>
       <name>Juste envoy&#233;</name>
-      <colour>FFFFFF</colour>
+      <colour>#FFFFFF</colour>
       <visibility>
-        <role>_receiver</role>
+        <role>__restricted__</role>
       </visibility><items>
         <item type="geolocate" id="1">
           <method>map_variable</method>
@@ -79,9 +79,9 @@
     </status><status>
       <id>4</id>
       <name>Cr&#233;ation dans ATAL</name>
-      <colour>FFFFFF</colour>
+      <colour>#FFFFFF</colour>
       <visibility>
-        <role>_receiver</role>
+        <role>__restricted__</role>
       </visibility><items>
         <item type="webservice_call" id="1">
           <label>Cr&#233;ation de la demande de travaux dans ATAL</label>
@@ -146,15 +146,24 @@
             </item>
           </post_data><response_type>json</response_type>
           <varname>post_work_request</varname>
+          <attach_file_to_history>True</attach_file_to_history>
           <action_on_app_error>5</action_on_app_error>
           <action_on_4xx>5</action_on_4xx>
           <action_on_5xx>5</action_on_5xx>
           <action_on_bad_data>5</action_on_bad_data>
           <action_on_network_errors>5</action_on_network_errors>
+          <record_errors>False</record_errors>
+          <record_on_errors>True</record_on_errors>
           <notify_on_errors>True</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>False</record_errors>
           <set_marker_on_status>False</set_marker_on_status>
+        </item><item type="jump" id="3">
+          <status>5</status>
+          <condition>
+            <type>django</type>
+            <value>form_workflow_data_post_work_request_response_data_status == 400 or form_workflow_data_post_work_request_response_data_status == 500</value>
+          </condition><set_marker_on_status>False</set_marker_on_status>
         </item><item type="jump" id="2">
           <status>20</status>
           <condition>
@@ -172,9 +181,9 @@
     </status><status>
       <id>6</id>
       <name>Envoi de fichier vers ATAL</name>
-      <colour>FFFFFF</colour>
+      <colour>#FFFFFF</colour>
       <visibility>
-        <role>_receiver</role>
+        <role>__restricted__</role>
       </visibility><items>
         <item type="webservice_call" id="1">
           <label>Photo 1</label>
@@ -191,14 +200,15 @@
             </item>
           </post_data><response_type>json</response_type>
           <varname>post_attachment1</varname>
+          <attach_file_to_history>True</attach_file_to_history>
           <action_on_app_error>7</action_on_app_error>
           <action_on_4xx>7</action_on_4xx>
           <action_on_5xx>7</action_on_5xx>
           <action_on_bad_data>7</action_on_bad_data>
           <action_on_network_errors>7</action_on_network_errors>
-          <notify_on_errors>True</notify_on_errors>
-          <record_on_errors>True</record_on_errors>
           <record_errors>False</record_errors>
+          <record_on_errors>True</record_on_errors>
+          <notify_on_errors>True</notify_on_errors>
           <condition>
             <type>django</type>
             <value>form_var_pic1</value>
@@ -218,14 +228,15 @@
             </item>
           </post_data><response_type>json</response_type>
           <varname>post_attachment2</varname>
+          <attach_file_to_history>True</attach_file_to_history>
           <action_on_app_error>7</action_on_app_error>
           <action_on_4xx>7</action_on_4xx>
           <action_on_5xx>7</action_on_5xx>
           <action_on_bad_data>7</action_on_bad_data>
           <action_on_network_errors>7</action_on_network_errors>
-          <notify_on_errors>True</notify_on_errors>
-          <record_on_errors>True</record_on_errors>
           <record_errors>False</record_errors>
+          <record_on_errors>True</record_on_errors>
+          <notify_on_errors>True</notify_on_errors>
           <condition>
             <type>django</type>
             <value>form_var_pic2</value>
@@ -245,14 +256,15 @@
             </item>
           </post_data><response_type>json</response_type>
           <varname>post_attachment3</varname>
+          <attach_file_to_history>True</attach_file_to_history>
           <action_on_app_error>7</action_on_app_error>
           <action_on_4xx>7</action_on_4xx>
           <action_on_5xx>7</action_on_5xx>
           <action_on_bad_data>7</action_on_bad_data>
           <action_on_network_errors>7</action_on_network_errors>
-          <notify_on_errors>True</notify_on_errors>
-          <record_on_errors>True</record_on_errors>
           <record_errors>False</record_errors>
+          <record_on_errors>True</record_on_errors>
+          <notify_on_errors>True</notify_on_errors>
           <condition>
             <type>django</type>
             <value>form_var_pic3</value>
@@ -272,14 +284,15 @@
             </item>
           </post_data><response_type>json</response_type>
           <varname>post_attachment3</varname>
+          <attach_file_to_history>True</attach_file_to_history>
           <action_on_app_error>7</action_on_app_error>
           <action_on_4xx>7</action_on_4xx>
           <action_on_5xx>7</action_on_5xx>
           <action_on_bad_data>:pass</action_on_bad_data>
           <action_on_network_errors>7</action_on_network_errors>
-          <notify_on_errors>True</notify_on_errors>
-          <record_on_errors>True</record_on_errors>
           <record_errors>False</record_errors>
+          <record_on_errors>True</record_on_errors>
+          <notify_on_errors>True</notify_on_errors>
           <condition>
             <type>django</type>
             <value>form_var_private_building_yn == True</value>
@@ -292,9 +305,9 @@
     </status><status>
       <id>5</id>
       <name>Erreur (cr&#233;ation dans ATAL)</name>
-      <colour>FF9999</colour>
+      <colour>#FF9999</colour>
       <visibility>
-        <role>_receiver</role>
+        <role>__restricted__</role>
       </visibility><items>
         <item type="sendmail" id="1">
           <to>
@@ -305,9 +318,9 @@
     </status><status>
       <id>7</id>
       <name>Erreur (envoi de fichier)</name>
-      <colour>FF9999</colour>
+      <colour>#FF9999</colour>
       <visibility>
-        <role>_receiver</role>
+        <role>__restricted__</role>
       </visibility><items>
         <item type="choice" id="1">
           <label>D&#233;bug &#183; R&#233;essayer d'envoyer les images dans ATAL</label>
@@ -331,7 +344,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
     </status><status>
       <id>8</id>
       <name>Signalement refus&#233;</name>
-      <colour>FF0066</colour>
+      <colour>#FF0066</colour>
       <forced_endpoint>true</forced_endpoint>
       <visibility />
       <items>
@@ -362,14 +375,15 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
             </item>
           </post_data><response_type>json</response_type>
           <varname>fms_notification_closed</varname>
+          <attach_file_to_history>True</attach_file_to_history>
           <action_on_app_error>:pass</action_on_app_error>
           <action_on_4xx>:stop</action_on_4xx>
           <action_on_5xx>:stop</action_on_5xx>
           <action_on_bad_data>:pass</action_on_bad_data>
           <action_on_network_errors>:stop</action_on_network_errors>
-          <notify_on_errors>False</notify_on_errors>
-          <record_on_errors>True</record_on_errors>
           <record_errors>False</record_errors>
+          <record_on_errors>True</record_on_errors>
+          <notify_on_errors>False</notify_on_errors>
           <condition>
             <type>django</type>
             <value>form_var_origin_source == "fixmystreet"</value>
@@ -395,7 +409,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
     </status><status>
       <id>10</id>
       <name>Nouveau signalement</name>
-      <colour>FFFF99</colour>
+      <colour>#FFFF99</colour>
       <visibility />
       <items>
         <item type="displaymsg" id="1">
@@ -420,7 +434,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
     </status><status>
       <id>13</id>
       <name>Finalis&#233;</name>
-      <colour>66FF99</colour>
+      <colour>#66FF99</colour>
       <extra_css_class>sign_traite</extra_css_class>
       <forced_endpoint>true</forced_endpoint>
       <visibility />
@@ -452,14 +466,15 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
             </item>
           </post_data><response_type>json</response_type>
           <varname>fms_notification_solved</varname>
+          <attach_file_to_history>True</attach_file_to_history>
           <action_on_app_error>:pass</action_on_app_error>
           <action_on_4xx>:stop</action_on_4xx>
           <action_on_5xx>:stop</action_on_5xx>
           <action_on_bad_data>:pass</action_on_bad_data>
           <action_on_network_errors>:stop</action_on_network_errors>
-          <notify_on_errors>False</notify_on_errors>
-          <record_on_errors>True</record_on_errors>
           <record_errors>False</record_errors>
+          <record_on_errors>True</record_on_errors>
+          <notify_on_errors>False</notify_on_errors>
           <condition>
             <type>django</type>
             <value>form_var_origin_source == "fixmystreet"</value>
@@ -477,9 +492,9 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
     </status><status>
       <id>14</id>
       <name>Notification de r&#233;solution au demandeur</name>
-      <colour>FFFFFF</colour>
+      <colour>#FFFFFF</colour>
       <visibility>
-        <role>_receiver</role>
+        <role>__restricted__</role>
       </visibility><items>
         <item type="sendmail" id="1">
           <to>
@@ -505,9 +520,9 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
     </status><status>
       <id>20</id>
       <name>R&#233;cup&#233;ration des identifiants ATAL</name>
-      <colour>FFFFFF</colour>
+      <colour>#FFFFFF</colour>
       <visibility>
-        <role>_receiver</role>
+        <role>__restricted__</role>
       </visibility><items>
         <item type="set-backoffice-fields" id="1">
           <label>Num&#233;ros d'identification dans ATAL</label>
@@ -538,10 +553,10 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
     </status><status>
       <id>21</id>
       <name>Traitement dans ATAL</name>
-      <colour>6699FF</colour>
+      <colour>#6699FF</colour>
       <backoffice_info_text>&lt;p&gt;Ce statut n'est pas visible par la personne ayant soumis cette demande.&lt;/p&gt;</backoffice_info_text>
       <visibility>
-        <role>_receiver</role>
+        <role>__restricted__</role>
       </visibility><items>
         <item type="webservice_call" id="1">
           <label>R&#233;cup&#233;ration du d&#233;tail dans ATAL</label>
@@ -555,14 +570,15 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
             </item>
           </post_data><response_type>json</response_type>
           <varname>work_request_details</varname>
+          <attach_file_to_history>True</attach_file_to_history>
           <action_on_app_error>:pass</action_on_app_error>
           <action_on_4xx>:pass</action_on_4xx>
           <action_on_5xx>:pass</action_on_5xx>
           <action_on_bad_data>:pass</action_on_bad_data>
           <action_on_network_errors>:pass</action_on_network_errors>
-          <notify_on_errors>True</notify_on_errors>
-          <record_on_errors>True</record_on_errors>
           <record_errors>False</record_errors>
+          <record_on_errors>True</record_on_errors>
+          <notify_on_errors>True</notify_on_errors>
           <set_marker_on_status>False</set_marker_on_status>
         </item><item type="set-backoffice-fields" id="2">
           <label>Commentaire dans Atal pour Tableau de traitement</label>
@@ -632,7 +648,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
     </status><status>
       <id>22</id>
       <name>En cours de traitement</name>
-      <colour>6699FF</colour>
+      <colour>#6699FF</colour>
       <backoffice_info_text>&lt;p&gt;Visible par le demandeur.&lt;/p&gt;</backoffice_info_text>
       <visibility />
       <items>
@@ -651,9 +667,9 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
     </status><status>
       <id>23</id>
       <name>R&#233;diger une r&#233;ponse</name>
-      <colour>FFFF00</colour>
+      <colour>#FFFF00</colour>
       <visibility>
-        <role>_receiver</role>
+        <role>__restricted__</role>
       </visibility><items>
         <item type="displaymsg" id="1">
           <message>Cette demande est cl&#244;tur&#233;e dans ATAL et attends votre intervention pour la r&#233;daction d'une r&#233;ponse.</message>
@@ -744,8 +760,8 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
                 <prefill>
                   <type>string</type>
                   <value>{% if form_var_atal_comments %}{{ form_var_atal_comments }}{% endif %}</value>
-                </prefill><display_mode type="str">pre</display_mode>
-                <anonymise type="str">final</anonymise>
+                </prefill><anonymise type="str">final</anonymise>
+                <display_mode type="str">pre</display_mode>
                 <id type="str">3</id>
               </field>
             </fields>
@@ -769,9 +785,9 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
     </status><status>
       <id>24</id>
       <name>Compl&#233;tion g&#233;odonn&#233;es</name>
-      <colour>FFFFFF</colour>
+      <colour>#FFFFFF</colour>
       <visibility>
-        <role>_receiver</role>
+        <role>__restricted__</role>
       </visibility><items>
         <item type="form" id="1">
           <by>
@@ -818,6 +834,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <roles>
             <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
           </roles><allow_as_mass_action>True</allow_as_mass_action>
+          <require_confirmation>False</require_confirmation>
         </trigger>
       </triggers>
     </action><action>
@@ -834,6 +851,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <roles>
             <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
           </roles><allow_as_mass_action>True</allow_as_mass_action>
+          <require_confirmation>False</require_confirmation>
         </trigger>
       </triggers>
     </action><action>
@@ -850,6 +868,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <roles>
             <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
           </roles><allow_as_mass_action>True</allow_as_mass_action>
+          <require_confirmation>False</require_confirmation>
         </trigger>
       </triggers>
     </action><action>
@@ -866,6 +885,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
             <item slug="agent-traitant-townstreet" role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
             <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
           </roles><allow_as_mass_action>True</allow_as_mass_action>
+          <require_confirmation>False</require_confirmation>
         </trigger>
       </triggers>
     </action><action>
@@ -881,6 +901,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <roles>
             <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
           </roles><allow_as_mass_action>True</allow_as_mass_action>
+          <require_confirmation>False</require_confirmation>
         </trigger>
       </triggers>
     </action>
@@ -894,6 +915,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <required type="bool">False</required>
           <varname type="str">recevoir_un_mail_pour_chaque_nouveau_signalement</varname>
           <display_locations />
+          <anonymise type="str">no</anonymise>
           <id type="str">21674f95-23b1-478b-a0f9-01da8dafeea6</id>
         </field><field>
           <type>bool</type>
@@ -901,6 +923,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <required type="bool">False</required>
           <varname type="str">champs_mail_et_tel_obligatoires</varname>
           <display_locations />
+          <anonymise type="str">no</anonymise>
           <id type="str">7443cc2b-5ca1-4355-830e-a81f24d678d1</id>
         </field><field>
           <type>bool</type>
@@ -909,10 +932,9 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <hint type="str">Cochez cette case pour limiter le p&#233;rim&#232;tre g&#233;ographique des signalements autoris&#233;s. Le formulaire ne pourra pas &#234;tre valid&#233; par le citoyen si cette case est coch&#233;e et que des codes postaux sont d&#233;finis ci-dessous. Un commentaire en premi&#232;re page du formulaire s'affichera pour avertir le citoyen des codes postaux autoris&#233;s.</hint>
           <varname type="str">geolimityn</varname>
           <display_locations>
-            <display_location>summary</display_location>
-          </display_locations><prefill>
-            <type>none</type>
-          </prefill><id type="str">2</id>
+            <item>summary</item>
+          </display_locations><anonymise type="str">no</anonymise>
+          <id type="str">2</id>
         </field><field>
           <type>string</type>
           <label type="str">Limiter le p&#233;rim&#232;tre g&#233;ographique des signalements - Code postaux</label>
@@ -920,10 +942,8 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <hint type="str">Code postaux s&#233;par&#233;s par des virgules. (Exemple : 6000,6001,6002)</hint>
           <varname type="str">postal_code_limit</varname>
           <display_locations>
-            <display_location>summary</display_location>
-          </display_locations><prefill>
-            <type>none</type>
-          </prefill><anonymise type="str">final</anonymise>
+            <item>summary</item>
+          </display_locations><anonymise type="str">final</anonymise>
           <id type="str">1</id>
         </field><field>
           <type>bool</type>
@@ -932,10 +952,9 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <hint type="str">Cochez cette case pour que les &#233;l&#233;ments de formulaires li&#233;s &#224; cette option s'affiche. Il s'agit de champs commentaire, une page suppl&#233;mentaires demandes des informations li&#233;es, champs fichier, etc.</hint>
           <varname type="str">onaprivatebuilding</varname>
           <display_locations>
-            <display_location>summary</display_location>
-          </display_locations><prefill>
-            <type>none</type>
-          </prefill><id type="str">3</id>
+            <item>summary</item>
+          </display_locations><anonymise type="str">no</anonymise>
+          <id type="str">3</id>
         </field><field>
           <type>item</type>
           <label type="str">Choisir un environnement</label>
@@ -943,12 +962,12 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <hint type="str">S&#233;lectionnez l'environnement utilis&#233; pour cette d&#233;marche</hint>
           <varname type="str">environnement</varname>
           <display_locations />
+          <anonymise type="str">no</anonymise>
           <display_mode type="str">radio</display_mode>
           <items />
           <data_source>
             <type>imio_townstreet_environnement</type>
           </data_source><in_filters type="bool">False</in_filters>
-          <anonymise type="bool">False</anonymise>
           <display_disabled_items type="bool">False</display_disabled_items>
           <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
           <image_desktop_size type="int">150</image_desktop_size>
@@ -961,13 +980,13 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <hint type="str">S&#233;lectionnez le service demandeur pour la cr&#233;ation des signalement dans iA.Tech</hint>
           <varname type="str">service_demandeur</varname>
           <display_locations />
+          <anonymise type="str">no</anonymise>
           <display_mode type="str">list</display_mode>
           <items />
           <data_source>
             <type>imio_townstreet_services_iatech</type>
             <value>{{passerelle_url}}passerelle-imio-ia-tech/atal-demov6/third-parties</value>
           </data_source><in_filters type="bool">False</in_filters>
-          <anonymise type="bool">False</anonymise>
           <display_disabled_items type="bool">False</display_disabled_items>
           <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
           <image_desktop_size type="int">150</image_desktop_size>
@@ -980,6 +999,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <hint type="str">Cochez les cat&#233;gories qui appara&#238;tront dans le menu d&#233;roulant du formulaire. N'en cochez aucune pour les employer toutes.</hint>
           <varname type="str">categories_filtered</varname>
           <display_locations />
+          <anonymise type="str">no</anonymise>
           <items />
           <display_mode type="str">checkboxes</display_mode>
           <min_choices type="int">0</min_choices>
@@ -987,7 +1007,6 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <data_source>
             <type>imio_townstreet_main_categories</type>
           </data_source><in_filters type="bool">False</in_filters>
-          <anonymise type="bool">False</anonymise>
           <display_disabled_items type="bool">False</display_disabled_items>
           <image_desktop_size type="int">150</image_desktop_size>
           <image_mobile_size type="int">75</image_mobile_size>
@@ -999,6 +1018,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <hint type="str">Cochez cette case pour rendre le champ "Photo 1" optionnel (au moins 1 photo obligatoire par d&#233;faut).</hint>
           <varname type="str">pic_not_required</varname>
           <display_locations />
+          <anonymise type="str">no</anonymise>
           <id type="str">7</id>
         </field><field>
           <type>item</type>
@@ -1007,12 +1027,12 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <hint type="str">Afin de pouvoir &#233;diter / personnaliser le message.</hint>
           <varname type="str">custom_end_notification</varname>
           <display_locations />
+          <anonymise type="str">no</anonymise>
           <display_mode type="str">radio</display_mode>
           <items>
             <item>Oui</item>
             <item>Non</item>
           </items><in_filters type="bool">False</in_filters>
-          <anonymise type="bool">False</anonymise>
           <display_disabled_items type="bool">False</display_disabled_items>
           <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
           <image_desktop_size type="int">150</image_desktop_size>
@@ -1025,6 +1045,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <hint type="str">Cochez cette case pour employer les th&#233;matiques (Travaux) d'ATAL en guise de cat&#233;gories de signalement.</hint>
           <varname type="str">use_atal_thematics</varname>
           <display_locations />
+          <anonymise type="str">no</anonymise>
           <id type="str">561ea67d-ac6d-4f63-bc65-27ee1b1feff0</id>
         </field>
       </fields>
@@ -1039,8 +1060,8 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <required type="bool">False</required>
           <varname type="str">ditnu</varname>
           <display_locations>
-            <display_location>summary</display_location>
-            <display_location>listings</display_location>
+            <item>summary</item>
+            <item>listings</item>
           </display_locations><anonymise type="str">no</anonymise>
           <id type="str">boceb33663-bc2b-4e59-ac71-3c34e9c45f60</id>
         </field><field>
@@ -1049,8 +1070,8 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <required type="bool">False</required>
           <varname type="str">obj</varname>
           <display_locations>
-            <display_location>summary</display_location>
-            <display_location>listings</display_location>
+            <item>summary</item>
+            <item>listings</item>
           </display_locations><anonymise type="str">no</anonymise>
           <id type="str">bo5f0b6137-6c67-46f1-b974-dedb5ee853db</id>
         </field><field>
@@ -1059,7 +1080,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <required type="bool">True</required>
           <varname type="str">desc</varname>
           <display_locations>
-            <display_location>summary</display_location>
+            <item>summary</item>
           </display_locations><anonymise type="str">no</anonymise>
           <id type="str">bo810f5e77-1d3b-40b3-bb28-7ea0af191239</id>
         </field><field>
@@ -1068,8 +1089,8 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <required type="bool">True</required>
           <varname type="str">place</varname>
           <display_locations>
-            <display_location>summary</display_location>
-            <display_location>listings</display_location>
+            <item>summary</item>
+            <item>listings</item>
           </display_locations><anonymise type="str">no</anonymise>
           <id type="str">bo13e3c664-e561-40a2-a766-ebd455662734</id>
         </field><field>
@@ -1078,7 +1099,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <required type="bool">True</required>
           <varname type="str">followyn</varname>
           <display_locations>
-            <display_location>summary</display_location>
+            <item>summary</item>
           </display_locations><anonymise type="str">no</anonymise>
           <id type="str">bo8e50a0f2-09c3-4c33-8099-b6dfdbce719c</id>
         </field><field>
@@ -1095,8 +1116,8 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <required type="bool">True</required>
           <varname type="str">requested_from</varname>
           <display_locations>
-            <display_location>summary</display_location>
-            <display_location>listings</display_location>
+            <item>summary</item>
+            <item>listings</item>
           </display_locations><anonymise type="str">final</anonymise>
           <id type="str">bo6c5e090e-75c1-4269-ac81-6d2b097af7d9</id>
         </field><field>
@@ -1105,8 +1126,8 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <required type="bool">False</required>
           <varname type="str">atal_comments</varname>
           <display_locations>
-            <display_location>summary</display_location>
-            <display_location>listings</display_location>
+            <item>summary</item>
+            <item>listings</item>
           </display_locations><anonymise type="str">final</anonymise>
           <id type="str">bo55a0bd45-9af6-4112-9d93-20027cf5d721</id>
         </field>
