@@ -725,33 +725,38 @@
         <text>Propret&#233; et d&#233;p&#244;ts sauvages</text>
         <parent />
       </item>
-    </option><option varname="champs_mail_et_tel_obligatoires" type="bool">false</option>
-    <option varname="custom_end_notification" />
-    <option varname="custom_end_notification_display" />
-    <option varname="custom_end_notification_structured" />
-    <option varname="eatal_version">5</option>
-    <option varname="eatal_version_display">ATAL 5</option>
-    <option varname="eatal_version_structured" />
-    <option varname="environnement">prod</option>
-    <option varname="environnement_display">Production</option>
+    </option>
+    <option varname="environnement">test</option>
+    <option varname="environnement_display">Test</option>
     <option varname="environnement_structured" type="dict">
-      <id>prod</id>
-      <text>Production</text>
+      <id>test</id>
+      <text>Test</text>
       <url_apims>api</url_apims>
-    </option><option varname="geolimityn" type="bool">false</option>
-    <option varname="iatech" />
-    <option varname="new_signal_alert_mail" />
-    <option varname="on_a_private_building" />
-    <option varname="onaprivatebuilding" type="bool">false</option>
-    <option varname="opt_on_a_private_building" />
-    <option varname="pic_not_required" type="bool">false</option>
-    <option varname="postal_code_limit" />
-    <option varname="recevoir_un_mail_pour_chaque_nouveau_signalement" type="bool">false</option>
-    <option varname="service_demandeur">2595</option>
-    <option varname="service_demandeur_display">Demandes citoyennes</option>
-    <option varname="service_demandeur_structured" type="dict">
-      <Type type="int">2</Type>
-      <Assignments type="list" />
-      <Name>Demandes citoyennes</Name>
-      <Contacts type="list" />
-      <Add
+    </option>
+  </options><custom_views>
+    <custom_view>
+      <title>iMio - Townstreet</title>
+      <slug>imio-townstreet</slug>
+      <visibility>any</visibility>
+      <filters>
+        <filter>all</filter>
+        <filter-status>on</filter-status>
+      </filters><is_default>True</is_default>
+      <columns>
+        <id>id</id>
+        <id>time</id>
+        <id>user-label</id>
+        <id>125</id>
+        <id>108</id>
+        <id>boceb33663-bc2b-4e59-ac71-3c34e9c45f60</id>
+        <id>bo5f0b6137-6c67-46f1-b974-dedb5ee853db</id>
+        <id>bo13e3c664-e561-40a2-a766-ebd455662734</id>
+        <id>status</id>
+      </columns><order_by>-receipt_time</order_by>
+    </custom_view>
+  </custom_views><geolocations>
+    <geolocation key="base">Position</geolocation>
+  </geolocations><management_sidebar_items>
+    <item>__default__</item>
+  </management_sidebar_items><digest_templates />
+</formdef>
