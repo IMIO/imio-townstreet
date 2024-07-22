@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<workflow id="175" url="https://staging-formulaires.guichet-citoyen.be/backoffice/workflows/175/">
+<workflow id="84" url="https://demo-formulaires.guichet-citoyen.be/backoffice/workflows/84/">
   <name>iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</name>
   <slug>imio-signaler-un-probleme-dans-l-espace-public-atal-6</slug>
   <roles>
@@ -47,7 +47,7 @@
               <value>{{ form_var_origin_source }}</value>
             </field>
           </fields>
-        </item><item type="sendmail" id="8">
+        </item><item type="sendmail" id="5">
           <to>
             <item role_id="_receiver">_receiver</item>
           </to><mail_template>imio-townstreet-new-signal</mail_template>
@@ -55,7 +55,7 @@
             <type>django</type>
             <value>form_option_recevoir_un_mail_pour_chaque_nouveau_signalement and form_option_recevoir_un_mail_pour_chaque_nouveau_signalement == True</value>
           </condition>
-        </item><item type="sendmail" id="5">
+        </item><item type="sendmail" id="6">
           <to>
             <item role_id="{{ form_var_mail }}">{{ form_var_mail }}</item>
           </to><mail_template>imio-townstreet-acknowledgement</mail_template>
@@ -63,7 +63,7 @@
             <type>django</type>
             <value>form_var_requested_from != "fixmystreet" and form_var_mail == True</value>
           </condition>
-        </item><item type="sendmail" id="6">
+        </item><item type="sendmail" id="7">
           <to>
             <item role_id="_submitter">_submitter</item>
           </to><mail_template>imio-townstreet-acknowledgement</mail_template>
@@ -71,8 +71,9 @@
             <type>django</type>
             <value>form_var_requested_from != "fixmystreet" and form_user</value>
           </condition>
-        </item><item type="jump" id="7">
+        </item><item type="jump" id="8">
           <status>10</status>
+          <mode>immediate</mode>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items>
@@ -121,31 +122,32 @@
               <value>{% firstof form_var_phonenum '' %}</value>
             </item><item>
               <name>atal_request_type</name>
-              <value>=1001</value>
+              <value>1001</value>
             </item><item>
               <name>atal_requesting_department_id</name>
               <value>{% firstof form_option_service_demandeur_raw "50" %}</value>
             </item><item>
               <name>atal_requester_id</name>
-              <value>=-1</value>
+              <value>-1</value>
             </item><item>
               <name>atal_recipient_id</name>
-              <value>=-1</value>
+              <value>-1</value>
             </item><item>
               <name>atal_contact_address</name>
-              <value>=''</value>
+              <value />
             </item><item>
               <name>atal_contact_zipcode</name>
-              <value>=''</value>
+              <value />
             </item><item>
               <name>atal_contact_city</name>
-              <value>=''</value>
+              <value />
             </item><item>
               <name>atal_thematic_id</name>
               <value>{{ form_var_atal_thematic_parent_id }}</value>
             </item>
           </post_data><response_type>json</response_type>
           <varname>post_work_request</varname>
+          <store_all_responses>False</store_all_responses>
           <attach_file_to_history>True</attach_file_to_history>
           <action_on_app_error>5</action_on_app_error>
           <action_on_4xx>5</action_on_4xx>
@@ -155,27 +157,28 @@
           <record_errors>False</record_errors>
           <record_on_errors>True</record_on_errors>
           <notify_on_errors>True</notify_on_errors>
-          <record_on_errors>True</record_on_errors>
-          <record_errors>False</record_errors>
           <set_marker_on_status>False</set_marker_on_status>
-        </item><item type="jump" id="3">
+        </item><item type="jump" id="2">
           <status>5</status>
           <condition>
             <type>django</type>
             <value>form_workflow_data_post_work_request_response_data_status == 400 or form_workflow_data_post_work_request_response_data_status == 500</value>
-          </condition><set_marker_on_status>False</set_marker_on_status>
-        </item><item type="jump" id="2">
+          </condition><mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item><item type="jump" id="3">
           <status>20</status>
           <condition>
             <type>django</type>
             <value>not form_workflow_data_post_work_request_response_data_errors</value>
-          </condition><set_marker_on_status>False</set_marker_on_status>
-        </item><item type="jump" id="3">
+          </condition><mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item><item type="jump" id="4">
           <status>5</status>
           <condition>
             <type>django</type>
             <value>form_workflow_data_post_work_request_response_data_status == 400 or form_workflow_data_post_work_request_response_data_status == 500</value>
-          </condition><set_marker_on_status>False</set_marker_on_status>
+          </condition><mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items>
     </status><status>
@@ -200,6 +203,7 @@
             </item>
           </post_data><response_type>json</response_type>
           <varname>post_attachment1</varname>
+          <store_all_responses>False</store_all_responses>
           <attach_file_to_history>True</attach_file_to_history>
           <action_on_app_error>7</action_on_app_error>
           <action_on_4xx>7</action_on_4xx>
@@ -228,6 +232,7 @@
             </item>
           </post_data><response_type>json</response_type>
           <varname>post_attachment2</varname>
+          <store_all_responses>False</store_all_responses>
           <attach_file_to_history>True</attach_file_to_history>
           <action_on_app_error>7</action_on_app_error>
           <action_on_4xx>7</action_on_4xx>
@@ -256,6 +261,7 @@
             </item>
           </post_data><response_type>json</response_type>
           <varname>post_attachment3</varname>
+          <store_all_responses>False</store_all_responses>
           <attach_file_to_history>True</attach_file_to_history>
           <action_on_app_error>7</action_on_app_error>
           <action_on_4xx>7</action_on_4xx>
@@ -284,6 +290,7 @@
             </item>
           </post_data><response_type>json</response_type>
           <varname>post_attachment3</varname>
+          <store_all_responses>False</store_all_responses>
           <attach_file_to_history>True</attach_file_to_history>
           <action_on_app_error>7</action_on_app_error>
           <action_on_4xx>7</action_on_4xx>
@@ -299,6 +306,7 @@
           </condition><set_marker_on_status>False</set_marker_on_status>
         </item><item type="jump" id="5">
           <status>22</status>
+          <mode>immediate</mode>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items>
@@ -326,7 +334,7 @@
           <label>D&#233;bug &#183; R&#233;essayer d'envoyer les images dans ATAL</label>
           <by>
             <item role_id="_receiver">_receiver</item>
-            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
           </by><status>6</status>
           <require_confirmation>True</require_confirmation>
           <backoffice_info_text>&lt;p&gt;Action de d&amp;eacute;bug en cas d&amp;#39;erreur vers l&amp;#39;envoi de fichier dans ATAL.&lt;br&gt;
@@ -375,6 +383,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
             </item>
           </post_data><response_type>json</response_type>
           <varname>fms_notification_closed</varname>
+          <store_all_responses>False</store_all_responses>
           <attach_file_to_history>True</attach_file_to_history>
           <action_on_app_error>:pass</action_on_app_error>
           <action_on_4xx>:stop</action_on_4xx>
@@ -428,6 +437,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
           </attachments>
         </item><item type="jump" id="3">
           <status>4</status>
+          <mode>immediate</mode>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items>
@@ -466,6 +476,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
             </item>
           </post_data><response_type>json</response_type>
           <varname>fms_notification_solved</varname>
+          <store_all_responses>False</store_all_responses>
           <attach_file_to_history>True</attach_file_to_history>
           <action_on_app_error>:pass</action_on_app_error>
           <action_on_4xx>:stop</action_on_4xx>
@@ -484,7 +495,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
           <level>success</level>
           <position>top</position>
           <to>
-            <item slug="agent-traitant-townstreet" role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
+            <item slug="agent-traitant-townstreet" role_id="1be915b352294450bc488b563d279ea7">Agent traitant - Townstreet</item>
             <item role_id="_submitter">_submitter</item>
           </to>
         </item>
@@ -514,6 +525,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
           </condition>
         </item><item type="jump" id="3">
           <status>13</status>
+          <mode>immediate</mode>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items>
@@ -537,6 +549,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
           </fields>
         </item><item type="jump" id="2">
           <status>6</status>
+          <mode>immediate</mode>
           <set_marker_on_status>False</set_marker_on_status>
         </item><item type="register-comment" id="3">
           <comment>La demande a &#233;t&#233; cr&#233;&#233;e dans ATAL ({{ post_work_request_response_data_Number }}).
@@ -570,6 +583,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
             </item>
           </post_data><response_type>json</response_type>
           <varname>work_request_details</varname>
+          <store_all_responses>False</store_all_responses>
           <attach_file_to_history>True</attach_file_to_history>
           <action_on_app_error>:pass</action_on_app_error>
           <action_on_4xx>:pass</action_on_4xx>
@@ -596,15 +610,18 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
           <condition>
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 3 and form_option_custom_end_notification == "Oui" and  form_var_follow == True</value>
-          </condition><set_marker_on_status>False</set_marker_on_status>
+          </condition><mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
         </item><item type="jump" id="4">
           <status>23</status>
           <condition>
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 9 and form_option_custom_end_notification == "Oui" and  form_var_follow == True</value>
-          </condition><set_marker_on_status>False</set_marker_on_status>
+          </condition><mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
         </item><item type="jump" id="5">
           <status>21</status>
+          <mode>timeout</mode>
           <timeout>86400</timeout>
           <set_marker_on_status>False</set_marker_on_status>
         </item><item type="jump" id="6">
@@ -612,37 +629,43 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
           <condition>
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 9 and form_var_followyn == "Non"</value>
-          </condition><set_marker_on_status>False</set_marker_on_status>
+          </condition><mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
         </item><item type="jump" id="7">
           <status>8</status>
           <condition>
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 3</value>
-          </condition><set_marker_on_status>False</set_marker_on_status>
+          </condition><mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
         </item><item type="jump" id="8">
           <status>14</status>
           <condition>
             <type>django</type>
             <value>form_option_custom_end_notification == "Non" and work_request_details_response_data_RequestState == 9 and form_var_followyn == "Oui"</value>
-          </condition><set_marker_on_status>False</set_marker_on_status>
+          </condition><mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
         </item><item type="jump" id="9">
           <status>13</status>
           <condition>
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 13 and form_var_followyn == "Non"</value>
-          </condition><set_marker_on_status>False</set_marker_on_status>
+          </condition><mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
         </item><item type="jump" id="10">
           <status>14</status>
           <condition>
             <type>django</type>
             <value>form_option_custom_end_notification == "Non" and work_request_details_response_data_RequestState == 13 and form_var_followyn == "Oui"</value>
-          </condition><set_marker_on_status>False</set_marker_on_status>
+          </condition><mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
         </item><item type="jump" id="11">
           <status>23</status>
           <condition>
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 13 and form_option_custom_end_notification == "Oui" and  form_var_follow == True</value>
-          </condition><set_marker_on_status>False</set_marker_on_status>
+          </condition><mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items>
     </status><status>
@@ -661,6 +684,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
           </to>
         </item><item type="jump" id="2">
           <status>21</status>
+          <mode>immediate</mode>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items>
@@ -791,7 +815,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       </visibility><items>
         <item type="form" id="1">
           <by>
-            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
           </by><varname>manual_geodata</varname>
           <hide_submit_button>False</hide_submit_button>
           <formdef>
@@ -832,7 +856,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       </items><triggers>
         <trigger type="manual" id="5195410f-d64b-4ba7-a8b1-8c0bdcf27061">
           <roles>
-            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
           </roles><allow_as_mass_action>True</allow_as_mass_action>
           <require_confirmation>False</require_confirmation>
         </trigger>
@@ -849,7 +873,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       </items><triggers>
         <trigger type="manual" id="871a8c92-747a-460d-9e36-b9348000c0e9">
           <roles>
-            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
           </roles><allow_as_mass_action>True</allow_as_mass_action>
           <require_confirmation>False</require_confirmation>
         </trigger>
@@ -866,7 +890,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       </items><triggers>
         <trigger type="manual" id="b2738ce0-09ef-43e4-82d9-0fa4c13c382e">
           <roles>
-            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
           </roles><allow_as_mass_action>True</allow_as_mass_action>
           <require_confirmation>False</require_confirmation>
         </trigger>
@@ -882,8 +906,8 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       </items><triggers>
         <trigger type="manual" id="c5804db0-a8b6-4d26-bb3d-2af1167495b6">
           <roles>
-            <item slug="agent-traitant-townstreet" role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
-            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item slug="agent-traitant-townstreet" role_id="1be915b352294450bc488b563d279ea7">Agent traitant - Townstreet</item>
+            <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
           </roles><allow_as_mass_action>True</allow_as_mass_action>
           <require_confirmation>False</require_confirmation>
         </trigger>
@@ -899,7 +923,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       </items><triggers>
         <trigger type="manual" id="028b85d4-bcf1-4c33-8e1f-591968e32872">
           <roles>
-            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
           </roles><allow_as_mass_action>True</allow_as_mass_action>
           <require_confirmation>False</require_confirmation>
         </trigger>

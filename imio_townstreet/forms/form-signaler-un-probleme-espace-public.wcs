@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<formdef id="130" url="https://staging-formulaires.guichet-citoyen.be/backoffice/forms/130/">
+<formdef id="229" url="https://demo-formulaires.guichet-citoyen.be/backoffice/forms/229/">
   <name>Signaler un probl&#232;me dans l'espace public</name>
   <url_name>signaler-un-probleme-espace-public</url_name>
   <keywords>signalement, probl&#232;me, nid de poule, d&#233;chets, d&#233;p&#244;ts, clandestin, sauvage, d&#233;gradation, routes</keywords>
-  <internal_identifier>signaler-un-probleme-dans-l-espace-public</internal_identifier>
+  <submission_user_association>any</submission_user_association>
   <discussion>false</discussion>
   <detailed_emails>true</detailed_emails>
   <disabled>false</disabled>
@@ -11,11 +11,10 @@
   <enable_tracking_codes>true</enable_tracking_codes>
   <confirmation>false</confirmation>
   <always_advertise>false</always_advertise>
-  <include_download_all_button>false</include_download_all_button>
   <has_captcha>false</has_captcha>
   <skip_from_360_view>false</skip_from_360_view>
-  <category slug="signaler-un-probleme-espace-public" category_id="113">Signaler un probl&#232;me dans l'espace public</category>
-  <workflow slug="imio-signaler-un-probleme-dans-l-espace-public-atal-6" workflow_id="104">iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</workflow>
+  <category slug="signaler-un-probleme-espace-public" category_id="120">Signaler un probl&#232;me dans l'espace public</category>
+  <workflow slug="imio-signaler-un-probleme-dans-l-espace-public-atal-6" workflow_id="84">iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</workflow>
   <fields>
     <field>
       <type>page</type>
@@ -70,18 +69,18 @@
       <hint type="str">S&#233;lectionnez une cat&#233;gorie</hint>
       <varname type="str">atal_thematic</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-        <display_location>listings</display_location>
-        <display_location>statistics</display_location>
+        <item>validation</item>
+        <item>summary</item>
+        <item>listings</item>
+        <item>statistics</item>
       </display_locations><extra_css_class type="str">newline grid-1-4</extra_css_class>
+      <anonymise type="str">no</anonymise>
       <display_mode type="str">list</display_mode>
       <items />
       <data_source>
         <type>imio_townstreet_atal_natures_all</type>
         <value>form_option_categories_filtered_structured or data_source.imio_townstreet_main_categories</value>
       </data_source><in_filters type="bool">False</in_filters>
-      <anonymise type="str">no</anonymise>
       <display_disabled_items type="bool">False</display_disabled_items>
       <initial_zoom type="str">13</initial_zoom>
       <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
@@ -98,23 +97,22 @@
       <hint type="str">S&#233;lectionnez une cat&#233;gorie</hint>
       <varname type="str">category</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-        <display_location>listings</display_location>
-        <display_location>statistics</display_location>
+        <item>validation</item>
+        <item>summary</item>
+        <item>listings</item>
+        <item>statistics</item>
       </display_locations><extra_css_class type="str">newline grid-1-4</extra_css_class>
-      <display_mode type="str">list</display_mode>
-      <items />
-      <data_source>
-        <type>formula</type>
-        <value>form_option_categories_filtered_structured or data_source.imio_townstreet_main_categories</value>
-      </data_source><in_filters type="bool">False</in_filters>
       <anonymise type="str">no</anonymise>
+      <display_mode type="str">list</display_mode>
+      <data_source>
+        <type>jsonvalue</type>
+        <value>{% if form_option_categories_filtered_structured %}{{ form_option_categories_filtered_structured|json_dumps }}{% else %}[{% for i in data_source.imio_townstreet_main_categories %}{{ i|json_dumps }}{% if not forloop.last %}, {% endif %}{% endfor %}]{% endif %}</value>
+      </data_source><in_filters type="bool">False</in_filters>
       <display_disabled_items type="bool">False</display_disabled_items>
       <initial_zoom type="str">13</initial_zoom>
       <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
-      <image_desktop_size type="int">150</image_desktop_size>
-      <image_mobile_size type="int">75</image_mobile_size>
+      <image_desktop_size type="str">150</image_desktop_size>
+      <image_mobile_size type="str">75</image_mobile_size>
       <id type="str">691be431-a052-4c0a-b4b1-30460b40dc56</id>
     </field><field>
       <type>item</type>
@@ -126,17 +124,17 @@
       <hint type="str">Veuillez s&#233;lectionner une sous-cat&#233;gorie</hint>
       <varname type="str">subcategory</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-        <display_location>listings</display_location>
-        <display_location>statistics</display_location>
+        <item>validation</item>
+        <item>summary</item>
+        <item>listings</item>
+        <item>statistics</item>
       </display_locations><extra_css_class type="str">newline grid-1-3</extra_css_class>
+      <anonymise type="str">no</anonymise>
       <display_mode type="str">list</display_mode>
       <items />
       <data_source>
         <type>imio_townstreet_sous_categories</type>
       </data_source><in_filters type="bool">False</in_filters>
-      <anonymise type="str">no</anonymise>
       <display_disabled_items type="bool">False</display_disabled_items>
       <initial_zoom type="str">13</initial_zoom>
       <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
@@ -153,11 +151,12 @@
       <hint type="str">Veuillez cocher les options qui s'appliquent.</hint>
       <varname type="str">issues</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-        <display_location>listings</display_location>
-        <display_location>statistics</display_location>
+        <item>validation</item>
+        <item>summary</item>
+        <item>listings</item>
+        <item>statistics</item>
       </display_locations><extra_css_class type="str">grid-1-1 newline</extra_css_class>
+      <anonymise type="str">no</anonymise>
       <items />
       <display_mode type="str">checkboxes</display_mode>
       <min_choices type="int">0</min_choices>
@@ -165,7 +164,6 @@
       <data_source>
         <type>imio_townstreet_issues</type>
       </data_source><in_filters type="bool">False</in_filters>
-      <anonymise type="str">no</anonymise>
       <display_disabled_items type="bool">False</display_disabled_items>
       <image_desktop_size type="int">150</image_desktop_size>
       <image_mobile_size type="int">75</image_mobile_size>
@@ -180,13 +178,13 @@
       <hint type="str">Toute information compl&#233;mentaire ou utile &#224; votre signalement. Optionnel. Max. 500 caract&#232;res.</hint>
       <varname type="str">addinfo</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-        <display_location>listings</display_location>
+        <item>validation</item>
+        <item>summary</item>
+        <item>listings</item>
       </display_locations><extra_css_class type="str">newline grid-1-2</extra_css_class>
+      <anonymise type="str">final</anonymise>
       <display_mode type="str">plain</display_mode>
       <maxlength type="str">500</maxlength>
-      <anonymise type="str">final</anonymise>
       <id type="str">207</id>
     </field><field>
       <type>text</type>
@@ -198,14 +196,14 @@
       <hint type="str">Veuillez pr&#233;ciser "Autre". Max. 500 caract&#232;res.</hint>
       <varname type="str">addinfother</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-        <display_location>listings</display_location>
+        <item>validation</item>
+        <item>summary</item>
+        <item>listings</item>
       </display_locations><extra_css_class type="str">grid-1-2 newline</extra_css_class>
+      <anonymise type="str">final</anonymise>
       <rows type="str">3</rows>
       <display_mode type="str">plain</display_mode>
       <maxlength type="str">500</maxlength>
-      <anonymise type="str">final</anonymise>
       <id type="str">157</id>
     </field><field>
       <type>string</type>
@@ -217,8 +215,8 @@
       <hint type="str">Le num&#233;ro de l'&#233;clairage est indispensable afin que votre signalement puisse &#234;tre trait&#233;. Merci de l'indiquer dans le champ concern&#233; ou de nous envoyer une photo l'affichant clairement.</hint>
       <varname type="str">numero_eclairage</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
+        <item>validation</item>
+        <item>summary</item>
       </display_locations><extra_css_class type="str">newline grid-1-4</extra_css_class>
       <anonymise type="str">no</anonymise>
       <id type="str">196</id>
@@ -227,8 +225,8 @@
       <label type="str">Photos du signalement</label>
       <extra_css_class type="str">newline grid-1-1</extra_css_class>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
+        <item>validation</item>
+        <item>summary</item>
       </display_locations><id type="str">188</id>
     </field><field>
       <type>file</type>
@@ -240,10 +238,11 @@
       <hint type="str">Veuillez joindre une photo.</hint>
       <varname type="str">pic1</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-        <display_location>listings</display_location>
+        <item>validation</item>
+        <item>summary</item>
+        <item>listings</item>
       </display_locations><extra_css_class type="str">newline grid-1-3</extra_css_class>
+      <anonymise type="str">final</anonymise>
       <document_type>
         <id>_image</id>
         <label>Fichiers image</label>
@@ -263,10 +262,11 @@
       <hint type="str">Optionnel.</hint>
       <varname type="str">pic1</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-        <display_location>listings</display_location>
+        <item>validation</item>
+        <item>summary</item>
+        <item>listings</item>
       </display_locations><extra_css_class type="str">newline grid-1-3</extra_css_class>
+      <anonymise type="str">final</anonymise>
       <document_type>
         <id>_image</id>
         <label>Fichiers image</label>
@@ -283,9 +283,10 @@
       <hint type="str">Optionnel.</hint>
       <varname type="str">pic2</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
+        <item>validation</item>
+        <item>summary</item>
       </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
+      <anonymise type="str">final</anonymise>
       <document_type>
         <id>_image</id>
         <label>Fichiers image</label>
@@ -302,9 +303,10 @@
       <hint type="str">Optionnel.</hint>
       <varname type="str">pic3</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
+        <item>validation</item>
+        <item>summary</item>
       </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
+      <anonymise type="str">final</anonymise>
       <document_type>
         <id>_image</id>
         <label>Fichiers image</label>
@@ -327,13 +329,14 @@
       <hint type="str">Cliquez sur la carte pour positionner un curseur qui alimentera les champs de localisation ci-dessous. Les donn&#233;es modifi&#233;es dans ces champs prendront le dessus sur la position et n'actualiseront pas la position sur la carte.</hint>
       <varname type="str">map</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
+        <item>validation</item>
+        <item>summary</item>
       </display_locations><extra_css_class type="str">newline grid-1-1</extra_css_class>
       <prefill>
         <type>geolocation</type>
         <value>position</value>
-      </prefill><initial_zoom type="str">13</initial_zoom>
+      </prefill><anonymise type="str">final</anonymise>
+      <initial_zoom type="str">13</initial_zoom>
       <min_zoom type="str">11</min_zoom>
       <max_zoom type="str">19</max_zoom>
       <id type="str">121</id>
@@ -354,8 +357,8 @@
       <required type="bool">True</required>
       <varname type="str">street</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
+        <item>validation</item>
+        <item>summary</item>
       </display_locations><extra_css_class type="str">newline grid-2-6</extra_css_class>
       <prefill>
         <type>geolocation</type>
@@ -368,8 +371,8 @@
       <required type="bool">False</required>
       <varname type="str">number</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
+        <item>validation</item>
+        <item>summary</item>
       </display_locations><extra_css_class type="str">grid-1-6</extra_css_class>
       <prefill>
         <type>geolocation</type>
@@ -382,9 +385,9 @@
       <required type="bool">True</required>
       <varname type="str">postal_code</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-        <display_location>listings</display_location>
+        <item>validation</item>
+        <item>summary</item>
+        <item>listings</item>
       </display_locations><extra_css_class type="str">newline grid-2-12</extra_css_class>
       <prefill>
         <type>geolocation</type>
@@ -397,8 +400,8 @@
       <required type="bool">True</required>
       <varname type="str">city</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
+        <item>validation</item>
+        <item>summary</item>
       </display_locations><extra_css_class type="str">grid-4-12</extra_css_class>
       <prefill>
         <type>geolocation</type>
@@ -415,10 +418,11 @@
       <hint type="str">Cochez cette case si l'objet du signalement figure sur un b&#226;timent priv&#233;.</hint>
       <varname type="str">private_building_yn</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-        <display_location>listings</display_location>
+        <item>validation</item>
+        <item>summary</item>
+        <item>listings</item>
       </display_locations><extra_css_class type="str">grid-1-1 newline</extra_css_class>
+      <anonymise type="str">no</anonymise>
       <id type="str">149</id>
     </field><field>
       <type>comment</type>
@@ -454,11 +458,12 @@
       <hint type="str">Cochez cette case pour &#234;tre tenu inform&#233;&#183;e. Vous serez invit&#233;&#183;e &#224; communiquer vos coordonn&#233;es.</hint>
       <varname type="str">follow</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-        <display_location>listings</display_location>
-        <display_location>statistics</display_location>
+        <item>validation</item>
+        <item>summary</item>
+        <item>listings</item>
+        <item>statistics</item>
       </display_locations><extra_css_class type="str">grid-1-1 newline</extra_css_class>
+      <anonymise type="str">no</anonymise>
       <id type="str">150</id>
     </field><field>
       <type>subtitle</type>
@@ -478,11 +483,10 @@
       </condition><required type="bool">True</required>
       <varname type="str">firstname</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
+        <item>validation</item>
+        <item>summary</item>
       </display_locations><extra_css_class type="str">newline grid-1-4</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>user</type>
         <value>_first_name</value>
       </prefill><anonymise type="str">final</anonymise>
@@ -496,10 +500,9 @@
       </condition><required type="bool">True</required>
       <varname type="str">lastname</varname>
       <display_locations>
-        <display_location>summary</display_location>
+        <item>summary</item>
       </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>user</type>
         <value>_last_name</value>
       </prefill><anonymise type="str">final</anonymise>
@@ -513,14 +516,14 @@
       </condition><required type="bool">True</required>
       <varname type="str">mail</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
+        <item>validation</item>
+        <item>summary</item>
       </display_locations><extra_css_class type="str">grid-1-2 newline</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>user</type>
         <value>_email</value>
-      </prefill><id type="str">156</id>
+      </prefill><anonymise type="str">final</anonymise>
+      <id type="str">156</id>
     </field><field>
       <type>bool</type>
       <label type="str">L'&#233;quipe charg&#233;e de traiter ce signalement peut m'appeler pour me demander des informations compl&#233;mentaires</label>
@@ -531,10 +534,11 @@
       <hint type="str">En cas de besoin et pour localiser ou traiter au mieux l'objet de votre signalement.</hint>
       <varname type="str">helpacknow</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-        <display_location>listings</display_location>
+        <item>validation</item>
+        <item>summary</item>
+        <item>listings</item>
       </display_locations><extra_css_class type="str">grid-1-1 newline</extra_css_class>
+      <anonymise type="str">no</anonymise>
       <id type="str">158</id>
     </field><field>
       <type>string</type>
@@ -546,17 +550,16 @@
       <hint type="str">Exemple : +3281005678 ou 0123456789.</hint>
       <varname type="str">phonenum</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
+        <item>validation</item>
+        <item>summary</item>
       </display_locations><extra_css_class type="str">grid-1-2 newline</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>user</type>
         <value>_phone</value>
-      </prefill><validation>
+      </prefill><anonymise type="str">final</anonymise>
+      <validation>
         <type>phone</type>
-      </validation><anonymise type="str">final</anonymise>
-      <id type="str">154</id>
+      </validation><id type="str">154</id>
     </field><field>
       <type>page</type>
       <label type="str">Informations n&#233;c&#233;ssaires (graffiti sur b&#226;timent priv&#233;)</label>
@@ -569,8 +572,8 @@
       <label type="str">Convention pour l'enl&#232;vement de graffitis sur un bien priv&#233;</label>
       <extra_css_class type="str">newline grid-1-1</extra_css_class>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
+        <item>validation</item>
+        <item>summary</item>
       </display_locations><id type="str">164</id>
     </field><field>
       <type>subtitle</type>
@@ -584,8 +587,8 @@
       <required type="bool">True</required>
       <varname type="str">tags_reporter_lastn</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
+        <item>validation</item>
+        <item>summary</item>
       </display_locations><extra_css_class type="str">newline grid-1-2</extra_css_class>
       <prefill>
         <type>string</type>
@@ -598,8 +601,8 @@
       <required type="bool">True</required>
       <varname type="str">tags_reporter_firstn</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
+        <item>validation</item>
+        <item>summary</item>
       </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
         <type>string</type>
@@ -619,8 +622,8 @@
       <hint type="str">Uniquement si diff&#233;rent du demandeur.</hint>
       <varname type="str">tags_building_owner_lastname</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
+        <item>validation</item>
+        <item>summary</item>
       </display_locations><extra_css_class type="str">newline grid-1-2</extra_css_class>
       <anonymise type="str">no</anonymise>
       <id type="str">169</id>
@@ -630,8 +633,8 @@
       <required type="bool">False</required>
       <varname type="str">tags_building_owner_firstname</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
+        <item>validation</item>
+        <item>summary</item>
       </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <anonymise type="str">final</anonymise>
       <id type="str">170</id>
@@ -648,8 +651,8 @@
       <hint type="str">Merci de confirmer le lieu en inscrivant l'adresse compl&#232;te du bien &#224; nettoyer.</hint>
       <varname type="str">tags_owner_addressconfirm</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
+        <item>validation</item>
+        <item>summary</item>
       </display_locations><extra_css_class type="str">newline grid-1-1</extra_css_class>
       <anonymise type="str">no</anonymise>
       <id type="str">175</id>
@@ -660,8 +663,8 @@
       <hint type="str">Exemples : pierres, briques, b&#233;ton, PVC, verre, bois,...</hint>
       <varname type="str">tags_surface_type</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
+        <item>validation</item>
+        <item>summary</item>
       </display_locations><extra_css_class type="str">newline grid-1-2</extra_css_class>
       <anonymise type="str">no</anonymise>
       <id type="str">172</id>
@@ -671,8 +674,8 @@
       <required type="bool">True</required>
       <varname type="str">tags_surface_dim</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
+        <item>validation</item>
+        <item>summary</item>
       </display_locations><extra_css_class type="str">newline grid-1-2</extra_css_class>
       <anonymise type="str">no</anonymise>
       <id type="str">173</id>
@@ -682,9 +685,10 @@
       <required type="bool">True</required>
       <varname type="str">scan_complaint</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
+        <item>validation</item>
+        <item>summary</item>
       </display_locations><extra_css_class type="str">newline grid-1-3</extra_css_class>
+      <anonymise type="str">final</anonymise>
       <max_file_size type="str">35 Mo</max_file_size>
       <allow_portfolio_picking type="bool">False</allow_portfolio_picking>
       <automatic_image_resize type="bool">True</automatic_image_resize>
@@ -696,100 +700,58 @@
       <required type="bool">True</required>
       <varname type="str">scan_authorization</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
+        <item>validation</item>
+        <item>summary</item>
       </display_locations><extra_css_class type="str">newline grid-1-3</extra_css_class>
+      <anonymise type="str">final</anonymise>
       <max_file_size type="str">35 Mo</max_file_size>
       <allow_portfolio_picking type="bool">False</allow_portfolio_picking>
       <automatic_image_resize type="bool">True</automatic_image_resize>
       <storage type="str">default</storage>
       <id type="str">178</id>
     </field>
-  </fields><user-roles>
-    <role slug="citoyen-test" role_id="facf46c672034a8ca2009c6c499e53bf">Citoyen (test)</role>
-  </user-roles><backoffice-submission-roles>
-    <role slug="agent-traitant-townstreet" role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</role>
+  </fields><backoffice-submission-roles>
+    <role slug="agent-traitant-townstreet" role_id="1be915b352294450bc488b563d279ea7">Agent traitant - Townstreet</role>
   </backoffice-submission-roles><roles>
-    <role slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9" role_key="_ext_bo">Debug</role>
-    <role slug="agent-traitant-townstreet" role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10" role_key="_receiver">Agent traitant - Townstreet</role>
+    <role slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666" role_key="_ext_bo">Debug</role>
+    <role slug="agent-traitant-townstreet" role_id="1be915b352294450bc488b563d279ea7" role_key="_receiver">Agent traitant - Townstreet</role>
   </roles><options>
-    <option varname="categories_filtered" />
-    <option varname="categories_filtered_display" />
-    <option varname="categories_filtered_structured" />
-    <option varname="champs_mail_et_tel_obligatoires" type="bool">false</option>
-    <option varname="custom_end_notification">Non</option>
-    <option varname="custom_end_notification_display">Non</option>
+    <option varname="categories_filtered" type="list">
+      <item>cleanliness</item>
+    </option><option varname="categories_filtered_display">Propret&#233; et d&#233;p&#244;ts sauvages</option>
+    <option varname="categories_filtered_structured" type="list">
+      <item type="dict">
+        <id>cleanliness</id>
+        <text>Propret&#233; et d&#233;p&#244;ts sauvages</text>
+        <parent />
+      </item>
+    </option><option varname="champs_mail_et_tel_obligatoires" type="bool">false</option>
+    <option varname="custom_end_notification" />
+    <option varname="custom_end_notification_display" />
     <option varname="custom_end_notification_structured" />
-    <option varname="degradations_du_mobilier_urbain" />
-    <option varname="degradations_du_mobilier_urbain_display" />
-    <option varname="degradations_du_mobilier_urbain_structured" />
     <option varname="eatal_version">5</option>
     <option varname="eatal_version_display">ATAL 5</option>
     <option varname="eatal_version_structured" />
-    <option varname="eclairages_publics" />
-    <option varname="eclairages_publics_display" />
-    <option varname="eclairages_publics_structured" />
-    <option varname="end_notification_to_user">Non</option>
-    <option varname="end_notification_to_user_display">Non</option>
-    <option varname="end_notification_to_user_structured" />
-    <option varname="environnement">test</option>
-    <option varname="environnement_display">Test</option>
-    <option varname="environnement_structured" />
-    <option varname="espaces_verts" />
-    <option varname="espaces_verts_display" />
-    <option varname="espaces_verts_structured" />
-    <option varname="geolimityn" />
-    <option varname="graffitis_tags_et_affichages_sauvages" />
-    <option varname="graffitis_tags_et_affichages_sauvages_display" />
-    <option varname="graffitis_tags_et_affichages_sauvages_structured" />
+    <option varname="environnement">prod</option>
+    <option varname="environnement_display">Production</option>
+    <option varname="environnement_structured" type="dict">
+      <id>prod</id>
+      <text>Production</text>
+      <url_apims>api</url_apims>
+    </option><option varname="geolimityn" type="bool">false</option>
     <option varname="iatech" />
     <option varname="new_signal_alert_mail" />
     <option varname="on_a_private_building" />
-    <option varname="onaprivatebuilding" />
+    <option varname="onaprivatebuilding" type="bool">false</option>
     <option varname="opt_on_a_private_building" />
-    <option varname="pic_not_required" />
-    <option varname="postal_code_limit">5000,4000,3000,1000,5032</option>
-    <option varname="proprete_et_depots_sauvages" />
-    <option varname="proprete_et_depots_sauvages_display" />
-    <option varname="proprete_et_depots_sauvages_structured" />
+    <option varname="pic_not_required" type="bool">false</option>
+    <option varname="postal_code_limit" />
     <option varname="recevoir_un_mail_pour_chaque_nouveau_signalement" type="bool">false</option>
-    <option varname="selected_categories" />
-    <option varname="selected_categories_display" />
-    <option varname="selected_categories_structured" />
-    <option varname="selected_subcategories" />
-    <option varname="selected_subcategories_display">Poubelles conteneurs et corbeilles, Conteneurs de textiles</option>
-    <option varname="selected_subcategories_structured" />
     <option varname="service_demandeur">2595</option>
     <option varname="service_demandeur_display">Demandes citoyennes</option>
-    <option varname="service_demandeur_structured" />
-    <option varname="souscategories_de_signalement_offertes" />
-    <option varname="souscategories_de_signalement_offertes_display" />
-    <option varname="souscategories_de_signalement_offertes_structured" />
-    <option varname="use_atal_thematics" type="bool">false</option>
-    <option varname="voies_publiques" />
-    <option varname="voies_publiques_display" />
-    <option varname="voies_publiques_structured" />
-    <option varname="zoom_max">50</option>
-  </options><custom_views>
-    <custom_view>
-      <title>iMio Townstreet - Vue par d&#233;faut</title>
-      <slug>imio-townstreet-vue-par-defaut</slug>
-      <visibility>any</visibility>
-      <filters>
-        <filter>all</filter>
-        <filter-status>on</filter-status>
-      </filters><is_default>False</is_default>
-      <columns>
-        <id>boceb33663-bc2b-4e59-ac71-3c34e9c45f60</id>
-        <id>id</id>
-        <id>time</id>
-        <id>125</id>
-        <id>bo5f0b6137-6c67-46f1-b974-dedb5ee853db</id>
-        <id>bo13e3c664-e561-40a2-a766-ebd455662734</id>
-        <id>status</id>
-      </columns><order_by>-receipt_time</order_by>
-    </custom_view>
-  </custom_views><geolocations>
-    <geolocation key="base">Position</geolocation>
-  </geolocations>
-</formdef>
+    <option varname="service_demandeur_structured" type="dict">
+      <Type type="int">2</Type>
+      <Assignments type="list" />
+      <Name>Demandes citoyennes</Name>
+      <Contacts type="list" />
+      <Add
