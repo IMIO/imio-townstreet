@@ -2,7 +2,7 @@ name: Deb build push notify
 on:
   push:
     branches:
-      - main
+      - dev-test
   workflow_dispatch:
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
       - name: Deb build push and notify
         uses: IMIO/gha/deb-build-push-notify@v3.7.2
         with:
-          REPOSITORY_URL: ${{ secrets.NEXUS_BOOKWORM_URL }}
+          REPOSITORY_URL: ${{ secrets.NEXUS_BOOKWORM_TEST_URL }}
           REPOSITORY_LOGIN: ${{ secrets.NEXUS_LOGIN }}
           REPOSITORY_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
           PACKAGE_NAME: ${{ github.event.repository.name }}
