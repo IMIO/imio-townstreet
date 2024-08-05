@@ -379,7 +379,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
               <value>closed</value>
             </item><item>
               <name>message</name>
-              <value>Le signalement a &#233;t&#233; class&#233; sans suite.</value>
+              <value>{{ form_var_atal_comments|default:"Le signalement a &#233;t&#233; class&#233; sans suite." }}</value>
             </item>
           </post_data><response_type>json</response_type>
           <varname>fms_notification_closed</varname>
@@ -472,7 +472,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
               <value>solved</value>
             </item><item>
               <name>message</name>
-              <value>Le signalement a &#233;t&#233; trait&#233;.</value>
+              <value>{{ form_var_atal_comments|default:"Le signalement a &#233;t&#233; trait&#233;." }}</value>
             </item>
           </post_data><response_type>json</response_type>
           <varname>fms_notification_solved</varname>
