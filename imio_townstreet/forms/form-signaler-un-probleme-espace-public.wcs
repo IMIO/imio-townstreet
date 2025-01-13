@@ -451,10 +451,6 @@
     </field><field>
       <type>bool</type>
       <label type="str">Je souhaite &#234;tre tenu inform&#233;&#183;e des suites qui seront donn&#233;es &#224; ce signalement</label>
-      <condition>
-        <type>django</type>
-        <value>form_option_champs_mail_et_tel_obligatoires != True</value>
-      </condition><required type="bool">False</required>
       <hint type="str">Cochez cette case pour &#234;tre tenu inform&#233;&#183;e. Vous serez invit&#233;&#183;e &#224; communiquer vos coordonn&#233;es.</hint>
       <varname type="str">follow</varname>
       <display_locations>
@@ -527,10 +523,6 @@
     </field><field>
       <type>bool</type>
       <label type="str">L'&#233;quipe charg&#233;e de traiter ce signalement peut m'appeler pour me demander des informations compl&#233;mentaires</label>
-      <condition>
-        <type>django</type>
-        <value>form_option_champs_mail_et_tel_obligatoires != True</value>
-      </condition><required type="bool">False</required>
       <hint type="str">En cas de besoin et pour localiser ou traiter au mieux l'objet de votre signalement.</hint>
       <varname type="str">helpacknow</varname>
       <display_locations>
