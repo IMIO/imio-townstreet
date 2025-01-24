@@ -1007,6 +1007,15 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
         </item>
       </items>
     </status>
+    <status>
+      <id>25</id>
+      <name>Demandes en erreur"pr&#233;-fix"</name>
+      <colour>#ffffff</colour>
+      <visibility>
+        <role>__hidden__</role>
+      </visibility>
+      <items />
+    </status>
   </possible_status>
   <global_actions>
     <action>
@@ -1098,7 +1107,26 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       <triggers>
         <trigger type="manual" id="028b85d4-bcf1-4c33-8e1f-591968e32872">
           <roles>
-            <item slug="debug" role_id="225ff43a97374caba4f8c825d9f95793">Debug</item>
+            <item slug="debug" role_id="dd579cc297f041839e2973780781712e">Debug</item>
+          </roles>
+          <allow_as_mass_action>True</allow_as_mass_action>
+          <require_confirmation>False</require_confirmation>
+        </trigger>
+      </triggers>
+    </action>
+    <action>
+      <id>7</id>
+      <name>Demandes en erreur"pr&#233;-fix"</name>
+      <items>
+        <item type="jump" id="1">
+          <status>25</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+      <triggers>
+        <trigger type="manual" id="2cc81fd8-47f4-4c53-afcf-0e6e26795697">
+          <roles>
+            <item slug="debug" role_id="dd579cc297f041839e2973780781712e">Debug</item>
           </roles>
           <allow_as_mass_action>True</allow_as_mass_action>
           <require_confirmation>False</require_confirmation>
