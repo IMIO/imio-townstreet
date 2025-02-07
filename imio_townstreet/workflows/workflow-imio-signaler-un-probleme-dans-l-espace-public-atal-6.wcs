@@ -799,7 +799,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
       <visibility />
       <items>
         <item type="displaymsg" id="1">
-          <message>Votre signalement a &#233;t&#233; introduit avec succ&#232;s.</message>
+          <message>Votre signalement a &#233;t&#233; introduit avec succ&#232;s avec le numéro suivant : {{form_var_ditnu}}</message>
           <level>success</level>
           <position>top</position>
           <to>
