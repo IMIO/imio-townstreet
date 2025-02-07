@@ -41,7 +41,7 @@
             </field>
             <field>
               <field_id>bo810f5e77-1d3b-40b3-bb28-7ea0af191239</field_id>
-              <value>Signalement citoyen depuis le guichet en ligne. D&#233;tail : {% if form_var_category %}{{form_var_category }}{% elif form_var_atal_thematic %}{{ form_var_atal_thematic_complete_label }}{% endif %}{%if form_var_subcategory %} &#183; {{ form_var_subcategory}} &#183;{% endif%}{% if form_var_issues %} {{form_var_issues }}{% endif %}{% if form_var_addinfo or form_var_addinfother %} &#183; Information additionnelle : {% firstof form_var_addinfo form_var_addinfother %}{% endif %}</value>
+              <value>Signalement citoyen depuis le guichet en ligne. D&#233;tail : {% if form_var_category %}{{form_var_category }}{% elif form_var_atal_thematic %}{{ form_var_atal_thematic_complete_label }}{% endif %}{%if form_var_subcategory %} &#183; {{ form_var_subcategory}} &#183;{% endif%}{% if form_var_issues %} {{form_var_issues }}{% endif %}{% if form_var_addinfo or form_var_addinfother %} &#183; Information additionnelle : {% firstof form_var_addinfo form_var_addinfother %} {% if form_var_helpacknow %} {{ form_var_firstname|default:"Pr&#233;nom non mentionn&#233;" }} - {{ form_var_lastname|default:"Nom non mentionn&#233;" }} -  {{ form_var_mail|default:"Adresse &#233;lectronique non mentionn&#233;e" }} - {{ form_var_phonenum|default:"Num&#233;ro de t&#233;l&#233;phone non mentionn&#233;" }}{% endif %}{% endif %}</value>
             </field>
             <field>
               <field_id>bo13e3c664-e561-40a2-a766-ebd455662734</field_id>
@@ -385,12 +385,6 @@
           </to>
           <mail_template>imio-townstreet-erreur</mail_template>
         </item>
-        <item type="jump" id="2">
-          <status>4</status>
-          <mode>timeout</mode>
-          <timeout>3600</timeout>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
       </items>
     </status>
     <status>
@@ -421,12 +415,6 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
             <item role_id="admints+townstreet-errors@imio.be">admints+townstreet-errors@imio.be</item>
           </to>
           <mail_template>imio-townstreet-erreur-envoi-des-photos-iatech</mail_template>
-        </item>
-        <item type="jump" id="3">
-          <status>6</status>
-          <mode>timeout</mode>
-          <timeout>3600</timeout>
-          <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items>
     </status>
@@ -1007,15 +995,6 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
         </item>
       </items>
     </status>
-    <status>
-      <id>25</id>
-      <name>Demandes en erreur"pr&#233;-fix"</name>
-      <colour>#ffffff</colour>
-      <visibility>
-        <role>__hidden__</role>
-      </visibility>
-      <items />
-    </status>
   </possible_status>
   <global_actions>
     <action>
@@ -1107,26 +1086,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       <triggers>
         <trigger type="manual" id="028b85d4-bcf1-4c33-8e1f-591968e32872">
           <roles>
-            <item slug="debug" role_id="dd579cc297f041839e2973780781712e">Debug</item>
-          </roles>
-          <allow_as_mass_action>True</allow_as_mass_action>
-          <require_confirmation>False</require_confirmation>
-        </trigger>
-      </triggers>
-    </action>
-    <action>
-      <id>7</id>
-      <name>Demandes en erreur"pr&#233;-fix"</name>
-      <items>
-        <item type="jump" id="1">
-          <status>25</status>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-      </items>
-      <triggers>
-        <trigger type="manual" id="2cc81fd8-47f4-4c53-afcf-0e6e26795697">
-          <roles>
-            <item slug="debug" role_id="dd579cc297f041839e2973780781712e">Debug</item>
+            <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
           </roles>
           <allow_as_mass_action>True</allow_as_mass_action>
           <require_confirmation>False</require_confirmation>
