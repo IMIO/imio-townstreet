@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<workflow id="84" url="https://demo-formulaires.guichet-citoyen.be/backoffice/workflows/84/">
-  <name>iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</name>
-  <slug>imio-signaler-un-probleme-dans-l-espace-public-atal-6</slug>
+<workflow id="175" url="https://staging-formulaires.guichet-citoyen.be/backoffice/workflows/175/">
+  <name>iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6) - test update</name>
+  <slug>imio-signaler-un-probleme-dans-l-espace-public-atal-6-test</slug>
   <roles>
     <role id="_receiver">Destinataire</role>
   </roles>
@@ -25,12 +25,12 @@
           <overwrite>True</overwrite>
         </item>
         <item type="displaymsg" id="3">
-          <message>Merci pour votre signalement. Les donn&#233;es nous sont parvenues avec succ&#232;s.</message>
-          <level>success</level>
-          <position>top</position>
           <to>
             <item role_id="_submitter">_submitter</item>
           </to>
+          <message>Merci pour votre signalement. Les donn&#233;es nous sont parvenues avec succ&#232;s.</message>
+          <level>success</level>
+          <position>top</position>
         </item>
         <item type="set-backoffice-fields" id="4">
           <label>Informations utiles pour ATAL</label>
@@ -399,7 +399,7 @@
           <label>D&#233;bug &#183; R&#233;essayer d'envoyer les images dans ATAL</label>
           <by>
             <item role_id="_receiver">_receiver</item>
-            <item slug="debug" role_id="225ff43a97374caba4f8c825d9f95793">Debug</item>
+            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
           </by>
           <status>6</status>
           <require_confirmation>True</require_confirmation>
@@ -440,22 +440,26 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
           </condition>
         </item>
         <item type="webservice_call" id="3">
-          <label>Notifier FixMyStreet de la cl&#244;ture</label>
+          <label>Notifier FixMyStreet du refus</label>
           <method>PATCH</method>
           <url>https://{{ form_option_environnement_url_apims|default:"api" }}.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
           <post>False</post>
           <post_data>
             <item>
               <name>alert_status</name>
-              <value>closed</value>
+              <value>dismissed</value>
             </item>
             <item>
               <name>message</name>
-              <value>{{ form_var_atal_comments|default:"Le signalement a &#233;t&#233; class&#233; sans suite." }}</value>
+              <value>{{ form_var_atal_comments|default:"Le signalement a &#233;t&#233; refus&#233;." }}</value>
+            </item>
+            <item>
+              <name>organisation_id</name>
+              <value>{{form_var_origin_organisation_id}}</value>
             </item>
           </post_data>
           <response_type>json</response_type>
-          <varname>fms_notification_closed</varname>
+          <varname>fms_notification_dismissed</varname>
           <store_all_responses>False</store_all_responses>
           <attach_file_to_history>True</attach_file_to_history>
           <action_on_app_error>:pass</action_on_app_error>
@@ -501,12 +505,12 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
       <visibility />
       <items>
         <item type="displaymsg" id="1">
-          <message>Votre signalement a &#233;t&#233; introduit avec succ&#232;s.</message>
-          <level>success</level>
-          <position>top</position>
           <to>
             <item role_id="_submitter">_submitter</item>
           </to>
+          <message>Votre signalement a &#233;t&#233; introduit avec succ&#232;s.</message>
+          <level>success</level>
+          <position>top</position>
         </item>
         <item type="register-comment" id="2">
           <comment>&lt;b&gt;{% if form_var_street %}{{form_var_street}}&lt;/b&gt;{% endif %} &#224; &lt;b&gt;{{form_var_city}}&lt;/b&gt; ({{form_var_desc}}).</comment>
@@ -559,6 +563,10 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
               <name>message</name>
               <value>{{ form_var_atal_comments|default:"Le signalement a &#233;t&#233; trait&#233;." }}</value>
             </item>
+            <item>
+              <name>organisation_id</name>
+              <value>{{form_var_origin_organisation_id}}</value>
+            </item>
           </post_data>
           <response_type>json</response_type>
           <varname>fms_notification_solved</varname>
@@ -579,13 +587,13 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
           <set_marker_on_status>False</set_marker_on_status>
         </item>
         <item type="displaymsg" id="4">
+          <to>
+            <item slug="agent-traitant-townstreet" role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
+            <item role_id="_submitter">_submitter</item>
+          </to>
           <message>Cette demande a &#233;t&#233; trait&#233;e.</message>
           <level>success</level>
           <position>top</position>
-          <to>
-            <item slug="agent-traitant-townstreet" role_id="117ceec6b77348519e09577173e66313">Agent traitant - Townstreet</item>
-            <item role_id="_submitter">_submitter</item>
-          </to>
         </item>
       </items>
     </status>
@@ -651,12 +659,12 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
           <set_marker_on_status>False</set_marker_on_status>
         </item>
         <item type="register-comment" id="3">
-          <comment>La demande a &#233;t&#233; cr&#233;&#233;e dans ATAL ({{ post_work_request_response_data_Number }}).
-
-</comment>
           <to>
             <item role_id="_receiver">_receiver</item>
           </to>
+          <comment>La demande a &#233;t&#233; cr&#233;&#233;e dans ATAL ({{ post_work_request_response_data_Number }}).
+
+</comment>
           <condition>
             <type>django</type>
             <value>post_work_request_app_error_code == 0 and post_work_request_response_data_Number</value>
@@ -673,7 +681,89 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
         <role>__restricted__</role>
       </visibility>
       <items>
-        <item type="webservice_call" id="1">
+        <item type="set-backoffice-fields" id="2">
+          <label>Commentaire dans Atal pour Tableau de traitement</label>
+          <fields>
+            <field>
+              <field_id>bo55a0bd45-9af6-4112-9d93-20027cf5d721</field_id>
+              <value>{% for c in form_workflow_data_work_request_details_response_data_Responses reversed %}{% if forloop.first %} {% else%} &#183; {% endif %}{{ c.Comments}}{% endfor %}</value>
+            </field>
+          </fields>
+          <condition>
+            <type>django</type>
+            <value>form_workflow_data_work_request_details_response_data_Responses</value>
+          </condition>
+        </item>
+        <item type="jump" id="6">
+          <status>13</status>
+          <condition>
+            <type>django</type>
+            <value>work_request_details_response_data_RequestState|stringformat:"s" in "9|13"|split:"|" and form_var_followyn == "Non"</value>
+          </condition>
+          <mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+        <item type="jump" id="7">
+          <status>8</status>
+          <condition>
+            <type>django</type>
+            <value>work_request_details_response_data_RequestState == 3</value>
+          </condition>
+          <mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+        <item type="jump" id="8">
+          <status>14</status>
+          <condition>
+            <type>django</type>
+            <value>form_option_custom_end_notification == "Non" and work_request_details_response_data_RequestState|stringformat:"s" in "9|13"|split:"|" and form_var_followyn == "Oui"</value>
+          </condition>
+          <mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+        <item type="jump" id="11">
+          <status>23</status>
+          <condition>
+            <type>django</type>
+            <value>work_request_details_response_data_RequestState|stringformat:"s" in "3|9|13"|split:"|" and form_option_custom_end_notification == "Oui" and  form_var_follow == True</value>
+          </condition>
+          <mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+        <item type="jump" id="14">
+          <status>26</status>
+          <mode>timeout</mode>
+          <timeout>86400</timeout>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+        <item type="choice" id="15">
+          <label>Signalement class&#233; sans suite</label>
+          <by>
+            <item role_id="_receiver">_receiver</item>
+          </by>
+          <status>25</status>
+          <require_confirmation>True</require_confirmation>
+          <ignore_form_errors>False</ignore_form_errors>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status>
+    <status>
+      <id>22</id>
+      <name>En cours de traitement</name>
+      <colour>#6699FF</colour>
+      <backoffice_info_text>&lt;p&gt;Visible par le demandeur.&lt;/p&gt;</backoffice_info_text>
+      <visibility />
+      <items>
+        <item type="displaymsg" id="1">
+          <to>
+            <item role_id="_submitter">_submitter</item>
+          </to>
+          <message>Votre signalement a &#233;t&#233; introduit avec succ&#232;s avec le num&#233;ro suivant : {{form_var_ditnu}}</message>
+          <level>success</level>
+          <position>top</position>
+        </item>
+        <item type="webservice_call" id="4">
           <label>R&#233;cup&#233;ration du d&#233;tail dans ATAL</label>
           <method>POST</method>
           <url>{{ passerelle_url }}/passerelle-imio-ia-tech/atal-demov6/get_work_request_details</url>
@@ -698,53 +788,22 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
           <notify_on_errors>True</notify_on_errors>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
-        <item type="set-backoffice-fields" id="2">
-          <label>Commentaire dans Atal pour Tableau de traitement</label>
-          <fields>
-            <field>
-              <field_id>bo55a0bd45-9af6-4112-9d93-20027cf5d721</field_id>
-              <value>{% for c in form_workflow_data_work_request_details_response_data_Responses reversed %}{% if forloop.first %} {% else%} &#183; {% endif %}{{ c.Comments}}{% endfor %}</value>
-            </field>
-          </fields>
+        <item type="jump" id="2">
+          <status>27</status>
           <condition>
             <type>django</type>
-            <value>form_workflow_data_work_request_details_response_data_Responses</value>
-          </condition>
-        </item>
-        <item type="jump" id="3">
-          <status>23</status>
-          <condition>
-            <type>django</type>
-            <value>work_request_details_response_data_RequestState == 3 and form_option_custom_end_notification == "Oui" and  form_var_follow == True</value>
-          </condition>
-          <mode>immediate</mode>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-        <item type="jump" id="4">
-          <status>23</status>
-          <condition>
-            <type>django</type>
-            <value>work_request_details_response_data_RequestState == 9 and form_option_custom_end_notification == "Oui" and  form_var_follow == True</value>
+            <value>work_request_details_response_data_RequestState == 8</value>
           </condition>
           <mode>immediate</mode>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
         <item type="jump" id="5">
-          <status>21</status>
+          <status>29</status>
           <mode>timeout</mode>
           <timeout>86400</timeout>
-          <set_marker_on_status>False</set_marker_on_status>
+          <set_marker_on_status>True</set_marker_on_status>
         </item>
         <item type="jump" id="6">
-          <status>13</status>
-          <condition>
-            <type>django</type>
-            <value>work_request_details_response_data_RequestState == 9 and form_var_followyn == "Non"</value>
-          </condition>
-          <mode>immediate</mode>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-        <item type="jump" id="7">
           <status>8</status>
           <condition>
             <type>django</type>
@@ -753,61 +812,12 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
           <mode>immediate</mode>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
-        <item type="jump" id="8">
-          <status>14</status>
-          <condition>
-            <type>django</type>
-            <value>form_option_custom_end_notification == "Non" and work_request_details_response_data_RequestState == 9 and form_var_followyn == "Oui"</value>
-          </condition>
-          <mode>immediate</mode>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-        <item type="jump" id="9">
-          <status>13</status>
-          <condition>
-            <type>django</type>
-            <value>work_request_details_response_data_RequestState == 13 and form_var_followyn == "Non"</value>
-          </condition>
-          <mode>immediate</mode>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-        <item type="jump" id="10">
-          <status>14</status>
-          <condition>
-            <type>django</type>
-            <value>form_option_custom_end_notification == "Non" and work_request_details_response_data_RequestState == 13 and form_var_followyn == "Oui"</value>
-          </condition>
-          <mode>immediate</mode>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-        <item type="jump" id="11">
+        <item type="jump" id="7">
           <status>23</status>
           <condition>
             <type>django</type>
-            <value>work_request_details_response_data_RequestState == 13 and form_option_custom_end_notification == "Oui" and  form_var_follow == True</value>
+            <value>work_request_details_response_data_RequestState == 3 and form_option_custom_end_notification == "Oui" and  form_var_follow == True</value>
           </condition>
-          <mode>immediate</mode>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-      </items>
-    </status>
-    <status>
-      <id>22</id>
-      <name>En cours de traitement</name>
-      <colour>#6699FF</colour>
-      <backoffice_info_text>&lt;p&gt;Visible par le demandeur.&lt;/p&gt;</backoffice_info_text>
-      <visibility />
-      <items>
-        <item type="displaymsg" id="1">
-          <message>Votre signalement a &#233;t&#233; introduit avec succ&#232;s avec le numéro suivant : {{form_var_ditnu}}</message>
-          <level>success</level>
-          <position>top</position>
-          <to>
-            <item role_id="_submitter">_submitter</item>
-          </to>
-        </item>
-        <item type="jump" id="2">
-          <status>21</status>
           <mode>immediate</mode>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -822,44 +832,44 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
       </visibility>
       <items>
         <item type="displaymsg" id="1">
-          <message>Cette demande est cl&#244;tur&#233;e dans ATAL et attends votre intervention pour la r&#233;daction d'une r&#233;ponse.</message>
-          <level>info</level>
-          <position>top</position>
           <to>
             <item role_id="_receiver">_receiver</item>
           </to>
+          <message>Cette demande est cl&#244;tur&#233;e dans ATAL et attends votre intervention pour la r&#233;daction d'une r&#233;ponse.</message>
+          <level>info</level>
+          <position>top</position>
           <condition>
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 9</value>
           </condition>
         </item>
         <item type="displaymsg" id="2">
-          <message>Cette demande est refus&#233;e dans ATAL et attends votre intervention pour la r&#233;daction d'une r&#233;ponse.</message>
-          <level>info</level>
-          <position>top</position>
           <to>
             <item role_id="_receiver">_receiver</item>
           </to>
+          <message>Cette demande est refus&#233;e dans ATAL et attends votre intervention pour la r&#233;daction d'une r&#233;ponse.</message>
+          <level>info</level>
+          <position>top</position>
           <condition>
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 3</value>
           </condition>
         </item>
         <item type="register-comment" id="3">
-          <comment>Ce signalement portant le num&#233;ro {{ form_var_ditnu }} a &#233;t&#233; marqu&#233; comme cl&#244;tur&#233; dans ATAL.</comment>
           <to>
             <item role_id="_receiver">_receiver</item>
           </to>
+          <comment>Ce signalement portant le num&#233;ro {{ form_var_ditnu }} a &#233;t&#233; marqu&#233; comme cl&#244;tur&#233; dans ATAL.</comment>
           <condition>
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 9</value>
           </condition>
         </item>
         <item type="register-comment" id="4">
-          <comment>Ce signalement portant le num&#233;ro {{ form_var_ditnu }} a &#233;t&#233; marqu&#233; comme refus&#233; dans ATAL.</comment>
           <to>
             <item role_id="_receiver">_receiver</item>
           </to>
+          <comment>Ce signalement portant le num&#233;ro {{ form_var_ditnu }} a &#233;t&#233; marqu&#233; comme refus&#233; dans ATAL.</comment>
           <condition>
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 3</value>
@@ -871,6 +881,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
           </by>
           <varname>custom_end_answer_form</varname>
           <hide_submit_button>False</hide_submit_button>
+          <include_in_form_history>False</include_in_form_history>
           <formdef>
             <name>-</name>
             <fields>
@@ -918,7 +929,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
               <field>
                 <type>text</type>
                 <label type="str">Contenu personnalis&#233; du mail</label>
-                <required type="bool">True</required>
+                <required type="str">required</required>
                 <hint type="str">Cliquez sur Valider pour envoyer ce mail et mettre &#224; jour le statut.</hint>
                 <varname type="str">custom_feedback_body</varname>
                 <display_locations />
@@ -933,16 +944,28 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
             </fields>
           </formdef>
         </item>
-        <item type="jumponsubmit" id="6">
+        <item type="choice" id="8">
+          <label>Refuser le signalement</label>
+          <by>
+            <item role_id="_receiver">_receiver</item>
+          </by>
           <status>8</status>
+          <require_confirmation>False</require_confirmation>
+          <ignore_form_errors>False</ignore_form_errors>
           <set_marker_on_status>False</set_marker_on_status>
           <condition>
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 3</value>
           </condition>
         </item>
-        <item type="jumponsubmit" id="7">
-          <status>14</status>
+        <item type="choice" id="9">
+          <label>Finaliser la demande</label>
+          <by>
+            <item role_id="_receiver">_receiver</item>
+          </by>
+          <status>13</status>
+          <require_confirmation>False</require_confirmation>
+          <ignore_form_errors>False</ignore_form_errors>
           <set_marker_on_status>False</set_marker_on_status>
           <condition>
             <type>django</type>
@@ -961,17 +984,18 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       <items>
         <item type="form" id="1">
           <by>
-            <item slug="debug" role_id="225ff43a97374caba4f8c825d9f95793">Debug</item>
+            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
           </by>
           <varname>manual_geodata</varname>
           <hide_submit_button>False</hide_submit_button>
+          <include_in_form_history>False</include_in_form_history>
           <formdef>
             <name>-</name>
             <fields>
               <field>
                 <type>string</type>
                 <label type="str">Latitude du signalement</label>
-                <required type="bool">True</required>
+                <required type="str">required</required>
                 <varname type="str">lat</varname>
                 <display_locations />
                 <anonymise type="str">final</anonymise>
@@ -980,7 +1004,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
               <field>
                 <type>string</type>
                 <label type="str">Longitude du signalement</label>
-                <required type="bool">True</required>
+                <required type="str">required</required>
                 <varname type="str">lon</varname>
                 <display_locations />
                 <anonymise type="str">final</anonymise>
@@ -991,6 +1015,183 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
         </item>
         <item type="jumponsubmit" id="2">
           <status>4</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status>
+    <status>
+      <id>25</id>
+      <name>Signalement class&#233; sans suite</name>
+      <colour>#77767b</colour>
+      <visibility />
+      <items>
+        <item type="webservice_call" id="1">
+          <label>Notifier FixMyStreet de la r&#233;solution</label>
+          <method>PATCH</method>
+          <url>https://{{ form_option_environnement_url_apims|default:"api" }}.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
+          <post>False</post>
+          <post_data>
+            <item>
+              <name>alert_status</name>
+              <value>closed</value>
+            </item>
+            <item>
+              <name>message</name>
+              <value>{{ form_var_atal_comments|default:"Le signalement a &#233;t&#233; class&#233; sans suite." }}</value>
+            </item>
+            <item>
+              <name>organisation_id</name>
+              <value>{{form_var_origin_organisation_id}}</value>
+            </item>
+          </post_data>
+          <response_type>json</response_type>
+          <varname>fms_notification_closed</varname>
+          <store_all_responses>False</store_all_responses>
+          <attach_file_to_history>True</attach_file_to_history>
+          <action_on_app_error>:pass</action_on_app_error>
+          <action_on_4xx>:stop</action_on_4xx>
+          <action_on_5xx>:stop</action_on_5xx>
+          <action_on_bad_data>:pass</action_on_bad_data>
+          <action_on_network_errors>:stop</action_on_network_errors>
+          <record_errors>False</record_errors>
+          <record_on_errors>True</record_on_errors>
+          <notify_on_errors>False</notify_on_errors>
+          <condition>
+            <type>django</type>
+            <value>form_var_origin_source == "fixmystreet"</value>
+          </condition>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status>
+    <status>
+      <id>26</id>
+      <name>V&#233;rifier le statut dans ATAL</name>
+      <colour>#ffffff</colour>
+      <visibility>
+        <role>__restricted__</role>
+      </visibility>
+      <items>
+        <item type="webservice_call" id="1">
+          <label>R&#233;cup&#233;ration du d&#233;tail dans ATAL</label>
+          <method>POST</method>
+          <url>{{ passerelle_url }}/passerelle-imio-ia-tech/atal-demov6/get_work_request_details</url>
+          <post>False</post>
+          <post_data>
+            <item>
+              <name>atal_work_request_uuid</name>
+              <value>{{ post_work_request_response_data_Id }}</value>
+            </item>
+          </post_data>
+          <response_type>json</response_type>
+          <varname>work_request_details</varname>
+          <store_all_responses>False</store_all_responses>
+          <attach_file_to_history>True</attach_file_to_history>
+          <action_on_app_error>:pass</action_on_app_error>
+          <action_on_4xx>:pass</action_on_4xx>
+          <action_on_5xx>:pass</action_on_5xx>
+          <action_on_bad_data>:pass</action_on_bad_data>
+          <action_on_network_errors>:pass</action_on_network_errors>
+          <record_errors>False</record_errors>
+          <record_on_errors>True</record_on_errors>
+          <notify_on_errors>True</notify_on_errors>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+        <item type="jump" id="3">
+          <status>21</status>
+          <mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status>
+    <status>
+      <id>27</id>
+      <name>Signalement int&#233;gr&#233; &#224; ATAL</name>
+      <colour>#57e389</colour>
+      <visibility>
+        <role>__restricted__</role>
+      </visibility>
+      <items>
+        <item type="webservice_call" id="1">
+          <label>Notifier FixMyStreet d'un nouveau signalement accept&#233;</label>
+          <method>PATCH</method>
+          <url>https://{{ form_option_environnement_url_apims|default:"api" }}.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
+          <post>False</post>
+          <post_data>
+            <item>
+              <name>alert_status</name>
+              <value>accepted</value>
+            </item>
+            <item>
+              <name>message</name>
+              <value>{{ form_var_atal_comments|default:"Nouveau signalement" }}</value>
+            </item>
+            <item>
+              <name>organisation_id</name>
+              <value>{{form_var_origin_organisation_id}}</value>
+            </item>
+          </post_data>
+          <response_type>json</response_type>
+          <varname>fms_notification_accepted</varname>
+          <store_all_responses>False</store_all_responses>
+          <attach_file_to_history>True</attach_file_to_history>
+          <action_on_app_error>:pass</action_on_app_error>
+          <action_on_4xx>:stop</action_on_4xx>
+          <action_on_5xx>:stop</action_on_5xx>
+          <action_on_bad_data>:pass</action_on_bad_data>
+          <action_on_network_errors>:stop</action_on_network_errors>
+          <record_errors>False</record_errors>
+          <record_on_errors>True</record_on_errors>
+          <notify_on_errors>False</notify_on_errors>
+          <condition>
+            <type>django</type>
+            <value>form_var_origin_source == "fixmystreet"</value>
+          </condition>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+        <item type="jump" id="2">
+          <status>21</status>
+          <mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status>
+    <status>
+      <id>29</id>
+      <name>V&#233;rifier si le signalement &#224; &#233;t&#233; accept&#233;</name>
+      <colour>#ffffff</colour>
+      <visibility>
+        <role>__restricted__</role>
+      </visibility>
+      <items>
+        <item type="webservice_call" id="2">
+          <label>R&#233;cup&#233;ration du d&#233;tail dans ATAL</label>
+          <method>POST</method>
+          <url>{{ passerelle_url }}/passerelle-imio-ia-tech/atal-demov6/get_work_request_details</url>
+          <post>False</post>
+          <post_data>
+            <item>
+              <name>atal_work_request_uuid</name>
+              <value>{{ post_work_request_response_data_Id }}</value>
+            </item>
+          </post_data>
+          <response_type>json</response_type>
+          <varname>work_request_details</varname>
+          <store_all_responses>False</store_all_responses>
+          <attach_file_to_history>True</attach_file_to_history>
+          <action_on_app_error>:pass</action_on_app_error>
+          <action_on_4xx>:pass</action_on_4xx>
+          <action_on_5xx>:pass</action_on_5xx>
+          <action_on_bad_data>:pass</action_on_bad_data>
+          <action_on_network_errors>:pass</action_on_network_errors>
+          <record_errors>False</record_errors>
+          <record_on_errors>True</record_on_errors>
+          <notify_on_errors>True</notify_on_errors>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+        <item type="jump" id="1">
+          <status>22</status>
+          <mode>immediate</mode>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items>
@@ -1007,7 +1208,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       <triggers>
         <trigger type="manual" id="5195410f-d64b-4ba7-a8b1-8c0bdcf27061">
           <roles>
-            <item slug="debug" role_id="225ff43a97374caba4f8c825d9f95793">Debug</item>
+            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
           </roles>
           <allow_as_mass_action>True</allow_as_mass_action>
           <require_confirmation>False</require_confirmation>
@@ -1027,7 +1228,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       <triggers>
         <trigger type="manual" id="871a8c92-747a-460d-9e36-b9348000c0e9">
           <roles>
-            <item slug="debug" role_id="225ff43a97374caba4f8c825d9f95793">Debug</item>
+            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
           </roles>
           <allow_as_mass_action>True</allow_as_mass_action>
           <require_confirmation>False</require_confirmation>
@@ -1047,7 +1248,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       <triggers>
         <trigger type="manual" id="b2738ce0-09ef-43e4-82d9-0fa4c13c382e">
           <roles>
-            <item slug="debug" role_id="225ff43a97374caba4f8c825d9f95793">Debug</item>
+            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
           </roles>
           <allow_as_mass_action>True</allow_as_mass_action>
           <require_confirmation>False</require_confirmation>
@@ -1059,16 +1260,19 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       <name>&#128260; V&#233;rifier le statut dans Atal</name>
       <items>
         <item type="jump" id="1">
-          <status>22</status>
+          <status>29</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items>
       <triggers>
         <trigger type="manual" id="c5804db0-a8b6-4d26-bb3d-2af1167495b6">
           <roles>
-            <item slug="agent-traitant-townstreet" role_id="117ceec6b77348519e09577173e66313">Agent traitant - Townstreet</item>
-            <item slug="debug" role_id="225ff43a97374caba4f8c825d9f95793">Debug</item>
+            <item slug="agent-traitant-townstreet" role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
+            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
           </roles>
+          <statuses>
+            <statuse>22</statuse>
+          </statuses>
           <allow_as_mass_action>True</allow_as_mass_action>
           <require_confirmation>False</require_confirmation>
         </trigger>
@@ -1086,8 +1290,50 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       <triggers>
         <trigger type="manual" id="028b85d4-bcf1-4c33-8e1f-591968e32872">
           <roles>
-            <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
+            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
           </roles>
+          <allow_as_mass_action>True</allow_as_mass_action>
+          <require_confirmation>False</require_confirmation>
+        </trigger>
+      </triggers>
+    </action>
+    <action>
+      <id>7</id>
+      <name>debug</name>
+      <items>
+        <item type="jump" id="1">
+          <status>22</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+      <triggers>
+        <trigger type="manual" id="0552518a-d7d5-4d35-a41c-1c5af4f65f4c">
+          <roles>
+            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+          </roles>
+          <allow_as_mass_action>True</allow_as_mass_action>
+          <require_confirmation>False</require_confirmation>
+        </trigger>
+      </triggers>
+    </action>
+    <action>
+      <id>8</id>
+      <name>V&#233;rifier le statut dans Atal</name>
+      <items>
+        <item type="jump" id="1">
+          <status>26</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+      <triggers>
+        <trigger type="manual" id="49c729c1-12db-4815-931a-49745196f63b">
+          <roles>
+            <item role_id="_receiver">_receiver</item>
+            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+          </roles>
+          <statuses>
+            <statuse>21</statuse>
+          </statuses>
           <allow_as_mass_action>True</allow_as_mass_action>
           <require_confirmation>False</require_confirmation>
         </trigger>
@@ -1101,7 +1347,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
         <field>
           <type>bool</type>
           <label type="str">Recevoir un mail pour chaque nouveau signalement</label>
-          <required type="bool">False</required>
+          <required type="str">optional</required>
           <varname type="str">recevoir_un_mail_pour_chaque_nouveau_signalement</varname>
           <display_locations />
           <anonymise type="str">no</anonymise>
@@ -1110,7 +1356,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
         <field>
           <type>bool</type>
           <label type="str">Rendre les champs adresse mail et num&#233;ro de t&#233;l&#233;phone obligatoires</label>
-          <required type="bool">False</required>
+          <required type="str">optional</required>
           <varname type="str">champs_mail_et_tel_obligatoires</varname>
           <display_locations />
           <anonymise type="str">no</anonymise>
@@ -1119,7 +1365,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
         <field>
           <type>bool</type>
           <label type="str">Limiter le p&#233;rim&#232;tre g&#233;ographique des signalements</label>
-          <required type="bool">False</required>
+          <required type="str">optional</required>
           <hint type="str">Cochez cette case pour limiter le p&#233;rim&#232;tre g&#233;ographique des signalements autoris&#233;s. Le formulaire ne pourra pas &#234;tre valid&#233; par le citoyen si cette case est coch&#233;e et que des codes postaux sont d&#233;finis ci-dessous. Un commentaire en premi&#232;re page du formulaire s'affichera pour avertir le citoyen des codes postaux autoris&#233;s.</hint>
           <varname type="str">geolimityn</varname>
           <display_locations>
@@ -1131,7 +1377,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
         <field>
           <type>string</type>
           <label type="str">Limiter le p&#233;rim&#232;tre g&#233;ographique des signalements - Code postaux</label>
-          <required type="bool">False</required>
+          <required type="str">optional</required>
           <hint type="str">Code postaux s&#233;par&#233;s par des virgules. (Exemple : 6000,6001,6002)</hint>
           <varname type="str">postal_code_limit</varname>
           <display_locations>
@@ -1143,7 +1389,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
         <field>
           <type>bool</type>
           <label type="str">Activer l'option "sur un b&#226;timent priv&#233;"</label>
-          <required type="bool">False</required>
+          <required type="str">optional</required>
           <hint type="str">Cochez cette case pour que les &#233;l&#233;ments de formulaires li&#233;s &#224; cette option s'affiche. Il s'agit de champs commentaire, une page suppl&#233;mentaires demandes des informations li&#233;es, champs fichier, etc.</hint>
           <varname type="str">onaprivatebuilding</varname>
           <display_locations>
@@ -1155,7 +1401,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
         <field>
           <type>item</type>
           <label type="str">Choisir un environnement</label>
-          <required type="bool">True</required>
+          <required type="str">required</required>
           <hint type="str">S&#233;lectionnez l'environnement utilis&#233; pour cette d&#233;marche</hint>
           <varname type="str">environnement</varname>
           <display_locations />
@@ -1175,7 +1421,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
         <field>
           <type>item</type>
           <label type="str">Service demandeur</label>
-          <required type="bool">False</required>
+          <required type="str">optional</required>
           <hint type="str">S&#233;lectionnez le service demandeur pour la cr&#233;ation des signalement dans iA.Tech</hint>
           <varname type="str">service_demandeur</varname>
           <display_locations />
@@ -1196,7 +1442,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
         <field>
           <type>items</type>
           <label type="str">Cat&#233;gories offertes</label>
-          <required type="bool">False</required>
+          <required type="str">optional</required>
           <hint type="str">Cochez les cat&#233;gories qui appara&#238;tront dans le menu d&#233;roulant du formulaire. N'en cochez aucune pour les employer toutes.</hint>
           <varname type="str">categories_filtered</varname>
           <display_locations />
@@ -1217,7 +1463,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
         <field>
           <type>bool</type>
           <label type="str">Photo non-obligatoire</label>
-          <required type="bool">False</required>
+          <required type="str">optional</required>
           <hint type="str">Cochez cette case pour rendre le champ "Photo 1" optionnel (au moins 1 photo obligatoire par d&#233;faut).</hint>
           <varname type="str">pic_not_required</varname>
           <display_locations />
@@ -1227,7 +1473,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
         <field>
           <type>item</type>
           <label type="str">Envoi manuel de la notification de cl&#244;ture ou de refus et pas automatique</label>
-          <required type="bool">False</required>
+          <required type="str">optional</required>
           <hint type="str">Afin de pouvoir &#233;diter / personnaliser le message.</hint>
           <varname type="str">custom_end_notification</varname>
           <display_locations />
@@ -1247,7 +1493,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
         <field>
           <type>bool</type>
           <label type="str">Employer les th&#233;matiques d'ATAL</label>
-          <required type="bool">False</required>
+          <required type="str">optional</required>
           <hint type="str">Cochez cette case pour employer les th&#233;matiques (Travaux) d'ATAL en guise de cat&#233;gories de signalement.</hint>
           <varname type="str">use_atal_thematics</varname>
           <display_locations />
@@ -1264,7 +1510,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
         <field>
           <type>string</type>
           <label type="str">Num&#233;ro DIT dans ATAL</label>
-          <required type="bool">False</required>
+          <required type="str">optional</required>
           <varname type="str">ditnu</varname>
           <display_locations>
             <item>summary</item>
@@ -1276,7 +1522,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
         <field>
           <type>string</type>
           <label type="str">Objet</label>
-          <required type="bool">False</required>
+          <required type="str">optional</required>
           <varname type="str">obj</varname>
           <display_locations>
             <item>summary</item>
@@ -1288,7 +1534,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
         <field>
           <type>string</type>
           <label type="str">Description</label>
-          <required type="bool">True</required>
+          <required type="str">required</required>
           <varname type="str">desc</varname>
           <display_locations>
             <item>summary</item>
@@ -1299,7 +1545,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
         <field>
           <type>string</type>
           <label type="str">Lieu</label>
-          <required type="bool">True</required>
+          <required type="str">required</required>
           <varname type="str">place</varname>
           <display_locations>
             <item>summary</item>
@@ -1311,7 +1557,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
         <field>
           <type>string</type>
           <label type="str">Souhaite &#234;tre tenu inform&#233;</label>
-          <required type="bool">True</required>
+          <required type="str">required</required>
           <varname type="str">followyn</varname>
           <display_locations>
             <item>summary</item>
@@ -1322,7 +1568,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
         <field>
           <type>string</type>
           <label type="str">uuid dans ATAL</label>
-          <required type="bool">False</required>
+          <required type="str">optional</required>
           <varname type="str">atal_uuid</varname>
           <display_locations />
           <anonymise type="str">no</anonymise>
@@ -1331,7 +1577,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
         <field>
           <type>string</type>
           <label type="str">Envoy&#233; depuis</label>
-          <required type="bool">True</required>
+          <required type="str">required</required>
           <varname type="str">requested_from</varname>
           <display_locations>
             <item>summary</item>
@@ -1343,7 +1589,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
         <field>
           <type>string</type>
           <label type="str">Commentaires dans Atal</label>
-          <required type="bool">False</required>
+          <required type="str">optional</required>
           <varname type="str">atal_comments</varname>
           <display_locations>
             <item>summary</item>
@@ -1355,4 +1601,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       </fields>
     </formdef>
   </backoffice-fields>
+  <status-remapping>
+    <remap status="28" action="reassign-8" timestamp="2025-08-25T15:44:52.677591+02:00" />
+  </status-remapping>
 </workflow>
