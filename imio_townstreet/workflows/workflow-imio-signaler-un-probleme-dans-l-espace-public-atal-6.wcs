@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <workflow id="175" url="https://staging-formulaires.guichet-citoyen.be/backoffice/workflows/175/">
-  <name>iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6) - test update</name>
-  <slug>imio-signaler-un-probleme-dans-l-espace-public-atal-6-test</slug>
+  <name>iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</name>
+  <slug>imio-signaler-un-probleme-dans-l-espace-public-atal-6</slug>
   <roles>
     <role id="_receiver">Destinataire</role>
   </roles>
