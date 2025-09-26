@@ -803,20 +803,20 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
           <timeout>86400</timeout>
           <set_marker_on_status>True</set_marker_on_status>
         </item>
-        <item type="jump" id="6">
-          <status>8</status>
-          <condition>
-            <type>django</type>
-            <value>work_request_details_response_data_RequestState == 3</value>
-          </condition>
-          <mode>immediate</mode>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
         <item type="jump" id="7">
           <status>23</status>
           <condition>
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 3 and form_option_custom_end_notification == "Oui" and  form_var_follow == True</value>
+          </condition>
+          <mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+        <item type="jump" id="6">
+          <status>8</status>
+          <condition>
+            <type>django</type>
+            <value>work_request_details_response_data_RequestState == 3</value>
           </condition>
           <mode>immediate</mode>
           <set_marker_on_status>False</set_marker_on_status>
