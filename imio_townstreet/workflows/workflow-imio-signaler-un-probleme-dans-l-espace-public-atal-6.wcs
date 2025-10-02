@@ -425,6 +425,14 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
       <forced_endpoint>true</forced_endpoint>
       <visibility />
       <items>
+        <item type="set-backoffice-fields" id="6">
+          <fields>
+            <field>
+              <field_id>bo55a0bd45-9af6-4112-9d93-20027cf5d721</field_id>
+              <value>{% for c in form_workflow_data_work_request_details_response_data_Responses reversed %}{% if forloop.first %} {% else%} &#183; {% endif %}{{ c.Comments}}{% endfor %}</value>
+            </field>
+          </fields>
+        </item>
         <item type="register-comment" id="1">
           <comment>Commentaire de l'administration : {{ form_var_atal_comments }}</comment>
           <condition>
