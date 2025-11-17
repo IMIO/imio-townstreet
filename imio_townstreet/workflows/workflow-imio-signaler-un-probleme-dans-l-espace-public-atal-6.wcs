@@ -95,6 +95,80 @@
       </items>
     </status>
     <status>
+      <id>10</id>
+      <name>Nouveau signalement</name>
+      <colour>#FFFF99</colour>
+      <visibility />
+      <items>
+        <item type="displaymsg" id="1">
+          <to>
+            <item role_id="_submitter">_submitter</item>
+          </to>
+          <message>Votre signalement a &#233;t&#233; introduit avec succ&#232;s.</message>
+          <level>success</level>
+          <position>top</position>
+        </item>
+        <item type="register-comment" id="2">
+          <comment>&lt;b&gt;{% if form_var_street %}{{form_var_street}}&lt;/b&gt;{% endif %} &#224; &lt;b&gt;{{form_var_city}}&lt;/b&gt; ({{form_var_desc}}).</comment>
+          <attachments>
+            <attachment>{{ form_var_pic1 }}</attachment>
+            <attachment>{{ form_var_pic2 }}</attachment>
+            <attachment>{{ form_var_pic3 }}</attachment>
+          </attachments>
+        </item>
+        <item type="jump" id="3">
+          <status>4</status>
+          <mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status>
+    <status>
+      <id>24</id>
+      <name>Compl&#233;tion g&#233;odonn&#233;es</name>
+      <colour>#FFFFFF</colour>
+      <visibility>
+        <role>__restricted__</role>
+      </visibility>
+      <items>
+        <item type="form" id="1">
+          <by>
+            <item slug="debug" role_id="f15524335e0a4c42ae4a94fb8cfe1909">Debug</item>
+          </by>
+          <varname>manual_geodata</varname>
+          <hide_submit_button>False</hide_submit_button>
+          <include_in_form_history>False</include_in_form_history>
+          <formdef>
+            <name>-</name>
+            <fields>
+              <field>
+                <type>string</type>
+                <label type="str">Latitude du signalement</label>
+                <required type="str">required</required>
+                <varname type="str">lat</varname>
+                <display_locations />
+                <anonymise type="str">final</anonymise>
+                <id type="str">1</id>
+              </field>
+              <field>
+                <type>string</type>
+                <label type="str">Longitude du signalement</label>
+                <required type="str">required</required>
+                <varname type="str">lon</varname>
+                <display_locations />
+                <anonymise type="str">final</anonymise>
+                <id type="str">2</id>
+              </field>
+            </fields>
+          </formdef>
+        </item>
+        <item type="jumponsubmit" id="2">
+          <status>4</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status>
+    <status>
       <id>4</id>
       <name>Cr&#233;ation dans ATAL</name>
       <colour>#FFFFFF</colour>
@@ -221,6 +295,62 @@
           </condition>
           <mode>immediate</mode>
           <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status>
+    <status>
+      <id>5</id>
+      <name>Erreur (cr&#233;ation dans ATAL)</name>
+      <colour>#FF9999</colour>
+      <visibility>
+        <role>__restricted__</role>
+      </visibility>
+      <items>
+        <item type="sendmail" id="1">
+          <to>
+            <item role_id="admints+townstreet-errors@imio.be">admints+townstreet-errors@imio.be</item>
+          </to>
+          <mail_template>imio-townstreet-erreur</mail_template>
+        </item>
+      </items>
+    </status>
+    <status>
+      <id>20</id>
+      <name>R&#233;cup&#233;ration des identifiants ATAL</name>
+      <colour>#FFFFFF</colour>
+      <visibility>
+        <role>__restricted__</role>
+      </visibility>
+      <items>
+        <item type="set-backoffice-fields" id="1">
+          <label>Num&#233;ros d'identification dans ATAL</label>
+          <fields>
+            <field>
+              <field_id>boceb33663-bc2b-4e59-ac71-3c34e9c45f60</field_id>
+              <value>{{ form_workflow_data_post_work_request_response_data_Number }}</value>
+            </field>
+            <field>
+              <field_id>bo374b25d1-10d6-4cf3-b391-88e29f4a5acc</field_id>
+              <value>{{ form_workflow_data_post_work_request_response_data_Id }}</value>
+            </field>
+          </fields>
+        </item>
+        <item type="jump" id="2">
+          <status>6</status>
+          <mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+        <item type="register-comment" id="3">
+          <to>
+            <item role_id="_receiver">_receiver</item>
+          </to>
+          <comment>La demande a &#233;t&#233; cr&#233;&#233;e dans ATAL ({{ post_work_request_response_data_Number }}).
+
+</comment>
+          <condition>
+            <type>django</type>
+            <value>post_work_request_app_error_code == 0 and post_work_request_response_data_Number</value>
+          </condition>
         </item>
       </items>
     </status>
@@ -372,22 +502,6 @@
       </items>
     </status>
     <status>
-      <id>5</id>
-      <name>Erreur (cr&#233;ation dans ATAL)</name>
-      <colour>#FF9999</colour>
-      <visibility>
-        <role>__restricted__</role>
-      </visibility>
-      <items>
-        <item type="sendmail" id="1">
-          <to>
-            <item role_id="admints+townstreet-errors@imio.be">admints+townstreet-errors@imio.be</item>
-          </to>
-          <mail_template>imio-townstreet-erreur</mail_template>
-        </item>
-      </items>
-    </status>
-    <status>
       <id>7</id>
       <name>Erreur (envoi de fichier)</name>
       <colour>#FF9999</colour>
@@ -409,350 +523,13 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
 </backoffice_info_text>
           <ignore_form_errors>False</ignore_form_errors>
           <set_marker_on_status>False</set_marker_on_status>
+          <allow_as_mass_action>True</allow_as_mass_action>
         </item>
         <item type="sendmail" id="2">
           <to>
             <item role_id="admints+townstreet-errors@imio.be">admints+townstreet-errors@imio.be</item>
           </to>
           <mail_template>imio-townstreet-erreur-envoi-des-photos-iatech</mail_template>
-        </item>
-      </items>
-    </status>
-    <status>
-      <id>8</id>
-      <name>Signalement refus&#233;</name>
-      <colour>#FF0066</colour>
-      <forced_endpoint>true</forced_endpoint>
-      <visibility />
-      <items>
-        <item type="set-backoffice-fields" id="6">
-          <fields>
-            <field>
-              <field_id>bo55a0bd45-9af6-4112-9d93-20027cf5d721</field_id>
-              <value>{% for c in form_workflow_data_work_request_details_response_data_Responses reversed %}{% if forloop.first %} {% else%} &#183; {% endif %}{{ c.Comments}}{% endfor %}</value>
-            </field>
-          </fields>
-        </item>
-        <item type="register-comment" id="1">
-          <comment>Commentaire de l'administration : {{ form_var_atal_comments }}</comment>
-          <condition>
-            <type>django</type>
-            <value>form_var_atal_comments and form_option_custom_end_notification != "Oui" and form_var_atal_comments|length &gt; 7</value>
-          </condition>
-        </item>
-        <item type="register-comment" id="2">
-          <comment>Commentaire de l'administration : {{ form_workflow_form_custom_end_answer_form_var_custom_feedback_body }}</comment>
-          <condition>
-            <type>django</type>
-            <value>form_workflow_form_custom_end_answer_form_var_custom_feedback_body</value>
-          </condition>
-        </item>
-        <item type="webservice_call" id="3">
-          <label>Notifier FixMyStreet du refus</label>
-          <method>PATCH</method>
-          <url>https://{{ form_option_environnement_url_apims|default:"api" }}.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
-          <post>False</post>
-          <post_data>
-            <item>
-              <name>alert_status</name>
-              <value>dismissed</value>
-            </item>
-            <item>
-              <name>message</name>
-              <value>{{ form_var_atal_comments|default:"Le signalement a &#233;t&#233; refus&#233;." }}</value>
-            </item>
-            <item>
-              <name>organisation_id</name>
-              <value>{{form_var_origin_organisation_id}}</value>
-            </item>
-          </post_data>
-          <response_type>json</response_type>
-          <varname>fms_notification_dismissed</varname>
-          <store_all_responses>False</store_all_responses>
-          <attach_file_to_history>True</attach_file_to_history>
-          <action_on_app_error>:pass</action_on_app_error>
-          <action_on_4xx>:stop</action_on_4xx>
-          <action_on_5xx>:stop</action_on_5xx>
-          <action_on_bad_data>:pass</action_on_bad_data>
-          <action_on_network_errors>:stop</action_on_network_errors>
-          <record_errors>False</record_errors>
-          <record_on_errors>True</record_on_errors>
-          <notify_on_errors>False</notify_on_errors>
-          <condition>
-            <type>django</type>
-            <value>form_var_origin_source == "fixmystreet"</value>
-          </condition>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-        <item type="sendmail" id="4">
-          <to>
-            <item role_id="{{ form_var_mail }}">{{ form_var_mail }}</item>
-          </to>
-          <mail_template>imio-townstreet-refuse</mail_template>
-          <condition>
-            <type>django</type>
-            <value>form_option_custom_end_notification == "Non" and  form_var_follow == True</value>
-          </condition>
-        </item>
-        <item type="sendmail" id="5">
-          <to>
-            <item role_id="{{ form_var_mail }}">{{ form_var_mail }}</item>
-          </to>
-          <mail_template>imio-townstreet-refuse-avec-personnalisation</mail_template>
-          <condition>
-            <type>django</type>
-            <value>form_option_custom_end_notification == "Oui" and  form_var_follow == True</value>
-          </condition>
-        </item>
-      </items>
-    </status>
-    <status>
-      <id>10</id>
-      <name>Nouveau signalement</name>
-      <colour>#FFFF99</colour>
-      <visibility />
-      <items>
-        <item type="displaymsg" id="1">
-          <to>
-            <item role_id="_submitter">_submitter</item>
-          </to>
-          <message>Votre signalement a &#233;t&#233; introduit avec succ&#232;s.</message>
-          <level>success</level>
-          <position>top</position>
-        </item>
-        <item type="register-comment" id="2">
-          <comment>&lt;b&gt;{% if form_var_street %}{{form_var_street}}&lt;/b&gt;{% endif %} &#224; &lt;b&gt;{{form_var_city}}&lt;/b&gt; ({{form_var_desc}}).</comment>
-          <attachments>
-            <attachment>{{ form_var_pic1 }}</attachment>
-            <attachment>{{ form_var_pic2 }}</attachment>
-            <attachment>{{ form_var_pic3 }}</attachment>
-          </attachments>
-        </item>
-        <item type="jump" id="3">
-          <status>4</status>
-          <mode>immediate</mode>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-      </items>
-    </status>
-    <status>
-      <id>13</id>
-      <name>Finalis&#233;</name>
-      <colour>#66FF99</colour>
-      <extra_css_class>sign_traite</extra_css_class>
-      <forced_endpoint>true</forced_endpoint>
-      <visibility />
-      <items>
-        <item type="register-comment" id="1">
-          <comment>Commentaire de l'administration : {{ form_var_atal_comments }}</comment>
-          <condition>
-            <type>django</type>
-            <value>form_var_atal_comments and form_option_custom_end_notification != "Oui" and form_var_atal_comments|length &gt; 7</value>
-          </condition>
-        </item>
-        <item type="register-comment" id="2">
-          <comment>Commentaire de l'administration : {{ form_workflow_form_custom_end_answer_form_var_custom_feedback_body }}</comment>
-          <condition>
-            <type>django</type>
-            <value>form_workflow_form_custom_end_answer_form_var_custom_feedback_body</value>
-          </condition>
-        </item>
-        <item type="webservice_call" id="3">
-          <label>Notifier FixMyStreet de la r&#233;solution</label>
-          <method>PATCH</method>
-          <url>https://{{ form_option_environnement_url_apims|default:"api" }}.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
-          <post>False</post>
-          <post_data>
-            <item>
-              <name>alert_status</name>
-              <value>solved</value>
-            </item>
-            <item>
-              <name>message</name>
-              <value>{{ form_var_atal_comments|default:"Le signalement a &#233;t&#233; trait&#233;." }}</value>
-            </item>
-            <item>
-              <name>organisation_id</name>
-              <value>{{form_var_origin_organisation_id}}</value>
-            </item>
-          </post_data>
-          <response_type>json</response_type>
-          <varname>fms_notification_solved</varname>
-          <store_all_responses>False</store_all_responses>
-          <attach_file_to_history>True</attach_file_to_history>
-          <action_on_app_error>:pass</action_on_app_error>
-          <action_on_4xx>:stop</action_on_4xx>
-          <action_on_5xx>:stop</action_on_5xx>
-          <action_on_bad_data>:pass</action_on_bad_data>
-          <action_on_network_errors>:stop</action_on_network_errors>
-          <record_errors>False</record_errors>
-          <record_on_errors>True</record_on_errors>
-          <notify_on_errors>False</notify_on_errors>
-          <condition>
-            <type>django</type>
-            <value>form_var_origin_source == "fixmystreet"</value>
-          </condition>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-        <item type="displaymsg" id="4">
-          <to>
-            <item slug="agent-traitant-townstreet" role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
-            <item role_id="_submitter">_submitter</item>
-          </to>
-          <message>Cette demande a &#233;t&#233; trait&#233;e.</message>
-          <level>success</level>
-          <position>top</position>
-        </item>
-      </items>
-    </status>
-    <status>
-      <id>14</id>
-      <name>Notification de r&#233;solution au demandeur</name>
-      <colour>#FFFFFF</colour>
-      <visibility>
-        <role>__restricted__</role>
-      </visibility>
-      <items>
-        <item type="sendmail" id="1">
-          <to>
-            <item role_id="{{ form_var_mail }}">{{ form_var_mail }}</item>
-          </to>
-          <mail_template>imio-townstreet-votre-signalement-resolution</mail_template>
-          <condition>
-            <type>django</type>
-            <value>form_option_custom_end_notification == "Non"</value>
-          </condition>
-        </item>
-        <item type="sendmail" id="2">
-          <to>
-            <item role_id="{{ form_var_mail }}">{{ form_var_mail }}</item>
-          </to>
-          <mail_template>imio-townstreet-votre-signalement-resolution-avec-personnalisation</mail_template>
-          <condition>
-            <type>django</type>
-            <value>form_option_custom_end_notification == "Oui"</value>
-          </condition>
-        </item>
-        <item type="jump" id="3">
-          <status>13</status>
-          <mode>immediate</mode>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-      </items>
-    </status>
-    <status>
-      <id>20</id>
-      <name>R&#233;cup&#233;ration des identifiants ATAL</name>
-      <colour>#FFFFFF</colour>
-      <visibility>
-        <role>__restricted__</role>
-      </visibility>
-      <items>
-        <item type="set-backoffice-fields" id="1">
-          <label>Num&#233;ros d'identification dans ATAL</label>
-          <fields>
-            <field>
-              <field_id>boceb33663-bc2b-4e59-ac71-3c34e9c45f60</field_id>
-              <value>{{ form_workflow_data_post_work_request_response_data_Number }}</value>
-            </field>
-            <field>
-              <field_id>bo374b25d1-10d6-4cf3-b391-88e29f4a5acc</field_id>
-              <value>{{ form_workflow_data_post_work_request_response_data_Id }}</value>
-            </field>
-          </fields>
-        </item>
-        <item type="jump" id="2">
-          <status>6</status>
-          <mode>immediate</mode>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-        <item type="register-comment" id="3">
-          <to>
-            <item role_id="_receiver">_receiver</item>
-          </to>
-          <comment>La demande a &#233;t&#233; cr&#233;&#233;e dans ATAL ({{ post_work_request_response_data_Number }}).
-
-</comment>
-          <condition>
-            <type>django</type>
-            <value>post_work_request_app_error_code == 0 and post_work_request_response_data_Number</value>
-          </condition>
-        </item>
-      </items>
-    </status>
-    <status>
-      <id>21</id>
-      <name>Traitement dans ATAL</name>
-      <colour>#6699FF</colour>
-      <backoffice_info_text>&lt;p&gt;Ce statut n'est pas visible par la personne ayant soumis cette demande.&lt;/p&gt;</backoffice_info_text>
-      <visibility>
-        <role>__restricted__</role>
-      </visibility>
-      <items>
-        <item type="set-backoffice-fields" id="2">
-          <label>Commentaire dans Atal pour Tableau de traitement</label>
-          <fields>
-            <field>
-              <field_id>bo55a0bd45-9af6-4112-9d93-20027cf5d721</field_id>
-              <value>{% for c in form_workflow_data_work_request_details_response_data_Responses reversed %}{% if forloop.first %} {% else%} &#183; {% endif %}{{ c.Comments}}{% endfor %}</value>
-            </field>
-          </fields>
-          <condition>
-            <type>django</type>
-            <value>form_workflow_data_work_request_details_response_data_Responses</value>
-          </condition>
-        </item>
-        <item type="jump" id="6">
-          <status>13</status>
-          <condition>
-            <type>django</type>
-            <value>work_request_details_response_data_RequestState|stringformat:"s" in "9|13"|split:"|" and form_var_followyn == "Non"</value>
-          </condition>
-          <mode>immediate</mode>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-        <item type="jump" id="7">
-          <status>8</status>
-          <condition>
-            <type>django</type>
-            <value>work_request_details_response_data_RequestState == 3</value>
-          </condition>
-          <mode>immediate</mode>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-        <item type="jump" id="8">
-          <status>14</status>
-          <condition>
-            <type>django</type>
-            <value>form_option_custom_end_notification == "Non" and work_request_details_response_data_RequestState|stringformat:"s" in "9|13"|split:"|" and form_var_followyn == "Oui"</value>
-          </condition>
-          <mode>immediate</mode>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-        <item type="jump" id="11">
-          <status>23</status>
-          <condition>
-            <type>django</type>
-            <value>work_request_details_response_data_RequestState|stringformat:"s" in "3|9|13"|split:"|" and form_option_custom_end_notification == "Oui" and  form_var_follow == True</value>
-          </condition>
-          <mode>immediate</mode>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-        <item type="jump" id="14">
-          <status>26</status>
-          <mode>timeout</mode>
-          <timeout>86400</timeout>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-        <item type="choice" id="15">
-          <label>Signalement class&#233; sans suite</label>
-          <by>
-            <item role_id="_receiver">_receiver</item>
-          </by>
-          <status>25</status>
-          <require_confirmation>True</require_confirmation>
-          <ignore_form_errors>False</ignore_form_errors>
-          <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items>
     </status>
@@ -832,6 +609,46 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
       </items>
     </status>
     <status>
+      <id>29</id>
+      <name>V&#233;rifier si le signalement &#224; &#233;t&#233; accept&#233;</name>
+      <colour>#ffffff</colour>
+      <visibility>
+        <role>__restricted__</role>
+      </visibility>
+      <items>
+        <item type="webservice_call" id="2">
+          <label>R&#233;cup&#233;ration du d&#233;tail dans ATAL</label>
+          <method>POST</method>
+          <url>{{ passerelle_url }}/passerelle-imio-ia-tech/atal-demov6/get_work_request_details</url>
+          <post>False</post>
+          <post_data>
+            <item>
+              <name>atal_work_request_uuid</name>
+              <value>{{ post_work_request_response_data_Id }}</value>
+            </item>
+          </post_data>
+          <response_type>json</response_type>
+          <varname>work_request_details</varname>
+          <store_all_responses>False</store_all_responses>
+          <attach_file_to_history>True</attach_file_to_history>
+          <action_on_app_error>:pass</action_on_app_error>
+          <action_on_4xx>:pass</action_on_4xx>
+          <action_on_5xx>:pass</action_on_5xx>
+          <action_on_bad_data>:pass</action_on_bad_data>
+          <action_on_network_errors>:pass</action_on_network_errors>
+          <record_errors>False</record_errors>
+          <record_on_errors>True</record_on_errors>
+          <notify_on_errors>True</notify_on_errors>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+        <item type="jump" id="1">
+          <status>22</status>
+          <mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status>
+    <status>
       <id>23</id>
       <name>R&#233;diger une r&#233;ponse</name>
       <colour>#FFFF00</colour>
@@ -839,6 +656,38 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
         <role>__restricted__</role>
       </visibility>
       <items>
+        <item type="set-backoffice-fields" id="10">
+          <fields>
+            <field>
+              <field_id>bo55a0bd45-9af6-4112-9d93-20027cf5d721</field_id>
+              <value>{% for c in form_workflow_data_work_request_details_response_data_Responses reversed %}{% if forloop.first %} {% else%} &#183; {% endif %}{{ c.Comments}}{% endfor %}</value>
+            </field>
+            <field>
+              <field_id>bo55a0bd45-9af6-4112-9d93-20027cf5d721</field_id>
+              <value>{% if form_var_atal_comments in "&#183;  &#183;|&#183;"|split:"|" or not form_var_atal_comments %}{% else %}{{ form_var_atal_comments }}{% endif %}</value>
+            </field>
+          </fields>
+        </item>
+        <item type="register-comment" id="12">
+          <to>
+            <item role_id="_receiver">_receiver</item>
+          </to>
+          <comment>Pas de commentaire dans Atal.</comment>
+          <level>info</level>
+          <condition>
+            <type>django</type>
+            <value>not form_var_atal_comments</value>
+          </condition>
+        </item>
+        <item type="jump" id="11">
+          <status>8</status>
+          <condition>
+            <type>django</type>
+            <value>not form_var_atal_comments and work_request_details_response_data_RequestState == 3</value>
+          </condition>
+          <mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
         <item type="displaymsg" id="1">
           <to>
             <item role_id="_receiver">_receiver</item>
@@ -888,7 +737,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
             <item role_id="_receiver">_receiver</item>
           </by>
           <varname>custom_end_answer_form</varname>
-          <hide_submit_button>False</hide_submit_button>
+          <hide_submit_button>True</hide_submit_button>
           <include_in_form_history>False</include_in_form_history>
           <formdef>
             <name>-</name>
@@ -965,87 +814,71 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
             <type>django</type>
             <value>work_request_details_response_data_RequestState == 3</value>
           </condition>
+          <allow_as_mass_action>True</allow_as_mass_action>
         </item>
         <item type="choice" id="9">
           <label>Finaliser la demande</label>
           <by>
             <item role_id="_receiver">_receiver</item>
           </by>
-          <status>13</status>
+          <status>14</status>
           <require_confirmation>False</require_confirmation>
           <ignore_form_errors>False</ignore_form_errors>
           <set_marker_on_status>False</set_marker_on_status>
           <condition>
             <type>django</type>
-            <value>work_request_details_response_data_RequestState == 9</value>
+            <value>work_request_details_response_data_RequestState|stringformat:"s" in "9|13"|split:"|"</value>
           </condition>
+          <allow_as_mass_action>False</allow_as_mass_action>
         </item>
       </items>
     </status>
     <status>
-      <id>24</id>
-      <name>Compl&#233;tion g&#233;odonn&#233;es</name>
-      <colour>#FFFFFF</colour>
-      <visibility>
-        <role>__restricted__</role>
-      </visibility>
-      <items>
-        <item type="form" id="1">
-          <by>
-            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
-          </by>
-          <varname>manual_geodata</varname>
-          <hide_submit_button>False</hide_submit_button>
-          <include_in_form_history>False</include_in_form_history>
-          <formdef>
-            <name>-</name>
-            <fields>
-              <field>
-                <type>string</type>
-                <label type="str">Latitude du signalement</label>
-                <required type="str">required</required>
-                <varname type="str">lat</varname>
-                <display_locations />
-                <anonymise type="str">final</anonymise>
-                <id type="str">1</id>
-              </field>
-              <field>
-                <type>string</type>
-                <label type="str">Longitude du signalement</label>
-                <required type="str">required</required>
-                <varname type="str">lon</varname>
-                <display_locations />
-                <anonymise type="str">final</anonymise>
-                <id type="str">2</id>
-              </field>
-            </fields>
-          </formdef>
-        </item>
-        <item type="jumponsubmit" id="2">
-          <status>4</status>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-      </items>
-    </status>
-    <status>
-      <id>25</id>
-      <name>Signalement class&#233; sans suite</name>
-      <colour>#77767b</colour>
+      <id>8</id>
+      <name>Signalement refus&#233;</name>
+      <colour>#FF0066</colour>
+      <forced_endpoint>true</forced_endpoint>
       <visibility />
       <items>
-        <item type="webservice_call" id="1">
-          <label>Notifier FixMyStreet de la r&#233;solution</label>
+        <item type="set-backoffice-fields" id="6">
+          <fields>
+            <field>
+              <field_id>bo55a0bd45-9af6-4112-9d93-20027cf5d721</field_id>
+              <value>{% for c in form_workflow_data_work_request_details_response_data_Responses reversed %}{% if forloop.first %} {% else%} &#183; {% endif %}{{ c.Comments}}{% endfor %}</value>
+            </field>
+            <field>
+              <field_id>bo55a0bd45-9af6-4112-9d93-20027cf5d721</field_id>
+              <value>{% if form_var_atal_comments in "&#183;  &#183;|&#183;"|split:"|" or not form_var_atal_comments %}{% else %}{{ form_var_atal_comments }}{% endif %}</value>
+            </field>
+          </fields>
+        </item>
+        <item type="register-comment" id="1">
+          <comment>Commentaire de l'administration : {{ form_var_atal_comments }}</comment>
+          <condition>
+            <type>django</type>
+            <value>form_var_atal_comments and form_option_custom_end_notification != "Oui" and form_var_atal_comments</value>
+          </condition>
+        </item>
+        <item type="register-comment" id="2">
+          <comment>Commentaire de l'administration : {{ form_workflow_form_custom_end_answer_form_var_custom_feedback_body }}</comment>
+          <condition>
+            <type>django</type>
+            <value>form_workflow_form_custom_end_answer_form_var_custom_feedback_body</value>
+          </condition>
+        </item>
+        <item type="webservice_call" id="3">
+          <label>Notifier FixMyStreet du refus</label>
           <method>PATCH</method>
           <url>https://{{ form_option_environnement_url_apims|default:"api" }}.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
           <post>False</post>
           <post_data>
             <item>
               <name>alert_status</name>
-              <value>closed</value>
+              <value>dismissed</value>
             </item>
             <item>
               <name>message</name>
-              <value>{{ form_var_atal_comments|default:"Le signalement a &#233;t&#233; class&#233; sans suite." }}</value>
+              <value>{{ form_var_atal_comments|default:"Le signalement a &#233;t&#233; refus&#233;." }}</value>
             </item>
             <item>
               <name>organisation_id</name>
@@ -1053,7 +886,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
             </item>
           </post_data>
           <response_type>json</response_type>
-          <varname>fms_notification_closed</varname>
+          <varname>fms_notification_dismissed</varname>
           <store_all_responses>False</store_all_responses>
           <attach_file_to_history>True</attach_file_to_history>
           <action_on_app_error>:pass</action_on_app_error>
@@ -1070,45 +903,25 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           </condition>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
-      </items>
-    </status>
-    <status>
-      <id>26</id>
-      <name>V&#233;rifier le statut dans ATAL</name>
-      <colour>#ffffff</colour>
-      <visibility>
-        <role>__restricted__</role>
-      </visibility>
-      <items>
-        <item type="webservice_call" id="1">
-          <label>R&#233;cup&#233;ration du d&#233;tail dans ATAL</label>
-          <method>POST</method>
-          <url>{{ passerelle_url }}/passerelle-imio-ia-tech/atal-demov6/get_work_request_details</url>
-          <post>False</post>
-          <post_data>
-            <item>
-              <name>atal_work_request_uuid</name>
-              <value>{{ post_work_request_response_data_Id }}</value>
-            </item>
-          </post_data>
-          <response_type>json</response_type>
-          <varname>work_request_details</varname>
-          <store_all_responses>False</store_all_responses>
-          <attach_file_to_history>True</attach_file_to_history>
-          <action_on_app_error>:pass</action_on_app_error>
-          <action_on_4xx>:pass</action_on_4xx>
-          <action_on_5xx>:pass</action_on_5xx>
-          <action_on_bad_data>:pass</action_on_bad_data>
-          <action_on_network_errors>:pass</action_on_network_errors>
-          <record_errors>False</record_errors>
-          <record_on_errors>True</record_on_errors>
-          <notify_on_errors>True</notify_on_errors>
-          <set_marker_on_status>False</set_marker_on_status>
+        <item type="sendmail" id="4">
+          <to>
+            <item role_id="{{ form_var_mail }}">{{ form_var_mail }}</item>
+          </to>
+          <mail_template>imio-townstreet-refuse</mail_template>
+          <condition>
+            <type>django</type>
+            <value>form_option_custom_end_notification == "Non" and  form_var_follow == True</value>
+          </condition>
         </item>
-        <item type="jump" id="3">
-          <status>21</status>
-          <mode>immediate</mode>
-          <set_marker_on_status>False</set_marker_on_status>
+        <item type="sendmail" id="5">
+          <to>
+            <item role_id="{{ form_var_mail }}">{{ form_var_mail }}</item>
+          </to>
+          <mail_template>imio-townstreet-refuse-avec-personnalisation</mail_template>
+          <condition>
+            <type>django</type>
+            <value>form_option_custom_end_notification == "Oui" and  form_var_follow == True</value>
+          </condition>
         </item>
       </items>
     </status>
@@ -1165,14 +978,106 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       </items>
     </status>
     <status>
-      <id>29</id>
-      <name>V&#233;rifier si le signalement &#224; &#233;t&#233; accept&#233;</name>
+      <id>21</id>
+      <name>Traitement dans ATAL</name>
+      <colour>#6699FF</colour>
+      <backoffice_info_text>&lt;p&gt;Ce statut n'est pas visible par la personne ayant soumis cette demande.&lt;/p&gt;</backoffice_info_text>
+      <visibility>
+        <role>__restricted__</role>
+      </visibility>
+      <items>
+        <item type="set-backoffice-fields" id="2">
+          <label>Commentaire dans Atal pour Tableau de traitement</label>
+          <fields>
+            <field>
+              <field_id>bo55a0bd45-9af6-4112-9d93-20027cf5d721</field_id>
+              <value>{% for c in form_workflow_data_work_request_details_response_data_Responses reversed %}{% if forloop.first %} {% else%} &#183; {% endif %}{{ c.Comments}}{% endfor %}</value>
+            </field>
+            <field>
+              <field_id>bo55a0bd45-9af6-4112-9d93-20027cf5d721</field_id>
+              <value>{% if form_var_atal_comments in "&#183;  &#183;|&#183;"|split:"|" or not form_var_atal_comments %}{% else %}{{ form_var_atal_comments }}{% endif %}</value>
+            </field>
+          </fields>
+          <condition>
+            <type>django</type>
+            <value>form_workflow_data_work_request_details_response_data_Responses</value>
+          </condition>
+        </item>
+        <item type="register-comment" id="16">
+          <to>
+            <item role_id="_receiver">_receiver</item>
+          </to>
+          <comment>Pas de commentaire dans Atal.</comment>
+          <level>info</level>
+          <condition>
+            <type>django</type>
+            <value>not form_var_atal_comments and work_request_details_response_data_RequestState|stringformat:"s" in "9|13"|split:"|" and form_var_followyn == "Oui"</value>
+          </condition>
+        </item>
+        <item type="jump" id="6">
+          <status>13</status>
+          <condition>
+            <type>django</type>
+            <value>work_request_details_response_data_RequestState|stringformat:"s" in "9|13"|split:"|" and form_var_followyn == "Non" or work_request_details_response_data_RequestState|stringformat:"s" in "9|13"|split:"|" and not form_var_atal_comments</value>
+          </condition>
+          <mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+        <item type="jump" id="11">
+          <status>23</status>
+          <condition>
+            <type>django</type>
+            <value>work_request_details_response_data_RequestState|stringformat:"s" in "3|9|13"|split:"|" and form_option_custom_end_notification == "Oui" and  form_var_follow == True</value>
+          </condition>
+          <mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+        <item type="jump" id="7">
+          <status>8</status>
+          <condition>
+            <type>django</type>
+            <value>work_request_details_response_data_RequestState == 3</value>
+          </condition>
+          <mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+        <item type="jump" id="8">
+          <status>14</status>
+          <condition>
+            <type>django</type>
+            <value>form_option_custom_end_notification == "Non" and work_request_details_response_data_RequestState|stringformat:"s" in "9|13"|split:"|" and form_var_followyn == "Oui"</value>
+          </condition>
+          <mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+        <item type="jump" id="14">
+          <status>26</status>
+          <mode>timeout</mode>
+          <timeout>86400</timeout>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+        <item type="choice" id="15">
+          <label>Signalement class&#233; sans suite</label>
+          <by>
+            <item role_id="_receiver">_receiver</item>
+          </by>
+          <status>25</status>
+          <require_confirmation>True</require_confirmation>
+          <ignore_form_errors>False</ignore_form_errors>
+          <set_marker_on_status>False</set_marker_on_status>
+          <allow_as_mass_action>True</allow_as_mass_action>
+        </item>
+      </items>
+    </status>
+    <status>
+      <id>26</id>
+      <name>V&#233;rifier le statut dans ATAL</name>
       <colour>#ffffff</colour>
       <visibility>
         <role>__restricted__</role>
       </visibility>
       <items>
-        <item type="webservice_call" id="2">
+        <item type="webservice_call" id="1">
           <label>R&#233;cup&#233;ration du d&#233;tail dans ATAL</label>
           <method>POST</method>
           <url>{{ passerelle_url }}/passerelle-imio-ia-tech/atal-demov6/get_work_request_details</url>
@@ -1197,10 +1102,160 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <notify_on_errors>True</notify_on_errors>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
-        <item type="jump" id="1">
-          <status>22</status>
+        <item type="jump" id="3">
+          <status>21</status>
           <mode>immediate</mode>
           <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status>
+    <status>
+      <id>25</id>
+      <name>Signalement class&#233; sans suite</name>
+      <colour>#77767b</colour>
+      <visibility />
+      <items>
+        <item type="webservice_call" id="1">
+          <label>Notifier FixMyStreet de la r&#233;solution</label>
+          <method>PATCH</method>
+          <url>https://{{ form_option_environnement_url_apims|default:"api" }}.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
+          <post>False</post>
+          <post_data>
+            <item>
+              <name>alert_status</name>
+              <value>closed</value>
+            </item>
+            <item>
+              <name>message</name>
+              <value>{{ form_var_atal_comments|default:"Le signalement a &#233;t&#233; class&#233; sans suite." }}</value>
+            </item>
+            <item>
+              <name>organisation_id</name>
+              <value>{{form_var_origin_organisation_id}}</value>
+            </item>
+          </post_data>
+          <response_type>json</response_type>
+          <varname>fms_notification_closed</varname>
+          <store_all_responses>False</store_all_responses>
+          <attach_file_to_history>True</attach_file_to_history>
+          <action_on_app_error>:pass</action_on_app_error>
+          <action_on_4xx>:stop</action_on_4xx>
+          <action_on_5xx>:stop</action_on_5xx>
+          <action_on_bad_data>:pass</action_on_bad_data>
+          <action_on_network_errors>:stop</action_on_network_errors>
+          <record_errors>False</record_errors>
+          <record_on_errors>True</record_on_errors>
+          <notify_on_errors>False</notify_on_errors>
+          <condition>
+            <type>django</type>
+            <value>form_var_origin_source == "fixmystreet"</value>
+          </condition>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status>
+    <status>
+      <id>14</id>
+      <name>Notification de r&#233;solution au demandeur</name>
+      <colour>#FFFFFF</colour>
+      <visibility>
+        <role>__restricted__</role>
+      </visibility>
+      <items>
+        <item type="sendmail" id="1">
+          <to>
+            <item role_id="{{ form_var_mail }}">{{ form_var_mail }}</item>
+          </to>
+          <mail_template>imio-townstreet-votre-signalement-resolution</mail_template>
+          <condition>
+            <type>django</type>
+            <value>form_option_custom_end_notification == "Non"</value>
+          </condition>
+        </item>
+        <item type="sendmail" id="2">
+          <to>
+            <item role_id="{{ form_var_mail }}">{{ form_var_mail }}</item>
+          </to>
+          <mail_template>imio-townstreet-votre-signalement-resolution-avec-personnalisation</mail_template>
+          <condition>
+            <type>django</type>
+            <value>form_option_custom_end_notification == "Oui"</value>
+          </condition>
+        </item>
+        <item type="jump" id="3">
+          <status>13</status>
+          <mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status>
+    <status>
+      <id>13</id>
+      <name>Finalis&#233;</name>
+      <colour>#66FF99</colour>
+      <extra_css_class>sign_traite</extra_css_class>
+      <forced_endpoint>true</forced_endpoint>
+      <visibility />
+      <items>
+        <item type="register-comment" id="1">
+          <comment>Commentaire de l'administration : {{ form_var_atal_comments }}</comment>
+          <condition>
+            <type>django</type>
+            <value>form_var_atal_comments and form_option_custom_end_notification != "Oui"</value>
+          </condition>
+        </item>
+        <item type="register-comment" id="2">
+          <comment>Commentaire de l'administration : {{ form_workflow_form_custom_end_answer_form_var_custom_feedback_body }}</comment>
+          <condition>
+            <type>django</type>
+            <value>form_workflow_form_custom_end_answer_form_var_custom_feedback_body</value>
+          </condition>
+        </item>
+        <item type="webservice_call" id="3">
+          <label>Notifier FixMyStreet de la r&#233;solution</label>
+          <method>PATCH</method>
+          <url>https://{{ form_option_environnement_url_apims|default:"api" }}.imio.be/bewapp/v1/fixmystreet/alerts/{{ form_var_origin_id }}</url>
+          <post>False</post>
+          <post_data>
+            <item>
+              <name>alert_status</name>
+              <value>solved</value>
+            </item>
+            <item>
+              <name>message</name>
+              <value>{{ form_var_atal_comments|default:"Le signalement a &#233;t&#233; trait&#233;." }}</value>
+            </item>
+            <item>
+              <name>organisation_id</name>
+              <value>{{form_var_origin_organisation_id}}</value>
+            </item>
+          </post_data>
+          <response_type>json</response_type>
+          <varname>fms_notification_solved</varname>
+          <store_all_responses>False</store_all_responses>
+          <attach_file_to_history>True</attach_file_to_history>
+          <action_on_app_error>:pass</action_on_app_error>
+          <action_on_4xx>:stop</action_on_4xx>
+          <action_on_5xx>:stop</action_on_5xx>
+          <action_on_bad_data>:pass</action_on_bad_data>
+          <action_on_network_errors>:stop</action_on_network_errors>
+          <record_errors>False</record_errors>
+          <record_on_errors>True</record_on_errors>
+          <notify_on_errors>False</notify_on_errors>
+          <condition>
+            <type>django</type>
+            <value>form_var_origin_source == "fixmystreet"</value>
+          </condition>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+        <item type="displaymsg" id="4">
+          <to>
+            <item slug="agent-traitant-townstreet" role_id="8f4ec78fc7dd4efeb840d9c454d15c65">Agent traitant - Townstreet</item>
+            <item role_id="_submitter">_submitter</item>
+          </to>
+          <message>Cette demande a &#233;t&#233; trait&#233;e.</message>
+          <level>success</level>
+          <position>top</position>
         </item>
       </items>
     </status>
@@ -1216,7 +1271,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       <triggers>
         <trigger type="manual" id="5195410f-d64b-4ba7-a8b1-8c0bdcf27061">
           <roles>
-            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item slug="debug" role_id="f15524335e0a4c42ae4a94fb8cfe1909">Debug</item>
           </roles>
           <allow_as_mass_action>True</allow_as_mass_action>
           <require_confirmation>False</require_confirmation>
@@ -1236,7 +1291,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       <triggers>
         <trigger type="manual" id="871a8c92-747a-460d-9e36-b9348000c0e9">
           <roles>
-            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item slug="debug" role_id="f15524335e0a4c42ae4a94fb8cfe1909">Debug</item>
           </roles>
           <allow_as_mass_action>True</allow_as_mass_action>
           <require_confirmation>False</require_confirmation>
@@ -1256,7 +1311,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       <triggers>
         <trigger type="manual" id="b2738ce0-09ef-43e4-82d9-0fa4c13c382e">
           <roles>
-            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item slug="debug" role_id="f15524335e0a4c42ae4a94fb8cfe1909">Debug</item>
           </roles>
           <allow_as_mass_action>True</allow_as_mass_action>
           <require_confirmation>False</require_confirmation>
@@ -1275,8 +1330,8 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       <triggers>
         <trigger type="manual" id="c5804db0-a8b6-4d26-bb3d-2af1167495b6">
           <roles>
-            <item slug="agent-traitant-townstreet" role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
-            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item slug="agent-traitant-townstreet" role_id="8f4ec78fc7dd4efeb840d9c454d15c65">Agent traitant - Townstreet</item>
+            <item slug="debug" role_id="f15524335e0a4c42ae4a94fb8cfe1909">Debug</item>
           </roles>
           <statuses>
             <statuse>22</statuse>
@@ -1298,7 +1353,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       <triggers>
         <trigger type="manual" id="028b85d4-bcf1-4c33-8e1f-591968e32872">
           <roles>
-            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item slug="debug" role_id="f15524335e0a4c42ae4a94fb8cfe1909">Debug</item>
           </roles>
           <allow_as_mass_action>True</allow_as_mass_action>
           <require_confirmation>False</require_confirmation>
@@ -1310,14 +1365,14 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       <name>debug</name>
       <items>
         <item type="jump" id="1">
-          <status>22</status>
+          <status>21</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items>
       <triggers>
         <trigger type="manual" id="0552518a-d7d5-4d35-a41c-1c5af4f65f4c">
           <roles>
-            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item slug="debug" role_id="f15524335e0a4c42ae4a94fb8cfe1909">Debug</item>
           </roles>
           <allow_as_mass_action>True</allow_as_mass_action>
           <require_confirmation>False</require_confirmation>
@@ -1337,10 +1392,32 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
         <trigger type="manual" id="49c729c1-12db-4815-931a-49745196f63b">
           <roles>
             <item role_id="_receiver">_receiver</item>
-            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item slug="debug" role_id="f15524335e0a4c42ae4a94fb8cfe1909">Debug</item>
           </roles>
           <statuses>
             <statuse>21</statuse>
+          </statuses>
+          <allow_as_mass_action>True</allow_as_mass_action>
+          <require_confirmation>False</require_confirmation>
+        </trigger>
+      </triggers>
+    </action>
+    <action>
+      <id>9</id>
+      <name>Cl&#244;turer les demandes</name>
+      <items>
+        <item type="jump" id="1">
+          <status>13</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+      <triggers>
+        <trigger type="manual" id="e660e3e8-91ca-4e4c-8d80-e7075ee0592f">
+          <roles>
+            <item role_id="_receiver">_receiver</item>
+          </roles>
+          <statuses>
+            <statuse>23</statuse>
           </statuses>
           <allow_as_mass_action>True</allow_as_mass_action>
           <require_confirmation>False</require_confirmation>
@@ -1424,6 +1501,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
           <image_desktop_size type="int">150</image_desktop_size>
           <image_mobile_size type="int">75</image_mobile_size>
+          <radio_orientation type="str">auto</radio_orientation>
           <id type="str">4</id>
         </field>
         <field>
@@ -1445,6 +1523,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
           <image_desktop_size type="int">150</image_desktop_size>
           <image_mobile_size type="int">75</image_mobile_size>
+          <radio_orientation type="str">auto</radio_orientation>
           <id type="str">5</id>
         </field>
         <field>
@@ -1496,6 +1575,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
           <image_desktop_size type="int">150</image_desktop_size>
           <image_mobile_size type="int">75</image_mobile_size>
+          <radio_orientation type="str">auto</radio_orientation>
           <id type="str">8</id>
         </field>
         <field>
