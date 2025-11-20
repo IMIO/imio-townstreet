@@ -577,7 +577,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
           <status>27</status>
           <condition>
             <type>django</type>
-            <value>work_request_details_response_data_RequestState == 8</value>
+            <value>work_request_details_response_data_RequestState|stringformat:"s" in "8|9|13"|split:"|"</value>
           </condition>
           <mode>immediate</mode>
           <set_marker_on_status>False</set_marker_on_status>
