@@ -305,14 +305,7 @@
       <visibility>
         <role>__restricted__</role>
       </visibility>
-      <items>
-        <item type="sendmail" id="1">
-          <to>
-            <item role_id="admints+townstreet-errors@imio.be">admints+townstreet-errors@imio.be</item>
-          </to>
-          <mail_template>imio-townstreet-erreur</mail_template>
-        </item>
-      </items>
+      <items />
     </status>
     <status>
       <id>20</id>
@@ -524,12 +517,6 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
           <ignore_form_errors>False</ignore_form_errors>
           <set_marker_on_status>False</set_marker_on_status>
           <allow_as_mass_action>True</allow_as_mass_action>
-        </item>
-        <item type="sendmail" id="2">
-          <to>
-            <item role_id="admints+townstreet-errors@imio.be">admints+townstreet-errors@imio.be</item>
-          </to>
-          <mail_template>imio-townstreet-erreur-envoi-des-photos-iatech</mail_template>
         </item>
       </items>
     </status>
