@@ -328,11 +328,6 @@
             </field>
           </fields>
         </item>
-        <item type="jump" id="2">
-          <status>6</status>
-          <mode>immediate</mode>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
         <item type="register-comment" id="3">
           <to>
             <item role_id="_receiver">_receiver</item>
@@ -344,6 +339,11 @@
             <type>django</type>
             <value>post_work_request_app_error_code == 0 and post_work_request_response_data_Number</value>
           </condition>
+        </item>
+        <item type="jump" id="2">
+          <status>6</status>
+          <mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items>
     </status>
