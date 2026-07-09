@@ -2,9 +2,9 @@
 <mail-template id="2" url="https://chaumontgistoux-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/2/">
   <name>iMio - Townstreet - Votre signalement</name>
   <slug>imio-townstreet-acknowledgement</slug>
-  <description>iMio - Townstreet - Courriel envoy&#233; d&#232;s la r&#233;ception du signalement.</description>
+  <documentation>iMio - Townstreet - Courriel envoy&#233; d&#232;s la r&#233;ception du signalement.</documentation>
   <subject>Merci pour votre signalement.</subject>
-  <body>Bonjour{% if greetings_lastname_firstname %} {{ form_user_var_last_name }} {{ form_user_var_first_name }}{% endif %},
+  <body>Bonjour {{ form_var_firstname }} {{ form_var_lastname }},
 
 Merci pour votre signalement.
 
