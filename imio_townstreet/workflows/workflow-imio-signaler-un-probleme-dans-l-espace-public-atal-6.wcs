@@ -505,7 +505,7 @@
       </visibility>
       <items>
         <item type="choice" id="1">
-          <label>D&#233;bug &#183; R&#233;essayer d'envoyer les images dans ATAL</label>
+          <label>D&#233;bug &#183; R&#233;essayer d'envoyer les fichiers dans ATAL</label>
           <by>
             <item role_id="_receiver">_receiver</item>
             <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
@@ -518,7 +518,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
 </backoffice_info_text>
           <ignore_form_errors>False</ignore_form_errors>
           <set_marker_on_status>False</set_marker_on_status>
-          <allow_as_mass_action>True</allow_as_mass_action>
+          <allow_as_mass_action>False</allow_as_mass_action>
         </item>
       </items>
     </status>
@@ -1281,6 +1281,9 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
             <item slug="debug" role_id="d49931dffc5946bcbb9a215ce5c26e79">Debug</item>
             <item role_id="_receiver">_receiver</item>
           </roles>
+          <statuses>
+            <statuse>5</statuse>
+          </statuses>
           <allow_as_mass_action>True</allow_as_mass_action>
           <require_confirmation>False</require_confirmation>
         </trigger>
@@ -1288,7 +1291,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
     </action>
     <action>
       <id>4</id>
-      <name>&#128260; iMio - Envoyer les images dans Atal</name>
+      <name>&#128260; iMio - Envoyer les fichiers dans Atal</name>
       <backoffice_info_text>&lt;p&gt;iMio - Saut automatique vers le statut &amp;quot;Envoi de fichier vers Atal&amp;quot; en vue de renvoyer les fichiers vers Atal.&lt;/p&gt;</backoffice_info_text>
       <items>
         <item type="jump" id="1">
@@ -1302,6 +1305,9 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
             <item role_id="_receiver">_receiver</item>
             <item slug="debug" role_id="d49931dffc5946bcbb9a215ce5c26e79">Debug</item>
           </roles>
+          <statuses>
+            <statuse>7</statuse>
+          </statuses>
           <allow_as_mass_action>True</allow_as_mass_action>
           <require_confirmation>False</require_confirmation>
         </trigger>
@@ -1522,6 +1528,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <hint type="str">&lt;p&gt;Cochez cette case pour employer les th&#233;matiques (Travaux) d'ATAL en guise de cat&#233;gories de signalement. Si cette case est coch&#233;e alors les cat&#233;gories offertes ne seront plus visibles.&lt;/p&gt;</hint>
           <varname type="str">use_atal_thematics</varname>
           <display_locations />
+          <anonymise type="str">no</anonymise>
           <id type="str">561ea67d-ac6d-4f63-bc65-27ee1b1feff0</id>
         </field>
         <field>
@@ -1562,6 +1569,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <hint type="str">&lt;p&gt;Afin de pouvoir &#233;diter / personnaliser le message.&lt;/p&gt;</hint>
           <varname type="str">custom_end_notification</varname>
           <display_locations />
+          <anonymise type="str">no</anonymise>
           <display_mode type="str">radio</display_mode>
           <items>
             <item>Oui</item>
