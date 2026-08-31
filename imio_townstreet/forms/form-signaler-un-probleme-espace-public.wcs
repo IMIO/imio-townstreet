@@ -8,17 +8,15 @@
   <discussion>false</discussion>
   <detailed_emails>true</detailed_emails>
   <disabled>false</disabled>
+  <hidden>false</hidden>
   <only_allow_one>false</only_allow_one>
   <enable_tracking_codes>true</enable_tracking_codes>
   <confirmation>false</confirmation>
   <always_advertise>false</always_advertise>
   <has_captcha>false</has_captcha>
   <skip_from_360_view>false</skip_from_360_view>
-  <category slug="signaler-un-probleme-espace-public" category_id="16">Signaler un probl&#232;me dans l'espace public</category>
-  <workflow slug="imio-signaler-un-probleme-dans-l-espace-public-atal-6-test" workflow_id="175">iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6) - test update</workflow>
-  <tracking_code_verify_fields>
-    <field_id>123</field_id>
-  </tracking_code_verify_fields>
+  <category slug="signaler-un-probleme-espace-public" category_id="12">Signaler un probl&#232;me dans l'espace public</category>
+  <workflow slug="imio-signaler-un-probleme-dans-l-espace-public-atal-6" workflow_id="84">iMio - Signaler un probl&#232;me dans l'espace public (ATAL 6)</workflow>
   <fields>
     <field>
       <type>page</type>
@@ -117,6 +115,7 @@
       <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
       <image_desktop_size type="int">150</image_desktop_size>
       <image_mobile_size type="int">75</image_mobile_size>
+      <radio_orientation type="str">auto</radio_orientation>
       <id type="str">108</id>
     </field>
     <field>
@@ -149,6 +148,7 @@
       <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
       <image_desktop_size type="str">150</image_desktop_size>
       <image_mobile_size type="str">75</image_mobile_size>
+      <radio_orientation type="str">auto</radio_orientation>
       <id type="str">691be431-a052-4c0a-b4b1-30460b40dc56</id>
     </field>
     <field>
@@ -180,6 +180,7 @@
       <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
       <image_desktop_size type="int">150</image_desktop_size>
       <image_mobile_size type="int">75</image_mobile_size>
+      <radio_orientation type="str">auto</radio_orientation>
       <id type="str">183</id>
     </field>
     <field>
@@ -307,7 +308,6 @@
         <mimetypes>image/*</mimetypes>
       </document_type>
       <max_file_size type="str">30 Mo</max_file_size>
-      <allow_portfolio_picking type="bool">False</allow_portfolio_picking>
       <automatic_image_resize type="bool">True</automatic_image_resize>
       <storage type="str">default</storage>
       <id type="str">138</id>
@@ -335,7 +335,6 @@
         <mimetypes>image/*</mimetypes>
       </document_type>
       <max_file_size type="str">30 Mo</max_file_size>
-      <allow_portfolio_picking type="bool">False</allow_portfolio_picking>
       <automatic_image_resize type="bool">True</automatic_image_resize>
       <storage type="str">default</storage>
       <id type="str">208</id>
@@ -358,7 +357,6 @@
         <mimetypes>image/*</mimetypes>
       </document_type>
       <max_file_size type="str">30 Mo</max_file_size>
-      <allow_portfolio_picking type="bool">False</allow_portfolio_picking>
       <automatic_image_resize type="bool">True</automatic_image_resize>
       <storage type="str">default</storage>
       <id type="str">139</id>
@@ -381,7 +379,6 @@
         <mimetypes>image/*</mimetypes>
       </document_type>
       <max_file_size type="str">30 Mo</max_file_size>
-      <allow_portfolio_picking type="bool">False</allow_portfolio_picking>
       <automatic_image_resize type="bool">True</automatic_image_resize>
       <storage type="str">default</storage>
       <id type="str">140</id>

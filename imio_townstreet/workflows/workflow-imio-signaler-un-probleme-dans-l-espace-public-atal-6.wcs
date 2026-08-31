@@ -133,7 +133,7 @@
       <items>
         <item type="form" id="1">
           <by>
-            <item slug="debug" role_id="f15524335e0a4c42ae4a94fb8cfe1909">Debug</item>
+            <item slug="debug" role_id="d49931dffc5946bcbb9a215ce5c26e79">Debug</item>
           </by>
           <varname>manual_geodata</varname>
           <hide_submit_button>False</hide_submit_button>
@@ -305,14 +305,7 @@
       <visibility>
         <role>__restricted__</role>
       </visibility>
-      <items>
-        <item type="sendmail" id="1">
-          <to>
-            <item role_id="admints+townstreet-errors@imio.be">admints+townstreet-errors@imio.be</item>
-          </to>
-          <mail_template>imio-townstreet-erreur</mail_template>
-        </item>
-      </items>
+      <items />
     </status>
     <status>
       <id>20</id>
@@ -335,22 +328,24 @@
             </field>
           </fields>
         </item>
-        <item type="jump" id="2">
-          <status>6</status>
-          <mode>immediate</mode>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
         <item type="register-comment" id="3">
           <to>
             <item role_id="_receiver">_receiver</item>
+            <item role_id="_submitter">_submitter</item>
           </to>
           <comment>La demande a &#233;t&#233; cr&#233;&#233;e dans ATAL ({{ post_work_request_response_data_Number }}).
 
 </comment>
+          <level>info</level>
           <condition>
             <type>django</type>
             <value>post_work_request_app_error_code == 0 and post_work_request_response_data_Number</value>
           </condition>
+        </item>
+        <item type="jump" id="2">
+          <status>6</status>
+          <mode>immediate</mode>
+          <set_marker_on_status>False</set_marker_on_status>
         </item>
       </items>
     </status>
@@ -510,10 +505,10 @@
       </visibility>
       <items>
         <item type="choice" id="1">
-          <label>D&#233;bug &#183; R&#233;essayer d'envoyer les images dans ATAL</label>
+          <label>D&#233;bug &#183; R&#233;essayer d'envoyer les fichiers dans ATAL</label>
           <by>
             <item role_id="_receiver">_receiver</item>
-            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
           </by>
           <status>6</status>
           <require_confirmation>True</require_confirmation>
@@ -523,13 +518,7 @@ Si un probl&amp;egrave;me persiste, merci d&amp;#39;ouvrir un ticket via le tick
 </backoffice_info_text>
           <ignore_form_errors>False</ignore_form_errors>
           <set_marker_on_status>False</set_marker_on_status>
-          <allow_as_mass_action>True</allow_as_mass_action>
-        </item>
-        <item type="sendmail" id="2">
-          <to>
-            <item role_id="admints+townstreet-errors@imio.be">admints+townstreet-errors@imio.be</item>
-          </to>
-          <mail_template>imio-townstreet-erreur-envoi-des-photos-iatech</mail_template>
+          <allow_as_mass_action>False</allow_as_mass_action>
         </item>
       </items>
     </status>
@@ -929,9 +918,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       <id>27</id>
       <name>Signalement int&#233;gr&#233; &#224; ATAL</name>
       <colour>#57e389</colour>
-      <visibility>
-        <role>__restricted__</role>
-      </visibility>
+      <visibility />
       <items>
         <item type="webservice_call" id="1">
           <label>Notifier FixMyStreet d'un nouveau signalement accept&#233;</label>
@@ -1250,7 +1237,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
         </item>
         <item type="displaymsg" id="4">
           <to>
-            <item slug="agent-traitant-townstreet" role_id="8f4ec78fc7dd4efeb840d9c454d15c65">Agent traitant - Townstreet</item>
+            <item slug="agent-traitant-townstreet" role_id="b8531e95520a47c1bd98fb13cdb0719a">Agent traitant - Townstreet</item>
             <item role_id="_submitter">_submitter</item>
           </to>
           <message>Cette demande a &#233;t&#233; trait&#233;e.</message>
@@ -1271,7 +1258,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       <triggers>
         <trigger type="manual" id="5195410f-d64b-4ba7-a8b1-8c0bdcf27061">
           <roles>
-            <item slug="debug" role_id="f15524335e0a4c42ae4a94fb8cfe1909">Debug</item>
+            <item slug="debug" role_id="d49931dffc5946bcbb9a215ce5c26e79">Debug</item>
           </roles>
           <allow_as_mass_action>True</allow_as_mass_action>
           <require_confirmation>False</require_confirmation>
@@ -1291,8 +1278,12 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       <triggers>
         <trigger type="manual" id="871a8c92-747a-460d-9e36-b9348000c0e9">
           <roles>
-            <item slug="debug" role_id="f15524335e0a4c42ae4a94fb8cfe1909">Debug</item>
+            <item slug="debug" role_id="d49931dffc5946bcbb9a215ce5c26e79">Debug</item>
+            <item role_id="_receiver">_receiver</item>
           </roles>
+          <statuses>
+            <statuse>5</statuse>
+          </statuses>
           <allow_as_mass_action>True</allow_as_mass_action>
           <require_confirmation>False</require_confirmation>
         </trigger>
@@ -1300,7 +1291,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
     </action>
     <action>
       <id>4</id>
-      <name>&#128260; iMio - Envoyer les images dans Atal</name>
+      <name>&#128260; iMio - Envoyer les fichiers dans Atal</name>
       <backoffice_info_text>&lt;p&gt;iMio - Saut automatique vers le statut &amp;quot;Envoi de fichier vers Atal&amp;quot; en vue de renvoyer les fichiers vers Atal.&lt;/p&gt;</backoffice_info_text>
       <items>
         <item type="jump" id="1">
@@ -1311,8 +1302,12 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       <triggers>
         <trigger type="manual" id="b2738ce0-09ef-43e4-82d9-0fa4c13c382e">
           <roles>
-            <item slug="debug" role_id="f15524335e0a4c42ae4a94fb8cfe1909">Debug</item>
+            <item role_id="_receiver">_receiver</item>
+            <item slug="debug" role_id="d49931dffc5946bcbb9a215ce5c26e79">Debug</item>
           </roles>
+          <statuses>
+            <statuse>7</statuse>
+          </statuses>
           <allow_as_mass_action>True</allow_as_mass_action>
           <require_confirmation>False</require_confirmation>
         </trigger>
@@ -1330,8 +1325,8 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       <triggers>
         <trigger type="manual" id="c5804db0-a8b6-4d26-bb3d-2af1167495b6">
           <roles>
-            <item slug="agent-traitant-townstreet" role_id="8f4ec78fc7dd4efeb840d9c454d15c65">Agent traitant - Townstreet</item>
-            <item slug="debug" role_id="f15524335e0a4c42ae4a94fb8cfe1909">Debug</item>
+            <item slug="agent-traitant-townstreet" role_id="b8531e95520a47c1bd98fb13cdb0719a">Agent traitant - Townstreet</item>
+            <item slug="debug" role_id="d49931dffc5946bcbb9a215ce5c26e79">Debug</item>
           </roles>
           <statuses>
             <statuse>22</statuse>
@@ -1353,7 +1348,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       <triggers>
         <trigger type="manual" id="028b85d4-bcf1-4c33-8e1f-591968e32872">
           <roles>
-            <item slug="debug" role_id="f15524335e0a4c42ae4a94fb8cfe1909">Debug</item>
+            <item slug="debug" role_id="d49931dffc5946bcbb9a215ce5c26e79">Debug</item>
           </roles>
           <allow_as_mass_action>True</allow_as_mass_action>
           <require_confirmation>False</require_confirmation>
@@ -1372,7 +1367,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
       <triggers>
         <trigger type="manual" id="0552518a-d7d5-4d35-a41c-1c5af4f65f4c">
           <roles>
-            <item slug="debug" role_id="f15524335e0a4c42ae4a94fb8cfe1909">Debug</item>
+            <item slug="debug" role_id="d49931dffc5946bcbb9a215ce5c26e79">Debug</item>
           </roles>
           <allow_as_mass_action>True</allow_as_mass_action>
           <require_confirmation>False</require_confirmation>
@@ -1392,7 +1387,7 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
         <trigger type="manual" id="49c729c1-12db-4815-931a-49745196f63b">
           <roles>
             <item role_id="_receiver">_receiver</item>
-            <item slug="debug" role_id="f15524335e0a4c42ae4a94fb8cfe1909">Debug</item>
+            <item slug="debug" role_id="d49931dffc5946bcbb9a215ce5c26e79">Debug</item>
           </roles>
           <statuses>
             <statuse>21</statuse>
@@ -1527,6 +1522,16 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <id type="str">5</id>
         </field>
         <field>
+          <type>bool</type>
+          <label type="str">Employer les th&#233;matiques d'ATAL</label>
+          <required type="str">optional</required>
+          <hint type="str">&lt;p&gt;Cochez cette case pour employer les th&#233;matiques (Travaux) d'ATAL en guise de cat&#233;gories de signalement. Si cette case est coch&#233;e alors les cat&#233;gories offertes ne seront plus visibles.&lt;/p&gt;</hint>
+          <varname type="str">use_atal_thematics</varname>
+          <display_locations />
+          <anonymise type="str">no</anonymise>
+          <id type="str">561ea67d-ac6d-4f63-bc65-27ee1b1feff0</id>
+        </field>
+        <field>
           <type>items</type>
           <label type="str">Cat&#233;gories offertes</label>
           <required type="str">optional</required>
@@ -1559,9 +1564,9 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
         </field>
         <field>
           <type>item</type>
-          <label type="str">Envoi manuel de la notification de cl&#244;ture ou de refus et pas automatique</label>
+          <label type="str">Envoi manuel de la notification de cl&#244;ture ou de refus</label>
           <required type="str">optional</required>
-          <hint type="str">Afin de pouvoir &#233;diter / personnaliser le message.</hint>
+          <hint type="str">&lt;p&gt;Afin de pouvoir &#233;diter / personnaliser le message.&lt;/p&gt;</hint>
           <varname type="str">custom_end_notification</varname>
           <display_locations />
           <anonymise type="str">no</anonymise>
@@ -1573,20 +1578,10 @@ Vous &amp;ecirc;tes dont en train de r&amp;eacute;diger une r&amp;eacute;ponse e
           <in_filters type="bool">False</in_filters>
           <display_disabled_items type="bool">False</display_disabled_items>
           <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
-          <image_desktop_size type="int">150</image_desktop_size>
-          <image_mobile_size type="int">75</image_mobile_size>
+          <image_desktop_size type="str">150</image_desktop_size>
+          <image_mobile_size type="str">75</image_mobile_size>
           <radio_orientation type="str">auto</radio_orientation>
           <id type="str">8</id>
-        </field>
-        <field>
-          <type>bool</type>
-          <label type="str">Employer les th&#233;matiques d'ATAL</label>
-          <required type="str">optional</required>
-          <hint type="str">Cochez cette case pour employer les th&#233;matiques (Travaux) d'ATAL en guise de cat&#233;gories de signalement.</hint>
-          <varname type="str">use_atal_thematics</varname>
-          <display_locations />
-          <anonymise type="str">no</anonymise>
-          <id type="str">561ea67d-ac6d-4f63-bc65-27ee1b1feff0</id>
         </field>
       </fields>
     </formdef>
