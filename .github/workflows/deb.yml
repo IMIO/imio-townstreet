@@ -8,7 +8,7 @@ on:
 
 jobs:
   deb:
-    uses: IMIO/gha-workflows/.github/workflows/deb-build-push-notify.yml@DEVOPS-417
+    uses: IMIO/gha-workflows/.github/workflows/deb-build-push-notify.yml@v1
     secrets: inherit
     with:
       distributions: '["bookworm", "trixie"]'
