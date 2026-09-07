@@ -2,7 +2,7 @@
 <mail-template id="35" url="https://staging2-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/35/">
   <name>iMio - Townstreet (ATAL 5) - Accept&#233;</name>
   <slug>imio-townstreet-accepte</slug>
-  <description>iMio - Courriel envoy&#233; &#224; l'usager lorsque l'agent appuie sur "accepter".</description>
+  <documentation>iMio - Courriel envoy&#233; &#224; l'usager lorsque l'agent appuie sur "accepter".</documentation>
   <subject>Votre signalement a &#233;t&#233; accept&#233;.</subject>
   <body>Bonjour{% if greetings_lastname_firstname %} {{ form_user_var_last_name }} {{ form_user_var_first_name }}{% endif %},
 

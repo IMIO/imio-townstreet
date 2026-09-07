@@ -2,7 +2,7 @@
 <mail-template id="5" url="https://chaumontgistoux-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/5/">
   <name>iMio - Townstreet - Nouveau signalement</name>
   <slug>imio-townstreet-new-signal</slug>
-  <description>iMio - Townstreet - Mail envoy&#233; aux agents traitants si l'option de formulaire est activ&#233;e.</description>
+  <documentation>iMio - Townstreet - Mail envoy&#233; aux agents traitants si l'option de formulaire est activ&#233;e.</documentation>
   <subject>Townstreet : Nouveau signalement ({{ form_number }})</subject>
   <body>.. image:: {{ ts_header_mail_pic }}
    :width: 303.99px

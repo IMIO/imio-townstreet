@@ -2,7 +2,7 @@
 <mail-template id="54" url="https://mons-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/54/">
   <name>iMio - Townstreet - Refus&#233; avec personnalisation</name>
   <slug>imio-townstreet-refuse-avec-personnalisation</slug>
-  <description>Courriel envoy&#233; &#224; l'usager lorsque la demande est refus&#233;e, avec personnalisation du contenu du mail par l'agent.</description>
+  <documentation>Courriel envoy&#233; &#224; l'usager lorsque la demande est refus&#233;e, avec personnalisation du contenu du mail par l'agent.</documentation>
   <subject>Nous ne pouvons donner suite &#224; votre signalement.</subject>
   <body>Bonjour{% if greetings_lastname_firstname %} {{ form_user_var_last_name }} {{ form_user_var_first_name }}{% endif %},
 

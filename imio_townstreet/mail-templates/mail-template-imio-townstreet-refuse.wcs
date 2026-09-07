@@ -2,7 +2,7 @@
 <mail-template id="9" url="https://canary-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/9/">
   <name>iMio - Townstreet - Refus&#233;</name>
   <slug>imio-townstreet-refuse</slug>
-  <description>iMio - Courriel envoy&#233; &#224; l'usager lorsque la demande est refus&#233;e.</description>
+  <documentation>iMio - Courriel envoy&#233; &#224; l'usager lorsque la demande est refus&#233;e.</documentation>
   <subject>Nous ne pouvons donner suite &#224; votre signalement.</subject>
   <body>Bonjour{% if greetings_lastname_firstname %} {{ form_user_var_last_name }} {{ form_user_var_first_name }}{% endif %},
 
