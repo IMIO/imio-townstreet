@@ -2,7 +2,7 @@
 <mail-template id="42" url="https://staging2-formulaires.guichet-citoyen.be/backoffice/workflows/mail-templates/42/">
   <name>iMio - Townstreet (ATAL 5) - Notification de refus dans ATAL</name>
   <slug>imio-townstreet-notification-de-refus-dans-e-atal</slug>
-  <description>iMio - Townstreet - Mail envoy&#233; aux agents traitants si la demande est cl&#244;tur&#233;e dans ATAL alors que le demandeur souhaite &#234;tre tenu inform&#233;. Dans ce cas la demande passe automatiquement en "Trait&#233;".</description>
+  <documentation>iMio - Townstreet - Mail envoy&#233; aux agents traitants si la demande est cl&#244;tur&#233;e dans ATAL alors que le demandeur souhaite &#234;tre tenu inform&#233;. Dans ce cas la demande passe automatiquement en "Trait&#233;".</documentation>
   <subject>Townstreet : Notification de refus dans e-Atal ({{ form_number }})</subject>
   <body>.. image:: {{ ts_header_mail_pic }}
    :width: 358px
