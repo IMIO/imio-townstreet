@@ -394,15 +394,28 @@
             <type>django</type>
             <value>form_var_follow == True</value>
           </condition>
-        </item><item type="commentable" id="2">
-          <label>Message &#224; communiquer en cas de changement de d&#233;cision et d'acceptation :</label>
-          <button_label />
-          <hint>Veuillez ajouter un commentaire &#224; l'historique de la demande en cas de changement de d&#233;cision. Le message s'inscrira au changement d'action.</hint>
+        </item><item type="form" id="2">
           <by>
             <item role_id="_receiver">_receiver</item>
-          </by><varname>motifretournouvsign</varname>
-          <backoffice_info_text>&lt;p&gt;Message &amp;agrave; communiquer en cas de changement de d&amp;eacute;cision et d'acceptation&amp;nbsp;- &lt;strong&gt;Ce commentaire s'inscrira &amp;agrave; l'historique de la demande et sera visible par l'usager. Il lui sera &amp;eacute;galement transmis par mail.&lt;/strong&gt;&lt;/p&gt;</backoffice_info_text>
-          <required>False</required>
+          </by>
+          <varname>motifretournouvsign</varname>
+          <hide_submit_button>True</hide_submit_button>
+          <include_in_form_history>True</include_in_form_history>
+          <formdef>
+            <name>-</name>
+            <fields>
+              <field>
+                <type>text</type>
+                <label type="str">Message &#224; communiquer en cas de changement de d&#233;cision et d'acceptation :</label>
+                <required type="str">optional</required>
+                <hint type="str">Veuillez ajouter un commentaire &#224; l'historique de la demande en cas de changement de d&#233;cision. Le message s'inscrira au changement d'action.</hint>
+                <varname type="str">motifretournouvsign</varname>
+                <display_locations />
+                <display_mode type="str">pre</display_mode>
+                <id type="str">4c351633-a3a2-490c-a1ce-c1a5a851860a</id>
+              </field>
+            </fields>
+          </formdef>
         </item><item type="choice" id="3">
           <label>Revenir sur la d&#233;cision et accepter</label>
           <by>
@@ -434,14 +447,28 @@
           <to>
             <item slug="agent-traitant-townstreet" role_id="f9b7cd2a23e541e7a5c6504aa2fd6c10">Agent traitant - Townstreet</item>
           </to>
-        </item><item type="commentable" id="3">
-          <label>Commentaire</label>
-          <button_label />
-          <hint>Commentaire &#8211; Veuillez ajouter un commentaire dans l'historique avant d'actionner un refus. L'objet du refus sera transmis par mail au demandeur. Tout autre commenaire sans actionner le refus sera visible par l'usager dans l'historique de sa demande.</hint>
+        </item><item type="form" id="3">
           <by>
             <item role_id="_receiver">_receiver</item>
-          </by><backoffice_info_text>&lt;p&gt;Commentaire &amp;ndash; &lt;strong&gt;Veuillez ajouter un commentaire dans l'historique avant d'actionner un refus&lt;/strong&gt;. L'objet du refus sera transmis par mail au demandeur.&lt;/p&gt;</backoffice_info_text>
-          <required>False</required>
+          </by>
+          <varname>commentaire</varname>
+          <hide_submit_button>True</hide_submit_button>
+          <include_in_form_history>True</include_in_form_history>
+          <formdef>
+            <name>-</name>
+            <fields>
+              <field>
+                <type>text</type>
+                <label type="str">Commentaire</label>
+                <required type="str">optional</required>
+                <hint type="str">Commentaire &#8211; Veuillez ajouter un commentaire dans l'historique avant d'actionner un refus. L'objet du refus sera transmis par mail au demandeur. Tout autre commenaire sans actionner le refus sera visible par l'usager dans l'historique de sa demande.</hint>
+                <varname type="str">commentaire</varname>
+                <display_locations />
+                <display_mode type="str">pre</display_mode>
+                <id type="str">f3e86e9b-cbc1-44f0-bab6-888f94068ed9</id>
+              </field>
+            </fields>
+          </formdef>
         </item><item type="choice" id="4">
           <label>Marquer comme refus&#233;</label>
           <by>
