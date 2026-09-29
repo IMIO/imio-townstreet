@@ -4,6 +4,19 @@
         "name": "Agent traitant - Townstreet",
         "slug": "agent-traitant-townstreet",
         "ou": {"slug": "default"}
+      },
+      {
+        "name": "Debug",
+        "slug": "debug",
+        "emails_to_members": true,
+        "ou": {"slug": "default"},
+        "parents": [
+          {
+            "name": "Agent",
+            "slug": "agent",
+            "ou": {"slug": "default"}
+          }
+        ]
       }
     ]
   }
